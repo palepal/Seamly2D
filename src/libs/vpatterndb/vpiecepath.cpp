@@ -387,7 +387,13 @@ bool VPiecePath::extendEndPoint() const
 
 
 //---------------------------------------------------------------------------------------------------------------------
-QVector<QPointF> VPiecePath::PathPoints(const VContainer *data, const QVector<QPointF> &cutPath) const
+/// @brief PathPoints the points of the path, with curves flattened into polylines.
+/// @param data container with the geometric objects.
+/// @param cutPath cut line that an internal path's ends are extended to.
+/// @param turnPoints if not null, receives the node points and the ends of each curve segment.
+/// @return the path points.
+QVector<QPointF> VPiecePath::PathPoints(const VContainer *data, const QVector<QPointF> &cutPath,
+                                        QVector<QPointF> *turnPoints) const
 {
     QVector<QPointF> points;
     for (int i = 0; i < nodeCount(); ++i)
@@ -403,6 +409,10 @@ QVector<QPointF> VPiecePath::PathPoints(const VContainer *data, const QVector<QP
                 {
                     const QSharedPointer<VPointF> point = data->GeometricObject<VPointF>(at(i).GetId());
                     points.append(static_cast<QPointF>(*point));
+                    if (turnPoints != nullptr)
+                    {
+                        turnPoints->append(points.last());
+                    }
                 }
                 break;
             case (Tool::NodeArc):
@@ -415,7 +425,13 @@ QVector<QPointF> VPiecePath::PathPoints(const VContainer *data, const QVector<QP
                     const QPointF begin = StartSegment(data, i, at(i).GetReverse());
                     const QPointF end = EndSegment(data, i, at(i).GetReverse());
 
-                    points << curve->GetSegmentPoints(begin, end, at(i).GetReverse());
+                    const QVector<QPointF> segment = curve->GetSegmentPoints(begin, end, at(i).GetReverse());
+                    points << segment;
+                    if (turnPoints != nullptr && !segment.isEmpty())
+                    {
+                        turnPoints->append(segment.first());
+                        turnPoints->append(segment.last());
+                    }
                 }
                 break;
             default:

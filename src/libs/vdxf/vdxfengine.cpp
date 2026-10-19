@@ -50,6 +50,7 @@
 
 #include "vdxfengine.h"
 
+#include <algorithm>
 #include <QByteArray>
 #include <QColor>
 #include <QDateTime>
@@ -681,34 +682,52 @@ bool VDxfEngine::ExportToAAMA(const QVector<VLayoutPiece> &details)
 //---------------------------------------------------------------------------------------------------------------------
 void VDxfEngine::ExportAAMAOutline(dx_ifaceBlock *detailBlock, const VLayoutPiece &piece)
 {
-    QVector<QPointF> outline;
-    if (piece.hasSeamAllowance() && not piece.hasSeamAllowanceBuiltIn())
-    {
-        outline = piece.getSeamAllowancePoints();
-    }
-    else
-    {
-        outline = piece.getContourPoints();
-    }
+    const bool isContour = !piece.hasSeamAllowance() || piece.hasSeamAllowanceBuiltIn();
+    const QVector<QPointF> outline = isContour ? piece.getContourPoints() : piece.getSeamAllowancePoints();
 
     DRW_Entity *e = AAMAPolygon(outline, "1", true);
     if (e)
     {
         detailBlock->ent.push_back(e);
     }
+
+    if (isContour)
+    {
+        exportAAMAPoints(detailBlock, outline, piece.getTurnPoints());
+    }
 }
 
 //---------------------------------------------------------------------------------------------------------------------
 void VDxfEngine::ExportAAMADraw(dx_ifaceBlock *detailBlock, const VLayoutPiece &detail)
 {
-    if (not detail.isHideSeamLine())
+    // Without a separate seam allowance the outline on layer 1 is already the sew line.
+    if (detail.hasSeamAllowance() && !detail.hasSeamAllowanceBuiltIn() && !detail.isHideSeamLine())
     {
-        QVector<QPointF> poly = detail.getContourPoints();
-        DRW_Entity *e = AAMAPolygon(poly, "8", true);
+        const QVector<QPointF> poly = detail.getContourPoints();
+        DRW_Entity *e = AAMAPolygon(poly, "14", true);
         if (e)
         {
             detailBlock->ent.push_back(e);
         }
+        exportAAMAPoints(detailBlock, poly, detail.getTurnPoints());
+    }
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief exportAAMAPoints writes each vertex of a piece polygon as a turn point (layer 2) or a curve point (layer 3).
+/// @param detailBlock block of the piece.
+/// @param polygon the outline or sew line.
+/// @param turnPoints vertices where a straight line or a curve starts or ends, every other vertex is on a curve.
+void VDxfEngine::exportAAMAPoints(dx_ifaceBlock *detailBlock, const QVector<QPointF> &polygon,
+                                  const QVector<QPointF> &turnPoints)
+{
+    for (const QPointF &point : polygon)
+    {
+        const bool isTurnPoint = std::any_of(turnPoints.cbegin(), turnPoints.cend(), [&point](const QPointF &turn)
+        {
+            return VFuzzyComparePoints(point, turn);
+        });
+        detailBlock->ent.push_back(aamaPoint(point, isTurnPoint ? "2" : "3"));
     }
 }
 
@@ -814,6 +833,21 @@ DRW_Entity *VDxfEngine::AAMAPolygon(const QVector<QPointF> &polygon, const QStri
     { // Use polyline
         return CreateAAMAPolygon<DRW_Polyline, DRW_Vertex>(polygon, layer, forceClosed);
     }
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief aamaPoint creates a point entity.
+/// @param pos position in pixels.
+/// @param layer layer name.
+/// @return the point entity.
+DRW_Entity *VDxfEngine::aamaPoint(const QPointF &pos, const QString &layer)
+{
+    DRW_Point *point = new DRW_Point();
+    point->basePoint = DRW_Coord(FromPixel(pos.x(), varInsunits),
+                                 FromPixel(getSize().height() - pos.y(), varInsunits), 0);
+    point->layer = layer.toStdString();
+
+    return point;
 }
 
 //---------------------------------------------------------------------------------------------------------------------

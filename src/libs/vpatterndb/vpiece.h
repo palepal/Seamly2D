@@ -107,6 +107,7 @@ public:
 
     QVector<QPointF>         mainPathPoints(const VContainer *data) const;
     QVector<VPointF>         mainPathNodePoints(const VContainer *data, bool showExcluded = false) const;
+    QVector<QPointF>         turnPoints(const VContainer *data) const;
     QVector<QPointF>         seamAllowancePoints(const VContainer *data) const;
     QVector<QPointF>         cutPathPoints(const VContainer *data) const;
     QVector<QLineF>          createNotchLines(const VContainer *data,

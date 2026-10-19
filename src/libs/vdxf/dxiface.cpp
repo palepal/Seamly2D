@@ -243,6 +243,14 @@ void dx_iface::AddAAMALayers()
     layer.color = DRW::black;
     cData.layers.push_back(layer);
 
+    layer.name = "2";// TURN POINTS
+    layer.color = DRW::black;
+    cData.layers.push_back(layer);
+
+    layer.name = "3";// CURVE POINTS
+    layer.color = DRW::black;
+    cData.layers.push_back(layer);
+
     layer.name = "8";// DRAW, INK
     layer.color = DRW::black;
     cData.layers.push_back(layer);
@@ -264,6 +272,10 @@ void dx_iface::AddAAMALayers()
 //    cData.layers.push_back(layer);
 
     layer.name = "4";// NOTCH
+    layer.color = DRW::black;
+    cData.layers.push_back(layer);
+
+    layer.name = "14";// SEW LINE
     layer.color = DRW::black;
     cData.layers.push_back(layer);
 

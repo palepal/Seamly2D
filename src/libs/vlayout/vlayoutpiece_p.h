@@ -84,6 +84,7 @@ public:
           pieceLabel(),
           patternInfo(),
           grainlinePoints(),
+          m_turnPoints(),
           m_tmPiece(),
           m_tmPattern()
     {}
@@ -102,6 +103,7 @@ public:
           pieceLabel(piece.pieceLabel),
           patternInfo(piece.patternInfo),
           grainlinePoints(piece.grainlinePoints),
+          m_turnPoints(piece.m_turnPoints),
           m_tmPiece(piece.m_tmPiece),
           m_tmPattern(piece.m_tmPattern)
     {}
@@ -120,6 +122,7 @@ public:
     QVector<QPointF>           pieceLabel;         /// @brief pieceLabel piece label rectangle
     QVector<QPointF>           patternInfo;        /// @brief patternInfo pattern info rectangle
     QVector<QPointF>           grainlinePoints;    /// @brief grainlineInfo line
+    QVector<QPointF>           m_turnPoints;       /// @brief m_turnPoints contour points that are not on a curve.
     VTextManager               m_tmPiece;          /// @brief m_tmPiece text manager for laying out piece info
     VTextManager               m_tmPattern;        /// @brief m_tmPattern text manager for laying out pattern info */
 

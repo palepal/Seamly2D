@@ -430,6 +430,7 @@ VLayoutPiece VLayoutPiece::Create(const VPiece &piece, const VContainer *pattern
     layoutPiece.SetMx(piece.GetMx());
     layoutPiece.SetMy(piece.GetMy());
     layoutPiece.setMainPathPoints(piece.mainPathPoints(pattern), piece.isHideSeamLine());
+    layoutPiece.setTurnPoints(piece.turnPoints(pattern));
     layoutPiece.setSeamAllowancePoints(piece.seamAllowancePoints(pattern),
                                        piece.hasSeamAllowance(),
                                        piece.hasSeamAllowanceBuiltIn());
@@ -484,6 +485,22 @@ void VLayoutPiece::setMainPathPoints(const QVector<QPointF> &points, bool hideMa
 {
     d->contour = RemoveDublicates(points, false);
     setHideSeamLine(hideMainPath);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief getTurnPoints the contour points where a straight line or a curve starts or ends, in layout position.
+/// @return the turn points.
+QVector<QPointF> VLayoutPiece::getTurnPoints() const
+{
+    return Map(d->m_turnPoints);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief setTurnPoints sets the contour points where a straight line or a curve starts or ends.
+/// @param points the turn points.
+void VLayoutPiece::setTurnPoints(const QVector<QPointF> &points)
+{
+    d->m_turnPoints = points;
 }
 
 //---------------------------------------------------------------------------------------------------------------------
