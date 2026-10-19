@@ -163,6 +163,15 @@ void VDxfPaintDevice::setInsunits(const VarInsunits &var)
 }
 
 //---------------------------------------------------------------------------------------------------------------------
+/// @brief setCurveMode sets how curves of AAMA outlines and sew lines are written.
+/// @param mode as drawn, with a maximum segment length, or with the fewest points.
+/// @param mm the maximum segment length or the simplify tolerance in millimeters.
+void VDxfPaintDevice::setCurveMode(DxfCurveMode mode, qreal mm)
+{
+    engine->setCurveMode(mode, mm);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
 bool VDxfPaintDevice::ExportToAAMA(const QVector<VLayoutPiece> &details) const
 {
     engine->setActive(true);

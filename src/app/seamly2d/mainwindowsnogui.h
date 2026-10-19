@@ -164,7 +164,7 @@ private:
     void ObjFile(const QString &name, QGraphicsRectItem *paper, QGraphicsScene *scene)const;
     void FlatDxfFile(const QString &name, int version, bool binary, QGraphicsRectItem *paper, QGraphicsScene *scene,
                      const QList<QList<QGraphicsItem *> > &pieces)const;
-    void AAMADxfFile(const QString &name, int version, bool binary, const QSize &size,
+    void AAMADxfFile(const QString &name, int version, const ExportLayoutDialog &dialog, const QSize &size,
                      const QVector<VLayoutPiece> &pieces) const;
 
     void PreparePaper(int index) const;

@@ -113,6 +113,7 @@ public:
 
     void        setMeasurement(const VarMeasurement &var);
     void        setInsunits(const VarInsunits &var);
+    void        setCurveMode(DxfCurveMode mode, qreal mm);
 
 private:
     Q_DISABLE_COPY(VDxfEngine)
@@ -125,6 +126,8 @@ private:
     QSharedPointer<dx_iface>  input;
     VarMeasurement            varMeasurement;
     VarInsunits               varInsunits;
+    DxfCurveMode              m_curveMode;
+    qreal                     m_curveMm;
     DRW_Text                 *textBuffer;
 
     Q_REQUIRED_RESULT double FromPixel(double pix, const VarInsunits &unit) const;
@@ -133,6 +136,7 @@ private:
     bool ExportToAAMA(const QVector<VLayoutPiece> &details);
     void ExportAAMAOutline(dx_ifaceBlock *detailBlock, const VLayoutPiece &detail);
     void ExportAAMADraw(dx_ifaceBlock *detailBlock, const VLayoutPiece &detail);
+    QVector<QPointF> adjustCurves(const QVector<QPointF> &points, const QVector<QPointF> &turnPoints) const;
     void exportAAMAPoints(dx_ifaceBlock *detailBlock, const QVector<QPointF> &polygon,
                           const QVector<QPointF> &turnPoints);
     void ExportAAMAIntcut(dx_ifaceBlock *detailBlock, const VLayoutPiece &detail);

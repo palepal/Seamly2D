@@ -168,6 +168,7 @@ enum class NodeUsage : bool {NotInUse = false, InUse = true};
 enum class SelectionType : bool {ByMousePress, ByMouseRelease};
 
 enum class PageOrientation : bool {Portrait = true, Landscape = false};
+enum class DxfCurveMode : char {AsDrawn = 0, MaxSegment = 1, FewestPoints = 2};
 
 enum class PieceNodeAngle : unsigned char
 {

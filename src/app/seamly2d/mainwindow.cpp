@@ -7980,6 +7980,7 @@ void MainWindow::DoExport(const VCommandLinePtr &expParams)
             dialog.selectFormat(static_cast<LayoutExportFormat>(expParams->OptExportType()));
             dialog.setBinaryDXFFormat(expParams->IsBinaryDXF());
             dialog.setTextAsPaths(expParams->isTextAsPaths());
+            dialog.setCurveMode(expParams->optCurveMode(), expParams->optCurveMm());
 
             ExportData(pieceList, dialog);
         }
@@ -8004,6 +8005,7 @@ void MainWindow::DoExport(const VCommandLinePtr &expParams)
                 dialog.setDestinationPath(expParams->OptDestinationPath());
                 dialog.selectFormat(static_cast<LayoutExportFormat>(expParams->OptExportType()));
                 dialog.setBinaryDXFFormat(expParams->IsBinaryDXF());
+                dialog.setCurveMode(expParams->optCurveMode(), expParams->optCurveMm());
 
                 ExportData(pieceList, dialog);
             }

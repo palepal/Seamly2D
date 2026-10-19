@@ -54,7 +54,9 @@
 #include "../vmisc/vabstractapplication.h"
 #include "../vgeometry/vpointf.h"
 
+#include <algorithm>
 #include <QLineF>
+#include <QtMath>
 #include <QSet>
 #include <QVector>
 #include <QPainterPath>
@@ -1119,4 +1121,158 @@ qreal VSAPoint::GetSAAfter(qreal width) const
         return width;
     }
     return m_after;
+}
+
+namespace
+{
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief curveRuns splits a closed contour into runs that start and end on a turn point.
+/// @param points contour points.
+/// @param turnPoints points where a straight line or a curve starts or ends.
+/// @return the runs, the last point of each run is the first point of the next one.
+QVector<QVector<QPointF>> curveRuns(const QVector<QPointF> &points, const QVector<QPointF> &turnPoints)
+{
+    QVector<int> turns;
+    for (int i = 0; i < points.size(); ++i)
+    {
+        const QPointF &point = points.at(i);
+        if (std::any_of(turnPoints.cbegin(), turnPoints.cend(), [&point](const QPointF &turn)
+        {
+            return VFuzzyComparePoints(point, turn);
+        }))
+        {
+            turns.append(i);
+        }
+    }
+
+    if (turns.isEmpty())
+    {
+        turns.append(0);
+    }
+
+    QVector<QVector<QPointF>> runs;
+    for (int i = 0; i < turns.size(); ++i)
+    {
+        const int end = i + 1 < turns.size() ? turns.at(i + 1) : turns.first() + points.size();
+        QVector<QPointF> run;
+        for (int j = turns.at(i); j <= end; ++j)
+        {
+            run.append(points.at(j % points.size()));
+        }
+        runs.append(run);
+    }
+    return runs;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief joinRuns joins runs made by curveRuns back into a closed contour.
+/// @param runs the runs.
+/// @return the contour points.
+QVector<QPointF> joinRuns(const QVector<QVector<QPointF>> &runs)
+{
+    QVector<QPointF> points;
+    for (const QVector<QPointF> &run : runs)
+    {
+        points += run.mid(0, run.size() - 1);
+    }
+    return points;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief simplifyRun removes points of a polyline that lie within a tolerance (Ramer-Douglas-Peucker).
+/// @param run polyline, its first and last points are kept.
+/// @param tolerance maximum distance of a removed point from the simplified polyline.
+/// @return the simplified polyline.
+QVector<QPointF> simplifyRun(const QVector<QPointF> &run, qreal tolerance)
+{
+    if (run.size() < 3)
+    {
+        return run;
+    }
+
+    const QLineF chord(run.first(), run.last());
+    qreal maxDistance = -1;
+    int farthest = 1;
+    for (int i = 1; i < run.size() - 1; ++i)
+    {
+        const QPointF &p = run.at(i);
+        const qreal distance = qFuzzyIsNull(chord.length())
+            ? QLineF(chord.p1(), p).length()
+            : qAbs(chord.dx() * (chord.y1() - p.y()) - chord.dy() * (chord.x1() - p.x())) / chord.length();
+        if (distance > maxDistance)
+        {
+            maxDistance = distance;
+            farthest = i;
+        }
+    }
+
+    if (maxDistance <= tolerance)
+    {
+        return QVector<QPointF>{run.first(), run.last()};
+    }
+
+    QVector<QPointF> simplified = simplifyRun(run.mid(0, farthest + 1), tolerance);
+    simplified.removeLast();
+    return simplified + simplifyRun(run.mid(farthest), tolerance);
+}
+} // namespace
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief limitCurveSegments splits curve segments of a closed contour that are longer than a maximum length.
+/// @param points contour points.
+/// @param turnPoints points where a straight line or a curve starts or ends, a straight line is never split.
+/// @param maxLength maximum segment length.
+/// @return the contour points.
+QVector<QPointF> VAbstractPiece::limitCurveSegments(const QVector<QPointF> &points,
+                                                    const QVector<QPointF> &turnPoints, qreal maxLength)
+{
+    if (points.size() < 3 || maxLength <= 0)
+    {
+        return points;
+    }
+
+    QVector<QVector<QPointF>> runs = curveRuns(points, turnPoints);
+    for (QVector<QPointF> &run : runs)
+    {
+        if (run.size() < 3)
+        {
+            continue;
+        }
+
+        QVector<QPointF> limited{run.first()};
+        for (int i = 1; i < run.size(); ++i)
+        {
+            const QLineF segment(run.at(i - 1), run.at(i));
+            const int parts = qCeil(segment.length() / maxLength);
+            for (int part = 1; part < parts; ++part)
+            {
+                limited.append(segment.pointAt(static_cast<qreal>(part) / parts));
+            }
+            limited.append(run.at(i));
+        }
+        run = limited;
+    }
+    return joinRuns(runs);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief simplifyCurves removes curve points of a closed contour that lie within a tolerance, turn points stay.
+/// @param points contour points.
+/// @param turnPoints points where a straight line or a curve starts or ends.
+/// @param tolerance maximum distance of a removed point from the simplified contour.
+/// @return the contour points.
+QVector<QPointF> VAbstractPiece::simplifyCurves(const QVector<QPointF> &points, const QVector<QPointF> &turnPoints,
+                                                qreal tolerance)
+{
+    if (points.size() < 3 || tolerance <= 0)
+    {
+        return points;
+    }
+
+    QVector<QVector<QPointF>> runs = curveRuns(points, turnPoints);
+    for (QVector<QPointF> &run : runs)
+    {
+        run = simplifyRun(run, tolerance);
+    }
+    return joinRuns(runs);
 }

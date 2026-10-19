@@ -105,6 +105,8 @@ VDxfEngine::VDxfEngine()
     , input()
     , varMeasurement(VarMeasurement::Metric)
     , varInsunits(VarInsunits::Millimeters)
+    , m_curveMode(DxfCurveMode::AsDrawn)
+    , m_curveMm(0)
     , textBuffer(new DRW_Text())
 {
 }
@@ -592,6 +594,16 @@ void VDxfEngine::setInsunits(const VarInsunits &var)
 }
 
 //---------------------------------------------------------------------------------------------------------------------
+/// @brief setCurveMode sets how curves of AAMA outlines and sew lines are written.
+/// @param mode as drawn, with a maximum segment length, or with the fewest points.
+/// @param mm the maximum segment length or the simplify tolerance in millimeters.
+void VDxfEngine::setCurveMode(DxfCurveMode mode, qreal mm)
+{
+    m_curveMode = mode;
+    m_curveMm = mm;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_GCC("-Wswitch-default")
 
@@ -682,8 +694,10 @@ bool VDxfEngine::ExportToAAMA(const QVector<VLayoutPiece> &details)
 //---------------------------------------------------------------------------------------------------------------------
 void VDxfEngine::ExportAAMAOutline(dx_ifaceBlock *detailBlock, const VLayoutPiece &piece)
 {
+    // Turn points are known for the contour only, so a separate seam allowance is written as drawn.
     const bool isContour = !piece.hasSeamAllowance() || piece.hasSeamAllowanceBuiltIn();
-    const QVector<QPointF> outline = isContour ? piece.getContourPoints() : piece.getSeamAllowancePoints();
+    const QVector<QPointF> outline = isContour ? adjustCurves(piece.getContourPoints(), piece.getTurnPoints())
+                                               : piece.getSeamAllowancePoints();
 
     DRW_Entity *e = AAMAPolygon(outline, "1", true);
     if (e)
@@ -703,13 +717,33 @@ void VDxfEngine::ExportAAMADraw(dx_ifaceBlock *detailBlock, const VLayoutPiece &
     // Without a separate seam allowance the outline on layer 1 is already the sew line.
     if (detail.hasSeamAllowance() && !detail.hasSeamAllowanceBuiltIn() && !detail.isHideSeamLine())
     {
-        const QVector<QPointF> poly = detail.getContourPoints();
+        const QVector<QPointF> poly = adjustCurves(detail.getContourPoints(), detail.getTurnPoints());
         DRW_Entity *e = AAMAPolygon(poly, "14", true);
         if (e)
         {
             detailBlock->ent.push_back(e);
         }
         exportAAMAPoints(detailBlock, poly, detail.getTurnPoints());
+    }
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief adjustCurves applies the curve mode to a closed piece contour.
+/// @param points contour points.
+/// @param turnPoints points where a straight line or a curve starts or ends.
+/// @return the contour points to write.
+QVector<QPointF> VDxfEngine::adjustCurves(const QVector<QPointF> &points, const QVector<QPointF> &turnPoints) const
+{
+    const qreal length = ToPixel(m_curveMm, VarInsunits::Millimeters);
+    switch (m_curveMode)
+    {
+        case DxfCurveMode::MaxSegment:
+            return VAbstractPiece::limitCurveSegments(points, turnPoints, length);
+        case DxfCurveMode::FewestPoints:
+            return VAbstractPiece::simplifyCurves(points, turnPoints, length);
+        case DxfCurveMode::AsDrawn:
+        default:
+            return points;
     }
 }
 

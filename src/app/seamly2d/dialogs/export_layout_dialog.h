@@ -99,6 +99,10 @@ public:
     bool                    isTextAsPaths() const;
     void                    setTextAsPaths(bool textAsPaths);
 
+    DxfCurveMode            curveMode() const;
+    qreal                   curveMm() const;
+    void                    setCurveMode(DxfCurveMode mode, qreal mm);
+
     void                    setAvailableSizes(const QStringList &sizes);
     QStringList             selectedSizes() const;
     bool                    isBatchExport() const;
@@ -113,6 +117,7 @@ private slots:
     void                    showExportFiles();
     void                    selectAllSizes();
     void                    deselectAllSizes();
+    void                    enableCurveOptions();
 
 private:
     Q_DISABLE_COPY(ExportLayoutDialog)

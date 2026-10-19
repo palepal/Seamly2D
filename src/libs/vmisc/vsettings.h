@@ -190,6 +190,11 @@ public:
     PageOrientation getTiledPDFOrientation() const;
     void            setTiledPDFOrientation(PageOrientation value);
 
+    DxfCurveMode    getDxfCurveMode() const;
+    void            setDxfCurveMode(DxfCurveMode mode);
+    qreal           getDxfCurveMm() const;
+    void            setDxfCurveMm(qreal mm);
+
 private:
     Q_DISABLE_COPY(VSettings)
 };
