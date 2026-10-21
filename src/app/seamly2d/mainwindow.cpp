@@ -6037,6 +6037,7 @@ bool MainWindow::startNewSeamly2D(const QString &fileName) const
 void MainWindow::createActions()
 {
     ui->setupUi(this);
+    fillDockBackgrounds(this);
 
     //Files menu
     connect(ui->actionNew, &QAction::triggered, this, &MainWindow::New);

@@ -88,6 +88,13 @@ DialogSeamlyMePreferences::DialogSeamlyMePreferences(QWidget *parent)
     SCASSERT(apply_Button != nullptr)
     connect(apply_Button, &QPushButton::clicked, this, &DialogSeamlyMePreferences::Apply);
 
+    // The configuration page applies the theme as soon as the combobox changes, so a cancelled dialog has to
+    // put the stored theme back
+    connect(this, &QDialog::rejected, this, []()
+    {
+        applyAppTheme(qApp, qApp->seamlyMeSettings()->getAppTheme());
+    });
+
     ui->pagesWidget->insertWidget(0, m_configurationPage);
     ui->pagesWidget->insertWidget(1, m_pathPage);
 

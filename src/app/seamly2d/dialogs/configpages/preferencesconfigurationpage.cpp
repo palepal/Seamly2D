@@ -230,26 +230,14 @@ PreferencesConfigurationPage::PreferencesConfigurationPage(QWidget *parent)
 
     // Startup
     // Theme
-    ui->theme_ComboBox->addItem("Fusion Light", 0);
-    ui->theme_ComboBox->addItem("Fusion Dark", 1);
-    ui->theme_ComboBox->addItem("Fusion Twilight", 2);
-    ui->theme_ComboBox->addItem("System", 3);
-
-#if defined(Q_OS_WIN)
-    ui->theme_ComboBox->addItem("Classic", 4);
-    ui->theme_ComboBox->addItem("Windows11", 5);
-#endif
-
-    // set default theme
-    const int themeIndex = ui->theme_ComboBox->findData(qApp->Seamly2DSettings()->getAppTheme());
-    if (themeIndex != -1)
-    {
-        ui->theme_ComboBox->setCurrentIndex(themeIndex);
-    }
+    initThemes(ui->theme_ComboBox, qApp->Seamly2DSettings()->getAppTheme());
 
     connect(ui->theme_ComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, [this]()
     {
         m_themeChanged = true;
+        // Show the theme straight away. It is only stored when the dialog is accepted, so cancelling puts the
+        // stored one back
+        applyAppTheme(qApp, qvariant_cast<int>(ui->theme_ComboBox->currentData()));
     });
 
     ui->showWelcome_CheckBox->setChecked(qApp->Seamly2DSettings()->getShowWelcome());

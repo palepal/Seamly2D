@@ -146,6 +146,7 @@ TMainWindow::TMainWindow(QWidget *parent)
       m_currentDescription()
 {
 	ui->setupUi(this);
+	fillDockBackgrounds(this);
 
 	qApp->Settings()->getOsSeparator() ? setLocale(QLocale()) : setLocale(QLocale::c());
 
