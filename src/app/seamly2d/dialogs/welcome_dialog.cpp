@@ -66,26 +66,14 @@ SeamlyWelcomeDialog::SeamlyWelcomeDialog(QWidget *parent)
             this, &SeamlyWelcomeDialog::languageChanged);
 
     //-------------------- Theme setup
-    ui->theme_ComboBox->addItem("Fusion Light", 0);
-    ui->theme_ComboBox->addItem("Fusion Dark", 1);
-    ui->theme_ComboBox->addItem("Fusion Twilight", 2);
-    ui->theme_ComboBox->addItem("System", 3);
-
-#if defined(Q_OS_WIN)
-    ui->theme_ComboBox->addItem("Classic", 4);
-    ui->theme_ComboBox->addItem("Windows11", 5);
-#endif
-
-    // set default theme
-    const int themeIndex = ui->theme_ComboBox->findData(settings->getAppTheme());
-    if (themeIndex != -1)
-    {
-        ui->theme_ComboBox->setCurrentIndex(themeIndex);
-    }
+    initThemes(ui->theme_ComboBox, settings->getAppTheme());
 
     connect(ui->theme_ComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, [this]()
     {
         m_themeChanged = true;
+        // Show the theme straight away. It is only stored when the dialog is accepted, so cancelling puts the
+        // stored one back
+        applyAppTheme(qApp, qvariant_cast<int>(ui->theme_ComboBox->currentData()));
     });
 
     //-------------------- Selection sound
@@ -107,6 +95,13 @@ SeamlyWelcomeDialog::SeamlyWelcomeDialog(QWidget *parent)
     QPushButton *ok_Button = ui->buttonBox->button(QDialogButtonBox::Ok);
     SCASSERT(ok_Button != nullptr)
     connect(ok_Button, &QPushButton::clicked, this, &SeamlyWelcomeDialog::apply);
+
+    // The theme is applied as soon as the combobox changes, so closing without accepting has to put the stored
+    // theme back
+    connect(this, &QDialog::rejected, this, [this]()
+    {
+        applyAppTheme(qApp, settings->getAppTheme());
+    });
 }
 
 //---------------------------------------------------------------------------------------------------------------------

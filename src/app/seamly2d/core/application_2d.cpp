@@ -313,58 +313,7 @@ Application2D::~Application2D()
 
 void Application2D::setTheme()
 {
-    QPalette palette;
-    int  theme =Seamly2DSettings()->getAppTheme();
-
-    if (theme == 3)
-    {
-        // Get system mode (theme)
-        Qt::ColorScheme scheme = styleHints()->colorScheme();
-
-        if (scheme == Qt::ColorScheme::Light)
-        {
-            theme = 0;
-        }
-        else if (scheme == Qt::ColorScheme::Dark)
-        {
-            theme = 1;
-        }
-    }
-
-    switch (theme)
-    {
-        case 0:
-        {
-            setStyle("Fusion");
-            palette = lightPalette();
-            break;
-        }
-        case 1:
-        {
-            setStyle("Fusion");
-            palette = darkPalette();
-            break;
-        }
-        case 2:
-        {
-            setStyle("Fusion");
-            palette = twilightPalette();
-            break;
-        }
-        case 4:
-        {
-            setStyle("windowsvista");
-            palette = lightPalette();
-            break;
-        }
-        case 5:
-        {
-            setStyle("Windows11");
-            palette = darkPalette();
-            break;
-        }
-    }
-    setPalette(palette);
+    applyAppTheme(this, Seamly2DSettings()->getAppTheme());
 }
 
 //---------------------------------------------------------------------------------------------------------------------

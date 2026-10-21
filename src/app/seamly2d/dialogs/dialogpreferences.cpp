@@ -89,6 +89,13 @@ DialogPreferences::DialogPreferences(QWidget *parent)
     SCASSERT(apply_Button != nullptr)
     connect(apply_Button, &QPushButton::clicked, this, &DialogPreferences::Apply);
 
+    // The configuration page applies the theme as soon as the combobox changes, so a cancelled dialog has to
+    // put the stored theme back
+    connect(this, &QDialog::rejected, this, []()
+    {
+        applyAppTheme(qApp, qApp->Seamly2DSettings()->getAppTheme());
+    });
+
     ui->pages_StackedWidget->insertWidget(0, m_configurePage);
     ui->pages_StackedWidget->insertWidget(1, m_patternPage);
     ui->pages_StackedWidget->insertWidget(2, m_pathPage);

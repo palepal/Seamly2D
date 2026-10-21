@@ -57,6 +57,9 @@
 #include <QStandardItemModel>
 #include <QStandardItem>
 #include <QString>
+#include <QDockWidget>
+#include <QMainWindow>
+#include <QStyleHints>
 #include <QtDebug>
 #include <QtMath>
 #include <QPixmapCache>
@@ -393,85 +396,165 @@ QStringList SupportedLocales()
     return locales;
 }
 
-QPalette lightPalette()
+namespace
 {
-    QPalette palette;
-    palette.setColor(QPalette::Window, QColor(240, 240, 240)); // A common light background color
-    palette.setColor(QPalette::WindowText,Qt::black);
-    palette.setColor(QPalette::Base, Qt::white);
-    palette.setColor(QPalette::AlternateBase, QColor(230, 230, 230));
-    palette.setColor(QPalette::ToolTipBase,Qt::white);
-    palette.setColor(QPalette::ToolTipText,  Qt::black);
-    palette.setColor(QPalette::Text, Qt::black);
-    palette.setColor(QPalette::Button, QColor(240, 240, 240));
-    palette.setColor(QPalette::ButtonText, Qt::black);
+// One rung of the brightness ladder. The values are Adobe Illustrator's four UI brightness levels as published
+// by the starlette project (MIT license), https://github.com/Inventsable/starlette, which reads them from the
+// running application. Adobe's Spectrum scale is a newer, separate system and does not match Illustrator
+struct ThemeColors
+{
+    QRgb background;
+    QRgb text;
+    QRgb label;
+    QRgb divider;
+    QRgb input;
+    QRgb disabled;
+    QRgb selection;
+};
+
+//                                 background  text      label     divider   input     disabled  selection
+const ThemeColors darkestColors  = { 0x323232, 0xcccccc, 0x979797, 0x2a2a2a, 0x262626, 0x545454, 0x5b9bd3 };
+const ThemeColors darkColors     = { 0x535353, 0xf4f4f4, 0xc7c7c7, 0x4d4d4d, 0x464646, 0x757575, 0x46a0f5 };
+const ThemeColors lightColors    = { 0xb8b8b8, 0x232323, 0x232323, 0xa8a8a8, 0xe3e3e3, 0x8f8f8f, 0x3468b2 };
+const ThemeColors lightestColors = { 0xf0f0f0, 0x484848, 0x6d6d6d, 0xdcdcdc, 0xffffff, 0xbdbdbd, 0x3d72b9 };
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief themePalette build a complete palette from one rung of the ladder.
+/// @param colors color set of the rung.
+/// @return palette with every role set.
+QPalette themePalette(const ThemeColors &colors)
+{
+    const QColor background(colors.background);
+    const QColor text(colors.text);
+    const QColor divider(colors.divider);
+
+    // Seeding the constructor derives the Disabled group. Left unset the roles come from the system scheme,
+    // which is how a dark desktop ends up painting unreadable text in a light theme
+    QPalette palette(background, background);
+    palette.setColor(QPalette::Window, background);
+    palette.setColor(QPalette::WindowText, text);
+    palette.setColor(QPalette::Base, QColor(colors.input));
+    palette.setColor(QPalette::AlternateBase, background);
+    palette.setColor(QPalette::ToolTipBase, background);
+    palette.setColor(QPalette::ToolTipText, text);
+    palette.setColor(QPalette::Text, text);
+    palette.setColor(QPalette::PlaceholderText, QColor(colors.label));
+    palette.setColor(QPalette::Button, background);
+    palette.setColor(QPalette::ButtonText, text);
     palette.setColor(QPalette::BrightText, Qt::red);
-    palette.setColor(QPalette::Link, QColor(42, 130, 218));
-    palette.setColor(QPalette::Highlight, QColor(42, 130, 218));
+    palette.setColor(QPalette::Link, QColor(colors.selection));
+    palette.setColor(QPalette::Highlight, QColor(colors.selection));
     palette.setColor(QPalette::HighlightedText, Qt::white);
+
+    // Illustrator keeps panel edges a single flat color barely off the background, so every shade role takes
+    // the divider. Fusion frames with Light and Dark, the others follow for hover and sunken states
+    palette.setColor(QPalette::Light, divider);
+    palette.setColor(QPalette::Midlight, divider);
+    palette.setColor(QPalette::Mid, divider);
+    palette.setColor(QPalette::Dark, divider);
+    palette.setColor(QPalette::Shadow, divider);
+
+    // setColor() without a group writes every group, so the disabled colors go last or they are lost and
+    // disabled widgets become indistinguishable from enabled ones
+    const QColor disabled(colors.disabled);
+    palette.setColor(QPalette::Disabled, QPalette::WindowText, disabled);
+    palette.setColor(QPalette::Disabled, QPalette::Text, disabled);
+    palette.setColor(QPalette::Disabled, QPalette::ButtonText, disabled);
+    palette.setColor(QPalette::Disabled, QPalette::HighlightedText, disabled);
     return palette;
 }
+} // anonymous namespace
 
-QPalette darkPalette()
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief appThemePalette palette of the stored application theme.
+/// @param theme stored AppTheme value, System resolved against the system color scheme.
+/// @return palette to pass to QApplication::setPalette().
+QPalette appThemePalette(int theme)
 {
-    QPalette palette;
-    palette.setColor(QPalette::Window, QColor(53, 53, 53)); // A common light background color
-    palette.setColor(QPalette::WindowText, Qt::white);
-    palette.setColor(QPalette::Base, QColor(25, 25, 25));
-    palette.setColor(QPalette::AlternateBase, QColor(53, 53, 53));
-    palette.setColor(QPalette::ToolTipBase, Qt::white);
-    palette.setColor(QPalette::ToolTipText, Qt::black);
-    palette.setColor(QPalette::Text, Qt::white);
-    palette.setColor(QPalette::Button, QColor(53, 53, 53));
-    palette.setColor(QPalette::ButtonText, Qt::white);
-    palette.setColor(QPalette::BrightText, Qt::red);
-    palette.setColor(QPalette::Link, QColor(42, 130, 218));
-    palette.setColor(QPalette::Highlight, QColor(42, 130, 218));
-    palette.setColor(QPalette::HighlightedText, Qt::black);
-    return palette;
+    if (theme == static_cast<int>(AppTheme::System))
+    {
+        theme = QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark
+                ? static_cast<int>(AppTheme::Dark)
+                : static_cast<int>(AppTheme::Lightest);
+    }
+
+    switch (static_cast<AppTheme>(theme))
+    {
+        case AppTheme::Darkest:
+        {
+            return themePalette(darkestColors);
+        }
+        case AppTheme::Dark:
+        {
+            return themePalette(darkColors);
+        }
+        case AppTheme::Light:
+        {
+            return themePalette(lightColors);
+        }
+        case AppTheme::Lightest:
+        default:
+        {
+            return themePalette(lightestColors);
+        }
+    }
 }
 
 const QString darkWorkspaceColor = QStringLiteral("#2b2b2b");
 
-QPalette twilightPalette()
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief fillDockBackgrounds make the contents of every dock paint the theme background.
+/// @param window main window whose docks to fix.
+void fillDockBackgrounds(QMainWindow *window)
 {
-    QPalette palette;
-    // Breeze  Twilight inspired dark colors
-    palette.setColor(QPalette::Window, QColor(49, 77, 127));         // Flat Dark Blue
-    palette.setColor(QPalette::WindowText, QColor(230, 230, 230));   // Light Gray for text
-    palette.setColor(QPalette::Base, QColor(30, 30, 30));
-    palette.setColor(QPalette::AlternateBase, QColor(78, 112, 147)); // Kashmir Blue
-    palette.setColor(QPalette::ToolTipBase, QColor(230, 230, 230));  // Light Gray for text
-    palette.setColor(QPalette::ToolTipText, QColor(49, 77, 127));    // Flat Dark Blue
-    palette.setColor(QPalette::Text,QColor(230, 230, 230));          // Light Gray for text
-    palette.setColor(QPalette::Button, QColor(78, 112, 147));        // Kashmir Blue
-    palette.setColor(QPalette::ButtonText, Qt::white);
-    palette.setColor(QPalette::BrightText, Qt::red);
-    palette.setColor(QPalette::Highlight, QColor(155, 111, 110));    // Dark Rose Gold accent
-    palette.setColor(QPalette::HighlightedText, Qt::white);
-    return palette;
+    SCASSERT(window != nullptr)
+    // Dock contents are transparent by default, so the platform window shows through instead of the palette and
+    // the docks end up a different color from the rest of the application
+    const QList<QDockWidget *> docks = window->findChildren<QDockWidget *>();
+    for (QDockWidget *dock : docks)
+    {
+        if (QWidget *contents = dock->widget())
+        {
+            contents->setAutoFillBackground(true);
+        }
+    }
 }
 
-/*
-// Base colors (Dark Blue/Grey)
-QColor background = QColor(49, 77, 127); // Flat Dark Blue [2]
-QColor text = Qt::white;
-QColor window = QColor(30, 30, 40); // Darker tone
-QColor highlight = QColor(128, 100, 160); // Accent
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief applyAppTheme set the style, palette and platform color scheme of a theme.
+/// @param app application to apply the theme to.
+/// @param theme stored AppTheme value.
+void applyAppTheme(QApplication *app, int theme)
+{
+    SCASSERT(app != nullptr)
 
-twilight.setColor(QPalette::Window, window);
-twilight.setColor(QPalette::WindowText, text);
-twilight.setColor(QPalette::Base, QColor(25, 25, 35));
-twilight.setColor(QPalette::AlternateBase, background);
-twilight.setColor(QPalette::ToolTipBase, text);
-twilight.setColor(QPalette::ToolTipText, window);
-twilight.setColor(QPalette::Text, text);
-twilight.setColor(QPalette::Button, background);
-twilight.setColor(QPalette::ButtonText, text);
-twilight.setColor(QPalette::BrightText, Qt::red);
-twilight.setColor(QPalette::Highlight, highlight);
-twilight.setColor(QPalette::HighlightedText, Qt::white);
-*/
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+    // setColorScheme() also changes what colorScheme() reports, so the override has to be cleared before the
+    // palette is built, or Follow system asks this application what the desktop is using and reads back the
+    // scheme the previous theme set
+    if (theme == static_cast<int>(AppTheme::System))
+    {
+        QGuiApplication::styleHints()->unsetColorScheme();
+    }
+#endif
+
+    const QPalette palette = appThemePalette(theme);
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+    // Surfaces Qt does not paint itself, dock backgrounds and the macOS title bar among them, follow the
+    // platform color scheme. Without this a light theme keeps a dark window frame on a dark desktop
+    if (theme != static_cast<int>(AppTheme::System))
+    {
+        QGuiApplication::styleHints()->setColorScheme(palette.color(QPalette::Window).lightness() < 128
+                                                      ? Qt::ColorScheme::Dark
+                                                      : Qt::ColorScheme::Light);
+    }
+#endif
+
+    // Fusion is the only style that honors an application palette on every platform
+    app->setStyle(QStringLiteral("Fusion"));
+    app->setPalette(palette);
+}
 
 //---------------------------------------------------------------------------------------------------------------------
 /**
@@ -883,6 +966,28 @@ QString UnitsToStr(const Unit &unit, const bool translate)
             break;
     }
     return result;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief initThemes fill a combobox with the application themes, from dark to light, and select one.
+/// @param combobox combobox to fill. The item data is the stored AppTheme value.
+/// @param theme stored AppTheme value to select. A retired value selects Light, which is what it paints as.
+void initThemes(QComboBox *combobox, int theme)
+{
+    SCASSERT(combobox != nullptr)
+    combobox->clear();
+    combobox->addItem(QObject::tr("Darkest"), static_cast<int>(AppTheme::Darkest));
+    combobox->addItem(QObject::tr("Dark"), static_cast<int>(AppTheme::Dark));
+    combobox->addItem(QObject::tr("Light"), static_cast<int>(AppTheme::Light));
+    combobox->addItem(QObject::tr("Lightest"), static_cast<int>(AppTheme::Lightest));
+    combobox->addItem(QObject::tr("Follow system"), static_cast<int>(AppTheme::System));
+
+    int index = combobox->findData(theme);
+    if (index == -1)
+    {
+        index = combobox->findData(static_cast<int>(AppTheme::Lightest));
+    }
+    combobox->setCurrentIndex(index);
 }
 
 //---------------------------------------------------------------------------------------------------------------------
