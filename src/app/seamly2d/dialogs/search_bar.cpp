@@ -25,20 +25,23 @@
 #include "search_bar.h"
 #include "ui_search_bar.h"
 
+#include "../vmisc/vabstractapplication.h"
+#include "../vmisc/vcommonsettings.h"
+
 #if defined(Q_OS_MACOS)
 #include "../core/macos_dock.h"
 #endif
 
-#include <QAbstractItemView>
 #include <QCompleter>
 #include <QDesktopServices>
-#include <QHeaderView>
 #include <QKeyEvent>
+#include <QListView>
 #include <QMainWindow>
 #include <QMenuBar>
+#include <QPainter>
 #include <QShortcut>
 #include <QStandardItemModel>
-#include <QTableView>
+#include <QStyledItemDelegate>
 #include <QUrl>
 #include <QUrlQuery>
 #include <QWindow>
@@ -47,9 +50,115 @@
 
 namespace
 {
-const int max_results = 50;
-const int bar_height  = 24;
-const int bar_width   = 420;
+const int max_results     = 50;
+const int max_suggestions = 8;
+const int max_recent      = 5;
+const int bar_height      = 24;
+const int bar_width       = 420;
+const int popup_width     = 560;
+const int popup_padding   = 6;
+const int row_height      = 32;
+const int max_rows        = 12;
+
+const QString recent_key = QStringLiteral("searchBar/recent");
+
+enum Role
+{
+    ItemRole = Qt::UserRole,
+    KindRole,
+    ShortcutRole,
+    DetailRole
+};
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief withAlpha returns color with its alpha set to alpha.
+QColor withAlpha(QColor color, qreal alpha)
+{
+    color.setAlphaF(alpha);
+    return color;
+}
+
+class SearchItemDelegate : public QStyledItemDelegate
+{
+public:
+    using QStyledItemDelegate::QStyledItemDelegate;
+
+    //-----------------------------------------------------------------------------------------------------------------
+    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override
+    {
+        Q_UNUSED(option)
+        Q_UNUSED(index)
+        return QSize(0, row_height);
+    }
+
+    //-----------------------------------------------------------------------------------------------------------------
+    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override
+    {
+        const int padding = 10;
+        const int cap_height = 20;
+        const QRect row = option.rect.adjusted(0, 1, 0, -1);
+        const bool selected = option.state & QStyle::State_Selected;
+        const QColor text = option.palette.color(selected ? QPalette::HighlightedText : QPalette::Text);
+        const QColor muted = withAlpha(text, 0.6);
+
+        painter->save();
+        painter->setRenderHint(QPainter::Antialiasing);
+        if (selected || option.state & QStyle::State_MouseOver)
+        {
+            painter->setPen(Qt::NoPen);
+            painter->setBrush(selected ? option.palette.highlight().color() : withAlpha(text, 0.08));
+            painter->drawRoundedRect(row, 4, 4);
+        }
+
+        int right = row.right() - padding;
+        const QStringList caps = SearchBar::keyCaps(index.data(ShortcutRole).toString());
+        QFont cap_font = option.font;
+        cap_font.setPointSizeF(cap_font.pointSizeF() * 0.9);
+        const QFontMetrics cap_metrics(cap_font);
+        painter->setFont(cap_font);
+        for (int i = caps.size() - 1; i >= 0; --i)
+        {
+            const int width = qMax(cap_height, cap_metrics.horizontalAdvance(caps.at(i)) + 10);
+            const QRect cap(right - width + 1, row.center().y() - cap_height / 2 + 1, width, cap_height);
+            painter->setPen(withAlpha(text, 0.25));
+            painter->setBrush(withAlpha(text, 0.1));
+            painter->drawRoundedRect(QRectF(cap).adjusted(0.5, 0.5, -0.5, -0.5), 4, 4);
+            painter->setPen(text);
+            painter->drawText(cap, Qt::AlignCenter, caps.at(i));
+            right = cap.left() - 4;
+        }
+        painter->setFont(option.font);
+
+        const QString detail = index.data(DetailRole).toString();
+        if (!detail.isEmpty())
+        {
+            painter->setPen(muted);
+            const int width = option.fontMetrics.horizontalAdvance(detail);
+            painter->drawText(QRect(right - width, row.top(), width, row.height()), Qt::AlignVCenter, detail);
+            right -= width + padding;
+        }
+
+        int left = row.left() + padding;
+        const QIcon icon = index.data(Qt::DecorationRole).value<QIcon>();
+        icon.paint(painter, QRect(left, row.center().y() - 8 + 1, 16, 16));
+        left += 16 + 8;
+
+        const QString kind = index.data(KindRole).toString();
+        const int kind_width = kind.isEmpty() ? 0 : option.fontMetrics.horizontalAdvance(kind) + 8;
+        const QString name = option.fontMetrics.elidedText(index.data(Qt::DisplayRole).toString(), Qt::ElideRight,
+                                                           qMax(0, right - left - kind_width));
+        const int name_width = option.fontMetrics.horizontalAdvance(name);
+        painter->setPen(text);
+        painter->drawText(QRect(left, row.top(), name_width, row.height()), Qt::AlignVCenter, name);
+        if (!kind.isEmpty())
+        {
+            painter->setPen(muted);
+            painter->drawText(QRect(left + name_width + 8, row.top(), kind_width, row.height()), Qt::AlignVCenter,
+                              kind);
+        }
+        painter->restore();
+    }
+};
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -61,9 +170,10 @@ SearchBar::SearchBar(QMainWindow *window)
     , ui(new Ui::SearchBar)
     , m_window(window)
     , m_completer(new QCompleter(this))
-    , m_model(new QStandardItemModel(0, 2, this))
+    , m_model(new QStandardItemModel(this))
     , m_source()
     , m_items()
+    , m_recent(qApp->Settings()->value(recent_key).toStringList())
 {
     ui->setupUi(this);
     ui->search_line_edit->addAction(QIcon(":/icon/32x32/find.png"), QLineEdit::LeadingPosition);
@@ -71,31 +181,31 @@ SearchBar::SearchBar(QMainWindow *window)
 
     // The themes leave the system placeholder color, which is unreadable when the system and theme brightness differ.
     QPalette palette = ui->search_line_edit->palette();
-    QColor placeholder = palette.color(QPalette::Text);
-    placeholder.setAlphaF(0.5);
-    palette.setColor(QPalette::PlaceholderText, placeholder);
+    palette.setColor(QPalette::PlaceholderText, withAlpha(palette.color(QPalette::Text), 0.5));
     ui->search_line_edit->setPalette(palette);
 
     // Not a QTreeView: its accessibility update crashes Qt 6.12.0 when the results change (QTBUG-149612).
-    QTableView *popup = new QTableView;
-    popup->horizontalHeader()->hide();
-    popup->verticalHeader()->hide();
-    popup->verticalHeader()->setDefaultSectionSize(popup->fontMetrics().height() + 8);
-    popup->setShowGrid(false);
-    popup->setWordWrap(false);
+    QListView *popup = new QListView;
+    popup->setItemDelegate(new SearchItemDelegate(popup));
+    popup->setUniformItemSizes(true);
+    popup->setMouseTracking(true);
+    popup->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     m_completer->setWidget(ui->search_line_edit);
     m_completer->setPopup(popup);
     m_completer->setModel(m_model);
     m_completer->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
-    m_completer->setMaxVisibleItems(15);
-    popup->setMinimumWidth(bar_width);
+    m_completer->setMaxVisibleItems(max_rows);
+
+    // Rounded corners: the popup window is transparent and the style sheet paints its background.
+    popup->setAttribute(Qt::WA_TranslucentBackground);
+    popup->viewport()->setAutoFillBackground(false);
 
     connect(ui->search_line_edit, &QLineEdit::textChanged, this, &SearchBar::search);
     connect(m_completer, QOverload<const QModelIndex &>::of(&QCompleter::activated), this,
             [this](const QModelIndex &index)
     {
-        run(index.data(Qt::UserRole).toInt());
+        run(index.data(ItemRole).toInt());
     });
 
     QShortcut *shortcut = new QShortcut(QKeySequence::Find, window);
@@ -103,6 +213,7 @@ SearchBar::SearchBar(QMainWindow *window)
     {
         ui->search_line_edit->setFocus(Qt::ShortcutFocusReason);
         ui->search_line_edit->selectAll();
+        search(ui->search_line_edit->text());
     });
     ui->search_line_edit->setToolTip(ui->search_line_edit->toolTip() + QStringLiteral(" (%1)")
                                      .arg(shortcut->key().toString(QKeySequence::NativeText)));
@@ -185,7 +296,42 @@ int SearchBar::fuzzyScore(const QString &pattern, const QString &text)
 }
 
 //---------------------------------------------------------------------------------------------------------------------
-/// @brief eventFilter keeps the field in the title bar, and handles Escape and Down in the field.
+/// @brief keyCaps splits a shortcut in native text into the keys to draw, modifiers apart: "⇧⌘S" or "Ctrl+Shift+S"
+/// gives three keys. Chords are separated by ", ".
+/// @param shortcut shortcut as QKeySequence::NativeText.
+/// @return keys in order.
+QStringList SearchBar::keyCaps(const QString &shortcut)
+{
+    QStringList caps;
+    const QStringList chords = shortcut.split(QStringLiteral(", "), Qt::SkipEmptyParts);
+    for (const QString &chord : chords)
+    {
+        int i = 0;
+        while (i < chord.size() - 1 && QStringLiteral("⌃⌥⇧⌘").contains(chord.at(i)))
+        {
+            caps.append(chord.at(i++));
+        }
+        const QString keys = chord.mid(i);
+        if (keys == QLatin1String("+"))
+        {
+            caps.append(keys);
+        }
+        else if (keys.endsWith(QLatin1String("++")))
+        {
+            caps.append(keys.chopped(2).split(QLatin1Char('+')));
+            caps.append(QStringLiteral("+"));
+        }
+        else
+        {
+            caps.append(keys.split(QLatin1Char('+')));
+        }
+    }
+    return caps;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief eventFilter keeps the field in the title bar, opens the suggestions on a click, and handles Escape and Down
+/// in the field.
 /// @param object watched object.
 /// @param event event.
 /// @return true if the event was handled.
@@ -199,13 +345,17 @@ bool SearchBar::eventFilter(QObject *object, QEvent *event)
 #endif
     if (object == ui->search_line_edit)
     {
-        if (event->type() == QEvent::KeyPress)
+        if (event->type() == QEvent::MouseButtonRelease && !m_completer->popup()->isVisible())
+        {
+            search(ui->search_line_edit->text());
+        }
+        else if (event->type() == QEvent::KeyPress)
         {
             const int key = static_cast<QKeyEvent *>(event)->key();
             if (key == Qt::Key_Escape)
             {
-                ui->search_line_edit->clear();
                 ui->search_line_edit->clearFocus();
+                ui->search_line_edit->clear();
                 return true;
             }
             if (key == Qt::Key_Down && !m_completer->popup()->isVisible())
@@ -219,11 +369,12 @@ bool SearchBar::eventFilter(QObject *object, QEvent *event)
 }
 
 //---------------------------------------------------------------------------------------------------------------------
-/// @brief search scores every item against text and shows the best ones, best first, plus a help search entry.
+/// @brief search scores every item against text and shows the best ones, best first, plus a help search entry. With
+/// no text it shows the recently run items, then the suggested ones.
 /// @param text what the user typed.
 void SearchBar::search(const QString &text)
 {
-    if (text.trimmed().isEmpty())
+    if (!ui->search_line_edit->hasFocus())
     {
         m_completer->popup()->hide();
         return;
@@ -233,10 +384,38 @@ void SearchBar::search(const QString &text)
         m_items = m_source(); // fresh list for each new search, the pattern changes in between
     }
 
+    QVector<int> rows;
+    if (text.trimmed().isEmpty())
+    {
+        for (const QString &name : qAsConst(m_recent))
+        {
+            const auto item = std::find_if(m_items.cbegin(), m_items.cend(),
+                                           [&name](const SearchItem &item) { return item.name == name; });
+            if (item != m_items.cend())
+            {
+                rows.append(static_cast<int>(item - m_items.cbegin()));
+            }
+        }
+        for (int i = 0; i < m_items.size() && rows.size() < max_suggestions; ++i)
+        {
+            if (m_items.at(i).suggested && !rows.contains(i))
+            {
+                rows.append(i);
+            }
+        }
+        showRows(rows, QString());
+        return;
+    }
+
     QVector<QPair<int, int>> matches; // score, item index
     for (int i = 0; i < m_items.size(); ++i)
     {
-        const int score = fuzzyScore(text, m_items.at(i).name);
+        const SearchItem &item = m_items.at(i);
+        int score = fuzzyScore(text, item.name);
+        if (!item.kind.isEmpty())
+        {
+            score = qMax(score, fuzzyScore(text, item.name + QLatin1Char(' ') + item.kind) - 5);
+        }
         if (score >= 0)
         {
             matches.append(qMakePair(score, i));
@@ -249,34 +428,60 @@ void SearchBar::search(const QString &text)
         return a.first != b.first ? a.first > b.first
                                   : m_items.at(a.second).name.size() < m_items.at(b.second).name.size();
     });
-
-    // A new model per search resets the view in one step.
-    QStandardItemModel *model = new QStandardItemModel(0, 2, this);
     for (int i = 0; i < count; ++i)
     {
-        const SearchItem &item = m_items.at(matches.at(i).second);
-        QStandardItem *name = new QStandardItem(item.icon, item.name);
-        name->setData(matches.at(i).second, Qt::UserRole);
-        QStandardItem *detail = new QStandardItem(item.detail);
-        detail->setForeground(ui->search_line_edit->palette().placeholderText());
-        model->appendRow({name, detail});
+        rows.append(matches.at(i).second);
     }
+    showRows(rows, text.trimmed());
+}
 
-    QStandardItem *help = new QStandardItem(QIcon(":/icon/32x32/find.png"),
-                                            tr("Search Seamly help for \"%1\"").arg(text.trimmed()));
-    help->setData(-1, Qt::UserRole);
-    model->appendRow({help, new QStandardItem});
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief showRows shows items in the popup, plus a help search entry for text if it isn't empty.
+/// @param rows indexes in m_items.
+/// @param text what the user typed.
+void SearchBar::showRows(const QVector<int> &rows, const QString &text)
+{
+    // A new model per search resets the view in one step.
+    QStandardItemModel *model = new QStandardItemModel(this);
+    for (int row : rows)
+    {
+        const SearchItem &item = m_items.at(row);
+        QStandardItem *name = new QStandardItem(item.icon, item.name);
+        name->setData(row, ItemRole);
+        name->setData(item.kind, KindRole);
+        name->setData(item.shortcut, ShortcutRole);
+        name->setData(item.detail, DetailRole);
+        model->appendRow(name);
+    }
+    if (!text.isEmpty())
+    {
+        QStandardItem *help = new QStandardItem(QIcon(":/icon/32x32/find.png"),
+                                                tr("Search Seamly help for \"%1\"").arg(text));
+        help->setData(-1, ItemRole);
+        model->appendRow(help);
+    }
 
     m_completer->setModel(model);
     m_model->deleteLater();
     m_model = model;
-    QHeaderView *header = static_cast<QTableView *>(m_completer->popup())->horizontalHeader();
-    header->setSectionResizeMode(0, QHeaderView::Stretch);
-    header->setSectionResizeMode(1, QHeaderView::ResizeToContents);
+    if (model->rowCount() == 0)
+    {
+        m_completer->popup()->hide();
+        return;
+    }
+
+    QAbstractItemView *popup = m_completer->popup();
+    const QPalette palette = ui->search_line_edit->palette();
+    popup->setStyleSheet(QStringLiteral("QListView { background: %1; border: 1px solid %2; border-radius: 8px;"
+                                        " padding: %3px; }")
+                         .arg(palette.color(QPalette::Window).name(),
+                              withAlpha(palette.color(QPalette::Text), 0.2).name(QColor::HexArgb))
+                         .arg(popup_padding));
 
     const QRect rect = ui->search_line_edit->rect();
-    m_completer->complete(QRect(rect.left(), rect.top(), qMax(rect.width(), bar_width), rect.height()));
-    m_completer->popup()->setCurrentIndex(m_model->index(0, 0));
+    m_completer->complete(QRect((rect.width() - popup_width) / 2, rect.top(), popup_width, rect.height() + 4));
+    popup->resize(popup_width, qMin(model->rowCount(), max_rows) * row_height + 2 * popup_padding + 2);
+    popup->setCurrentIndex(model->index(0, 0));
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -285,8 +490,8 @@ void SearchBar::search(const QString &text)
 void SearchBar::run(int item)
 {
     const QString text = ui->search_line_edit->text().trimmed();
-    ui->search_line_edit->clear();
     ui->search_line_edit->clearFocus();
+    ui->search_line_edit->clear();
 
     if (item < 0)
     {
@@ -294,9 +499,16 @@ void SearchBar::run(int item)
         url.setQuery(QUrlQuery({{QStringLiteral("search"), text}}));
         QDesktopServices::openUrl(url);
     }
-    else if (item < m_items.size() && m_items.at(item).run)
+    else if (item < m_items.size())
     {
-        m_items.at(item).run();
+        m_recent.removeAll(m_items.at(item).name);
+        m_recent.prepend(m_items.at(item).name);
+        m_recent = m_recent.mid(0, max_recent);
+        qApp->Settings()->setValue(recent_key, m_recent);
+        if (m_items.at(item).run)
+        {
+            m_items.at(item).run();
+        }
     }
 }
 

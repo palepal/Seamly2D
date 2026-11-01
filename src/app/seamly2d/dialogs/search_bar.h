@@ -26,6 +26,7 @@
 #define SEARCH_BAR_H
 
 #include <QIcon>
+#include <QStringList>
 #include <QVector>
 #include <QWidget>
 
@@ -43,9 +44,12 @@ namespace Ui
 struct SearchItem
 {
     QString               name;
-    QString               detail;
+    QString               kind;      // shown after the name and searched with it, e.g. "Tool"
+    QString               shortcut;  // native text, drawn as key caps
+    QString               detail;    // right aligned value
     QIcon                 icon;
     std::function<void()> run;
+    bool                  suggested = false; // listed while the field is empty
 };
 
 class SearchBar : public QWidget
@@ -55,9 +59,10 @@ public:
     explicit SearchBar(QMainWindow *window);
     virtual ~SearchBar() override;
 
-    void       setFileName(const QString &name);
-    void       setItemSource(const std::function<QVector<SearchItem>()> &source);
-    static int fuzzyScore(const QString &pattern, const QString &text);
+    void               setFileName(const QString &name);
+    void               setItemSource(const std::function<QVector<SearchItem>()> &source);
+    static int         fuzzyScore(const QString &pattern, const QString &text);
+    static QStringList keyCaps(const QString &shortcut);
 
 protected:
     virtual bool eventFilter(QObject *object, QEvent *event) override;
@@ -70,8 +75,10 @@ private:
     QStandardItemModel                   *m_model;
     std::function<QVector<SearchItem>()>  m_source;
     QVector<SearchItem>                   m_items;
+    QStringList                           m_recent;
 
     void search(const QString &text);
+    void showRows(const QVector<int> &rows, const QString &text);
     void run(int item);
 #if defined(Q_OS_MACOS)
     void placeInTitleBar();

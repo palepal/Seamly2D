@@ -114,6 +114,7 @@
 #include <QUndoStack>
 #include <QAction>
 #include <QProcess>
+#include <QRegularExpression>
 #include <QSettings>
 #include <QtGlobal>
 #include <QDesktopServices>
@@ -8510,30 +8511,53 @@ QVector<SearchItem> MainWindow::searchItems()
     QVector<SearchItem> items;
     QSet<QString> names;
 
+    QSet<QAction *> tools;
+    QList<QMenu *> menus{ui->tools_Menu};
+    while (!menus.isEmpty())
+    {
+        const QList<QAction *> actions = menus.takeLast()->actions();
+        for (QAction *action : actions)
+        {
+            if (action->menu() != nullptr)
+            {
+                menus.append(action->menu());
+            }
+            else
+            {
+                tools.insert(action);
+            }
+        }
+    }
+    const QList<QAction *> suggested{ui->lineTool_Action, ui->pointAtDistanceAngle_Action, ui->pointAlongLine_Action,
+                                     ui->curve_Action, ui->arcTool_Action, ui->addPiece_Action, ui->table_Action};
+
+    // Tool tooltips name the tool with its kind, "Point - On Bisector (Shift+O, Shift+B)".
+    static const QRegularExpression shortcut_hint(QStringLiteral("\\s*\\([^()]*\\)\\s*$"));
     const QList<QAction *> actions = findChildren<QAction *>();
     for (QAction *action : actions)
     {
         const QMenu *menu = qobject_cast<QMenu *>(action->parent());
-        QString name = action->text().remove(QLatin1Char('&'));
+        const bool tool = tools.contains(action);
+        QString name = (tool ? action->toolTip().remove(shortcut_hint) : action->text()).remove(QLatin1Char('&'));
         if (action->isSeparator() || !action->isEnabled() || name.isEmpty() || names.contains(name) ||
             (menu != nullptr && menu->menuAction() == action))
         {
             continue;
         }
         names.insert(name);
-        items.append({name, action->shortcut().toString(QKeySequence::NativeText), action->icon(),
-                      [action]() { action->trigger(); }});
+        items.append({name, tool ? tr("Tool") : QString(), action->shortcut().toString(QKeySequence::NativeText),
+                      QString(), action->icon(), [action]() { action->trigger(); }, suggested.contains(action)});
     }
 
     const QStringList points = getObjectNames(GOType::Point);
     for (const QString &name : points)
     {
-        items.append({name, tr("Point"), QIcon(), [this, name]() { zoomToObject(name); }});
+        items.append({name, tr("Point"), QString(), QString(), QIcon(), [this, name]() { zoomToObject(name); }});
     }
     const QStringList curves = getObjectNames(GOType::AllCurves);
     for (const QString &name : curves)
     {
-        items.append({name, tr("Curve"), QIcon(), [this, name]() { zoomToObject(name); }});
+        items.append({name, tr("Curve"), QString(), QString(), QIcon(), [this, name]() { zoomToObject(name); }});
     }
 
     const QString unit = QLatin1Char(' ') + UnitsToStr(qApp->patternUnit(), true);
@@ -8541,8 +8565,9 @@ QVector<SearchItem> MainWindow::searchItems()
     for (auto i = variables->cbegin(); i != variables->cend(); ++i)
     {
         const bool angle = i.value()->GetType() == VarType::LineAngle || i.value()->GetType() == VarType::CurveAngle;
-        items.append({i.key(), QString::number(*i.value()->GetValue(), 'f', 2) + (angle ? QStringLiteral("°") : unit),
-                      QIcon(), [this]()
+        items.append({i.key(), tr("Variable"), QString(),
+                      QString::number(*i.value()->GetValue(), 'f', 2) + (angle ? QStringLiteral("°") : unit), QIcon(),
+                      [this]()
         {
             if (!ui->table_Action->isChecked())
             {
