@@ -48,7 +48,7 @@
        </property>
        <property name="icon">
         <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-         <normaloff>:/icon/32x32/visible_on.png</normaloff>:/icon/32x32/visible_on.png</iconset>
+         <normaloff>:/tsvg/spectrum/Visibility.tsvg</normaloff>:/tsvg/spectrum/Visibility.tsvg</iconset>
        </property>
        <property name="autoRaise">
         <bool>false</bool>
@@ -74,7 +74,7 @@
        </property>
        <property name="icon">
         <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-         <normaloff>:/icon/32x32/visible_off.png</normaloff>:/icon/32x32/visible_off.png</iconset>
+         <normaloff>:/tsvg/spectrum/VisibilityOff.tsvg</normaloff>:/tsvg/spectrum/VisibilityOff.tsvg</iconset>
        </property>
       </widget>
      </item>
@@ -97,7 +97,7 @@
        </property>
        <property name="icon">
         <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-         <normaloff>:/icon/32x32/lock_on.png</normaloff>:/icon/32x32/lock_on.png</iconset>
+         <normaloff>:/tsvg/spectrum/Lock.tsvg</normaloff>:/tsvg/spectrum/Lock.tsvg</iconset>
        </property>
       </widget>
      </item>
@@ -120,7 +120,7 @@
        </property>
        <property name="icon">
         <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-         <normaloff>:/icon/32x32/lock_off.png</normaloff>:/icon/32x32/lock_off.png</iconset>
+         <normaloff>:/tsvg/spectrum/LockOpen.tsvg</normaloff>:/tsvg/spectrum/LockOpen.tsvg</iconset>
        </property>
       </widget>
      </item>
@@ -143,7 +143,7 @@
        </property>
        <property name="icon">
         <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-         <normaloff>:/icon/32x32/add.png</normaloff>:/icon/32x32/add.png</iconset>
+         <normaloff>:/tsvg/spectrum/Add.tsvg</normaloff>:/tsvg/spectrum/Add.tsvg</iconset>
        </property>
        <property name="checkable">
         <bool>true</bool>
@@ -166,7 +166,7 @@
        </property>
        <property name="icon">
         <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-         <normaloff>:/icon/32x32/remove.png</normaloff>:/icon/32x32/remove.png</iconset>
+         <normaloff>:/tsvg/spectrum/RemoveCircle.tsvg</normaloff>:/tsvg/spectrum/RemoveCircle.tsvg</iconset>
        </property>
       </widget>
      </item>
@@ -186,7 +186,7 @@
        </property>
        <property name="icon">
         <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-         <normaloff>:/icon/32x32/edit.png</normaloff>:/icon/32x32/edit.png</iconset>
+         <normaloff>:/tsvg/spectrum/Edit.tsvg</normaloff>:/tsvg/spectrum/Edit.tsvg</iconset>
        </property>
       </widget>
      </item>

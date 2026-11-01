@@ -294,8 +294,9 @@ MainWindow::MainWindow(QWidget *parent)
 
         initPenToolBar();
 
-        // Add status message label to the status bar.
-        ui->statusBar->addWidget(m_statusMessage);
+        // Status items sit in the canvas scroll bar row, as in Adobe's apps, instead of a row of their own
+        ui->view->addScrollBarWidget(m_statusMessage, Qt::AlignLeft);
+        ui->statusBar->hide();
         setStatusMessage(QObject::tr("Create new pattern piece to start working."));
 
         initializeToolsToolBar();
@@ -1808,6 +1809,8 @@ void MainWindow::ClosedInsertNodesDialog(int result)
 void MainWindow::setStatusMessage(const QString &message)
 {
     m_statusMessage->setText(message);
+    // An empty label still holds its last width in the scroll bar row, so hide it and let the scroll bar fill in
+    m_statusMessage->setVisible(!message.isEmpty());
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -2494,11 +2497,11 @@ void MainWindow::initializeStatusToolBar()
     {
         mouseCoordinates = new MouseCoordinates(qApp->patternUnit());
     }
-    ui->statusBar->addPermanentWidget((mouseCoordinates));
+    ui->view->addScrollBarWidget(mouseCoordinates, Qt::AlignRight);
 
     infoToolButton = new QToolButton();
     infoToolButton->setDefaultAction(ui->documentInfo_Action);
-    ui->statusBar->addPermanentWidget((infoToolButton));
+    ui->view->addScrollBarWidget(infoToolButton, Qt::AlignRight);
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -2506,8 +2509,8 @@ QComboBox *MainWindow::SetGradationList(QLabel *label, const QStringList &list)
 {
     QComboBox *comboBox = new QComboBox(this);
     comboBox->addItems(list);
-    ui->statusBar->addPermanentWidget(label);
-    ui->statusBar->addPermanentWidget(comboBox);
+    ui->view->addScrollBarWidget(label, Qt::AlignRight);
+    ui->view->addScrollBarWidget(comboBox, Qt::AlignRight);
 
     return comboBox;
 }
@@ -2634,14 +2637,12 @@ void MainWindow::initBasePointComboBox()
     base_point_combo_box->addItem(tr("Default"));
     base_point_combo_box->addItems(doc->GetCurrentAlphabet()); // These items are based on the Point name language
     base_point_combo_box->setToolTip(tr("Base name used for new points.\nPress enter to temporarily add it to the list."));
-    base_point_combo_box->setSizeAdjustPolicy(QComboBox::AdjustToContents);
+    base_point_combo_box->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
+    base_point_combo_box->setMinimumContentsLength(8);
     base_point_combo_box->setMaxVisibleItems(15);
     base_point_combo_box->setCurrentIndex(0);
     base_point_combo_box->setEditable(true);
     base_point_combo_box->setInsertPolicy(QComboBox::InsertAtTop);
-
-    // Force any child line edit to dynamically pull from the current app palette
-    base_point_combo_box->setStyleSheet("QComboBox QLineEdit { color: palette(text); background: palette(base); }");
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -5045,7 +5046,7 @@ void MainWindow::New()
         if (mouseCoordinates == nullptr)
         {
             mouseCoordinates = new MouseCoordinates(qApp->patternUnit());
-            ui->statusBar->addPermanentWidget((mouseCoordinates));
+            ui->view->addScrollBarWidget(mouseCoordinates, Qt::AlignRight);
         }
 
         m_curFileFormatVersion = VPatternConverter::PatternMaxVer;
@@ -6045,6 +6046,7 @@ bool MainWindow::startNewSeamly2D(const QString &fileName) const
 void MainWindow::createActions()
 {
     ui->setupUi(this);
+    fillDockBackgrounds(this);
 
     //Files menu
     connect(ui->actionNew, &QAction::triggered, this, &MainWindow::New);
