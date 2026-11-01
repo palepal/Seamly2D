@@ -57,8 +57,10 @@ const int max_recent      = 5;
 const int bar_height      = 24;
 const int bar_width       = 420;
 const int popup_width     = 560;
-const int row_spacing     = 3;
+const int row_spacing     = 2;
 const int row_height      = 32;
+const int header_height   = 24;
+const int popup_padding   = 4;
 const int max_rows        = 12;
 
 const QString recent_key = QStringLiteral("searchBar/recent");
@@ -68,7 +70,8 @@ enum Role
     ItemRole = Qt::UserRole,
     KindRole,
     ShortcutRole,
-    DetailRole
+    DetailRole,
+    HeaderRole
 };
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -77,6 +80,28 @@ QColor withAlpha(QColor color, qreal alpha)
 {
     color.setAlphaF(alpha);
     return color;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief tintedIcon returns the icon in file painted in color, so black icons follow dark themes.
+/// @param file icon file.
+/// @param color fill color.
+/// @return icon.
+QIcon tintedIcon(const QString &file, const QColor &color)
+{
+    QPixmap pixmap(file);
+    QPainter painter(&pixmap);
+    painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    painter.fillRect(pixmap.rect(), color);
+    painter.end();
+    return QIcon(pixmap);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief rowHeight returns the height of a popup row, headers are lower.
+int rowHeight(const QModelIndex &index)
+{
+    return index.data(HeaderRole).toBool() ? header_height : row_height;
 }
 
 class SearchItemDelegate : public QStyledItemDelegate
@@ -88,8 +113,7 @@ public:
     virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override
     {
         Q_UNUSED(option)
-        Q_UNUSED(index)
-        return QSize(0, row_height);
+        return QSize(0, rowHeight(index));
     }
 
     //-----------------------------------------------------------------------------------------------------------------
@@ -105,6 +129,16 @@ public:
         const QColor muted = withAlpha(text, 0.6);
 
         painter->save();
+        if (index.data(HeaderRole).toBool())
+        {
+            QFont font = option.font;
+            font.setBold(true);
+            painter->setFont(font);
+            painter->setPen(muted);
+            painter->drawText(row.adjusted(10, 0, 0, 0), Qt::AlignLeft | Qt::AlignBottom, index.data().toString());
+            painter->restore();
+            return;
+        }
         painter->setRenderHint(QPainter::Antialiasing);
         if (selected || option.state & QStyle::State_MouseOver)
         {
@@ -174,21 +208,30 @@ public:
 class SearchPopup : public QListView
 {
 public:
-    using QListView::QListView;
+    //-----------------------------------------------------------------------------------------------------------------
+    SearchPopup()
+        : QListView()
+    {
+        setViewportMargins(0, popup_padding, 0, popup_padding);
+    }
 
 protected:
     //-----------------------------------------------------------------------------------------------------------------
-    virtual void paintEvent(QPaintEvent *event) override
+    virtual bool event(QEvent *event) override
     {
-        // The window is transparent, the rounded background is painted here instead of by the style sheet.
-        QPainter painter(viewport());
-        painter.setRenderHint(QPainter::Antialiasing);
-        const QPalette palette = QApplication::palette();
-        painter.setPen(withAlpha(palette.color(QPalette::Text), 0.2));
-        painter.setBrush(palette.color(QPalette::Window));
-        painter.drawRoundedRect(QRectF(viewport()->rect()).adjusted(0.5, 0.5, -0.5, -0.5), 8, 8);
-        painter.end();
-        QListView::paintEvent(event);
+        // The window is transparent, the rounded background is painted here instead of by the style sheet. The
+        // viewport is transparent too and sits inside the padding.
+        if (event->type() == QEvent::Paint)
+        {
+            QPainter painter(this);
+            painter.setRenderHint(QPainter::Antialiasing);
+            const QPalette palette = QApplication::palette();
+            painter.setPen(withAlpha(palette.color(QPalette::Text), 0.2));
+            painter.setBrush(palette.color(QPalette::Window));
+            painter.drawRoundedRect(QRectF(rect()).adjusted(0.5, 0.5, -0.5, -0.5), 8, 8);
+            return true;
+        }
+        return QListView::event(event);
     }
 
     //-----------------------------------------------------------------------------------------------------------------
@@ -215,7 +258,9 @@ SearchBar::SearchBar(QMainWindow *window)
     , m_recent(qApp->Settings()->value(recent_key).toStringList())
 {
     ui->setupUi(this);
-    ui->search_line_edit->addAction(QIcon(":/icon/32x32/find.png"), QLineEdit::LeadingPosition);
+    ui->search_line_edit->addAction(tintedIcon(QStringLiteral(":/icon/32x32/find.png"),
+                                               withAlpha(QApplication::palette().color(QPalette::Text), 0.7)),
+                                    QLineEdit::LeadingPosition);
     ui->search_line_edit->installEventFilter(this);
 
     // The themes leave the system placeholder color, which is unreadable when the system and theme brightness differ.
@@ -225,7 +270,6 @@ SearchBar::SearchBar(QMainWindow *window)
 
     // Not a QTreeView: its accessibility update crashes Qt 6.12.0 when the results change (QTBUG-149612).
     QListView *popup = new SearchPopup;
-    popup->setUniformItemSizes(true);
     popup->setSpacing(row_spacing);
     popup->setMouseTracking(true);
     popup->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -428,23 +472,24 @@ void SearchBar::search(const QString &text)
     QVector<int> rows;
     if (text.trimmed().isEmpty())
     {
+        QVector<int> recent;
         for (const QString &name : qAsConst(m_recent))
         {
             const auto item = std::find_if(m_items.cbegin(), m_items.cend(),
                                            [&name](const SearchItem &item) { return item.name == name; });
             if (item != m_items.cend())
             {
-                rows.append(static_cast<int>(item - m_items.cbegin()));
+                recent.append(static_cast<int>(item - m_items.cbegin()));
             }
         }
         for (int i = 0; i < m_items.size() && rows.size() < max_suggestions; ++i)
         {
-            if (m_items.at(i).suggested && !rows.contains(i))
+            if (m_items.at(i).suggested && !recent.contains(i))
             {
                 rows.append(i);
             }
         }
-        showRows(rows, QString());
+        showRows(rows, QString(), recent);
         return;
     }
 
@@ -456,9 +501,13 @@ void SearchBar::search(const QString &text)
         int score = fuzzyScore(text, item.name);
         if (!item.kind.isEmpty())
         {
-            // Typing the kind, "tool" or "tools", lists that kind first.
-            const bool kind = query.size() >= 3 && (item.kind.startsWith(query, Qt::CaseInsensitive) ||
-                                                    query.startsWith(item.kind, Qt::CaseInsensitive));
+            // Typing a word of the kind, "tool" or "toolbar", lists that kind first.
+            const QStringList words = item.kind.split(QLatin1Char(' '));
+            const auto matches_kind = [&query](const QString &word)
+            {
+                return word.startsWith(query, Qt::CaseInsensitive) || query.startsWith(word, Qt::CaseInsensitive);
+            };
+            const bool kind = query.size() >= 3 && std::any_of(words.cbegin(), words.cend(), matches_kind);
             score = qMax(score, fuzzyScore(text, item.name + QLatin1Char(' ') + item.kind) + (kind ? 100 : -5));
         }
         if (score >= 0)
@@ -481,26 +530,49 @@ void SearchBar::search(const QString &text)
 }
 
 //---------------------------------------------------------------------------------------------------------------------
-/// @brief showRows shows items in the popup, plus a help search entry for text if it isn't empty.
+/// @brief showRows shows items in the popup, plus a help search entry for text if it isn't empty. Recent items get a
+/// section of their own above the others.
 /// @param rows indexes in m_items.
 /// @param text what the user typed.
-void SearchBar::showRows(const QVector<int> &rows, const QString &text)
+/// @param recent indexes in m_items of recently run items.
+void SearchBar::showRows(const QVector<int> &rows, const QString &text, const QVector<int> &recent)
 {
     // A new model per search resets the view in one step.
     QStandardItemModel *model = new QStandardItemModel(this);
-    for (int row : rows)
+    const auto addHeader = [model](const QString &title)
     {
-        const SearchItem &item = m_items.at(row);
-        QStandardItem *name = new QStandardItem(item.icon, item.name);
-        name->setData(row, ItemRole);
-        name->setData(item.kind, KindRole);
-        name->setData(item.shortcut, ShortcutRole);
-        name->setData(item.detail, DetailRole);
-        model->appendRow(name);
+        QStandardItem *header = new QStandardItem(title);
+        header->setData(true, HeaderRole);
+        header->setFlags(Qt::NoItemFlags);
+        model->appendRow(header);
+    };
+    const auto addRows = [this, model](const QVector<int> &rows)
+    {
+        for (int row : rows)
+        {
+            const SearchItem &item = m_items.at(row);
+            QStandardItem *name = new QStandardItem(item.icon, item.name);
+            name->setData(row, ItemRole);
+            name->setData(item.kind, KindRole);
+            name->setData(item.shortcut, ShortcutRole);
+            name->setData(item.detail, DetailRole);
+            model->appendRow(name);
+        }
+    };
+    if (!recent.isEmpty())
+    {
+        addHeader(tr("Recent"));
+        addRows(recent);
+        if (!rows.isEmpty())
+        {
+            addHeader(tr("Suggested"));
+        }
     }
+    addRows(rows);
     if (!text.isEmpty())
     {
-        QStandardItem *help = new QStandardItem(QIcon(":/icon/32x32/find.png"),
+        QStandardItem *help = new QStandardItem(tintedIcon(QStringLiteral(":/icon/32x32/find.png"),
+                                                           QApplication::palette().color(QPalette::Text)),
                                                 tr("Search Seamly help for \"%1\"").arg(text));
         help->setData(-1, ItemRole);
         model->appendRow(help);
@@ -515,12 +587,17 @@ void SearchBar::showRows(const QVector<int> &rows, const QString &text)
         return;
     }
 
+    // QListView puts the spacing on both sides of each row.
+    int height = 2 * popup_padding;
+    for (int i = 0; i < qMin(model->rowCount(), max_rows); ++i)
+    {
+        height += rowHeight(model->index(i, 0)) + 2 * row_spacing;
+    }
     QAbstractItemView *popup = m_completer->popup();
     const QRect rect = ui->search_line_edit->rect();
-    const int visible_rows = qMin(model->rowCount(), max_rows);
     m_completer->complete(QRect((rect.width() - popup_width) / 2, rect.top(), popup_width, rect.height() + 4));
-    popup->resize(popup_width, visible_rows * (row_height + row_spacing) + row_spacing);
-    popup->setCurrentIndex(model->index(0, 0));
+    popup->resize(popup_width, height);
+    popup->setCurrentIndex(model->index(recent.isEmpty() ? 0 : 1, 0));
 }
 
 //---------------------------------------------------------------------------------------------------------------------
