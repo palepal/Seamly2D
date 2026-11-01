@@ -47,6 +47,7 @@
 #ifndef FVUPDATER_H
 #define FVUPDATER_H
 
+#include <QJsonArray>
 #include <QMetaObject>
 #include <QMessageBox>
 #include <QMutex>
@@ -80,6 +81,7 @@ public:
 	bool                    checkForUpdates(bool silentMode = true);
 	bool                    checkForUpdatesSilent();
 	bool                    checkForUpdatesNotSilent();
+	void                    downloadUpdate();
 
 private slots:
     void                    httpFeedDownloadFinished();
@@ -88,6 +90,7 @@ private slots:
 
 signals:
     void                    setProgress(int);
+    void                    updateAvailable(const QString &releaseTag);
 
 protected:
 	friend class            FvUpdateWindow; /// Uses GetProposedUpdate() and others
@@ -117,6 +120,7 @@ private:
 	bool					m_dropOnFinish;
 	int						m_fileSize{};
 	QString					m_releaseName{};
+	QJsonArray				m_assets{};
 
 	void                    startDownloadFeed(const QUrl &url);		   // Start downloading feed
 	void                    startDownloadFile(QUrl url, QString name); // Start downloading file

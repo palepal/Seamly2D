@@ -383,6 +383,9 @@ public:
     QDate                GetDateOfLastRemind() const;
     void                 SetDateOfLastRemind(const QDate &date);
 
+    QString              getLastRunVersion() const;
+    void                 setLastRunVersion(const QString &version);
+
     bool                 getForbidPieceFlipping() const;
     void                 setForbidPieceFlipping(bool value);
 

@@ -6391,6 +6391,22 @@ Haluatko tallentaa muutokset?</translation>
         <translation>Kuvan lataaminen epäonnistui.</translation>
     </message>
     <message>
+        <source>What&apos;s new</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download Seamly2D %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading %1%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Draft Block:</source>
         <translation>Luonnospala:</translation>
     </message>

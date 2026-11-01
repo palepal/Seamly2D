@@ -5596,6 +5596,22 @@ Do you want to save your changes?</source>
         <translation>&lt;b&gt;Інструмент::Точка - На кривій:&lt;/b&gt; Вибрати криву</translation>
     </message>
     <message>
+        <source>What&apos;s new</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download Seamly2D %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading %1%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Description</source>
         <translation>Опис</translation>
     </message>

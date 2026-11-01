@@ -6378,6 +6378,22 @@ Vuoi salvare i cambiamenti?</translation>
         <translation>Impossibile caricare l&apos;immagine.</translation>
     </message>
     <message>
+        <source>What&apos;s new</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download Seamly2D %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading %1%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Draft Block:</source>
         <translation>Blocco bozza:</translation>
     </message>
