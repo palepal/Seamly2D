@@ -116,7 +116,15 @@ public:
         int right = row.right() - padding;
         const QStringList caps = SearchBar::keyCaps(index.data(ShortcutRole).toString());
         QFont cap_font = option.font;
-        cap_font.setPointSizeF(cap_font.pointSizeF() * 0.9);
+        // The app stylesheet sizes fonts in pixels, so pointSizeF() is -1 there.
+        if (cap_font.pixelSize() > 0)
+        {
+            cap_font.setPixelSize(qRound(cap_font.pixelSize() * 0.9));
+        }
+        else
+        {
+            cap_font.setPointSizeF(cap_font.pointSizeF() * 0.9);
+        }
         const QFontMetrics cap_metrics(cap_font);
         painter->setFont(cap_font);
         for (int i = caps.size() - 1; i >= 0; --i)
