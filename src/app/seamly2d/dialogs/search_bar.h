@@ -78,7 +78,7 @@ private:
     QStringList                           m_recent;
 
     void search(const QString &text);
-    void showRows(const QVector<int> &rows, const QString &text);
+    void showRows(const QVector<int> &rows, const QString &text, const QVector<int> &recent = QVector<int>());
     void run(int item);
 #if defined(Q_OS_MACOS)
     void placeInTitleBar();

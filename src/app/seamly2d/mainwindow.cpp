@@ -124,6 +124,7 @@
 #include <QAction>
 #include <QComboBox>
 #include <QDateTime>
+#include <QDockWidget>
 #include <QDoubleSpinBox>
 #include <QFileDialog>
 #include <QFileSystemWatcher>
@@ -8619,50 +8620,57 @@ void MainWindow::updateZoomToObjectComboBox()
 }
 
 //---------------------------------------------------------------------------------------------------------------------
-/// @brief searchItems lists what the search bar finds: enabled menu and tool commands, points, curves and variables.
-/// @return searchable items.
+/// @brief searchItems lists what the search bar finds: enabled commands, points, curves and variables, each with its
+/// kind, the menu it is in, "Point tool", "Toolbar" and so on.
+/// @return searchable items, the suggested ones first in suggestion order.
 QVector<SearchItem> MainWindow::searchItems()
 {
     QVector<SearchItem> items;
     QSet<QString> names;
 
-    QSet<QAction *> tools;
-    QList<QMenu *> menus{ui->tools_Menu};
-    while (!menus.isEmpty())
-    {
-        const QList<QAction *> actions = menus.takeLast()->actions();
-        for (QAction *action : actions)
-        {
-            if (action->menu() != nullptr)
-            {
-                menus.append(action->menu());
-            }
-            else
-            {
-                tools.insert(action);
-            }
-        }
-    }
-    const QList<QAction *> suggested{ui->lineTool_Action, ui->pointAtDistanceAngle_Action, ui->pointAlongLine_Action,
-                                     ui->curve_Action, ui->arcTool_Action, ui->addPiece_Action, ui->table_Action,
-                                     ui->newDraft_Action, ui->actionOpen};
-
-    // Tool tooltips name the tool with its kind, "Point - On Bisector (Shift+O, Shift+B)".
-    static const QRegularExpression shortcut_hint(QStringLiteral("\\s*\\([^()]*\\)\\s*$"));
-    const QList<QAction *> actions = findChildren<QAction *>();
+    const QList<QAction *> suggested{ui->actionNew, ui->actionOpen, ui->newDraft_Action, ui->lineTool_Action,
+                                     ui->pointAtDistanceAngle_Action, ui->pointAlongLine_Action, ui->curve_Action,
+                                     ui->arcTool_Action, ui->addPiece_Action, ui->table_Action};
+    static const QRegularExpression toolbar_suffix(QStringLiteral("\\s*tool\\s*bar\\s*$"),
+                                                   QRegularExpression::CaseInsensitiveOption);
+    const QList<QAction *> actions = suggested + findChildren<QAction *>();
     for (QAction *action : actions)
     {
-        const QMenu *menu = qobject_cast<QMenu *>(action->parent());
-        const bool tool = tools.contains(action);
-        QString name = (tool ? action->toolTip().remove(shortcut_hint) : action->text()).remove(QLatin1Char('&'));
-        if (action->isSeparator() || !action->isEnabled() || name.isEmpty() || names.contains(name) ||
-            (menu != nullptr && menu->menuAction() == action))
+        QString name = action->text().remove(QLatin1Char('&'));
+        QString kind = tr("Command");
+        const QToolBar *toolbar = qobject_cast<QToolBar *>(action->parent());
+        const QDockWidget *dock = qobject_cast<QDockWidget *>(action->parent());
+        if (toolbar != nullptr && toolbar->toggleViewAction() == action)
+        {
+            name.remove(toolbar_suffix);
+            kind = tr("Toolbar");
+        }
+        else if (dock != nullptr && dock->toggleViewAction() == action)
+        {
+            kind = tr("Panel");
+        }
+        else
+        {
+            const QList<QObject *> owners = action->associatedObjects();
+            const auto owner = std::find_if(owners.cbegin(), owners.cend(),
+                                            [](QObject *object) { return qobject_cast<QMenu *>(object) != nullptr; });
+            if (owner != owners.cend())
+            {
+                const QMenu *menu = static_cast<QMenu *>(*owner);
+                const QString title = menu->title().remove(QLatin1Char('&'));
+                kind = ui->tools_Menu->actions().contains(menu->menuAction()) ? tr("%1 tool").arg(title) : title;
+            }
+        }
+
+        const QMenu *submenu = action->menu();
+        if (action->isSeparator() || !action->isEnabled() || submenu != nullptr || name.isEmpty() ||
+            names.contains(name + kind))
         {
             continue;
         }
-        names.insert(name);
-        items.append({name, tool ? tr("Tool") : QString(), action->shortcut().toString(QKeySequence::NativeText),
-                      QString(), action->icon(), [action]() { action->trigger(); }, suggested.contains(action)});
+        names.insert(name + kind);
+        items.append({name, kind, action->shortcut().toString(QKeySequence::NativeText), QString(), action->icon(),
+                      [action]() { action->trigger(); }, suggested.contains(action)});
     }
 
     const QStringList points = getObjectNames(GOType::Point);
