@@ -32,6 +32,10 @@
 
 #include "vabstractapplication.h"
 
+#if defined(Q_OS_MACOS)
+#include "macos_window.h"
+#endif
+
 #include <qnumeric.h>
 #include <QApplication>
 #include <QChar>
@@ -41,8 +45,10 @@
 #include <QFileDialog>
 #include <QDir>
 #include <QDirIterator>
+#include <QFile>
 #include <QFileInfo>
 #include <QGuiApplication>
+#include <QIcon>
 #include <QImage>
 #include <QLatin1Char>
 #include <QList>
@@ -52,14 +58,17 @@
 #include <QPixmap>
 #include <QPrinterInfo>
 #include <QProcess>
+#include <QResource>
 #include <QRgb>
 #include <QSortFilterProxyModel>
 #include <QStandardItemModel>
 #include <QStandardItem>
 #include <QString>
 #include <QDockWidget>
+#include <QEvent>
 #include <QMainWindow>
 #include <QStyleHints>
+#include <QToolBox>
 #include <QtDebug>
 #include <QtMath>
 #include <QPixmapCache>
@@ -398,7 +407,16 @@ QStringList SupportedLocales()
 
 namespace
 {
-// One rung of the brightness ladder: the colors of one of four UI brightness levels, light to dark.
+// One rung of the brightness ladder: the grays of one of four UI brightness levels, light to dark.
+// The selection blue is the Spectrum 2 accent (accent-background-color-default) from
+// Adobe's @adobe/spectrum-tokens (Apache-2.0): its dark value on the dark rungs, its light value on the light
+// ones. Both carry white text at 4.5:1. The other state colors belong to the same rung: panel header and
+// its edge, button hover, toolbar button down state and its edge, toolbar button hover and its edge, input border
+// and scroll bar track. The tool tiles are three steps further along the same rung's gray ladder: resting, hover
+// and checked. List well, rows and selected row are #454545, #424242 and #6b6b6b on the dark rung,
+// kept at the same distance from the background on the other rungs. Icon lines take
+// the rung's icon gray, and drafting tool icons a Seamly purple accent: the logo's #503584 on the light rungs, a
+// lighter tint of the same hue on the dark ones
 struct ThemeColors
 {
     QRgb background;
@@ -408,13 +426,180 @@ struct ThemeColors
     QRgb input;
     QRgb disabled;
     QRgb selection;
+    QRgb header;
+    QRgb hover;
+    QRgb pressed;
+    QRgb inputBorder;
+    QRgb pressedBorder;
+    QRgb headerBorder;
+    QRgb toolHover;
+    QRgb toolHoverBorder;
+    QRgb scrollTrack;
+    QRgb tile;
+    QRgb tileHover;
+    QRgb tileChecked;
+    QRgb listWell;
+    QRgb listRow;
+    QRgb listSelected;
+    QRgb icon;
+    QRgb accent;
+    bool dark;
 };
 
 //                                 background  text      label     divider   input     disabled  selection
-const ThemeColors darkestColors  = { 0x323232, 0xcccccc, 0x979797, 0x2a2a2a, 0x262626, 0x545454, 0x5b9bd3 };
-const ThemeColors darkColors     = { 0x535353, 0xf4f4f4, 0xc7c7c7, 0x4d4d4d, 0x464646, 0x757575, 0x46a0f5 };
-const ThemeColors lightColors    = { 0xb8b8b8, 0x232323, 0x232323, 0xa8a8a8, 0xe3e3e3, 0x8f8f8f, 0x3468b2 };
-const ThemeColors lightestColors = { 0xf0f0f0, 0x484848, 0x6d6d6d, 0xdcdcdc, 0xffffff, 0xbdbdbd, 0x3d72b9 };
+//                                 header      hover     pressed   inputBorder pressedBorder headerBorder
+//                                 toolHover   toolHoverBorder     scrollTrack tile      tileHover tileChecked
+//                                 listWell    listRow   listSelected  icon      accent    dark
+const ThemeColors darkestColors  = { 0x323232, 0xcccccc, 0x979797, 0x2a2a2a, 0x262626, 0x545454, 0x4069fd,
+                                     0x262626, 0x3f3f3f, 0x1f1f1f, 0x3a3a3a, 0x3f3f3f, 0x212121,
+                                     0x292929, 0x4b4b4b, 0x2a2a2a, 0x474747, 0x525252, 0x707070,
+                                     0x242424, 0x212121, 0x4a4a4a, 0xb7b7b7, 0xa48be0, true };
+const ThemeColors darkColors     = { 0x535353, 0xf4f4f4, 0xc7c7c7, 0x4d4d4d, 0x464646, 0x757575, 0x4069fd,
+                                     0x434343, 0x5f5f5f, 0x303030, 0x606060, 0x575757, 0x383838,
+                                     0x3e3e3e, 0x5a5a5a, 0x4c4c4c, 0x5f5f5f, 0x747474, 0x969696,
+                                     0x454545, 0x424242, 0x6b6b6b, 0xc3c3c3, 0xa48be0, true };
+const ThemeColors lightColors    = { 0xb8b8b8, 0x232323, 0x232323, 0xa8a8a8, 0xe3e3e3, 0x8f8f8f, 0x3b63fb,
+                                     0xa2a2a2, 0xc4c4c4, 0x969696, 0xa8a8a8, 0x838383, 0x949494,
+                                     0xdcdcdc, 0xb4b4b4, 0xc4c4c4, 0xa7a7a7, 0x959595, 0x8e8e8e,
+                                     0xaaaaaa, 0xa7a7a7, 0xd0d0d0, 0x404040, 0x503584, false };
+const ThemeColors lightestColors = { 0xf0f0f0, 0x484848, 0x6d6d6d, 0xdcdcdc, 0xffffff, 0xbdbdbd, 0x3b63fb,
+                                     0xdbdbdb, 0xfcfcfc, 0xbdbdbd, 0xdcdcdc, 0xa7a7a7, 0xcccccc,
+                                     0xfafafa, 0xbdbdbd, 0xffffff, 0xbdbdbd, 0xa7a7a7, 0x969696,
+                                     0xe2e2e2, 0xdfdfdf, 0xffffff, 0x545454, 0x503584, false };
+
+// Colors of the theme last applied, for painting that happens outside the palette and style sheet
+const ThemeColors *currentColors = &darkColors;
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief themeColors color set of a stored application theme.
+/// @param theme stored AppTheme value, System resolved against the system color scheme.
+/// @return color set of the rung.
+const ThemeColors &themeColors(int theme)
+{
+    if (theme == static_cast<int>(AppTheme::System))
+    {
+        theme = QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark
+                ? static_cast<int>(AppTheme::Dark)
+                : static_cast<int>(AppTheme::Lightest);
+    }
+
+    switch (static_cast<AppTheme>(theme))
+    {
+        case AppTheme::Darkest:
+        {
+            return darkestColors;
+        }
+        case AppTheme::Dark:
+        {
+            return darkColors;
+        }
+        case AppTheme::Light:
+        {
+            return lightColors;
+        }
+        case AppTheme::Lightest:
+        default:
+        {
+            return lightestColors;
+        }
+    }
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief themeStyleSheet fill the flat style sheet template with the colors of one rung.
+/// @param colors color set of the rung.
+/// @return style sheet to pass to QApplication::setStyleSheet().
+QString themeStyleSheet(const ThemeColors &colors)
+{
+    QFile file(QStringLiteral(":/flatstyle/flat.qss"));
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        return QString();
+    }
+    QString sheet = QString::fromUtf8(file.readAll());
+
+    const auto name = [](QRgb rgb) { return QColor(rgb).name(); };
+    const QColor selection(colors.selection);
+
+    // Longer placeholders first, so @pressedBorder is not cut short by @pressed
+    const QList<QPair<QString, QString>> values =
+    {
+        {QStringLiteral("@pressedBorder"), name(colors.pressedBorder)},
+        {QStringLiteral("@toolHoverBorder"), name(colors.toolHoverBorder)},
+        {QStringLiteral("@tileChecked"),   name(colors.tileChecked)},
+        {QStringLiteral("@listSelected"),  name(colors.listSelected)},
+        {QStringLiteral("@listHover"),     QColor::fromRgb(qRgb((qRed(colors.listRow) + qRed(colors.listSelected)) / 2,
+                                                                (qGreen(colors.listRow) + qGreen(colors.listSelected)) / 2,
+                                                                (qBlue(colors.listRow) + qBlue(colors.listSelected)) / 2)).name()},
+        {QStringLiteral("@listWell"),      name(colors.listWell)},
+        {QStringLiteral("@listRow"),       name(colors.listRow)},
+        {QStringLiteral("@tileHover"),     name(colors.tileHover)},
+        {QStringLiteral("@tile"),          name(colors.tile)},
+        {QStringLiteral("@headerBorder"),  name(colors.headerBorder)},
+        {QStringLiteral("@scrollTrack"),   name(colors.scrollTrack)},
+        {QStringLiteral("@toolHover"),     name(colors.toolHover)},
+        {QStringLiteral("@selectionSoft"), QStringLiteral("rgba(%1, %2, %3, 64)")
+                                           .arg(selection.red()).arg(selection.green()).arg(selection.blue())},
+        {QStringLiteral("@fieldBorder"),   name(colors.inputBorder)},
+        {QStringLiteral("@selection"),     name(colors.selection)},
+        {QStringLiteral("@disabled"),      name(colors.disabled)},
+        {QStringLiteral("@pressed"),       name(colors.pressed)},
+        {QStringLiteral("@divider"),       name(colors.divider)},
+        {QStringLiteral("@window"),        name(colors.background)},
+        {QStringLiteral("@header"),        name(colors.header)},
+        {QStringLiteral("@arrows"),        colors.dark ? QStringLiteral("dark") : QStringLiteral("light")},
+        {QStringLiteral("@field"),         name(colors.input)},
+        {QStringLiteral("@hover"),         name(colors.hover)},
+        {QStringLiteral("@label"),         name(colors.label)},
+        {QStringLiteral("@text"),          name(colors.text)},
+    };
+    for (const auto &value : values)
+    {
+        sheet.replace(value.first, value.second);
+    }
+    return sheet;
+}
+
+#if defined(Q_OS_MACOS)
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief hasTitleBar whether a widget is a window macOS draws a title bar for.
+/// @param widget widget to check.
+/// @return true for main windows, dialogs and floating tool windows.
+bool hasTitleBar(const QWidget *widget)
+{
+    if (widget == nullptr || !widget->isWindow())
+    {
+        return false;
+    }
+    const Qt::WindowType type = widget->windowType();
+    return type == Qt::Window || type == Qt::Dialog || type == Qt::Sheet || type == Qt::Tool;
+}
+
+// Colors the title bar of every window as it is shown, so dialogs opened later match the theme too
+class TitleBarFilter : public QObject
+{
+public:
+    using QObject::QObject;
+
+    //-----------------------------------------------------------------------------------------------------------------
+    /// @brief eventFilter color the title bar of a window when it is shown.
+    /// @param watched object the event is for.
+    /// @param event event.
+    /// @return false, the event always continues.
+    bool eventFilter(QObject *watched, QEvent *event) override
+    {
+        if (event->type() == QEvent::Show)
+        {
+            QWidget *widget = qobject_cast<QWidget *>(watched);
+            if (hasTitleBar(widget))
+            {
+                setTitleBarColor(widget, QApplication::palette().color(QPalette::Window));
+            }
+        }
+        return false;
+    }
+};
+#endif
 
 //---------------------------------------------------------------------------------------------------------------------
 /// @brief themePalette build a complete palette from one rung of the ladder.
@@ -469,39 +654,59 @@ QPalette themePalette(const ThemeColors &colors)
 /// @return palette to pass to QApplication::setPalette().
 QPalette appThemePalette(int theme)
 {
-    if (theme == static_cast<int>(AppTheme::System))
-    {
-        theme = QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark
-                ? static_cast<int>(AppTheme::Dark)
-                : static_cast<int>(AppTheme::Lightest);
-    }
+    return themePalette(themeColors(theme));
+}
 
-    switch (static_cast<AppTheme>(theme))
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief themeIconColor line color of themed icons in the current theme.
+/// @param mode QIcon::Mode the icon is drawn in.
+/// @return icon gray, text color while hovered or selected, halfway to the background while disabled.
+QColor themeIconColor(int mode)
+{
+    switch (static_cast<QIcon::Mode>(mode))
     {
-        case AppTheme::Darkest:
+        case QIcon::Disabled:
         {
-            return themePalette(darkestColors);
+            // The disabled text color can equal a checked button's fill, which would hide the icon
+            const QRgb icon = currentColors->icon;
+            const QRgb background = currentColors->background;
+            return QColor((qRed(icon) + qRed(background)) / 2, (qGreen(icon) + qGreen(background)) / 2,
+                          (qBlue(icon) + qBlue(background)) / 2);
         }
-        case AppTheme::Dark:
+        case QIcon::Active:
+        case QIcon::Selected:
         {
-            return themePalette(darkColors);
+            return QColor(currentColors->text);
         }
-        case AppTheme::Light:
-        {
-            return themePalette(lightColors);
-        }
-        case AppTheme::Lightest:
+        case QIcon::Normal:
         default:
         {
-            return themePalette(lightestColors);
+            return QColor(currentColors->icon);
         }
     }
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief themeAccentColor accent of drafting tool icons in the current theme.
+/// @return Seamly purple for the current rung.
+QColor themeAccentColor()
+{
+    return QColor(currentColors->accent);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief themeBackgroundColor background that filled shapes in themed icons take.
+/// @return panel background of the current theme.
+QColor themeBackgroundColor()
+{
+    return QColor(currentColors->background);
 }
 
 const QString darkWorkspaceColor = QStringLiteral("#2b2b2b");
 
 //---------------------------------------------------------------------------------------------------------------------
-/// @brief fillDockBackgrounds make the contents of every dock paint the theme background.
+/// @brief fillDockBackgrounds make the contents of every dock paint the theme background and stack tool box
+/// sections without gaps.
 /// @param window main window whose docks to fix.
 void fillDockBackgrounds(QMainWindow *window)
 {
@@ -514,6 +719,17 @@ void fillDockBackgrounds(QMainWindow *window)
         if (QWidget *contents = dock->widget())
         {
             contents->setAutoFillBackground(true);
+        }
+    }
+
+    // A tool box spaces its sections by the style's layout spacing, which a style sheet cannot reach. The gap
+    // between sections comes from the style sheet instead
+    const QList<QToolBox *> toolBoxes = window->findChildren<QToolBox *>();
+    for (QToolBox *toolBox : toolBoxes)
+    {
+        if (toolBox->layout() != nullptr)
+        {
+            toolBox->layout()->setSpacing(0);
         }
     }
 }
@@ -552,6 +768,41 @@ void applyAppTheme(QApplication *app, int theme)
     // Fusion is the only style that honors an application palette on every platform
     app->setStyle(QStringLiteral("Fusion"));
     app->setPalette(palette);
+    currentColors = &themeColors(theme);
+    app->setStyleSheet(themeStyleSheet(*currentColors));
+
+    // ponytail: prototype-only hook to compare third party style sheets, remove before any PR
+    const QString externalSheet = qEnvironmentVariable("SEAMLY_QSS");
+    if (!externalSheet.isEmpty())
+    {
+        const QStringList resources = qEnvironmentVariable("SEAMLY_RCC").split(QLatin1Char(':'), Qt::SkipEmptyParts);
+        for (const QString &resource : resources)
+        {
+            QResource::registerResource(resource);
+        }
+        QFile file(externalSheet);
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+        {
+            app->setStyleSheet(QString::fromUtf8(file.readAll()));
+        }
+    }
+
+#if defined(Q_OS_MACOS)
+    static TitleBarFilter *titleBarFilter = nullptr;
+    if (titleBarFilter == nullptr)
+    {
+        titleBarFilter = new TitleBarFilter(app);
+        app->installEventFilter(titleBarFilter);
+    }
+    const QList<QWidget *> windows = QApplication::topLevelWidgets();
+    for (QWidget *window : windows)
+    {
+        if (window->isVisible() && hasTitleBar(window))
+        {
+            setTitleBarColor(window, palette.color(QPalette::Window));
+        }
+    }
+#endif
 }
 
 //---------------------------------------------------------------------------------------------------------------------

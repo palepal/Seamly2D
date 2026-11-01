@@ -58,7 +58,7 @@
       <bool>false</bool>
      </property>
      <property name="tabPosition">
-      <enum>QTabWidget::West</enum>
+      <enum>QTabWidget::North</enum>
      </property>
      <property name="currentIndex">
       <number>3</number>

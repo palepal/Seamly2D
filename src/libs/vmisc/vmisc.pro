@@ -8,7 +8,10 @@
 message("Entering vmisc.pro")
 include(../../../common.pri)
 
-QT += widgets printsupport testlib gui
+QT += widgets printsupport testlib gui svg
+
+# The themed icon engine is a plugin compiled into this static library
+DEFINES += QT_STATICPLUGIN
 
 # Name of library
 TARGET = vmisc
@@ -26,7 +29,9 @@ RESOURCES += \
     share/resources/sounds.qrc \
     share/resources/theme.qrc \ # Windows theme icons.
     share/resources/icon.qrc \ # All other icons except cursors and Windows theme.
-    share/resources/flags.qrc
+    share/resources/flags.qrc \
+    share/resources/flatstyle.qrc \
+    share/resources/tsvg.qrc
 
 # This is static library so no need in "make install"
 

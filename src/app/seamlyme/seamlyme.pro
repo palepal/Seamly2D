@@ -62,6 +62,7 @@ unix{
     }
     macx{
         message(seamlyme.pro: mac deployment target: $$QMAKE_MACOSX_DEPLOYMENT_TARGET)
+        LIBS += -framework AppKit
 
         # Path to resources in app bundle
         FRAMEWORKS_DIR = "Contents/Frameworks"
