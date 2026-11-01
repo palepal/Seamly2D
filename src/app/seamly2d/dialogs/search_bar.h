@@ -1,0 +1,81 @@
+//-----------------------------------------------------------------------------
+//  @file   search_bar.h
+//  @author palepal
+//  @date   1 Nov, 2026
+//
+//  @copyright
+//  Copyright (C) 2026 Seamly, LLC
+//  https://github.com/fashionfreedom/seamly2d
+//
+//  @brief
+//  Seamly2D is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  Seamly2D is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with Seamly2D. If not, see <http://www.gnu.org/licenses/>.
+//-----------------------------------------------------------------------------
+
+#ifndef SEARCH_BAR_H
+#define SEARCH_BAR_H
+
+#include <QIcon>
+#include <QVector>
+#include <QWidget>
+
+#include <functional>
+
+class QCompleter;
+class QMainWindow;
+class QStandardItemModel;
+
+namespace Ui
+{
+    class SearchBar;
+}
+
+struct SearchItem
+{
+    QString               name;
+    QString               detail;
+    QIcon                 icon;
+    std::function<void()> run;
+};
+
+class SearchBar : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit SearchBar(QMainWindow *window);
+    virtual ~SearchBar() override;
+
+    void       setFileName(const QString &name);
+    void       setItemSource(const std::function<QVector<SearchItem>()> &source);
+    static int fuzzyScore(const QString &pattern, const QString &text);
+
+protected:
+    virtual bool eventFilter(QObject *object, QEvent *event) override;
+
+private:
+    Q_DISABLE_COPY(SearchBar)
+    Ui::SearchBar                        *ui;
+    QMainWindow                          *m_window;
+    QCompleter                           *m_completer;
+    QStandardItemModel                   *m_model;
+    std::function<QVector<SearchItem>()>  m_source;
+    QVector<SearchItem>                   m_items;
+
+    void search(const QString &text);
+    void run(int item);
+#if defined(Q_OS_MACOS)
+    void placeInTitleBar();
+#endif
+};
+
+#endif // SEARCH_BAR_H

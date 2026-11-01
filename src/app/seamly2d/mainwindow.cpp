@@ -62,6 +62,7 @@
 #include "dialogs/calculator_dialog.h"
 #include "dialogs/decimalchart_dialog.h"
 #include "dialogs/export_progress_dialog.h"
+#include "dialogs/search_bar.h"
 #include "../ifc/exception/vexceptionobjecterror.h"
 #include "../ifc/exception/vexceptionconversionerror.h"
 #include "../ifc/exception/vexceptionemptyparameter.h"
@@ -223,6 +224,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_penToolBar(nullptr)
     , m_penReset(nullptr)
     , m_zoom_to_object_combobox(nullptr)
+    , m_search_bar(nullptr)
     , m_measurements(nullptr)
 
     // define Seamly2D main window
@@ -276,6 +278,10 @@ MainWindow::MainWindow(QWidget *parent)
         // initialize docks to contain the toolbars and create menuts.
         initializeDocksContain();
         createMenus();
+
+        // Must exist before the window is shown, it sets the title bar flags on macOS.
+        m_search_bar = new SearchBar(this);
+        m_search_bar->setItemSource([this]() { return searchItems(); });
 
         // Initialize toolbars for draft, point name, and modes.
         initializeDraftToolBar();
@@ -8404,6 +8410,8 @@ void MainWindow::updateWindowTitle()
                        GetMeasurementFileName() + QString(" - ") + tr("read only"));
     }
     setWindowFilePath(qApp->getFilePath());
+    m_search_bar->setFileName(qApp->getFilePath().isEmpty() ? tr("untitled.sm2d")
+                                                            : strippedName(qApp->getFilePath()));
 
 #if defined(Q_OS_MAC)
     static QIcon fileIcon = QIcon(QCoreApplication::applicationDirPath() +
@@ -8606,6 +8614,57 @@ void MainWindow::updateZoomToObjectComboBox()
     m_zoom_to_object_combobox->addItems(object_names);
     m_zoom_to_object_combobox->view()->setMinimumWidth(120);
     m_zoom_to_object_combobox->blockSignals(false);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief searchItems lists what the search bar finds: enabled menu and tool commands, points, curves and variables.
+/// @return searchable items.
+QVector<SearchItem> MainWindow::searchItems()
+{
+    QVector<SearchItem> items;
+    QSet<QString> names;
+
+    const QList<QAction *> actions = findChildren<QAction *>();
+    for (QAction *action : actions)
+    {
+        const QMenu *menu = qobject_cast<QMenu *>(action->parent());
+        QString name = action->text().remove(QLatin1Char('&'));
+        if (action->isSeparator() || !action->isEnabled() || name.isEmpty() || names.contains(name) ||
+            (menu != nullptr && menu->menuAction() == action))
+        {
+            continue;
+        }
+        names.insert(name);
+        items.append({name, action->shortcut().toString(QKeySequence::NativeText), action->icon(),
+                      [action]() { action->trigger(); }});
+    }
+
+    const QStringList points = getObjectNames(GOType::Point);
+    for (const QString &name : points)
+    {
+        items.append({name, tr("Point"), QIcon(), [this, name]() { zoomToObject(name); }});
+    }
+    const QStringList curves = getObjectNames(GOType::AllCurves);
+    for (const QString &name : curves)
+    {
+        items.append({name, tr("Curve"), QIcon(), [this, name]() { zoomToObject(name); }});
+    }
+
+    const QString unit = QLatin1Char(' ') + UnitsToStr(qApp->patternUnit(), true);
+    const QHash<QString, QSharedPointer<VInternalVariable>> *variables = pattern->DataVariables();
+    for (auto i = variables->cbegin(); i != variables->cend(); ++i)
+    {
+        const bool angle = i.value()->GetType() == VarType::LineAngle || i.value()->GetType() == VarType::CurveAngle;
+        items.append({i.key(), QString::number(*i.value()->GetValue(), 'f', 2) + (angle ? QStringLiteral("°") : unit),
+                      QIcon(), [this]()
+        {
+            if (!ui->table_Action->isChecked())
+            {
+                ui->table_Action->trigger();
+            }
+        }});
+    }
+    return items;
 }
 
 //---------------------------------------------------------------------------------------------------------------------
