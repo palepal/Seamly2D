@@ -511,8 +511,7 @@ void SearchBar::showRows(const QVector<int> &rows, const QString &text)
     const QRect rect = ui->search_line_edit->rect();
     const int visible_rows = qMin(model->rowCount(), max_rows);
     m_completer->complete(QRect((rect.width() - popup_width) / 2, rect.top(), popup_width, rect.height() + 4));
-    popup->doItemsLayout();
-    popup->resize(popup_width, popup->visualRect(model->index(visible_rows - 1, 0)).bottom() + row_spacing + 1);
+    popup->resize(popup_width, visible_rows * (row_height + row_spacing) + row_spacing);
     popup->setCurrentIndex(model->index(0, 0));
 }
 
