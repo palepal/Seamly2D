@@ -38,7 +38,7 @@
 #include <QMenuBar>
 #include <QShortcut>
 #include <QStandardItemModel>
-#include <QTreeView>
+#include <QTableView>
 #include <QUrl>
 #include <QUrlQuery>
 #include <QWindow>
@@ -76,11 +76,13 @@ SearchBar::SearchBar(QMainWindow *window)
     palette.setColor(QPalette::PlaceholderText, placeholder);
     ui->search_line_edit->setPalette(palette);
 
-    QTreeView *popup = new QTreeView;
-    popup->setHeaderHidden(true);
-    popup->setRootIsDecorated(false);
-    popup->setUniformRowHeights(true);
-    popup->header()->setStretchLastSection(false);
+    // Not a QTreeView: its accessibility update crashes Qt 6.12.0 when the results change (QTBUG-149612).
+    QTableView *popup = new QTableView;
+    popup->horizontalHeader()->hide();
+    popup->verticalHeader()->hide();
+    popup->verticalHeader()->setDefaultSectionSize(popup->fontMetrics().height() + 8);
+    popup->setShowGrid(false);
+    popup->setWordWrap(false);
 
     m_completer->setWidget(ui->search_line_edit);
     m_completer->setPopup(popup);
@@ -248,8 +250,7 @@ void SearchBar::search(const QString &text)
                                   : m_items.at(a.second).name.size() < m_items.at(b.second).name.size();
     });
 
-    // A new model per search resets the view in one step. Removing and inserting rows while an accessibility
-    // client (VoiceOver) is attached crashes Qt 6.12 in QAccessibleCache::deleteInterface.
+    // A new model per search resets the view in one step.
     QStandardItemModel *model = new QStandardItemModel(0, 2, this);
     for (int i = 0; i < count; ++i)
     {
@@ -269,7 +270,7 @@ void SearchBar::search(const QString &text)
     m_completer->setModel(model);
     m_model->deleteLater();
     m_model = model;
-    QHeaderView *header = static_cast<QTreeView *>(m_completer->popup())->header();
+    QHeaderView *header = static_cast<QTableView *>(m_completer->popup())->horizontalHeader();
     header->setSectionResizeMode(0, QHeaderView::Stretch);
     header->setSectionResizeMode(1, QHeaderView::ResizeToContents);
 
@@ -302,14 +303,17 @@ void SearchBar::run(int item)
 #if defined(Q_OS_MACOS)
 //---------------------------------------------------------------------------------------------------------------------
 /// @brief placeInTitleBar hides the window title and centers the field in the title bar, which the window content
-/// extends under. Hidden when there is no title bar, as in full screen.
+/// extends under. Full screen has no title bar, so the window keeps a band of the same height at the top instead.
 void SearchBar::placeInTitleBar()
 {
     hideTitleText(m_window);
     const int title_height = m_window->windowHandle() ? m_window->windowHandle()->safeAreaMargins().top() : 0;
+    const int band_height = title_height >= bar_height ? 0 : bar_height + 8;
+    m_window->setContentsMargins(0, band_height, 0, 0);
+
     const int width = qMin(bar_width, m_window->width() / 2);
-    setGeometry((m_window->width() - width) / 2, (title_height - bar_height) / 2, width, bar_height);
-    setVisible(title_height >= bar_height);
+    setGeometry((m_window->width() - width) / 2, (qMax(title_height, band_height) - bar_height) / 2, width,
+                bar_height);
     raise();
 }
 #endif
