@@ -217,15 +217,16 @@ SearchBar::SearchBar(QMainWindow *window)
 
     // Not a QTreeView: its accessibility update crashes Qt 6.12.0 when the results change (QTBUG-149612).
     QListView *popup = new SearchPopup;
-    popup->setItemDelegate(new SearchItemDelegate(popup));
     popup->setUniformItemSizes(true);
     popup->setSpacing(row_spacing);
     popup->setMouseTracking(true);
     popup->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    popup->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     popup->setStyleSheet(QStringLiteral("QListView { background: transparent; border: none; padding: 0; }"));
 
     m_completer->setWidget(ui->search_line_edit);
     m_completer->setPopup(popup);
+    popup->setItemDelegate(new SearchItemDelegate(popup)); // after setPopup(), which sets its own
     m_completer->setModel(m_model);
     m_completer->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
     m_completer->setMaxVisibleItems(max_rows);
@@ -439,6 +440,7 @@ void SearchBar::search(const QString &text)
         return;
     }
 
+    const QString query = text.trimmed();
     QVector<QPair<int, int>> matches; // score, item index
     for (int i = 0; i < m_items.size(); ++i)
     {
@@ -446,7 +448,10 @@ void SearchBar::search(const QString &text)
         int score = fuzzyScore(text, item.name);
         if (!item.kind.isEmpty())
         {
-            score = qMax(score, fuzzyScore(text, item.name + QLatin1Char(' ') + item.kind) - 5);
+            // Typing the kind, "tool" or "tools", lists that kind first.
+            const bool kind = query.size() >= 3 && (item.kind.startsWith(query, Qt::CaseInsensitive) ||
+                                                    query.startsWith(item.kind, Qt::CaseInsensitive));
+            score = qMax(score, fuzzyScore(text, item.name + QLatin1Char(' ') + item.kind) + (kind ? 100 : -5));
         }
         if (score >= 0)
         {
@@ -506,7 +511,8 @@ void SearchBar::showRows(const QVector<int> &rows, const QString &text)
     const QRect rect = ui->search_line_edit->rect();
     const int visible_rows = qMin(model->rowCount(), max_rows);
     m_completer->complete(QRect((rect.width() - popup_width) / 2, rect.top(), popup_width, rect.height() + 4));
-    popup->resize(popup_width, visible_rows * (row_height + row_spacing) + row_spacing);
+    popup->doItemsLayout();
+    popup->resize(popup_width, popup->visualRect(model->index(visible_rows - 1, 0)).bottom() + row_spacing + 1);
     popup->setCurrentIndex(model->index(0, 0));
 }
 
