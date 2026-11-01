@@ -69,6 +69,9 @@
 #include <QMessageBox> // For QT_REQUIRE_VERSION
 #include <QProcess>
 #include <QTimer>
+#include <QtPlugin>
+
+Q_IMPORT_PLUGIN(ThemedIconEnginePlugin)
 
 // Global flag to track state
 bool originalGnomeSettingWasAttached = true;
@@ -104,6 +107,8 @@ int main(int argc, char *argv[])
     Q_INIT_RESOURCE(icon);
     Q_INIT_RESOURCE(schema);
     Q_INIT_RESOURCE(theme);
+    Q_INIT_RESOURCE(flatstyle);
+    Q_INIT_RESOURCE(tsvg);
     Q_INIT_RESOURCE(flags);
     Q_INIT_RESOURCE(icons);
     Q_INIT_RESOURCE(toolicon);

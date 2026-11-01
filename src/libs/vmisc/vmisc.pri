@@ -11,7 +11,8 @@ SOURCES += \
     $$PWD/qxtcsvmodel.cpp \
     $$PWD/vtablesearch.cpp \
     $$PWD/dialogs/dialogexporttocsv.cpp \
-    $$PWD/def.cpp
+    $$PWD/def.cpp \
+    $$PWD/themed_icon_engine.cpp
 
 *msvc*:SOURCES += $$PWD/stable.cpp
 
@@ -33,7 +34,11 @@ HEADERS += \
     $$PWD/vtablesearch.h \
     $$PWD/diagnostic.h \
     $$PWD/dialogs/dialogexporttocsv.h \
-    $$PWD/customevents.h
+    $$PWD/customevents.h \
+    $$PWD/themed_icon_engine.h
+
+DISTFILES += \
+    $$PWD/themed_icon_engine.json
 
 # Qt's versions
 # 5.2.0, 5.2.1
@@ -41,3 +46,8 @@ HEADERS += \
 
 FORMS    += \
     $$PWD/dialogs/dialogexporttocsv.ui
+
+macx{
+    HEADERS += $$PWD/macos_window.h
+    OBJECTIVE_SOURCES += $$PWD/macos_window.mm
+}

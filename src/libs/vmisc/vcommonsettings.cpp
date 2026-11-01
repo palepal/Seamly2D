@@ -1124,7 +1124,7 @@ void VCommonSettings::setShowScrollBars(const bool  &value)
 //---------------------------------------------------------------------------------------------------------------------
 int  VCommonSettings::getScrollBarWidth() const
 {
-    return value(settingGraphicsViewScrollBarWidth, 10).toInt();
+    return value(settingGraphicsViewScrollBarWidth, 16).toInt();
 }
 
 //---------------------------------------------------------------------------------------------------------------------
