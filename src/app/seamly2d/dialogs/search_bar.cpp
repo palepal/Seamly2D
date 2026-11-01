@@ -63,7 +63,8 @@ const int header_height   = 24;
 const int popup_padding   = 4;
 const int max_rows        = 12;
 
-const QString recent_key = QStringLiteral("searchBar/recent");
+const QString recent_key  = QStringLiteral("searchBar/recent");
+const QString search_icon = QStringLiteral(":/tsvg/spectrum/Search.tsvg");
 
 enum Role
 {
@@ -80,21 +81,6 @@ QColor withAlpha(QColor color, qreal alpha)
 {
     color.setAlphaF(alpha);
     return color;
-}
-
-//---------------------------------------------------------------------------------------------------------------------
-/// @brief tintedIcon returns the icon in file painted in color, so black icons follow dark themes.
-/// @param file icon file.
-/// @param color fill color.
-/// @return icon.
-QIcon tintedIcon(const QString &file, const QColor &color)
-{
-    QPixmap pixmap(file);
-    QPainter painter(&pixmap);
-    painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    painter.fillRect(pixmap.rect(), color);
-    painter.end();
-    return QIcon(pixmap);
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -258,9 +244,7 @@ SearchBar::SearchBar(QMainWindow *window)
     , m_recent(qApp->Settings()->value(recent_key).toStringList())
 {
     ui->setupUi(this);
-    ui->search_line_edit->addAction(tintedIcon(QStringLiteral(":/icon/32x32/find.png"),
-                                               withAlpha(QApplication::palette().color(QPalette::Text), 0.7)),
-                                    QLineEdit::LeadingPosition);
+    ui->search_line_edit->addAction(QIcon(search_icon), QLineEdit::LeadingPosition);
     ui->search_line_edit->installEventFilter(this);
 
     // The themes leave the system placeholder color, which is unreadable when the system and theme brightness differ.
@@ -571,9 +555,7 @@ void SearchBar::showRows(const QVector<int> &rows, const QString &text, const QV
     addRows(rows);
     if (!text.isEmpty())
     {
-        QStandardItem *help = new QStandardItem(tintedIcon(QStringLiteral(":/icon/32x32/find.png"),
-                                                           QApplication::palette().color(QPalette::Text)),
-                                                tr("Search Seamly help for \"%1\"").arg(text));
+        QStandardItem *help = new QStandardItem(QIcon(search_icon), tr("Search Seamly help for \"%1\"").arg(text));
         help->setData(-1, ItemRole);
         model->appendRow(help);
     }
