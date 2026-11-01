@@ -8529,7 +8529,8 @@ QVector<SearchItem> MainWindow::searchItems()
         }
     }
     const QList<QAction *> suggested{ui->lineTool_Action, ui->pointAtDistanceAngle_Action, ui->pointAlongLine_Action,
-                                     ui->curve_Action, ui->arcTool_Action, ui->addPiece_Action, ui->table_Action};
+                                     ui->curve_Action, ui->arcTool_Action, ui->addPiece_Action, ui->table_Action,
+                                     ui->newDraft_Action, ui->actionOpen};
 
     // Tool tooltips name the tool with its kind, "Point - On Bisector (Shift+O, Shift+B)".
     static const QRegularExpression shortcut_hint(QStringLiteral("\\s*\\([^()]*\\)\\s*$"));
