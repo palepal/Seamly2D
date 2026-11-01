@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>flatstyle/flat.qss</file>
+        <file>flatstyle/check.svg</file>
+        <file>flatstyle/dark/chevron-down.svg</file>
+        <file>flatstyle/dark/chevron-up.svg</file>
+        <file>flatstyle/light/chevron-down.svg</file>
+        <file>flatstyle/light/chevron-up.svg</file>
+        <file>flatstyle/dark/close.svg</file>
+        <file>flatstyle/dark/float.svg</file>
+        <file>flatstyle/light/close.svg</file>
+        <file>flatstyle/light/float.svg</file>
+        <file>flatstyle/dark/disclosure-closed.svg</file>
+        <file>flatstyle/dark/disclosure-open.svg</file>
+        <file>flatstyle/light/disclosure-closed.svg</file>
+        <file>flatstyle/light/disclosure-open.svg</file>
+    </qresource>
+</RCC>

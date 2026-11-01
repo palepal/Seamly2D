@@ -597,6 +597,9 @@ Q_REQUIRED_RESULT QStringList SupportedLocales();
 QPalette  appThemePalette(int theme);
 void      applyAppTheme(QApplication *app, int theme);
 void      fillDockBackgrounds(QMainWindow *window);
+QColor    themeIconColor(int mode);
+QColor    themeAccentColor();
+QColor    themeBackgroundColor();
 
 // Dark workspace background, in the background color list as Charcoal
 extern const QString darkWorkspaceColor;

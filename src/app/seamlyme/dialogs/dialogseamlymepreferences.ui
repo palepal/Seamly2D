@@ -36,13 +36,13 @@
       <widget class="QListWidget" name="contentsWidget">
        <property name="minimumSize">
         <size>
-         <width>128</width>
+         <width>150</width>
          <height>0</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>128</width>
+         <width>150</width>
          <height>16777215</height>
         </size>
        </property>
@@ -51,8 +51,8 @@
        </property>
        <property name="iconSize">
         <size>
-         <width>96</width>
-         <height>84</height>
+         <width>20</width>
+         <height>20</height>
         </size>
        </property>
        <property name="textElideMode">
@@ -62,10 +62,10 @@
         <enum>QListView::Static</enum>
        </property>
        <property name="spacing">
-        <number>12</number>
+        <number>2</number>
        </property>
        <property name="viewMode">
-        <enum>QListView::IconMode</enum>
+        <enum>QListView::ListMode</enum>
        </property>
        <property name="currentRow">
         <number>-1</number>
@@ -73,9 +73,6 @@
        <item>
         <property name="text">
          <string>Configuration</string>
-        </property>
-        <property name="textAlignment">
-         <set>AlignCenter</set>
         </property>
         <property name="icon">
          <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
@@ -88,9 +85,6 @@
        <item>
         <property name="text">
          <string>File Paths</string>
-        </property>
-        <property name="textAlignment">
-         <set>AlignCenter</set>
         </property>
         <property name="icon">
          <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">

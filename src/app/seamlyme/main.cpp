@@ -61,6 +61,9 @@
 
 #include <QMessageBox> // For QT_REQUIRE_VERSION
 #include <QTimer>
+#include <QtPlugin>
+
+Q_IMPORT_PLUGIN(ThemedIconEnginePlugin)
 
 int main(int argc, char *argv[])
 {
@@ -72,6 +75,8 @@ int main(int argc, char *argv[])
 
     Q_INIT_RESOURCE(seamlymeicon);
     Q_INIT_RESOURCE(theme);
+    Q_INIT_RESOURCE(flatstyle);
+    Q_INIT_RESOURCE(tsvg);
     Q_INIT_RESOURCE(icon);
     Q_INIT_RESOURCE(schema);
     Q_INIT_RESOURCE(flags);
