@@ -35,6 +35,7 @@
 #include <QString>
 #include <QtGlobal>
 
+#include "../vmisc/def.h"
 #include "dxfdef.h"
 #include "libdxfrw/drw_base.h"
 
@@ -65,6 +66,7 @@ public:
 
     void setMeasurement(const VarMeasurement &var);
     void setInsunits(const VarInsunits &var);
+    void setCurveMode(DxfCurveMode mode, qreal mm);
 
     bool ExportToAAMA(const QVector<VLayoutPiece> &details) const;
 

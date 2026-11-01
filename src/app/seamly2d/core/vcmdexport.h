@@ -58,6 +58,8 @@ public:
     int                    OptExportType() const;
     int                    IsBinaryDXF() const;
     int                    isTextAsPaths() const;
+    DxfCurveMode           optCurveMode() const;
+    qreal                  optCurveMm() const;
     int                    exportOnlyPieces() const;
     VLayoutGeneratorPtr    DefaultGenerator() const;
     QStringList            OptInputFileNames() const;

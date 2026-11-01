@@ -1867,6 +1867,45 @@ QVector<QPointF> TST_VAbstractPiece::OutputPointsCase3() const
 }
 
 //---------------------------------------------------------------------------------------------------------------------
+/// @brief limitCurveSegments splits the curve side of a contour and leaves its straight sides alone.
+void TST_VAbstractPiece::limitCurveSegments() const
+{
+    // A 30 x 30 square whose top side is a curve sampled at its middle.
+    const QVector<QPointF> points{QPointF(0, 0), QPointF(15, -2), QPointF(30, 0), QPointF(30, 30), QPointF(0, 30)};
+    const QVector<QPointF> turns{QPointF(0, 0), QPointF(30, 0), QPointF(30, 30), QPointF(0, 30)};
+
+    const QVector<QPointF> limited = VAbstractPiece::limitCurveSegments(points, turns, 5);
+
+    // Each 15.1 long curve segment becomes 4 parts, the straight sides stay single segments.
+    QCOMPARE(limited.size(), points.size() + 6);
+    for (const QPointF &point : points)
+    {
+        QVERIFY(limited.contains(point));
+    }
+    for (int i = 0; i < 8; ++i)
+    {
+        QVERIFY(QLineF(limited.at(i), limited.at(i + 1)).length() <= 5);
+    }
+    QCOMPARE(VAbstractPiece::limitCurveSegments(points, turns, 0), points);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief simplifyCurves removes curve points within the tolerance and keeps turn points and larger bumps.
+void TST_VAbstractPiece::simplifyCurves() const
+{
+    // The top side is a curve with a 0.1 wobble and a 3 high bump, the turn point at (40, 0) splits it.
+    const QVector<QPointF> points{QPointF(0, 0), QPointF(10, 0.1), QPointF(20, -0.1), QPointF(30, 0.1),
+                                  QPointF(40, 0), QPointF(50, -3), QPointF(60, 0), QPointF(60, 30),
+                                  QPointF(0, 30)};
+    const QVector<QPointF> turns{QPointF(0, 0), QPointF(40, 0), QPointF(60, 0), QPointF(60, 30), QPointF(0, 30)};
+
+    const QVector<QPointF> expected{QPointF(0, 0), QPointF(40, 0), QPointF(50, -3), QPointF(60, 0),
+                                    QPointF(60, 30), QPointF(0, 30)};
+    QCOMPARE(VAbstractPiece::simplifyCurves(points, turns, 0.5), expected);
+    QCOMPARE(VAbstractPiece::simplifyCurves(points, turns, 0), points);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
 void TST_VAbstractPiece::sumTrapezoids() const
 {
     // Case3 checks that the method 'sumTrapezoids' returns negative value for three clockwise allocated points

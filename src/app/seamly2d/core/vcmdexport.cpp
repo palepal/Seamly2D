@@ -167,6 +167,20 @@ void VCommandLine::initOptions(VCommandLineOptions &options, QMap<QString, int> 
     options.append(new QCommandLineOption({LONG_OPTION_TEXT2PATHS},
         translate("VCommandLine", "Export text as paths.")));
 
+    // --curves: How curves of DXF AAMA outlines and sew lines are written
+    optionsIndex.insert(LONG_OPTION_CURVES, index++);
+    options.append(new QCommandLineOption({LONG_OPTION_CURVES},
+        translate("VCommandLine", "How curves of DXF AAMA outlines and sew lines are written (default = 0): "
+                                  "0 - as drawn, 1 - max segment length, 2 - fewest points."),
+        translate("VCommandLine", "Curve mode number"), "0"));
+
+    // --curvemm: Max segment length or simplify tolerance for --curves
+    optionsIndex.insert(LONG_OPTION_CURVEMM, index++);
+    options.append(new QCommandLineOption({LONG_OPTION_CURVEMM},
+        translate("VCommandLine", "Max segment length (default = 10) or fewest points tolerance (default = 0.5) "
+                                  "in millimeters for --curves."),
+        translate("VCommandLine", "Millimeters")));
+
     // --exportonlydetails: Only export detailed parts, ignoring layout
     optionsIndex.insert(LONG_OPTION_EXPORTONLYDETAILS, index++);
     options.append(new QCommandLineOption({LONG_OPTION_EXPORTONLYDETAILS},
@@ -790,6 +804,48 @@ int VCommandLine::OptExportType() const
         r = parser.value(*optionsUsed.value(optionsIndex.value(LONG_OPTION_EXP2FORMAT))).toInt();
     }
     return r;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief optCurveMode how curves of DXF AAMA outlines and sew lines are written, from --curves.
+/// @return the curve mode, as drawn when the option is not set.
+DxfCurveMode VCommandLine::optCurveMode() const
+{
+    const QCommandLineOption *option = optionsUsed.value(optionsIndex.value(LONG_OPTION_CURVES));
+    if (!parser.isSet(*option))
+    {
+        return DxfCurveMode::AsDrawn;
+    }
+
+    bool ok = false;
+    const int mode = parser.value(*option).toInt(&ok);
+    if (!ok || mode < static_cast<int>(DxfCurveMode::AsDrawn) || mode > static_cast<int>(DxfCurveMode::FewestPoints))
+    {
+        qCritical() << translate("VCommandLine", "Unknown curve mode.") << "\n";
+        const_cast<VCommandLine*>(this)->parser.showHelp(V_EX_USAGE);
+    }
+    return static_cast<DxfCurveMode>(mode);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief optCurveMm the max segment length or simplify tolerance, from --curvemm.
+/// @return the value in millimeters, 0 when the option is not set.
+qreal VCommandLine::optCurveMm() const
+{
+    const QCommandLineOption *option = optionsUsed.value(optionsIndex.value(LONG_OPTION_CURVEMM));
+    if (!parser.isSet(*option))
+    {
+        return 0;
+    }
+
+    bool ok = false;
+    const qreal mm = parser.value(*option).toDouble(&ok);
+    if (!ok || mm <= 0)
+    {
+        qCritical() << translate("VCommandLine", "The curve length must be a positive number.") << "\n";
+        const_cast<VCommandLine*>(this)->parser.showHelp(V_EX_USAGE);
+    }
+    return mm;
 }
 
 //  --------------------

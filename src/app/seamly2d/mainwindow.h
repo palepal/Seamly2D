@@ -74,6 +74,7 @@ class VToolOptionsPropertyBrowser;
 class MeasurementDoc;
 class QFileSystemWatcher;
 class QLabel;
+class QPushButton;
 class VariablesDialog;
 class FinalMeasurementsDialog;
 class DialogTool;
@@ -161,6 +162,7 @@ protected:
     virtual void keyPressEvent(QKeyEvent *event) override;
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     virtual void showEvent(QShowEvent *event) override;
+    virtual void resizeEvent(QResizeEvent *event) override;
     virtual void changeEvent(QEvent* event) override;
     virtual void closeEvent(QCloseEvent *event) override;
     virtual void customEvent(QEvent * event) override;
@@ -347,6 +349,9 @@ private:
     QComboBox                        *m_zoom_to_object_combobox;
 
     QSharedPointer<MeasurementDoc>    m_measurements;
+    QWidget                          *m_update_corner{nullptr};
+    QPushButton                      *m_update_button{nullptr};
+    QLabel                           *m_whats_new_label{nullptr};
 
     void                              removeEmptyLinesText(const QString &filename, bool isPattern);
     void                              saveBackupFile(const QString &filename) const;
@@ -362,6 +367,8 @@ private:
     void                              initPenToolBar();
     void                              initPropertyEditor();
     void                              initBasePointComboBox();
+    void                              initUpdateCorner();
+    void                              placeUpdateCorner();
 
     void                              updateToolBarVisibility();
     void                              setToolBarVisibility(QToolBar *toolbar, bool visible);

@@ -116,7 +116,8 @@ public:
     bool                extendEndPoint() const;
     void                setExtendEndPoint(bool value);
 
-    QVector<QPointF>    PathPoints(const VContainer *data, const QVector<QPointF> &path = QVector<QPointF>()) const;
+    QVector<QPointF>    PathPoints(const VContainer *data, const QVector<QPointF> &path = QVector<QPointF>(),
+                                   QVector<QPointF> *turnPoints = nullptr) const;
     QVector<VPointF>    PathNodePoints(const VContainer *data, bool showExcluded = true) const;
     QVector<VSAPoint>   seamAllowancePoints(const VContainer *data, qreal width, bool reverse) const;
 

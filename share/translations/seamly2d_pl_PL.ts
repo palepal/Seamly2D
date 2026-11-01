@@ -3651,6 +3651,34 @@ Spróbuj cofnąć ostatnią operację lub naprawić uszkodzoną formułę.</tran
         <source>Confirm Export</source>
         <translation>Potwierdź eksport</translation>
     </message>
+    <message>
+        <source>Curves:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>How curves of DXF AAMA outlines and sew lines are written. Corners and curve ends are always kept.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>As drawn</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max segment length</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fewest points</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max segment length: the longest straight piece of a curve. Fewest points: how far the written curve may stray from the drawn one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> mm</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ExportProgressDialog</name>
@@ -6691,6 +6719,22 @@ Program jest dostarczany w stanie&quot;TAK JAK JEST&quot;bez ŻADNEJ GWARANCJI, 
     <message>
         <source>&lt;b&gt;Tool::Details - Union:&lt;/b&gt; Select pattern piece</source>
         <translation>&lt;b&gt;Narzędzie::Szczegóły - Unia:&lt;/b&gt; Wybierz element wzoru</translation>
+    </message>
+    <message>
+        <source>What&apos;s new</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download Seamly2D %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading %1%</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Undo</source>
@@ -12510,6 +12554,30 @@ Czy chcesz zapisać zmiany?</translation>
     <message>
         <source>Invalid gradation height value.</source>
         <translation>Nieprawidłowa wartość wysokości gradacji.</translation>
+    </message>
+    <message>
+        <source>How curves of DXF AAMA outlines and sew lines are written (default = 0): 0 - as drawn, 1 - max segment length, 2 - fewest points.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Curve mode number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max segment length (default = 10) or fewest points tolerance (default = 0.5) in millimeters for --curves.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Millimeters</source>
+        <translation type="unfinished">Milimetry</translation>
+    </message>
+    <message>
+        <source>Unknown curve mode.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The curve length must be a positive number.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

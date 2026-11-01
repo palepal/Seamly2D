@@ -426,31 +426,31 @@ void MainWindowsNoGUI::ExportApparelLayout(const ExportLayoutDialog &dialog, con
             Q_UNREACHABLE(); // For now not supported
             break;
         case LayoutExportFormat::DXF_AC1006_AAMA:
-            AAMADxfFile(name, DRW::AC1006, dialog.isBinaryDXFFormat(), size, pieces);
+            AAMADxfFile(name, DRW::AC1006, dialog, size, pieces);
             break;
         case LayoutExportFormat::DXF_AC1009_AAMA:
-            AAMADxfFile(name, DRW::AC1009, dialog.isBinaryDXFFormat(), size, pieces);
+            AAMADxfFile(name, DRW::AC1009, dialog, size, pieces);
             break;
         case LayoutExportFormat::DXF_AC1012_AAMA:
-            AAMADxfFile(name, DRW::AC1012, dialog.isBinaryDXFFormat(), size, pieces);
+            AAMADxfFile(name, DRW::AC1012, dialog, size, pieces);
             break;
         case LayoutExportFormat::DXF_AC1014_AAMA:
-            AAMADxfFile(name, DRW::AC1014, dialog.isBinaryDXFFormat(), size, pieces);
+            AAMADxfFile(name, DRW::AC1014, dialog, size, pieces);
             break;
         case LayoutExportFormat::DXF_AC1015_AAMA:
-            AAMADxfFile(name, DRW::AC1015, dialog.isBinaryDXFFormat(), size, pieces);
+            AAMADxfFile(name, DRW::AC1015, dialog, size, pieces);
             break;
         case LayoutExportFormat::DXF_AC1018_AAMA:
-            AAMADxfFile(name, DRW::AC1018, dialog.isBinaryDXFFormat(), size, pieces);
+            AAMADxfFile(name, DRW::AC1018, dialog, size, pieces);
             break;
         case LayoutExportFormat::DXF_AC1021_AAMA:
-            AAMADxfFile(name, DRW::AC1021, dialog.isBinaryDXFFormat(), size, pieces);
+            AAMADxfFile(name, DRW::AC1021, dialog, size, pieces);
             break;
         case LayoutExportFormat::DXF_AC1024_AAMA:
-            AAMADxfFile(name, DRW::AC1024, dialog.isBinaryDXFFormat(), size, pieces);
+            AAMADxfFile(name, DRW::AC1024, dialog, size, pieces);
             break;
         case LayoutExportFormat::DXF_AC1027_AAMA:
-            AAMADxfFile(name, DRW::AC1027, dialog.isBinaryDXFFormat(), size, pieces);
+            AAMADxfFile(name, DRW::AC1027, dialog, size, pieces);
             break;
         default:
             qWarning() << "Can't recognize file type." << Q_FUNC_INFO;
@@ -1211,16 +1211,17 @@ void MainWindowsNoGUI::FlatDxfFile(const QString &name, int version, bool binary
 }
 
 //---------------------------------------------------------------------------------------------------------------------
-void MainWindowsNoGUI::AAMADxfFile(const QString &name, int version, bool binary, const QSize &size,
-                                   const QVector<VLayoutPiece> &pieces) const
+void MainWindowsNoGUI::AAMADxfFile(const QString &name, int version, const ExportLayoutDialog &dialog,
+                                   const QSize &size, const QVector<VLayoutPiece> &pieces) const
 {
     VDxfPaintDevice generator;
     generator.setFileName(name);
     generator.setSize(size);
     generator.setResolution(PrintDPI);
     generator.setVersion(static_cast<DRW::Version>(version));
-    generator.SetBinaryFormat(binary);
+    generator.SetBinaryFormat(dialog.isBinaryDXFFormat());
     generator.setInsunits(VarInsunits::Millimeters);// Decided to always use mm. See issue #745
+    generator.setCurveMode(dialog.curveMode(), dialog.curveMm());
     generator.ExportToAAMA(pieces);
 }
 

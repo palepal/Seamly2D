@@ -76,6 +76,8 @@ private slots:
     void CorrectEquidistantPoints() const;
     void TestCorrectEquidistantPoints_data();
     void TestCorrectEquidistantPoints() const;
+    void limitCurveSegments() const;
+    void simplifyCurves() const;
 #ifndef Q_OS_WIN // Disabled due to "undefined behavior" problem
     void PossibleInfiniteClearLoops_data() const;
     void PossibleInfiniteClearLoops() const;

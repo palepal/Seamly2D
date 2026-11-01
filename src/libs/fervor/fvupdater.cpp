@@ -231,6 +231,14 @@ bool FvUpdater::checkForUpdatesNotSilent()
 }
 
 //---------------------------------------------------------------------------------------------------------------------
+/// @brief downloadUpdate download the installer of the release found by the last silent check.
+void FvUpdater::downloadUpdate()
+{
+    m_silentMode = false;
+    getPLatformSpecificInstaller(m_assets);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
 void FvUpdater::httpFeedDownloadFinished()
 {
 	if (m_httpRequestAborted)
@@ -269,6 +277,12 @@ void FvUpdater::httpFeedDownloadFinished()
             if (!releaseIsNewer(tag))
             {
                 showMessageBox(QMessageBox::Information, tr("Information"), tr("No new releases available."), false);
+                return;
+            }
+            if (m_silentMode)
+            {
+                m_assets = jsonDoc.object()["assets"].toArray();
+                emit updateAvailable(tag);
                 return;
             }
             if (showConfirmationDialog(tr("A new release %1 is available.\nDo you want to download it?").arg(tag), true))

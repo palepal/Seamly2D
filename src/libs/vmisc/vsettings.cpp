@@ -109,6 +109,8 @@ const QString settingTiledPDFMargins        = QStringLiteral("tiledPDF/margins")
 const QString settingTiledPDFPaperHeight    = QStringLiteral("tiledPDF/paperHeight");
 const QString settingTiledPDFPaperWidth     = QStringLiteral("tiledPDF/paperWidth");
 const QString settingTiledPDFOrientation    = QStringLiteral("tiledPDF/orientation");
+const QString settingExportDxfCurveMode     = QStringLiteral("export/dxfCurveMode");
+const QString settingExportDxfCurveMm       = QStringLiteral("export/dxfCurveMm");
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -765,4 +767,36 @@ void VSettings::setTiledPDFOrientation(PageOrientation value)
     bool orientation = static_cast<bool> (value);
 
     setValue(settingTiledPDFOrientation, orientation);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief getDxfCurveMode how curves of DXF AAMA exports are written.
+/// @return the curve mode, as drawn by default.
+DxfCurveMode VSettings::getDxfCurveMode() const
+{
+    return static_cast<DxfCurveMode>(value(settingExportDxfCurveMode, 0).toInt());
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief setDxfCurveMode sets how curves of DXF AAMA exports are written.
+/// @param mode the curve mode.
+void VSettings::setDxfCurveMode(DxfCurveMode mode)
+{
+    setValue(settingExportDxfCurveMode, static_cast<int>(mode));
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief getDxfCurveMm the maximum segment length or simplify tolerance of DXF AAMA curves.
+/// @return the value in millimeters, 0 when never set.
+qreal VSettings::getDxfCurveMm() const
+{
+    return value(settingExportDxfCurveMm, 0).toDouble();
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief setDxfCurveMm sets the maximum segment length or simplify tolerance of DXF AAMA curves.
+/// @param mm the value in millimeters.
+void VSettings::setDxfCurveMm(qreal mm)
+{
+    setValue(settingExportDxfCurveMm, mm);
 }

@@ -178,6 +178,17 @@ QVector<QPointF> VPiece::mainPathPoints(const VContainer *data) const
 }
 
 //---------------------------------------------------------------------------------------------------------------------
+/// @brief turnPoints the main path points where a straight line or a curve starts or ends.
+/// @param data container with the geometric objects.
+/// @return the turn points, every other main path point lies on a curve.
+QVector<QPointF> VPiece::turnPoints(const VContainer *data) const
+{
+    QVector<QPointF> points;
+    GetPath().PathPoints(data, QVector<QPointF>(), &points);
+    return points;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
 QVector<VPointF> VPiece::mainPathNodePoints(const VContainer *data, bool showExcluded) const
 {
     return GetPath().PathNodePoints(data, showExcluded);

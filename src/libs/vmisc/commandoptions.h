@@ -71,6 +71,8 @@ extern const QString SINGLE_OPTION_EXP2FORMAT;
 
 extern const QString LONG_OPTION_BINARYDXF;
 extern const QString LONG_OPTION_TEXT2PATHS;
+extern const QString LONG_OPTION_CURVES;
+extern const QString LONG_OPTION_CURVEMM;
 extern const QString LONG_OPTION_EXPORTONLYDETAILS;
 
 extern const QString LONG_OPTION_ROTATE;

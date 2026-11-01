@@ -155,6 +155,15 @@ inline void noisyFailureMsgHandler(QtMsgType type, const QMessageLogContext &con
         type = QtDebugMsg;
     }
 
+    // Qt's accessibility code warns when an assistive client (VoiceOver, Narrator, automation tools) asks an item
+    // view for an item that a model reset just removed. Qt handles it by returning no item, so don't pop up a dialog.
+    if ((type == QtWarningMsg) && (QLatin1String(context.category).startsWith(QLatin1String("qt.accessibility"))
+            || msg.startsWith(QLatin1String("QAccessible")) || msg.startsWith(QLatin1String("QCocoaAccessibility"))
+            || msg.startsWith(QLatin1String("Requested invalid tree cell"))))
+    {
+        type = QtDebugMsg;
+    }
+
     // Only the GUI thread should display message boxes.  If you are
     // writing a multithreaded application and the error happens on
     // a non-GUI thread, you'll have to queue the message to the GUI
@@ -313,58 +322,7 @@ Application2D::~Application2D()
 
 void Application2D::setTheme()
 {
-    QPalette palette;
-    int  theme =Seamly2DSettings()->getAppTheme();
-
-    if (theme == 3)
-    {
-        // Get system mode (theme)
-        Qt::ColorScheme scheme = styleHints()->colorScheme();
-
-        if (scheme == Qt::ColorScheme::Light)
-        {
-            theme = 0;
-        }
-        else if (scheme == Qt::ColorScheme::Dark)
-        {
-            theme = 1;
-        }
-    }
-
-    switch (theme)
-    {
-        case 0:
-        {
-            setStyle("Fusion");
-            palette = lightPalette();
-            break;
-        }
-        case 1:
-        {
-            setStyle("Fusion");
-            palette = darkPalette();
-            break;
-        }
-        case 2:
-        {
-            setStyle("Fusion");
-            palette = twilightPalette();
-            break;
-        }
-        case 4:
-        {
-            setStyle("windowsvista");
-            palette = lightPalette();
-            break;
-        }
-        case 5:
-        {
-            setStyle("Windows11");
-            palette = darkPalette();
-            break;
-        }
-    }
-    setPalette(palette);
+    applyAppTheme(this, Seamly2DSettings()->getAppTheme());
 }
 
 //---------------------------------------------------------------------------------------------------------------------

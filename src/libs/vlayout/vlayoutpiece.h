@@ -96,6 +96,8 @@ public:
 
     QVector<QPointF>          getContourPoints() const;
     void                      setMainPathPoints(const QVector<QPointF> &points, bool hideMainPath = false);
+    QVector<QPointF>          getTurnPoints() const;
+    void                      setTurnPoints(const QVector<QPointF> &points);
 
     QVector<QPointF>          getSeamAllowancePoints() const;
     void                      setSeamAllowancePoints(const QVector<QPointF> &points, bool seamAllowance = true,

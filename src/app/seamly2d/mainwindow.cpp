@@ -102,6 +102,7 @@
 #include "../vwidgets/mouse_coordinates.h"
 #include "../vwidgets/vmaingraphicsscene.h"
 #include "../vwidgets/vwidgetpopup.h"
+#include "../fervor/fvupdater.h"
 
 #include <QAbstractItemModel>
 #include <QInputDialog>
@@ -128,6 +129,11 @@
 #include <QImageReader>
 #include <QInputDialog>
 #include <QLabel>
+#include <QHBoxLayout>
+#include <QPushButton>
+#include <QResizeEvent>
+#include <QVersionNumber>
+#include <QWindow>
 #include <QMessageBox>
 #include <QProcess>
 #include <QScrollBar>
@@ -281,6 +287,10 @@ MainWindow::MainWindow(QWidget *parent)
         initializeToolButtons();
         if (Application2D::isGUIMode())
         {
+            #if defined(Q_OS_MAC)
+                // Extend the window under the title bar, so the update corner can sit next to the window title.
+                setWindowFlags(windowFlags() | Qt::ExpandedClientAreaHint | Qt::NoTitleBarBackgroundHint);
+            #endif
             showMaximized();
         }
 
@@ -291,6 +301,10 @@ MainWindow::MainWindow(QWidget *parent)
         setStatusMessage(QObject::tr("Create new pattern piece to start working."));
 
         initializeToolsToolBar();
+        if (Application2D::isGUIMode())
+        {
+            initUpdateCorner();
+        }
 
         // Whenever undo / redo changes are made need to update the saved state of the document.
         connect(qApp->getUndoStack(), &QUndoStack::cleanChanged, this, &MainWindow::patternChangesWereSaved);
@@ -1929,6 +1943,93 @@ void MainWindow::addSelectedItemsToGroup()
 }
 
 //---------------------------------------------------------------------------------------------------------------------
+/// @brief initUpdateCorner create the top right corner with an Update button that shows when a newer release is
+/// available, and a What's new link to the release notes after the app was updated.
+void MainWindow::initUpdateCorner()
+{
+    m_update_corner = new QWidget(this);
+    auto *layout = new QHBoxLayout(m_update_corner);
+    layout->setContentsMargins(8, 0, 8, 0);
+    layout->setSpacing(12);
+
+    const QString version = QCoreApplication::applicationVersion();
+    const QString last_version = qApp->Settings()->getLastRunVersion();
+    qApp->Settings()->setLastRunVersion(version);
+
+    const QString release_notes = QStringLiteral("https://github.com/FashionFreedom/Seamly2D/releases/tag/v") + version;
+    m_whats_new_label = new QLabel(QStringLiteral("<a href=\"%1\">%2</a>").arg(release_notes, tr("What's new")),
+                                   m_update_corner);
+    m_whats_new_label->setVisible(!last_version.isEmpty() &&
+                                  QVersionNumber::fromString(version) > QVersionNumber::fromString(last_version));
+    connect(m_whats_new_label, &QLabel::linkActivated, this, [this](const QString &link)
+    {
+        QDesktopServices::openUrl(QUrl(link));
+        m_whats_new_label->hide();
+        placeUpdateCorner();
+    });
+    layout->addWidget(m_whats_new_label);
+
+    m_update_button = new QPushButton(tr("Update"), m_update_corner);
+    m_update_button->setStyleSheet(QStringLiteral("QPushButton { color: white; background-color: #0078d4; border: none;"
+                                                  " border-radius: 4px; padding: 3px 12px; }"
+                                                  "QPushButton:hover { background-color: #026ec1; }"));
+    m_update_button->hide();
+    connect(m_update_button, &QPushButton::clicked, this, [this]()
+    {
+        m_update_button->setEnabled(false);
+        FvUpdater::sharedUpdater()->downloadUpdate();
+    });
+    layout->addWidget(m_update_button);
+
+    // Flatpaks are updated by the software manager.
+    if (!QFileInfo::exists("/.flatpak-info"))
+    {
+        FvUpdater *updater = FvUpdater::sharedUpdater();
+        connect(updater, &FvUpdater::updateAvailable, this, [this](const QString &release_tag)
+        {
+            m_update_button->setToolTip(tr("Download Seamly2D %1").arg(release_tag));
+            m_update_button->show();
+            placeUpdateCorner();
+        });
+        connect(updater, &FvUpdater::setProgress, this, [this](int progress)
+        {
+            if (m_update_button->isEnabled())
+            {
+                return;
+            }
+            m_update_button->setText(tr("Downloading %1%").arg(progress));
+            m_update_button->setVisible(progress < 100);
+            placeUpdateCorner();
+        });
+        updater->setFeedURL(defaultFeedURL);
+        updater->checkForUpdatesSilent();
+    }
+
+    placeUpdateCorner();
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief placeUpdateCorner move the update corner to the top right of the window, into the title bar on macOS and
+/// into the menu bar row on other platforms.
+void MainWindow::placeUpdateCorner()
+{
+    m_update_corner->setVisible(!m_update_button->isHidden() || !m_whats_new_label->isHidden());
+    m_update_corner->adjustSize();
+    int height = menuBar()->height();
+    if (menuBar()->isNativeMenuBar())
+    {
+        // The window extends under the title bar, which is the top safe area. Full screen has no title bar.
+        height = windowHandle() ? windowHandle()->safeAreaMargins().top() : 0;
+        if (height == 0)
+        {
+            height = m_update_corner->height();
+        }
+    }
+    m_update_corner->setGeometry(width() - m_update_corner->width(), 0, m_update_corner->width(), height);
+    m_update_corner->raise();
+}
+
+//---------------------------------------------------------------------------------------------------------------------
 /**
  * @brief showEvent handle after show window.
  * @param event show event.
@@ -1950,6 +2051,16 @@ void MainWindow::showEvent(QShowEvent *event)
     MinimumScrollBar();
 
     isInitialized = true;//first show windows are held
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    MainWindowsNoGUI::resizeEvent(event);
+    if (m_update_corner)
+    {
+        placeUpdateCorner();
+    }
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -6037,6 +6148,7 @@ bool MainWindow::startNewSeamly2D(const QString &fileName) const
 void MainWindow::createActions()
 {
     ui->setupUi(this);
+    fillDockBackgrounds(this);
 
     //Files menu
     connect(ui->actionNew, &QAction::triggered, this, &MainWindow::New);
@@ -8037,6 +8149,7 @@ void MainWindow::DoExport(const VCommandLinePtr &expParams)
             dialog.selectFormat(static_cast<LayoutExportFormat>(expParams->OptExportType()));
             dialog.setBinaryDXFFormat(expParams->IsBinaryDXF());
             dialog.setTextAsPaths(expParams->isTextAsPaths());
+            dialog.setCurveMode(expParams->optCurveMode(), expParams->optCurveMm());
 
             ExportData(pieceList, dialog);
         }
@@ -8061,6 +8174,7 @@ void MainWindow::DoExport(const VCommandLinePtr &expParams)
                 dialog.setDestinationPath(expParams->OptDestinationPath());
                 dialog.selectFormat(static_cast<LayoutExportFormat>(expParams->OptExportType()));
                 dialog.setBinaryDXFFormat(expParams->IsBinaryDXF());
+                dialog.setCurveMode(expParams->optCurveMode(), expParams->optCurveMm());
 
                 ExportData(pieceList, dialog);
             }

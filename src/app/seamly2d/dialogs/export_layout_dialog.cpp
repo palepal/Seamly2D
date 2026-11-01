@@ -226,9 +226,18 @@ ExportLayoutDialog::ExportLayoutDialog(int count, Draw mode, const QString &file
         }
     });
 
+    connect(ui->format_ComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
+            this, &ExportLayoutDialog::enableCurveOptions);
+    connect(ui->curves_ComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [this]()
+    {
+        ui->curveMm_DoubleSpinBox->setValue(curveMode() == DxfCurveMode::FewestPoints ? 0.5 : 10);
+        enableCurveOptions();
+    });
+
     readSettings();
     showExportFiles(); //Show example for current format.
     enableBinaryDXFFormatCheckbox();
+    enableCurveOptions();
 
     adjustSize();
     setFixedHeight(this->height());
@@ -778,6 +787,46 @@ void ExportLayoutDialog::setTextAsPaths(bool textAsPaths)
 }
 
 //---------------------------------------------------------------------------------------------------------------------
+/// @brief curveMode how curves of DXF AAMA outlines and sew lines are written.
+/// @return the selected curve mode.
+DxfCurveMode ExportLayoutDialog::curveMode() const
+{
+    return static_cast<DxfCurveMode>(ui->curves_ComboBox->currentIndex());
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief curveMm the maximum segment length or simplify tolerance of the curve mode.
+/// @return the value in millimeters.
+qreal ExportLayoutDialog::curveMm() const
+{
+    return ui->curveMm_DoubleSpinBox->value();
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief setCurveMode selects how curves of DXF AAMA outlines and sew lines are written.
+/// @param mode the curve mode.
+/// @param mm the maximum segment length or simplify tolerance in millimeters, 0 or less keeps the mode's default.
+void ExportLayoutDialog::setCurveMode(DxfCurveMode mode, qreal mm)
+{
+    ui->curves_ComboBox->setCurrentIndex(static_cast<int>(mode));
+    if (mm > 0)
+    {
+        ui->curveMm_DoubleSpinBox->setValue(mm);
+    }
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief enableCurveOptions enables the curve options for DXF AAMA formats only.
+void ExportLayoutDialog::enableCurveOptions()
+{
+    const LayoutExportFormat current = format();
+    const bool isAAMA = current >= LayoutExportFormat::DXF_AC1006_AAMA
+                        && current <= LayoutExportFormat::DXF_AC1027_AAMA;
+    ui->curves_ComboBox->setEnabled(isAAMA);
+    ui->curveMm_DoubleSpinBox->setEnabled(isAAMA && curveMode() != DxfCurveMode::AsDrawn);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
 void ExportLayoutDialog::showEvent(QShowEvent *event)
 {
     QDialog::showEvent( event );
@@ -852,6 +901,7 @@ void ExportLayoutDialog::readSettings()
         ui->landscape_ToolButton->setChecked(true);
     }
 
+    setCurveMode(settings->getDxfCurveMode(), settings->getDxfCurveMm());
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -891,6 +941,9 @@ void ExportLayoutDialog::writeSettings() const
     {
         settings->setTiledPDFOrientation(PageOrientation::Landscape);
     }
+
+    settings->setDxfCurveMode(curveMode());
+    settings->setDxfCurveMm(curveMm());
 
     //Export Format
     if (qApp->Settings()->useLastExportFormat())

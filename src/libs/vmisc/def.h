@@ -55,6 +55,8 @@ template <class T> class QSharedPointer;
     #include <ciso646>
 #endif /* Q_CC_MSVC */
 
+class QApplication;
+class QMainWindow;
 class QComboBox;
 class QMarginsF;
 class VTranslateMeasurements;
@@ -74,14 +76,15 @@ enum DialogSource : quint16
     MeasurementDialog = 257  // 0000 0001 0000 0001
 };
 
+// Values are stored in the settings, so they keep the numbers of the themes they replaced. Retired values
+// fall through to Lightest
 enum class AppTheme
 {
-    LightFusion = 0,
-    DarkFusion,
-    TwilightFusion,
-    System,
-    classic,
-    Windows11
+    Lightest = 0,
+    Dark     = 1,
+    Darkest  = 2, // was Fusion Twilight
+    System   = 3,
+    Light    = 4  // was Classic
 };
 
 enum class Position : char
@@ -168,6 +171,7 @@ enum class NodeUsage : bool {NotInUse = false, InUse = true};
 enum class SelectionType : bool {ByMousePress, ByMouseRelease};
 
 enum class PageOrientation : bool {Portrait = true, Landscape = false};
+enum class DxfCurveMode : char {AsDrawn = 0, MaxSegment = 1, FewestPoints = 2};
 
 enum class PieceNodeAngle : unsigned char
 {
@@ -588,11 +592,12 @@ Q_REQUIRED_RESULT QMarginsF UnitConvertor(const QMarginsF &margins, const Unit &
 qreal normalize(const qreal value, const qreal start, const qreal end);
 
 void InitLanguages(QComboBox *combobox);
+void initThemes(QComboBox *combobox, int theme);
 Q_REQUIRED_RESULT QStringList SupportedLocales();
 
-QPalette  lightPalette();
-QPalette  darkPalette();
-QPalette  twilightPalette();
+QPalette  appThemePalette(int theme);
+void      applyAppTheme(QApplication *app, int theme);
+void      fillDockBackgrounds(QMainWindow *window);
 
 // Dark workspace background, in the background color list as Charcoal
 extern const QString darkWorkspaceColor;

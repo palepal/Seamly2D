@@ -215,6 +215,10 @@ public:
                                      const VSAPoint &p1Line2, const VSAPoint &p2Line2, qreal width);
     static QLineF           createParallelLine(const VSAPoint &p1, const VSAPoint &p2, qreal width);
     static QLineF           createParallelLine(const QPointF &p1, const QPointF &p2, qreal width);
+    static QVector<QPointF> limitCurveSegments(const QVector<QPointF> &points, const QVector<QPointF> &turnPoints,
+                                               qreal maxLength);
+    static QVector<QPointF> simplifyCurves(const QVector<QPointF> &points, const QVector<QPointF> &turnPoints,
+                                           qreal tolerance);
 
     template <class T>
     static QVector<T> CorrectEquidistantPoints(const QVector<T> &points, bool removeFirstAndLast = true);

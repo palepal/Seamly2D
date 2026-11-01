@@ -240,6 +240,7 @@ const QString settingHistoryDialogSize                   = QStringLiteral("toolH
 const QString settingFormulaWizardDialogSize             = QStringLiteral("formulaWizardDialogSize");
 const QString settingLatestSkippedVersion                = QStringLiteral("lastestSkippedVersion");
 const QString settingDateOfLastRemind                    = QStringLiteral("dateOfLastRemind");
+const QString settingLastRunVersion                      = QStringLiteral("lastRunVersion");
 
 const QString settingCSVWithHeader                       = QStringLiteral("csv/withHeader");
 const QString settingCSVCodec                            = QStringLiteral("csv/withCodec");
@@ -1753,6 +1754,22 @@ void VCommonSettings::SetDateOfLastRemind(const QDate &date)
     QSettings settings(this->format(), this->scope(), this->organizationName(), commonIniFilename);
     settings.setValue(settingDateOfLastRemind, date);
     settings.sync();
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief getLastRunVersion version of the app that ran last time.
+/// @return version string, empty if the app never stored one.
+QString VCommonSettings::getLastRunVersion() const
+{
+    return value(settingLastRunVersion, QString()).toString();
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief setLastRunVersion store the version of the running app.
+/// @param version application version.
+void VCommonSettings::setLastRunVersion(const QString &version)
+{
+    setValue(settingLastRunVersion, version);
 }
 
 //---------------------------------------------------------------------------------------------------------------------

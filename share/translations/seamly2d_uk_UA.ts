@@ -3651,6 +3651,34 @@ Please try to undo the latest operation or fix the broken formula.</source>
         <source>Export files:</source>
         <translation>Експортувати файли:</translation>
     </message>
+    <message>
+        <source>Curves:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>How curves of DXF AAMA outlines and sew lines are written. Corners and curve ends are always kept.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>As drawn</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max segment length</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fewest points</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max segment length: the longest straight piece of a curve. Fewest points: how far the written curve may stray from the drawn one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> mm</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ExportProgressDialog</name>
@@ -5594,6 +5622,22 @@ Do you want to save your changes?</source>
     <message>
         <source>&lt;b&gt;Tool::Point - On Curve:&lt;/b&gt; Select curve</source>
         <translation>&lt;b&gt;Інструмент::Точка - На кривій:&lt;/b&gt; Вибрати криву</translation>
+    </message>
+    <message>
+        <source>What&apos;s new</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download Seamly2D %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading %1%</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Description</source>
@@ -12507,6 +12551,30 @@ load in SeamlyME as usual.
     <message>
         <source>Set height value a pattern file, that was opened with multisize measurements (export mode). Valid values: %1cm.</source>
         <translation>Встановити значення висоти файлу візерунка, який було відкрито з багаторозмірними вимірюваннями (режим експорту). Дійсні значення: %1 см.</translation>
+    </message>
+    <message>
+        <source>How curves of DXF AAMA outlines and sew lines are written (default = 0): 0 - as drawn, 1 - max segment length, 2 - fewest points.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Curve mode number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max segment length (default = 10) or fewest points tolerance (default = 0.5) in millimeters for --curves.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Millimeters</source>
+        <translation type="unfinished">Міліметри</translation>
+    </message>
+    <message>
+        <source>Unknown curve mode.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The curve length must be a positive number.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
