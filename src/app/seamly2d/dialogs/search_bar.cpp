@@ -32,6 +32,7 @@
 #include "../core/macos_dock.h"
 #endif
 
+#include <QApplication>
 #include <QCompleter>
 #include <QDesktopServices>
 #include <QKeyEvent>
@@ -56,7 +57,7 @@ const int max_recent      = 5;
 const int bar_height      = 24;
 const int bar_width       = 420;
 const int popup_width     = 560;
-const int popup_padding   = 6;
+const int row_spacing     = 3;
 const int row_height      = 32;
 const int max_rows        = 12;
 
@@ -96,9 +97,11 @@ public:
     {
         const int padding = 10;
         const int cap_height = 20;
-        const QRect row = option.rect.adjusted(0, 1, 0, -1);
+        const QRect row = option.rect.adjusted(row_spacing, 0, -row_spacing, 0);
         const bool selected = option.state & QStyle::State_Selected;
-        const QColor text = option.palette.color(selected ? QPalette::HighlightedText : QPalette::Text);
+        // The application palette, the style sheet replaces the view's selection color with a gray.
+        const QPalette palette = QApplication::palette();
+        const QColor text = palette.color(selected ? QPalette::HighlightedText : QPalette::Text);
         const QColor muted = withAlpha(text, 0.6);
 
         painter->save();
@@ -106,7 +109,7 @@ public:
         if (selected || option.state & QStyle::State_MouseOver)
         {
             painter->setPen(Qt::NoPen);
-            painter->setBrush(selected ? option.palette.highlight().color() : withAlpha(text, 0.08));
+            painter->setBrush(selected ? palette.color(QPalette::Highlight) : withAlpha(text, 0.08));
             painter->drawRoundedRect(row, 4, 4);
         }
 
@@ -159,6 +162,34 @@ public:
         painter->restore();
     }
 };
+
+class SearchPopup : public QListView
+{
+public:
+    using QListView::QListView;
+
+protected:
+    //-----------------------------------------------------------------------------------------------------------------
+    virtual void paintEvent(QPaintEvent *event) override
+    {
+        // The window is transparent, the rounded background is painted here instead of by the style sheet.
+        QPainter painter(viewport());
+        painter.setRenderHint(QPainter::Antialiasing);
+        const QPalette palette = QApplication::palette();
+        painter.setPen(withAlpha(palette.color(QPalette::Text), 0.2));
+        painter.setBrush(palette.color(QPalette::Window));
+        painter.drawRoundedRect(QRectF(viewport()->rect()).adjusted(0.5, 0.5, -0.5, -0.5), 8, 8);
+        painter.end();
+        QListView::paintEvent(event);
+    }
+
+    //-----------------------------------------------------------------------------------------------------------------
+    virtual void scrollContentsBy(int dx, int dy) override
+    {
+        QListView::scrollContentsBy(dx, dy);
+        viewport()->update(); // a scrolled copy would move the rounded corners
+    }
+};
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -185,11 +216,13 @@ SearchBar::SearchBar(QMainWindow *window)
     ui->search_line_edit->setPalette(palette);
 
     // Not a QTreeView: its accessibility update crashes Qt 6.12.0 when the results change (QTBUG-149612).
-    QListView *popup = new QListView;
+    QListView *popup = new SearchPopup;
     popup->setItemDelegate(new SearchItemDelegate(popup));
     popup->setUniformItemSizes(true);
+    popup->setSpacing(row_spacing);
     popup->setMouseTracking(true);
     popup->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    popup->setStyleSheet(QStringLiteral("QListView { background: transparent; border: none; padding: 0; }"));
 
     m_completer->setWidget(ui->search_line_edit);
     m_completer->setPopup(popup);
@@ -197,7 +230,6 @@ SearchBar::SearchBar(QMainWindow *window)
     m_completer->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
     m_completer->setMaxVisibleItems(max_rows);
 
-    // Rounded corners: the popup window is transparent and the style sheet paints its background.
     popup->setAttribute(Qt::WA_TranslucentBackground);
     popup->viewport()->setAutoFillBackground(false);
 
@@ -471,16 +503,10 @@ void SearchBar::showRows(const QVector<int> &rows, const QString &text)
     }
 
     QAbstractItemView *popup = m_completer->popup();
-    const QPalette palette = ui->search_line_edit->palette();
-    popup->setStyleSheet(QStringLiteral("QListView { background: %1; border: 1px solid %2; border-radius: 8px;"
-                                        " padding: %3px; }")
-                         .arg(palette.color(QPalette::Window).name(),
-                              withAlpha(palette.color(QPalette::Text), 0.2).name(QColor::HexArgb))
-                         .arg(popup_padding));
-
     const QRect rect = ui->search_line_edit->rect();
+    const int visible_rows = qMin(model->rowCount(), max_rows);
     m_completer->complete(QRect((rect.width() - popup_width) / 2, rect.top(), popup_width, rect.height() + 4));
-    popup->resize(popup_width, qMin(model->rowCount(), max_rows) * row_height + 2 * popup_padding + 2);
+    popup->resize(popup_width, visible_rows * (row_height + row_spacing) + row_spacing);
     popup->setCurrentIndex(model->index(0, 0));
 }
 
