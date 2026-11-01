@@ -547,12 +547,6 @@ LayoutExportFormat ExportLayoutDialog::format() const
 }
 
 //---------------------------------------------------------------------------------------------------------------------
-QString ExportLayoutDialog::formatText() const
-{
-    return ui->format_ComboBox->currentText();
-}
-
-//---------------------------------------------------------------------------------------------------------------------
 void ExportLayoutDialog::save()
 {
         QString text = tr("%1 already exists.").arg(fileName() + exportFormatSuffix(format()));
@@ -948,7 +942,7 @@ void ExportLayoutDialog::writeSettings() const
     //Export Format
     if (qApp->Settings()->useLastExportFormat())
     {
-        qApp->Settings()->setExportFormat(formatText());
+        qApp->Settings()->setExportFormat(QString::number(static_cast<int>(format())));
     }
 }
 
