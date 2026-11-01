@@ -1981,9 +1981,13 @@ void MainWindow::initUpdateCorner()
     layout->addWidget(m_whats_new_label);
 
     m_update_button = new QPushButton(tr("Update"), m_update_corner);
-    m_update_button->setStyleSheet(QStringLiteral("QPushButton { color: white; background-color: #0078d4; border: none;"
+    // The theme's accent, the same blue as selections.
+    const QColor accent = palette().color(QPalette::Highlight);
+    m_update_button->setStyleSheet(QStringLiteral("QPushButton { color: %1; background-color: %2; border: none;"
                                                   " border-radius: 4px; padding: 3px 12px; }"
-                                                  "QPushButton:hover { background-color: #026ec1; }"));
+                                                  "QPushButton:hover { background-color: %3; }")
+                                   .arg(palette().color(QPalette::HighlightedText).name(), accent.name(),
+                                        accent.darker(110).name()));
     m_update_button->hide();
     connect(m_update_button, &QPushButton::clicked, this, [this]()
     {
