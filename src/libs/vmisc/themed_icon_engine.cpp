@@ -108,6 +108,7 @@ QPixmap ThemedIconEngine::scaledPixmap(const QSize &size, QIcon::Mode mode, QIco
     QImage image(size * scale, QImage::Format_ARGB32_Premultiplied);
     image.fill(Qt::transparent);
     QSvgRenderer renderer(svg.toUtf8());
+    renderer.setAspectRatioMode(Qt::KeepAspectRatio);
     QPainter painter(&image);
     renderer.render(&painter, QRectF(QPointF(0, 0), QSizeF(image.size())));
     painter.end();
