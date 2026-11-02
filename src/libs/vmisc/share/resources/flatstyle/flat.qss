@@ -35,6 +35,10 @@ QToolBar::handle:vertical {
     margin: 2px 4px 6px 4px;
 }
 
+QToolBar[expanded="true"] {
+    border: 1px solid @fieldBorder;
+}
+
 QToolBar::separator {
     background: @toolHover;
     width: 1px;
