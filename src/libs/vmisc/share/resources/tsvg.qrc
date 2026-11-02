@@ -54,6 +54,8 @@
         <file>tsvg/librecad/zoom_previous.tsvg</file>
         <file>tsvg/librecad/zoom_window.tsvg</file>
         <file>tsvg/spectrum/Add.tsvg</file>
+        <file>tsvg/spectrum/ChevronDoubleDown.tsvg</file>
+        <file>tsvg/spectrum/ChevronDoubleRight.tsvg</file>
         <file>tsvg/spectrum/Delete.tsvg</file>
         <file>tsvg/spectrum/Draw.tsvg</file>
         <file>tsvg/spectrum/Edit.tsvg</file>

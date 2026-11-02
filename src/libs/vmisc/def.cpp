@@ -47,6 +47,7 @@
 #include <QDirIterator>
 #include <QFile>
 #include <QFileInfo>
+#include <QGraphicsDropShadowEffect>
 #include <QGuiApplication>
 #include <QIcon>
 #include <QImage>
@@ -58,6 +59,7 @@
 #include <QPixmap>
 #include <QPrinterInfo>
 #include <QProcess>
+#include <QProxyStyle>
 #include <QResource>
 #include <QRgb>
 #include <QSortFilterProxyModel>
@@ -69,6 +71,7 @@
 #include <QMainWindow>
 #include <QStyleHints>
 #include <QToolBox>
+#include <QToolButton>
 #include <QtDebug>
 #include <QtMath>
 #include <QPixmapCache>
@@ -560,6 +563,87 @@ QString themeStyleSheet(const ThemeColors &colors)
     return sheet;
 }
 
+// Fusion draws the toolbar overflow button as a faint arrow that disappears on the dark rungs, so a clipped
+// toolbar looked complete. The style sheet has no property for this icon
+class ThemeStyle : public QProxyStyle
+{
+public:
+    using QProxyStyle::QProxyStyle;
+
+    //-----------------------------------------------------------------------------------------------------------------
+    /// @brief standardIcon Spectrum double chevrons for the toolbar overflow button.
+    /// @param standardIcon icon to return.
+    /// @param option style option.
+    /// @param widget widget the icon is for.
+    /// @return themed icon.
+    QIcon standardIcon(StandardPixmap standardIcon, const QStyleOption *option,
+                       const QWidget *widget) const override
+    {
+        if (standardIcon == SP_ToolBarHorizontalExtensionButton)
+        {
+            return QIcon(QStringLiteral(":/tsvg/spectrum/ChevronDoubleRight.tsvg"));
+        }
+        if (standardIcon == SP_ToolBarVerticalExtensionButton)
+        {
+            return QIcon(QStringLiteral(":/tsvg/spectrum/ChevronDoubleDown.tsvg"));
+        }
+        return QProxyStyle::standardIcon(standardIcon, option, widget);
+    }
+
+    //-----------------------------------------------------------------------------------------------------------------
+    /// @brief pixelMetric widens the toolbar overflow button so its chevrons keep their shape.
+    /// @param metric metric to return.
+    /// @param option style option.
+    /// @param widget widget the metric is for.
+    /// @return size in pixels.
+    int pixelMetric(PixelMetric metric, const QStyleOption *option, const QWidget *widget) const override
+    {
+        if (metric == PM_ToolBarExtensionExtent)
+        {
+            return 20;
+        }
+        return QProxyStyle::pixelMetric(metric, option, widget);
+    }
+
+    using QProxyStyle::polish;
+
+    //-----------------------------------------------------------------------------------------------------------------
+    /// @brief polish frames and shadows a toolbar while its overflow button has it expanded.
+    /// @param widget widget to polish.
+    void polish(QWidget *widget) override
+    {
+        QProxyStyle::polish(widget);
+
+        // An expanded toolbar paints over the canvas and has no state the style sheet can select on
+        auto *extension = qobject_cast<QToolButton *>(widget);
+        if (extension == nullptr || extension->objectName() != QLatin1String("qt_toolbar_ext_button")
+            || extension->property("expandHooked").toBool())
+        {
+            return;
+        }
+        extension->setProperty("expandHooked", true);
+        QObject::connect(extension, &QToolButton::toggled, extension, [extension](bool expanded)
+        {
+            QWidget *toolBar = extension->parentWidget();
+            toolBar->setProperty("expanded", expanded);
+            QGraphicsDropShadowEffect *shadow = nullptr;
+            if (expanded)
+            {
+                // Spectrum 2 drop-shadow-elevated, the popover shadow from @adobe/spectrum-tokens (Apache-2.0).
+                // Qt takes one effect, so its ambient and transition layers are merged and the border stands in for
+                // the key
+                shadow = new QGraphicsDropShadowEffect;
+                shadow->setBlurRadius(12);
+                shadow->setOffset(0, 4);
+                shadow->setColor(QColor(0, 0, 0, currentColors->dark ? 92 : 31));
+            }
+            toolBar->setGraphicsEffect(shadow);
+            toolBar->style()->unpolish(toolBar);
+            toolBar->style()->polish(toolBar);
+        });
+    }
+};
+
 #if defined(Q_OS_MACOS)
 //---------------------------------------------------------------------------------------------------------------------
 /// @brief hasTitleBar whether a widget is a window macOS draws a title bar for.
@@ -766,7 +850,7 @@ void applyAppTheme(QApplication *app, int theme)
 #endif
 
     // Fusion is the only style that honors an application palette on every platform
-    app->setStyle(QStringLiteral("Fusion"));
+    app->setStyle(new ThemeStyle(QStringLiteral("Fusion")));
     app->setPalette(palette);
     currentColors = &themeColors(theme);
     app->setStyleSheet(themeStyleSheet(*currentColors));
