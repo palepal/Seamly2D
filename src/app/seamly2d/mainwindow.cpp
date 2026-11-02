@@ -5729,9 +5729,9 @@ bool MainWindow::MaybeSave()
         messageBox->setButtonText(QMessageBox::No, tr("Don't Save"));
 
         messageBox->setWindowModality(Qt::ApplicationModal);
-        messageBox->setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint
-                                                 & ~Qt::WindowMaximizeButtonHint
-                                                 & ~Qt::WindowMinimizeButtonHint);
+        messageBox->setWindowFlags(messageBox->windowFlags() & ~Qt::WindowContextHelpButtonHint
+                                                             & ~Qt::WindowMaximizeButtonHint
+                                                             & ~Qt::WindowMinimizeButtonHint);
         const auto ret = static_cast<QMessageBox::StandardButton>(messageBox->exec());
 
         switch (ret)
@@ -6838,9 +6838,9 @@ QString MainWindow::createDraftBlockName(const QString &text)
     dialog->setLabelText(tr("Name:"));
     dialog->setTextEchoMode(QLineEdit::Normal);
     dialog->setWindowTitle(tr("Draft block."));
-    dialog->setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint
-                                         & ~Qt::WindowMaximizeButtonHint
-                                         & ~Qt::WindowMinimizeButtonHint);
+    dialog->setWindowFlags(dialog->windowFlags() & ~Qt::WindowContextHelpButtonHint
+                                                 & ~Qt::WindowMaximizeButtonHint
+                                                 & ~Qt::WindowMinimizeButtonHint);
     dialog->resize(300, 100);
     dialog->setTextValue(text);
     QString draftBlockName;
