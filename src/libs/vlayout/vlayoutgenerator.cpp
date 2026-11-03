@@ -435,9 +435,16 @@ void VLayoutGenerator::generateSparrow()
         pieces.append(m_bank->getPiece(i));
     }
 
-    const auto progress = [this](int seconds, qreal length, const QString &preview)
+    SparrowLayout::alignGrainlines(pieces);
+    emit previewStarted(pieces, pageWidth());
+
+    const auto progress = [this](const SparrowFrame &frame)
     {
-        emit optimizing(seconds, m_timeLimit, length, preview);
+        emit optimizing(frame.elapsed, m_timeLimit, frame.best_length);
+        if (!frame.placements.isEmpty())
+        {
+            emit previewChanged(frame.placements, frame.sheet_length);
+        }
     };
 
     qreal length = 0;

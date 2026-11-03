@@ -46,31 +46,17 @@
 namespace
 {
 //---------------------------------------------------------------------------------------------------------------------
-/// @brief alignGrainline turns a piece so its grainline runs along the sheet length (vertical).
-/// @param piece layout piece.
-/// @return true if the piece has a grainline.
-bool alignGrainline(VLayoutPiece &piece)
-{
-    const QVector<QPointF> grainline = piece.getGrainline();
-    if (grainline.size() < 2)
-    {
-        return false;
-    }
-    piece.Rotate(grainline.first(), 90 - QLineF(grainline.first(), grainline.last()).angle());
-    return true;
-}
-
-//---------------------------------------------------------------------------------------------------------------------
 /// @brief instanceItem describes a piece for Sparrow.
 ///
 /// Sparrow's strip grows along x with a fixed height, the sheet grows along y with a fixed width, so x and y swap.
 /// @param piece layout piece, turned to follow its grainline.
 /// @param id item id.
 /// @return Sparrow item.
-QJsonObject instanceItem(VLayoutPiece &piece, int id)
+QJsonObject instanceItem(const VLayoutPiece &piece, int id)
 {
     // ponytail: grainline pieces turn 0/180 even for one-way arrows (nap), add 0 only when nap matters
-    const QJsonArray angles = alignGrainline(piece) ? QJsonArray{0, 180} : QJsonArray{0, 90, 180, 270};
+    const bool grainline = piece.getGrainline().size() >= 2;
+    const QJsonArray angles = grainline ? QJsonArray{0, 180} : QJsonArray{0, 90, 180, 270};
 
     QJsonArray outline;
     QPointF previous;
@@ -88,6 +74,47 @@ QJsonObject instanceItem(VLayoutPiece &piece, int id)
                        {"demand", 1},
                        {"orientation", QJsonObject{{"rotation", rotation}}},
                        {"shape", QJsonObject{{"type", "simple_polygon"}, {"data", outline}}}};
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief readFrame reads where the pieces are now from Sparrow's live SVG.
+///
+/// Reading it needs no SVG parser: QtSvg warns on a half-written file, and warnings are popups in GUI mode.
+/// @param path live SVG file, written on every step of the optimization.
+/// @param last content of the previous frame.
+/// @param count number of pieces.
+/// @param frame gets the sheet length and placements if the file is complete and has changed.
+void readFrame(const QString &path, QByteArray &last, int count, SparrowFrame &frame)
+{
+    QFile file(path);
+    const QByteArray svg = file.open(QIODevice::ReadOnly) ? file.readAll().trimmed() : QByteArray();
+    if (!svg.endsWith("</svg>") || svg == last)
+    {
+        return;
+    }
+    last = svg;
+
+    static const QRegularExpression sheet(QStringLiteral("<path d=\"M0,0 L([\\d.]+),0"));
+    static const QRegularExpression item(QStringLiteral("<use href=\"#item_0_(\\d+)\" transform=\""
+                                                        "translate\\(([-\\d.e]+) ([-\\d.e]+)\\), "
+                                                        "rotate\\(([-\\d.e]+)\\)\""));
+    const QString text = QString::fromUtf8(svg);
+    frame.sheet_length = sheet.match(text).captured(1).toDouble();
+    frame.placements.resize(count);
+
+    QRegularExpressionMatchIterator items = item.globalMatch(text);
+    while (items.hasNext())
+    {
+        const QRegularExpressionMatch match = items.next();
+        const int id = match.captured(1).toInt();
+        if (id < count)
+        {
+            // same axes swap as the final placement in arrange
+            frame.placements[id] = QTransform().rotate(-match.captured(4).toDouble())
+                                   * QTransform::fromTranslate(match.captured(3).toDouble(),
+                                                               match.captured(2).toDouble());
+        }
+    }
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -118,18 +145,33 @@ QString SparrowLayout::program()
 }
 
 //---------------------------------------------------------------------------------------------------------------------
+/// @brief alignGrainlines turns the pieces so their grainlines run along the sheet length (vertical).
+/// @param pieces layout pieces.
+void SparrowLayout::alignGrainlines(QVector<VLayoutPiece> &pieces)
+{
+    for (VLayoutPiece &piece : pieces)
+    {
+        const QVector<QPointF> grainline = piece.getGrainline();
+        if (grainline.size() >= 2)
+        {
+            piece.Rotate(grainline.first(), 90 - QLineF(grainline.first(), grainline.last()).angle());
+        }
+    }
+}
+
+//---------------------------------------------------------------------------------------------------------------------
 /// @brief arrange places pieces in a strip of fixed width with Sparrow and moves them to their places.
 ///
-/// Pieces are turned so their grainline runs along the strip. Errors are reported with qCritical.
-/// @param pieces layout pieces, moved in place.
+/// Errors are reported with qCritical.
+/// @param pieces layout pieces with aligned grainlines, moved in place.
 /// @param width strip width in pixels.
-/// @param timeLimit optimization time in seconds.
+/// @param time_limit optimization time in seconds.
 /// @param stop set to finish early with the best layout so far.
-/// @param progress called with the elapsed seconds, the best length so far and the live preview SVG.
+/// @param progress called about 10 times a second.
 /// @param length strip length in pixels.
 /// @return true if the pieces were placed.
-bool SparrowLayout::arrange(QVector<VLayoutPiece> &pieces, qreal width, int timeLimit, const std::atomic_bool &stop,
-                            const std::function<void(int, qreal, const QString &)> &progress, qreal &length)
+bool SparrowLayout::arrange(QVector<VLayoutPiece> &pieces, qreal width, int time_limit, const std::atomic_bool &stop,
+                            const std::function<void(const SparrowFrame &)> &progress, qreal &length)
 {
     const QString sparrow = program();
     QTemporaryDir dir;
@@ -142,7 +184,7 @@ bool SparrowLayout::arrange(QVector<VLayoutPiece> &pieces, qreal width, int time
     QJsonArray items;
     for (int i = 0; i < pieces.size(); ++i)
     {
-        items.append(instanceItem(pieces[i], i));
+        items.append(instanceItem(pieces.at(i), i));
     }
     QFile instance(dir.filePath(QStringLiteral("seamly.json")));
     if (!instance.open(QIODevice::WriteOnly))
@@ -160,17 +202,17 @@ bool SparrowLayout::arrange(QVector<VLayoutPiece> &pieces, qreal width, int time
 
     // the best length so far: "feasible solution found! (width: 909.1" and "success at 0.1% (681.3"
     const QRegularExpression best(QStringLiteral("(?:width: |success at [\\d.]+% \\()([\\d.]+)"));
-    qreal bestLength = 0;
-    QString lastLine;
+    qreal best_length = 0;
+    QString last_line;
     QObject::connect(&process, &QProcess::readyRead, [&]()
     {
         while (process.canReadLine())
         {
-            lastLine = QString::fromUtf8(process.readLine()).trimmed();
-            const QRegularExpressionMatch match = best.match(lastLine);
-            if (match.hasMatch() && !lastLine.contains(QLatin1String("[SEP]")))
+            last_line = QString::fromUtf8(process.readLine()).trimmed();
+            const QRegularExpressionMatch match = best.match(last_line);
+            if (match.hasMatch() && !last_line.contains(QLatin1String("[SEP]")))
             {
-                bestLength = match.captured(1).toDouble();
+                best_length = match.captured(1).toDouble();
             }
         }
     });
@@ -181,14 +223,19 @@ bool SparrowLayout::arrange(QVector<VLayoutPiece> &pieces, qreal width, int time
     QObject::connect(&process, &QProcess::errorOccurred, &loop, &QEventLoop::quit);
 
     // written by sparrow's live_svg feature on every step, overlapping pieces included
-    const QString preview = dir.filePath(QStringLiteral("data/live/.live_solution.svg"));
+    const QString live = dir.filePath(QStringLiteral("data/live/.live_solution.svg"));
+    QByteArray last_frame;
 
     QElapsedTimer clock;
     QTimer timer;
     bool interrupted = false;
     QObject::connect(&timer, &QTimer::timeout, [&]()
     {
-        progress(static_cast<int>(clock.elapsed() / 1000), bestLength, preview);
+        SparrowFrame frame;
+        frame.elapsed = static_cast<int>(clock.elapsed());
+        frame.best_length = best_length;
+        readFrame(live, last_frame, pieces.size(), frame);
+        progress(frame);
         if (stop.load() && !interrupted)
         {
             interrupted = true;
@@ -197,9 +244,9 @@ bool SparrowLayout::arrange(QVector<VLayoutPiece> &pieces, qreal width, int time
     });
 
     clock.start();
-    timer.start(250);
+    timer.start(100);
     process.start(sparrow, {QStringLiteral("-i"), instance.fileName(), QStringLiteral("-t"),
-                            QString::number(timeLimit)});
+                            QString::number(time_limit)});
     if (process.state() != QProcess::NotRunning)
     {
         loop.exec();
@@ -212,7 +259,7 @@ bool SparrowLayout::arrange(QVector<VLayoutPiece> &pieces, qreal width, int time
         if (!interrupted)
         {
             qCritical() << QCoreApplication::translate("SparrowLayout", "The Sparrow layout engine failed: %1")
-                           .arg(process.error() == QProcess::FailedToStart ? process.errorString() : lastLine);
+                           .arg(process.error() == QProcess::FailedToStart ? process.errorString() : last_line);
         }
         return false;
     }

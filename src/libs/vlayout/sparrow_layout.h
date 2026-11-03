@@ -26,17 +26,27 @@
 #define SPARROW_LAYOUT_H
 
 #include <QString>
+#include <QTransform>
 #include <QVector>
 #include <atomic>
 #include <functional>
 
 #include "vlayoutpiece.h"
 
+struct SparrowFrame
+{
+    int                 elapsed = 0;      // milliseconds
+    qreal               best_length = 0;  // best layout so far in pixels, 0 before the first one
+    qreal               sheet_length = 0; // sheet length Sparrow is working on now, pieces may overlap on it
+    QVector<QTransform> placements;       // for each piece, empty if nothing moved
+};
+
 namespace SparrowLayout
 {
     QString program();
-    bool    arrange(QVector<VLayoutPiece> &pieces, qreal width, int timeLimit, const std::atomic_bool &stop,
-                    const std::function<void(int, qreal, const QString &)> &progress, qreal &length);
+    void    alignGrainlines(QVector<VLayoutPiece> &pieces);
+    bool    arrange(QVector<VLayoutPiece> &pieces, qreal width, int time_limit, const std::atomic_bool &stop,
+                    const std::function<void(const SparrowFrame &)> &progress, qreal &length);
 }
 
 #endif // SPARROW_LAYOUT_H

@@ -1653,19 +1653,27 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DialogLayoutProgress</name>
     <message>
+        <source>Finishing...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Couldn&apos;t prepare data for creation layout</source>
         <translation>Не удалось подготовить данные для создания раскладки</translation>
+    </message>
+    <message>
+        <source>%1 s left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Length %1 %2</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Finish now</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Optimizing: %1 of %2 s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>length %1 %2</source>
+        <source>Stop and keep the best layout so far.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

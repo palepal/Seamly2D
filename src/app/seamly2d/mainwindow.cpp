@@ -2019,6 +2019,29 @@ void MainWindow::CleanLayout()
 }
 
 //---------------------------------------------------------------------------------------------------------------------
+/// @brief showLayoutPreview shows the live layout on the canvas while the Layout mode is on.
+/// @param scene preview scene to show and fit, nullptr to go back to the layout pages.
+void MainWindow::showLayoutPreview(QGraphicsScene *scene)
+{
+    if (doc->getDraftStage() != Draw::Layout)
+    {
+        return;
+    }
+
+    if (scene == nullptr)
+    {
+        showLayoutPages(ui->listWidget->currentRow());
+        return;
+    }
+
+    if (ui->view->scene() != scene)
+    {
+        ui->view->setScene(scene);
+    }
+    ui->view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
 void MainWindow::PrepareSceneList()
 {
     for (int i=1; i<=scenes.size(); ++i)

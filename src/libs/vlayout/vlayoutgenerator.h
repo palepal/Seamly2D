@@ -57,6 +57,7 @@
 #include <QMetaObject>
 #include <QObject>
 #include <QString>
+#include <QTransform>
 #include <QVector>
 #include <QtGlobal>
 #include <memory>
@@ -65,6 +66,7 @@
 
 #include "vbank.h"
 #include "vlayoutdef.h"
+#include "vlayoutpiece.h"
 
 class QMarginsF;
 class QGraphicsItem;
@@ -139,7 +141,9 @@ signals:
     void         Arranged(int count);
     void         Error(const LayoutErrors &state);
     void         Finished();
-    void         optimizing(int seconds, int limit, qreal length, const QString &preview);
+    void         optimizing(int elapsed, int limit, qreal length);
+    void         previewStarted(const QVector<VLayoutPiece> &pieces, qreal width);
+    void         previewChanged(const QVector<QTransform> &placements, qreal length);
 
 public slots:
     void         Abort();

@@ -56,11 +56,7 @@
 
 #include <QMessageBox>
 #include <QPushButton>
-#include <QFile>
 #include <QMovie>
-#include <QPainter>
-#include <QRegularExpression>
-#include <QSvgRenderer>
 #include <QtDebug>
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -83,6 +79,14 @@ DialogLayoutProgress::DialogLayoutProgress(int count, QWidget *parent)
     QPushButton *bCancel = ui->buttonBox->button(QDialogButtonBox::Cancel);
     SCASSERT(bCancel != nullptr)
     connect(bCancel, &QPushButton::clicked, this, [this](){emit Abort();});
+
+    connect(ui->finish_PushButton, &QPushButton::clicked, this, [this]()
+    {
+        // Sparrow takes a few seconds to wrap up
+        ui->finish_PushButton->setEnabled(false);
+        ui->finish_PushButton->setText(tr("Finishing..."));
+        emit Abort();
+    });
 
     this->setWindowFlags(Qt::Dialog | Qt::WindowTitleHint | Qt::CustomizeWindowHint);
 }
@@ -129,69 +133,52 @@ void DialogLayoutProgress::Error(const LayoutErrors &state)
 }
 
 //---------------------------------------------------------------------------------------------------------------------
-/// @brief optimizing shows how far the Sparrow engine is and its current layout, Cancel becomes Finish now.
-/// @param seconds elapsed time.
+/// @brief optimizing turns the window into a floating card with the Sparrow engine's progress.
+/// @param elapsed elapsed time in milliseconds.
 /// @param limit time limit in seconds.
 /// @param length best layout length so far in pixels, 0 before the first layout.
-/// @param preview SVG of Sparrow's current layout, the strip runs left to right.
-void DialogLayoutProgress::optimizing(int seconds, int limit, qreal length, const QString &preview)
+void DialogLayoutProgress::optimizing(int elapsed, int limit, qreal length)
 {
-    ui->progressBar->setMaximum(limit);
-    ui->progressBar->setValue(qMin(seconds, limit));
-    ui->buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Finish now"));
+    if (ui->sparrow_Widget->isHidden())
+    {
+        ui->classic_Widget->hide();
+        ui->sparrow_Widget->show();
+        layout()->setContentsMargins(0, 0, 0, 0);
+        setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
+        setAttribute(Qt::WA_TranslucentBackground);
 
-    QString message = tr("Optimizing: %1 of %2 s").arg(seconds).arg(limit);
+        // Seamly violet, as in the tool icons: the logo's color on light themes, a lighter tint on dark ones
+        const bool dark = palette().color(QPalette::Window).lightness() < 128;
+        ui->sparrow_ProgressBar->setStyleSheet(ui->sparrow_ProgressBar->styleSheet()
+                                               .replace(QLatin1String("palette(highlight)"),
+                                                        dark ? QLatin1String("#a48be0") : QLatin1String("#503584")));
+    }
+
+    ui->sparrow_ProgressBar->setMaximum(limit * 1000);
+    ui->sparrow_ProgressBar->setValue(qMin(elapsed, limit * 1000));
+
+    QString message = tr("%1 s left").arg(qMax(0, limit - elapsed / 1000));
     if (length > 0)
     {
         const Unit unit = qApp->patternUnit();
-        message += QStringLiteral(", ") + tr("length %1 %2")
-            .arg(UnitConvertor(length, Unit::Px, unit), 0, 'f', 1).arg(UnitsToStr(unit, true));
+        message = tr("Length %1 %2").arg(UnitConvertor(length, Unit::Px, unit), 0, 'f', 1).arg(UnitsToStr(unit, true))
+                  + QStringLiteral("  %1  ").arg(QChar(0x00B7)) + message;
     }
-    ui->labelMessage->setText(message);
+    ui->sparrowMessage_Label->setText(message);
+}
 
-    if (ui->preview_Label->isHidden())
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief reject makes Esc finish a Sparrow run: closing the card would leave it running with the window unlocked.
+void DialogLayoutProgress::reject()
+{
+    if (ui->sparrow_Widget->isHidden())
     {
-        ui->preview_Label->show();
-        if (isInitialized)
-        {
-            setMinimumSize(0, 0);
-            setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
-            adjustSize();
-            setFixedSize(size());
-        }
+        QDialog::reject();
     }
-
-    if (preview.isEmpty())
+    else if (ui->finish_PushButton->isEnabled())
     {
-        return;
+        ui->finish_PushButton->click();
     }
-
-    // the file is missing at first and sparrow may be writing it: QtSvg would warn, and warnings are popups here
-    QFile file(preview);
-    const QByteArray svg = file.open(QIODevice::ReadOnly) ? file.readAll().trimmed() : QByteArray();
-    if (!svg.endsWith("</svg>"))
-    {
-        return;
-    }
-    // drop sparrow's caption, its font lookup can warn too, the length is in the message already
-    static const QRegularExpression caption(QStringLiteral("<text.*</text>"),
-                                            QRegularExpression::DotMatchesEverythingOption
-                                            | QRegularExpression::InvertedGreedinessOption);
-    QSvgRenderer renderer(QString::fromUtf8(svg).remove(caption).toUtf8());
-    if (!renderer.isValid())
-    {
-        return;
-    }
-    const qreal ratio = devicePixelRatioF();
-    QSizeF frame = renderer.defaultSize();
-    frame.scale(ui->preview_Label->contentsRect().size() * ratio, Qt::KeepAspectRatio);
-    QPixmap pixmap(frame.toSize());
-    pixmap.fill(Qt::transparent);
-    QPainter painter(&pixmap);
-    renderer.render(&painter);
-    painter.end();
-    pixmap.setDevicePixelRatio(ratio);
-    ui->preview_Label->setPixmap(pixmap);
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -214,6 +201,14 @@ void DialogLayoutProgress::showEvent(QShowEvent *event)
         return;
     }
     // do your init stuff here
+
+    if (!ui->sparrow_Widget->isHidden() && parentWidget() != nullptr)
+    {
+        // float over the bottom of the canvas
+        adjustSize();
+        const QPoint corner((parentWidget()->width() - width()) / 2, parentWidget()->height() - height() - 32);
+        move(parentWidget()->mapToGlobal(corner));
+    }
 
     setMaximumSize(size());
     setMinimumSize(size());
