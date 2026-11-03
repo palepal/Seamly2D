@@ -1,0 +1,4 @@
+[submodule "src/3rdparty/sparrow"]
+	path = src/3rdparty/sparrow
+	url = https://github.com/palepal/sparrow.git
+	branch = seamly

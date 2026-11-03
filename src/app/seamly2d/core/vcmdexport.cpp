@@ -360,6 +360,7 @@ VLayoutGeneratorPtr VCommandLine::DefaultGenerator() const
     // Initialize the layout generator and settings dialog
     VLayoutGeneratorPtr res(new VLayoutGenerator());
     LayoutSettingsDialog diag(res.get(), nullptr, true);
+    diag.setEngine(LayoutEngine::Classic); // the command line options are classic engine options
 
     {
         // Check for conflict between page template and manual page size/unit options

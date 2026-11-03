@@ -1642,6 +1642,18 @@ p, li { white-space: pre-wrap; }
         <translation>Daten für die Erstellung des Layouts konnten nicht vorbereitet werden</translation>
     </message>
     <message>
+        <source>Finish now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Optimizing: %1 of %2 s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>length %1 %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Create a Layout</source>
         <translation>Ein Layout erstellen</translation>
     </message>
@@ -5131,6 +5143,34 @@ Das Programm wird WIE ES IST, OHNE GEWÄHRLEISTUNG JEGLICHER ART, EINSCHLIESSLIC
         <translation>Höhe:</translation>
     </message>
     <message>
+        <source>Engine:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sparrow (optimized)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Classic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time limit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A longer time gives a shorter layout. Finish now in the progress window keeps the best layout so far.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uses the paper width. The sheet gets as long as the layout needs. Pieces turn to follow their grainline.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Rotate workpiece</source>
         <translation>Schnittteil drehen</translation>
     </message>
@@ -5153,6 +5193,10 @@ Das Programm wird WIE ES IST, OHNE GEWÄHRLEISTUNG JEGLICHER ART, EINSCHLIESSLIC
     <message>
         <source>Descending area</source>
         <translation>Absteigender Bereich</translation>
+    </message>
+    <message>
+        <source>The Sparrow engine is not installed.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Centimeters</source>
@@ -11129,6 +11173,25 @@ Drücken Sie die Eingabetaste, um ihn vorübergehend in die Liste aufzunehmen.</
     <message>
         <source>toggle point visibility</source>
         <translation>Punktsichtbarkeit umschalten</translation>
+    </message>
+</context>
+<context>
+    <name>SparrowLayout</name>
+    <message>
+        <source>The Sparrow layout engine is not installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not write the Sparrow input file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Sparrow layout engine failed: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Sparrow layout engine did not place every piece.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

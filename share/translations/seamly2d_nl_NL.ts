@@ -1642,6 +1642,18 @@ p, li { white-space: pre-wrap; }
         <translation>Kon geen data voorbereiden om opmaak te creëren</translation>
     </message>
     <message>
+        <source>Finish now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Optimizing: %1 of %2 s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>length %1 %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Create a Layout</source>
         <translation>Maak een opmaak</translation>
     </message>
@@ -5131,6 +5143,34 @@ Het programma wordt geleverd in de staat waarin het zich bevindt, zonder enige g
         <translation>Hoogte:</translation>
     </message>
     <message>
+        <source>Engine:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sparrow (optimized)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Classic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time limit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A longer time gives a shorter layout. Finish now in the progress window keeps the best layout so far.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uses the paper width. The sheet gets as long as the layout needs. Pieces turn to follow their grainline.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Rotate workpiece</source>
         <translation>Draai patroondeel</translation>
     </message>
@@ -5153,6 +5193,10 @@ Het programma wordt geleverd in de staat waarin het zich bevindt, zonder enige g
     <message>
         <source>Descending area</source>
         <translation>Kleiner wordend gebied</translation>
+    </message>
+    <message>
+        <source>The Sparrow engine is not installed.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Centimeters</source>
@@ -11128,6 +11172,25 @@ Druk op enter om deze tijdelijk toe te voegen aan de lijst.</translation>
     <message>
         <source>toggle point visibility</source>
         <translation>zichtbaarheid wisselpunt</translation>
+    </message>
+</context>
+<context>
+    <name>SparrowLayout</name>
+    <message>
+        <source>The Sparrow layout engine is not installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not write the Sparrow input file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Sparrow layout engine failed: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Sparrow layout engine did not place every piece.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

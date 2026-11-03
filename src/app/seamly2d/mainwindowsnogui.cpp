@@ -192,7 +192,12 @@ bool MainWindowsNoGUI::LayoutSettings(VLayoutGenerator& lGenerator)
         connect(&lGenerator, &VLayoutGenerator::Arranged,  &progress,   &DialogLayoutProgress::Arranged);
         connect(&lGenerator, &VLayoutGenerator::Error,     &progress,   &DialogLayoutProgress::Error);
         connect(&lGenerator, &VLayoutGenerator::Finished,  &progress,   &DialogLayoutProgress::Finished);
+        connect(&lGenerator, &VLayoutGenerator::optimizing, &progress,  &DialogLayoutProgress::optimizing);
         connect(&progress,   &DialogLayoutProgress::Abort, &lGenerator, &VLayoutGenerator::Abort);
+        if (lGenerator.engine() == LayoutEngine::Sparrow)
+        {
+            progress.optimizing(0, lGenerator.timeLimit(), 0, QString()); // open with the preview area
+        }
     }
     else
     {

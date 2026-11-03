@@ -1672,6 +1672,18 @@ p, li { white-space: pre-wrap; }
         <source>One or more pattern pieces are bigger than the paper format you selected. Please select a bigger paper format.</source>
         <translation>Egy vagy több mintadarab nagyobb, mint a kiválasztott papírformátum. Kérjük, válasszon nagyobb papírformátumot.</translation>
     </message>
+    <message>
+        <source>Finish now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Optimizing: %1 of %2 s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>length %1 %2</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DialogLine</name>
@@ -5199,8 +5211,36 @@ A programot A JELENLEGI ÁLLAPOTUKBAN biztosítjuk, SEMMILYEN GARANCIA NÉLKÜL,
         <translation>Elrendezési beállítások</translation>
     </message>
     <message>
+        <source>Engine:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sparrow (optimized)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Classic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Gap width:</source>
         <translation>Rés szélessége:</translation>
+    </message>
+    <message>
+        <source>Time limit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A longer time gives a shorter layout. Finish now in the progress window keeps the best layout so far.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uses the paper width. The sheet gets as long as the layout needs. Pieces turn to follow their grainline.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Shift/Offset length:</source>
@@ -5261,6 +5301,10 @@ A programot A JELENLEGI ÁLLAPOTUKBAN biztosítjuk, SEMMILYEN GARANCIA NÉLKÜL,
     <message>
         <source>Set multiplier for length of the biggest workpiece in layout.</source>
         <translation>Állítsa be a szorzót a tervrajzban szereplő legnagyobb munkadarab hosszához.</translation>
+    </message>
+    <message>
+        <source>The Sparrow engine is not installed.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>
@@ -11144,6 +11188,25 @@ Menti a módosításokat?</translation>
     <message>
         <source>toggle point visibility</source>
         <translation>bekapcsolási pont láthatósága</translation>
+    </message>
+</context>
+<context>
+    <name>SparrowLayout</name>
+    <message>
+        <source>The Sparrow layout engine is not installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not write the Sparrow input file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Sparrow layout engine failed: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Sparrow layout engine did not place every piece.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

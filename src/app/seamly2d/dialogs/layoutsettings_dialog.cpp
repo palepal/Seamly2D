@@ -51,11 +51,13 @@
 #include "../vmisc/vsettings.h"
 #include "../vmisc/vmath.h"
 #include "../vlayout/vlayoutgenerator.h"
+#include "../vlayout/sparrow_layout.h"
 #include "../vwidgets/page_format_combobox.h"
 
 #include <QMessageBox>
 #include <QPushButton>
 #include <QPrinterInfo>
+#include <QStandardItemModel>
 
 //---------------------------------------------------------------------------------------------------------------------
 LayoutSettingsDialog::LayoutSettingsDialog(VLayoutGenerator *generator, QWidget *parent, bool disableSettings)
@@ -79,6 +81,13 @@ LayoutSettingsDialog::LayoutSettingsDialog(VLayoutGenerator *generator, QWidget 
     MinimumPaperSize();
     MinimumLayoutSize();
     InitPrinter();
+
+    if (SparrowLayout::program().isEmpty())
+    {
+        auto *model = qobject_cast<QStandardItemModel *>(ui->engine_ComboBox->model());
+        model->item(static_cast<int>(LayoutEngine::Sparrow))->setEnabled(false);
+        ui->engine_ComboBox->setToolTip(tr("The Sparrow engine is not installed."));
+    }
 
     //in export console mode going to use defaults
     if (disableSettings == false)
@@ -114,6 +123,9 @@ LayoutSettingsDialog::LayoutSettingsDialog(VLayoutGenerator *generator, QWidget 
             this, &LayoutSettingsDialog::CorrectMaxFileds);
 
     connect(ui->checkBoxIgnoreFileds, &QCheckBox::stateChanged, this, &LayoutSettingsDialog::IgnoreAllFields);
+    connect(ui->engine_ComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+            this, &LayoutSettingsDialog::engineChanged);
+    engineChanged();
 
     connect(ui->portrait_ToolButton, &QToolButton::toggled, this, &LayoutSettingsDialog::Swap);
     connect(ui->landscape_ToolButton, &QToolButton::toggled, this, &LayoutSettingsDialog::Swap);
@@ -358,6 +370,42 @@ void LayoutSettingsDialog::setTextAsPaths(bool value)
 }
 
 //---------------------------------------------------------------------------------------------------------------------
+/// @brief engine the selected layout engine.
+/// @return layout engine.
+LayoutEngine LayoutSettingsDialog::engine() const
+{
+    return static_cast<LayoutEngine>(ui->engine_ComboBox->currentIndex());
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief setEngine selects a layout engine, Classic if Sparrow is not installed.
+/// @param engine layout engine.
+void LayoutSettingsDialog::setEngine(LayoutEngine engine)
+{
+    if (SparrowLayout::program().isEmpty())
+    {
+        engine = LayoutEngine::Classic;
+    }
+    ui->engine_ComboBox->setCurrentIndex(static_cast<int>(engine));
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief timeLimit how long the Sparrow engine optimizes.
+/// @return seconds.
+int LayoutSettingsDialog::timeLimit() const
+{
+    return ui->timeLimit_SpinBox->value();
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief setTimeLimit sets how long the Sparrow engine optimizes.
+/// @param seconds time limit.
+void LayoutSettingsDialog::setTimeLimit(int seconds)
+{
+    ui->timeLimit_SpinBox->setValue(seconds);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
 QString LayoutSettingsDialog::SelectedPrinter() const
 {
     return ui->comboBoxPrinter->currentText();
@@ -591,6 +639,8 @@ void LayoutSettingsDialog::DialogAccepted()
     generator->setStripOptimization(useStripOptimization());
     generator->SetMultiplier(GetMultiplier());
     generator->setTextAsPaths(isTextAsPaths());
+    generator->setEngine(engine());
+    generator->setTimeLimit(timeLimit());
 
     if (IsIgnoreAllFields())
     {
@@ -679,6 +729,8 @@ void LayoutSettingsDialog::RestoreDefaults()
     SetFields(GetDefPrinterFields());
     SetIgnoreAllFields(VSettings::GetDefIgnoreAllFields());
     SetMultiplier(VSettings::GetDefMultiplier());
+    setEngine(VSettings::defLayoutEngine());
+    setTimeLimit(VSettings::defLayoutTimeLimit());
 
     CorrectMaxFileds();
     IgnoreAllFields(ui->checkBoxIgnoreFileds->isChecked());
@@ -714,6 +766,36 @@ void LayoutSettingsDialog::CorrectMaxFileds()
     ui->rightField_DoubleSpinBox->setMaximum(widthField);
     ui->topField_DoubleSpinBox->setMaximum(heightField);
     ui->bottomField_DoubleSpinBox->setMaximum(heightField);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief engineChanged shows the options of the selected engine and fits the dialog to them.
+///
+/// Sparrow makes the sheet as long as the layout, so the paper height does not apply.
+void LayoutSettingsDialog::engineChanged()
+{
+    const int index = ui->engine_ComboBox->currentIndex();
+    ui->engine_StackedWidget->setCurrentIndex(index);
+
+    // a stacked widget is as tall as its tallest page, ignore the hidden page's height
+    for (int i = 0; i < ui->engine_StackedWidget->count(); ++i)
+    {
+        ui->engine_StackedWidget->widget(i)->setSizePolicy(QSizePolicy::Preferred,
+                                                           i == index ? QSizePolicy::Preferred : QSizePolicy::Ignored);
+    }
+
+    const bool sparrow = engine() == LayoutEngine::Sparrow;
+    ui->labelHeight->setEnabled(!sparrow);
+    ui->doubleSpinBoxPaperHeight->setEnabled(!sparrow);
+
+    if (isInitialized)
+    {
+        setMinimumSize(0, 0);
+        setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+        layout()->activate();
+        adjustSize();
+        setFixedSize(size());
+    }
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -972,6 +1054,8 @@ void LayoutSettingsDialog::ReadSettings()
     setStripOptimization(settings->useStripOptimization());
     SetMultiplier(settings->GetMultiplier());
     setTextAsPaths(settings->GetTextAsPaths());
+    setEngine(settings->layoutEngine());
+    setTimeLimit(settings->layoutTimeLimit());
 
     FindTemplate();
 
@@ -998,6 +1082,8 @@ void LayoutSettingsDialog::WriteSettings() const
     settings->setStripOptimization(useStripOptimization());
     settings->SetMultiplier(GetMultiplier());
     settings->setTextAsPaths(isTextAsPaths());
+    settings->setLayoutEngine(engine());
+    settings->setLayoutTimeLimit(timeLimit());
 }
 
 //---------------------------------------------------------------------------------------------------------------------

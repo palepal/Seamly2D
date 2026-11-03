@@ -189,6 +189,27 @@ unix{
             seamlyme \
             xpdf \
             icns_resources
+
+        # Sparrow layout engine (Rust), built with cargo when the submodule and cargo are there. live_svg feeds the
+        # progress preview (ponytail: it also writes every intermediate SVG to the temp dir, patch cli.rs if that hurts)
+        SPARROW_DIR = $$PWD/../../3rdparty/sparrow
+        SPARROW_BIN = $$SPARROW_DIR/target/release/sparrow
+        CARGO = $$system(command -v cargo)
+        isEmpty(CARGO):exists($$(HOME)/.cargo/bin/cargo): CARGO = $$(HOME)/.cargo/bin/cargo
+        !isEmpty(CARGO):exists($$SPARROW_DIR/Cargo.toml) {
+            sparrow_build.target = $$relative_path($$SPARROW_BIN, $$OUT_PWD)
+            sparrow_build.commands = $$CARGO build --release --features live_svg \
+                                     --manifest-path $$SPARROW_DIR/Cargo.toml
+            sparrow_build.depends = FORCE
+            QMAKE_EXTRA_TARGETS += sparrow_build
+            PRE_TARGETDEPS += $$sparrow_build.target
+
+            sparrow.path = $$MACOS_DIR
+            sparrow.files = $$SPARROW_BIN
+            QMAKE_BUNDLE_DATA += sparrow
+        } else {
+            message(seamly2d.pro: cargo or src/3rdparty/sparrow missing, building without the Sparrow layout engine)
+        }
     }
 }
 

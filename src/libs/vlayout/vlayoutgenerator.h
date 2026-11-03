@@ -128,11 +128,18 @@ public:
     bool         isTextAsPaths() const;
     void         setTextAsPaths(bool value);
 
+    LayoutEngine engine() const;
+    void         setEngine(LayoutEngine engine);
+
+    int          timeLimit() const;
+    void         setTimeLimit(int seconds);
+
 signals:
     void         Start();
     void         Arranged(int count);
     void         Error(const LayoutErrors &state);
     void         Finished();
+    void         optimizing(int seconds, int limit, qreal length, const QString &preview);
 
 public slots:
     void         Abort();
@@ -157,10 +164,13 @@ private:
     quint8                m_multiplier;
     bool                  m_useStripOptimization;
     bool                  m_textAsPaths;
+    LayoutEngine          m_engine;
+    int                   m_timeLimit;
 
     int                   pageHeight() const;
     int                   pageWidth() const;
 
+    void                  generateSparrow();
     void                  gatherPages();
     void                  unitePages();
     void                  unitePieces(int j, QList<QList<VLayoutPiece> > &pieces, qreal length, int i);

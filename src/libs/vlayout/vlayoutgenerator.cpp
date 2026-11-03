@@ -59,6 +59,7 @@
 #include "../vmisc/vmath.h"
 #include "vlayoutpiece.h"
 #include "vlayoutpaper.h"
+#include "sparrow_layout.h"
 
 //---------------------------------------------------------------------------------------------------------------------
 VLayoutGenerator::VLayoutGenerator(QObject *parent)
@@ -81,6 +82,8 @@ VLayoutGenerator::VLayoutGenerator(QObject *parent)
     , m_multiplier(1)
     , m_useStripOptimization(false)
     , m_textAsPaths(false)
+    , m_engine(LayoutEngine::Classic)
+    , m_timeLimit(60)
 {}
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -157,6 +160,12 @@ void VLayoutGenerator::Generate()
 
     if (m_bank->Prepare())
     {
+        if (m_engine == LayoutEngine::Sparrow)
+        {
+            generateSparrow();
+            return;
+        }
+
         const int width = pageWidth();
         int height = pageHeight();
 
@@ -375,6 +384,80 @@ bool VLayoutGenerator::isTextAsPaths() const
 void VLayoutGenerator::setTextAsPaths(bool value)
 {
     m_textAsPaths = value;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief engine the engine that arranges the pieces.
+/// @return layout engine.
+//---------------------------------------------------------------------------------------------------------------------
+LayoutEngine VLayoutGenerator::engine() const
+{
+    return m_engine;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief setEngine sets the engine that arranges the pieces.
+/// @param engine layout engine.
+//---------------------------------------------------------------------------------------------------------------------
+void VLayoutGenerator::setEngine(LayoutEngine engine)
+{
+    m_engine = engine;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief timeLimit how long the Sparrow engine optimizes.
+/// @return seconds.
+//---------------------------------------------------------------------------------------------------------------------
+int VLayoutGenerator::timeLimit() const
+{
+    return m_timeLimit;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief setTimeLimit sets how long the Sparrow engine optimizes.
+/// @param seconds time limit.
+//---------------------------------------------------------------------------------------------------------------------
+void VLayoutGenerator::setTimeLimit(int seconds)
+{
+    m_timeLimit = seconds;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief generateSparrow arranges all pieces on one sheet of the paper width with the Sparrow engine.
+///
+/// The sheet is as long as the layout. Stopping early keeps the best layout found so far.
+//---------------------------------------------------------------------------------------------------------------------
+void VLayoutGenerator::generateSparrow()
+{
+    QVector<VLayoutPiece> pieces;
+    for (int i = 0; i < m_bank->allPieceCount(); ++i)
+    {
+        pieces.append(m_bank->getPiece(i));
+    }
+
+    const auto progress = [this](int seconds, qreal length, const QString &preview)
+    {
+        emit optimizing(seconds, m_timeLimit, length, preview);
+    };
+
+    qreal length = 0;
+    if (!SparrowLayout::arrange(pieces, pageWidth(), m_timeLimit, m_stopGeneration, progress, length))
+    {
+        m_state = LayoutErrors::ProcessStoped;
+        emit Error(m_state);
+        return;
+    }
+
+    VLayoutPaper paper(qCeil(length), pageWidth());
+    paper.SetShift(m_shift);
+    paper.setLayoutGap(m_bank->getLayoutGap());
+    paper.setPaperIndex(0);
+    paper.setPieces(pieces.toList());
+    m_papers.append(paper);
+
+    // stopping early still gives a layout
+    m_state = LayoutErrors::NoError;
+    emit Finished();
 }
 
 //---------------------------------------------------------------------------------------------------------------------

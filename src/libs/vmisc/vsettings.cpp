@@ -104,6 +104,8 @@ const QString settingIgnoreFields           = QStringLiteral("layout/ignoreField
 const QString settingStripOptimization      = QStringLiteral("layout/stripOptimization");
 const QString settingMultiplier             = QStringLiteral("layout/multiplier");
 const QString settingTextAsPaths            = QStringLiteral("layout/textAsPaths");
+const QString settingLayoutEngine           = QStringLiteral("layout/engine");
+const QString settingLayoutTimeLimit        = QStringLiteral("layout/timeLimit");
 
 const QString settingTiledPDFMargins        = QStringLiteral("tiledPDF/margins");
 const QString settingTiledPDFPaperHeight    = QStringLiteral("tiledPDF/paperHeight");
@@ -644,6 +646,54 @@ bool VSettings::GetDefTextAsPaths()
 void VSettings::setTextAsPaths(bool value)
 {
     setValue(settingTextAsPaths, value);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief layoutEngine the engine that arranges the layout.
+/// @return layout engine.
+LayoutEngine VSettings::layoutEngine() const
+{
+    return static_cast<LayoutEngine>(value(settingLayoutEngine, static_cast<int>(defLayoutEngine())).toInt());
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief defLayoutEngine the default layout engine.
+/// @return Sparrow.
+LayoutEngine VSettings::defLayoutEngine()
+{
+    return LayoutEngine::Sparrow;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief setLayoutEngine stores the engine that arranges the layout.
+/// @param value layout engine.
+void VSettings::setLayoutEngine(LayoutEngine value)
+{
+    setValue(settingLayoutEngine, static_cast<int>(value));
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief layoutTimeLimit how long the Sparrow engine optimizes.
+/// @return seconds.
+int VSettings::layoutTimeLimit() const
+{
+    return value(settingLayoutTimeLimit, defLayoutTimeLimit()).toInt();
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief defLayoutTimeLimit the default Sparrow time limit.
+/// @return seconds.
+int VSettings::defLayoutTimeLimit()
+{
+    return 60;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief setLayoutTimeLimit stores how long the Sparrow engine optimizes.
+/// @param value seconds.
+void VSettings::setLayoutTimeLimit(int value)
+{
+    setValue(settingLayoutTimeLimit, value);
 }
 
 // settings for the tiled PDFs

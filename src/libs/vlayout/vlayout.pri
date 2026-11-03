@@ -20,7 +20,8 @@ HEADERS += \
     $$PWD/vlayoutpiece.h \
     $$PWD/vlayoutpiece_p.h \
     $$PWD/vlayoutpiecepath.h \
-    $$PWD/vlayoutpiecepath_p.h
+    $$PWD/vlayoutpiecepath_p.h \
+    $$PWD/sparrow_layout.h
 
 SOURCES += \
     $$PWD/vlayoutgenerator.cpp \
@@ -34,6 +35,7 @@ SOURCES += \
     $$PWD/vgraphicsfillitem.cpp \
     $$PWD/vabstractpiece.cpp \
     $$PWD/vlayoutpiece.cpp \
-    $$PWD/vlayoutpiecepath.cpp
+    $$PWD/vlayoutpiecepath.cpp \
+    $$PWD/sparrow_layout.cpp
 
 *msvc*:SOURCES += $$PWD/stable.cpp

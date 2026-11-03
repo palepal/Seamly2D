@@ -7303,6 +7303,8 @@ void MainWindow::exportLayoutAs()
                 lGenerator.setStripOptimization(settings->useStripOptimization());
                 lGenerator.SetMultiplier(settings->GetMultiplier());
                 lGenerator.setTextAsPaths(settings->GetTextAsPaths());
+                lGenerator.setEngine(settings->layoutEngine());
+                lGenerator.setTimeLimit(settings->layoutTimeLimit());
 
                 if (settings->GetIgnoreAllFields())
                 {
@@ -7375,6 +7377,8 @@ void MainWindow::exportLayoutAs()
             lGenerator.setStripOptimization(settings->useStripOptimization());
             lGenerator.SetMultiplier(settings->GetMultiplier());
             lGenerator.setTextAsPaths(settings->GetTextAsPaths());
+            lGenerator.setEngine(settings->layoutEngine());
+            lGenerator.setTimeLimit(settings->layoutTimeLimit());
             if (settings->GetIgnoreAllFields())
             {
                 lGenerator.SetPrinterFields(false, QMarginsF());

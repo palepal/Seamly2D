@@ -62,6 +62,7 @@
 
 #include "../vmisc/def.h"
 #include "../vlayout/vbank.h"
+#include "../vlayout/vlayoutdef.h"
 #include "vcommonsettings.h"
 
 template <class T> class QSharedPointer;
@@ -176,6 +177,14 @@ public:
     bool           GetTextAsPaths() const;
     static bool    GetDefTextAsPaths();
     void           setTextAsPaths(bool value);
+
+    LayoutEngine   layoutEngine() const;
+    static LayoutEngine defLayoutEngine();
+    void           setLayoutEngine(LayoutEngine value);
+
+    int            layoutTimeLimit() const;
+    static int     defLayoutTimeLimit();
+    void           setLayoutTimeLimit(int value);
 
     // settings for the tiled PDFs
     QMarginsF      GetTiledPDFMargins(const Unit &unit) const;
