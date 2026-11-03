@@ -6701,6 +6701,10 @@ Program jest dostarczany w stanie&quot;TAK JAK JEST&quot;bez ŻADNEJ GWARANCJI, 
         <translation>&amp;Ponów</translation>
     </message>
     <message>
+        <source>Close Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Draft Block:</source>
         <translation>Projekt bloku:</translation>
     </message>

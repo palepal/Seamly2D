@@ -6407,6 +6407,10 @@ Do you want to save your changes?</source>
         <translation>No se ha podido cargar la imagen.</translation>
     </message>
     <message>
+        <source>Close Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Draft Block:</source>
         <translation>Bolque de borrador:</translation>
     </message>

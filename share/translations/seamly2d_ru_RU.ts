@@ -6391,6 +6391,10 @@ Do you want to save your changes?</source>
         <translation>Не удалось загрузить изображение.</translation>
     </message>
     <message>
+        <source>Close Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Draft Block:</source>
         <translation>Блок Чертежа:</translation>
     </message>
