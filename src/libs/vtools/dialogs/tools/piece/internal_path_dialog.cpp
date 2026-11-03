@@ -90,7 +90,7 @@ InternalPathDialog::InternalPathDialog(const VContainer *data, quint32 toolId, Q
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/path.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/path.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();
@@ -299,7 +299,7 @@ void InternalPathDialog::showContextMenu(const QPoint &pos)
     //    actionNotch->setChecked(rowNode.isNotch());
     //}
 
-    QAction *actionDelete = menu->addAction(QIcon::fromTheme("edit-delete"), tr("Delete"));
+    QAction *actionDelete = menu->addAction(QIcon(":/tsvg/spectrum/Delete.tsvg"), tr("Delete"));
 
     QAction *selectedAction = menu->exec(ui->listWidget->viewport()->mapToGlobal(pos));
     if (selectedAction == nullptr)

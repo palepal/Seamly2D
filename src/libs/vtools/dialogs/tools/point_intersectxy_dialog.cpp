@@ -76,7 +76,7 @@ PointIntersectXYDialog::PointIntersectXYDialog(const VContainer *data, const qui
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/point_intersectxy_icon.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/point_intersectxy_icon.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();

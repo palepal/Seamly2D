@@ -18,7 +18,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../../../vmisc/share/resources/icon.qrc">
-    <normaloff>:/icon/32x32/labels.png</normaloff>:/icon/32x32/labels.png</iconset>
+    <normaloff>:/tsvg/seamly/labels.tsvg</normaloff>:/tsvg/seamly/labels.tsvg</iconset>
   </property>
   <property name="modal">
    <bool>true</bool>

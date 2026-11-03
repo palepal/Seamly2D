@@ -50,7 +50,7 @@ CalculatorDialog::CalculatorDialog(QWidget *parent)
 
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon("://icon/32x32/calculator.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/calculator.tsvg"));
 
     ui->calculatorLayout->addWidget(calc);
 }

@@ -92,7 +92,7 @@ DialogArcWithLength::DialogArcWithLength(const VContainer *data, const quint32 &
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/arc_with_length.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/arc_with_length.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();

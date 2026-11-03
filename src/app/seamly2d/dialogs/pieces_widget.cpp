@@ -203,13 +203,13 @@ void PiecesWidget::togglePiece(quint32 id)
                     selectedRow = row;
                     VPiece piece = pieces->value(id);
                     const bool inLayout = piece.isInLayout();
-                    inLayout ? item->setIcon(QIcon("://icon/32x32/visible_on.png"))
-                             : item->setIcon(QIcon("://icon/32x32/visible_off.png"));
+                    inLayout ? item->setIcon(QIcon(":/tsvg/spectrum/Visibility.tsvg"))
+                             : item->setIcon(QIcon(":/tsvg/spectrum/VisibilityOff.tsvg"));
                     {
                         QTableWidgetItem *item = ui->tableWidget->item(row, 1);
                         const bool locked = piece.isLocked();
-                        locked ? item->setIcon(QIcon("://icon/32x32/lock_on.png"))
-                               : item->setIcon(QIcon("://icon/32x32/lock_off.png"));
+                        locked ? item->setIcon(QIcon(":/tsvg/spectrum/Lock.tsvg"))
+                               : item->setIcon(QIcon(":/tsvg/spectrum/LockOpen.tsvg"));
                     }
 
                     {
@@ -369,7 +369,7 @@ void PiecesWidget::fillTable(const QHash<quint32, VPiece> *pieces)
         PieceTableWidgetItem *item = new PieceTableWidgetItem(m_data);
         item->setTextAlignment(Qt::AlignHCenter);
         item->setSizeHint(QSize(20, 20));
-        item->setIcon(piece.isInLayout() ? QIcon("://icon/32x32/visible_on.png") : QIcon("://icon/32x32/visible_off.png"));
+        item->setIcon(piece.isInLayout() ? QIcon(":/tsvg/spectrum/Visibility.tsvg") : QIcon(":/tsvg/spectrum/VisibilityOff.tsvg"));
         item->setData(Qt::UserRole, i.key());
         item->setFlags(item->flags() &= ~(Qt::ItemIsEditable)); // set the item non-editable (view only), and non-selectable
         item->setToolTip(tr("Toggle inclusion of pattern piece in layout"));
@@ -379,7 +379,7 @@ void PiecesWidget::fillTable(const QHash<quint32, VPiece> *pieces)
         item = new PieceTableWidgetItem(m_data);
         item->setTextAlignment(Qt::AlignHCenter);
         item->setSizeHint(QSize(20, 20));
-        item->setIcon(piece.isLocked() ? QIcon("://icon/32x32/lock_on.png") : QIcon("://icon/32x32/lock_off.png"));
+        item->setIcon(piece.isLocked() ? QIcon(":/tsvg/spectrum/Lock.tsvg") : QIcon(":/tsvg/spectrum/LockOpen.tsvg"));
         item->setData(Qt::UserRole, i.key());
         item->setFlags(item->flags() &= ~(Qt::ItemIsEditable));  // set the item non-editable (view only), and non-selectable
         item->setToolTip(tr("Toggle lock on pattern piece"));

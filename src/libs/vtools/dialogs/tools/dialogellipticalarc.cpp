@@ -101,7 +101,7 @@ DialogEllipticalArc::DialogEllipticalArc(const VContainer *data, const quint32 &
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/el_arc.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/el_arc.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();
@@ -659,7 +659,7 @@ void DialogEllipticalArc::collapseFormula(QPlainTextEdit *textEdit, QPushButton 
 
     setMaximumWidth(260);
     textEdit->setFixedHeight(height);
-    pushButton->setIcon(QIcon::fromTheme("go-down", QIcon(":/icons/win.icon.theme/16x16/actions/go-down.png")));
+    pushButton->setIcon(QIcon(":/tsvg/spectrum/ChevronDown.tsvg"));
     setUpdatesEnabled(false);
     repaint();
     setUpdatesEnabled(true);

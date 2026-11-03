@@ -168,7 +168,7 @@ IntersectCirclesTool *IntersectCirclesTool::Create(const quint32 _id, const QStr
         QMessageBox msgBox(qApp->getMainWindow());
         msgBox.setWindowTitle(tr("Point Intersect Circles"));
         msgBox.setWindowFlags(msgBox.windowFlags() & ~Qt::WindowContextHelpButtonHint);
-        msgBox.setWindowIcon(QIcon(":/toolicon/32x32/point_of_intersection_circles.png"));
+        msgBox.setWindowIcon(QIcon(":/tsvg/seamly/point_of_intersection_circles.tsvg"));
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setText(msg);
         msgBox.setStandardButtons(QMessageBox::Ok);

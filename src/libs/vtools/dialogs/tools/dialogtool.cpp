@@ -658,8 +658,7 @@ bool DialogTool::isEachPointNameUnique(QListWidget *listWidget)
 //---------------------------------------------------------------------------------------------------------------------
 QString DialogTool::DialogWarningIcon()
 {
-    const QIcon icon = QIcon::fromTheme("dialog-warning",
-                                  QIcon(":/icons/win.icon.theme/16x16/status/dialog-warning.png"));
+    const QIcon icon = QIcon(":/tsvg/spectrum/AlertTriangle.tsvg");
 
     const QPixmap pixmap = icon.pixmap(QSize(16, 16));
     QByteArray byteArray;
@@ -694,7 +693,7 @@ NodeInfo DialogTool::getNodeInfo(const VPieceNode &node, bool showNotch) const
 
         if (node.GetReverse())
         {
-            info.icon = "://icon/24x24/reverse.png";
+            info.icon = ":/tsvg/spectrum/Switch.tsvg";
         }
     }
     else if (showNotch && node.isNotch())
@@ -702,25 +701,25 @@ NodeInfo DialogTool::getNodeInfo(const VPieceNode &node, bool showNotch) const
         switch(node.getNotchType())
         {
             case NotchType::TNotch:
-                info.icon = "://icon/24x24/t_notch.png";
+                info.icon = ":/tsvg/seamly/t_notch.tsvg";
                 break;
             case NotchType::UNotch:
-                info.icon = "://icon/24x24/u_notch.png";
+                info.icon = ":/tsvg/seamly/u_notch.tsvg";
                 break;
             case NotchType::VInternal:
-                info.icon = "://icon/24x24/internal_v_notch.png";
+                info.icon = ":/tsvg/seamly/internal_v_notch.tsvg";
                 break;
             case NotchType::VExternal:
-                info.icon = "://icon/24x24/external_v_notch.png";
+                info.icon = ":/tsvg/seamly/external_v_notch.tsvg";
                 break;
             case NotchType::Castle:
-                info.icon = "://icon/24x24/castle_notch.png";
+                info.icon = ":/tsvg/seamly/castle_notch.tsvg";
                 break;
             case NotchType::Diamond:
-                info.icon = "://icon/24x24/diamond_notch.png";
+                info.icon = ":/tsvg/seamly/diamond_notch.tsvg";
                 break;
             case NotchType::Slit:
-                info.icon = "://icon/24x24/slit_notch.png";
+                info.icon = ":/tsvg/seamly/slit_notch.tsvg";
                 break;
             default:
                 break;
@@ -1061,16 +1060,14 @@ void DialogTool::DeployFormula(QPlainTextEdit *formula, QPushButton *buttonGrowL
         setMaximumWidth(QWIDGETSIZE_MAX);
         formula->setFixedHeight(DIALOG_MAX_FORMULA_HEIGHT);
         //Set icon from theme (internal for Windows system)
-        buttonGrowLength->setIcon(QIcon::fromTheme("go-up",
-                                                   QIcon(":/icons/win.icon.theme/16x16/actions/go-up.png")));
+        buttonGrowLength->setIcon(QIcon(":/tsvg/spectrum/ChevronUp.tsvg"));
     }
     else
     {
         setMaximumWidth(DIALOG_MIN_WIDTH);
         formula->setFixedHeight(formulaBaseHeight);
         //Set icon from theme (internal for Windows system)
-        buttonGrowLength->setIcon(QIcon::fromTheme("go-down",
-                                                   QIcon(":/icons/win.icon.theme/16x16/actions/go-down.png")));
+        buttonGrowLength->setIcon(QIcon(":/tsvg/spectrum/ChevronDown.tsvg"));
     }
 
     // I found that after change size of formula field, it was filed for angle formula, field for formula became black.
@@ -1646,6 +1643,6 @@ QString DialogTool::makeAngleTooltip() const
                                     .arg(tr("Angles are specified in degrees, i.e. a full circle equals 360 deg. "
                                             "Positive values for an  angle means counter-clockwise while a negative "
                                             "value means the clockwise direction. Zero degrees is at the 3 o'clock position."))
-                                    .arg(":/icon/64x64/rotation.png");
+                                    .arg(":/tsvg/seamly/rotation.tsvg");
     return toolTip;
 }

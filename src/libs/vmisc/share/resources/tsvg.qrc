@@ -1,84 +1,166 @@
 <RCC>
     <qresource prefix="/">
-        <file>tsvg/librecad/angle_3_points.tsvg</file>
-        <file>tsvg/librecad/angle_line_to_line.tsvg</file>
-        <file>tsvg/librecad/append_node.tsvg</file>
-        <file>tsvg/librecad/arc_2p_angle.tsvg</file>
-        <file>tsvg/librecad/arc_3_points.tsvg</file>
-        <file>tsvg/librecad/arc_center_point_angle.tsvg</file>
-        <file>tsvg/librecad/arc_center_point_anglelen.tsvg</file>
-        <file>tsvg/librecad/arc_center_point_chord.tsvg</file>
-        <file>tsvg/librecad/bevel.tsvg</file>
-        <file>tsvg/librecad/circle_tangential_2circles_point.tsvg</file>
-        <file>tsvg/librecad/circle_tangential_2points.tsvg</file>
-        <file>tsvg/librecad/create_block.tsvg</file>
-        <file>tsvg/librecad/create_equidistant_polyline.tsvg</file>
-        <file>tsvg/librecad/create_polyline_from_existing_segments.tsvg</file>
-        <file>tsvg/librecad/cross_circle.tsvg</file>
-        <file>tsvg/librecad/divide.tsvg</file>
-        <file>tsvg/librecad/draft.tsvg</file>
-        <file>tsvg/librecad/ellipse_arc_axis.tsvg</file>
-        <file>tsvg/librecad/insert_node.tsvg</file>
-        <file>tsvg/librecad/line.tsvg</file>
-        <file>tsvg/librecad/line_2p.tsvg</file>
-        <file>tsvg/librecad/line_angle.tsvg</file>
-        <file>tsvg/librecad/line_bisector.tsvg</file>
-        <file>tsvg/librecad/line_middle.tsvg</file>
-        <file>tsvg/librecad/line_ortho_rel.tsvg</file>
-        <file>tsvg/librecad/line_perpendicular.tsvg</file>
-        <file>tsvg/librecad/line_rel.tsvg</file>
-        <file>tsvg/librecad/line_tangent_cc.tsvg</file>
-        <file>tsvg/librecad/line_tangent_pc.tsvg</file>
-        <file>tsvg/librecad/line_vertical.tsvg</file>
-        <file>tsvg/librecad/mirror.tsvg</file>
-        <file>tsvg/librecad/modify.tsvg</file>
-        <file>tsvg/librecad/move_copy.tsvg</file>
-        <file>tsvg/librecad/page_landscape.tsvg</file>
-        <file>tsvg/librecad/page_portait.tsvg</file>
-        <file>tsvg/librecad/pick_coordinates.tsvg</file>
-        <file>tsvg/librecad/point_cross_circle.tsvg</file>
-        <file>tsvg/librecad/points.tsvg</file>
-        <file>tsvg/librecad/polygonal_area.tsvg</file>
-        <file>tsvg/librecad/polylines.tsvg</file>
-        <file>tsvg/librecad/polylines_polyline.tsvg</file>
-        <file>tsvg/librecad/rotate.tsvg</file>
-        <file>tsvg/librecad/set_rel_zero.tsvg</file>
-        <file>tsvg/librecad/snap_distance.tsvg</file>
-        <file>tsvg/librecad/snap_entity.tsvg</file>
-        <file>tsvg/librecad/snap_intersection.tsvg</file>
-        <file>tsvg/librecad/spline.tsvg</file>
-        <file>tsvg/librecad/spline_points.tsvg</file>
-        <file>tsvg/librecad/spline_points_add.tsvg</file>
-        <file>tsvg/librecad/spline_points_insert.tsvg</file>
-        <file>tsvg/librecad/zoom_auto.tsvg</file>
-        <file>tsvg/librecad/zoom_previous.tsvg</file>
-        <file>tsvg/librecad/zoom_window.tsvg</file>
-        <file>tsvg/spectrum/Add.tsvg</file>
+        <file>tsvg/seamly/along_line.tsvg</file>
+        <file>tsvg/seamly/anchor_point.tsvg</file>
+        <file>tsvg/seamly/arc.tsvg</file>
+        <file>tsvg/seamly/arc_cut.tsvg</file>
+        <file>tsvg/seamly/arc_intersect_axis.tsvg</file>
+        <file>tsvg/seamly/arc_with_length.tsvg</file>
+        <file>tsvg/seamly/arcs_toolbox.tsvg</file>
+        <file>tsvg/seamly/backup_files.tsvg</file>
+        <file>tsvg/seamly/bisector.tsvg</file>
+        <file>tsvg/seamly/body_scan.tsvg</file>
+        <file>tsvg/seamly/calculator.tsvg</file>
+        <file>tsvg/seamly/case.tsvg</file>
+        <file>tsvg/seamly/castle_notch.tsvg</file>
+        <file>tsvg/seamly/clipboard_icon.tsvg</file>
+        <file>tsvg/seamly/cubic_bezier.tsvg</file>
+        <file>tsvg/seamly/cubic_bezier_path.tsvg</file>
+        <file>tsvg/seamly/curve_control_points.tsvg</file>
+        <file>tsvg/seamly/curve_intersect_axis.tsvg</file>
+        <file>tsvg/seamly/details_toolbox.tsvg</file>
+        <file>tsvg/seamly/diamond_notch.tsvg</file>
+        <file>tsvg/seamly/document-save-as.tsvg</file>
+        <file>tsvg/seamly/draw.tsvg</file>
+        <file>tsvg/seamly/el_arc.tsvg</file>
+        <file>tsvg/seamly/equal.tsvg</file>
+        <file>tsvg/seamly/external_v_notch.tsvg</file>
+        <file>tsvg/seamly/fast_forward_left_to_right_arrow.tsvg</file>
+        <file>tsvg/seamly/fast_forward_right_to_left_arrow.tsvg</file>
+        <file>tsvg/seamly/fx.tsvg</file>
+        <file>tsvg/seamly/go-bottom.tsvg</file>
+        <file>tsvg/seamly/go-top.tsvg</file>
+        <file>tsvg/seamly/grainline.tsvg</file>
+        <file>tsvg/seamly/grainlines.tsvg</file>
+        <file>tsvg/seamly/height.tsvg</file>
+        <file>tsvg/seamly/individual_size_file.tsvg</file>
+        <file>tsvg/seamly/insert_fx.tsvg</file>
+        <file>tsvg/seamly/insert_nodes_icon.tsvg</file>
+        <file>tsvg/seamly/internal_v_notch.tsvg</file>
+        <file>tsvg/seamly/intersect.tsvg</file>
+        <file>tsvg/seamly/intersection_curves.tsvg</file>
+        <file>tsvg/seamly/kontur.tsvg</file>
+        <file>tsvg/seamly/labels.tsvg</file>
+        <file>tsvg/seamly/layout.tsvg</file>
+        <file>tsvg/seamly/layout_settings.tsvg</file>
+        <file>tsvg/seamly/layout_toolbox.tsvg</file>
+        <file>tsvg/seamly/left_to_right_arrow.tsvg</file>
+        <file>tsvg/seamly/line.tsvg</file>
+        <file>tsvg/seamly/line_intersect_axis.tsvg</file>
+        <file>tsvg/seamly/list-move.tsvg</file>
+        <file>tsvg/seamly/mannequin.tsvg</file>
+        <file>tsvg/seamly/measurement.tsvg</file>
+        <file>tsvg/seamly/midpoint.tsvg</file>
+        <file>tsvg/seamly/mirror_by_axis.tsvg</file>
+        <file>tsvg/seamly/mirror_by_line.tsvg</file>
+        <file>tsvg/seamly/move.tsvg</file>
+        <file>tsvg/seamly/multisize_size_file.tsvg</file>
+        <file>tsvg/seamly/new_detail.tsvg</file>
+        <file>tsvg/seamly/new_draw.tsvg</file>
+        <file>tsvg/seamly/new_piece.tsvg</file>
+        <file>tsvg/seamly/normal.tsvg</file>
+        <file>tsvg/seamly/notches.tsvg</file>
+        <file>tsvg/seamly/option_draw.tsvg</file>
+        <file>tsvg/seamly/origin.tsvg</file>
+        <file>tsvg/seamly/path.tsvg</file>
+        <file>tsvg/seamly/paths.tsvg</file>
+        <file>tsvg/seamly/pattern_config.tsvg</file>
+        <file>tsvg/seamly/pattern_label.tsvg</file>
+        <file>tsvg/seamly/patternpiece_toolbox.tsvg</file>
+        <file>tsvg/seamly/pdf_icon.tsvg</file>
+        <file>tsvg/seamly/piece_label.tsvg</file>
+        <file>tsvg/seamly/point_basepoint_icon.tsvg</file>
+        <file>tsvg/seamly/point_from_arc_and_tangent.tsvg</file>
+        <file>tsvg/seamly/point_from_circle_and_tangent.tsvg</file>
+        <file>tsvg/seamly/point_intersect_arc_line.tsvg</file>
+        <file>tsvg/seamly/point_intersectxy_icon.tsvg</file>
+        <file>tsvg/seamly/point_of_intersection_arcs.tsvg</file>
+        <file>tsvg/seamly/point_of_intersection_circles.tsvg</file>
+        <file>tsvg/seamly/points_toolbox.tsvg</file>
+        <file>tsvg/seamly/regex.tsvg</file>
+        <file>tsvg/seamly/right_to_left_arrow.tsvg</file>
+        <file>tsvg/seamly/roll.tsvg</file>
+        <file>tsvg/seamly/rotation.tsvg</file>
+        <file>tsvg/seamly/seam_allowance.tsvg</file>
+        <file>tsvg/seamly/seamly2d_file.tsvg</file>
+        <file>tsvg/seamly/segment.tsvg</file>
+        <file>tsvg/seamly/shoulder.tsvg</file>
+        <file>tsvg/seamly/slit_notch.tsvg</file>
+        <file>tsvg/seamly/spline.tsvg</file>
+        <file>tsvg/seamly/splinePath.tsvg</file>
+        <file>tsvg/seamly/splinePath_cut_point.tsvg</file>
+        <file>tsvg/seamly/spline_cut_point.tsvg</file>
+        <file>tsvg/seamly/spline_toolboxs.tsvg</file>
+        <file>tsvg/seamly/t_notch.tsvg</file>
+        <file>tsvg/seamly/template_size_file.tsvg</file>
+        <file>tsvg/seamly/triangle.tsvg</file>
+        <file>tsvg/seamly/true_darts.tsvg</file>
+        <file>tsvg/seamly/u_notch.tsvg</file>
+        <file>tsvg/seamly/union.tsvg</file>
+        <file>tsvg/seamly/units_cm_on.tsvg</file>
+        <file>tsvg/seamly/units_in_on.tsvg</file>
+        <file>tsvg/seamly/units_mm_on.tsvg</file>
+        <file>tsvg/seamly/units_px_on.tsvg</file>
+        <file>tsvg/seamly/wireframe.tsvg</file>
+        <file>tsvg/seamly/word.tsvg</file>
+        <file>tsvg/seamly/zoom_100_percent.tsvg</file>
+        <file>tsvg/seamly/zoom_to_area.tsvg</file>
+        <file>tsvg/seamly/zoom_to_object.tsvg</file>
+        <file>tsvg/seamly/zoom_to_previous.tsvg</file>
+        <file>tsvg/seamly/zoom_to_selection.tsvg</file>
+        <file>tsvg/spectrum/AddCircle.tsvg</file>
+        <file>tsvg/spectrum/AlertTriangle.tsvg</file>
+        <file>tsvg/spectrum/AlignCenter.tsvg</file>
         <file>tsvg/spectrum/ChevronDoubleDown.tsvg</file>
         <file>tsvg/spectrum/ChevronDoubleRight.tsvg</file>
+        <file>tsvg/spectrum/ChevronDown.tsvg</file>
+        <file>tsvg/spectrum/ChevronLeft.tsvg</file>
+        <file>tsvg/spectrum/ChevronRight.tsvg</file>
+        <file>tsvg/spectrum/ChevronUp.tsvg</file>
+        <file>tsvg/spectrum/CloseCircle.tsvg</file>
         <file>tsvg/spectrum/Delete.tsvg</file>
-        <file>tsvg/spectrum/Draw.tsvg</file>
+        <file>tsvg/spectrum/DeviceDesktop.tsvg</file>
         <file>tsvg/spectrum/Edit.tsvg</file>
-        <file>tsvg/spectrum/Export.tsvg</file>
+        <file>tsvg/spectrum/ExportTo.tsvg</file>
+        <file>tsvg/spectrum/Eyedropper.tsvg</file>
+        <file>tsvg/spectrum/File.tsvg</file>
         <file>tsvg/spectrum/FileAdd.tsvg</file>
+        <file>tsvg/spectrum/Filter.tsvg</file>
+        <file>tsvg/spectrum/Folder.tsvg</file>
         <file>tsvg/spectrum/FolderOpen.tsvg</file>
+        <file>tsvg/spectrum/FullScreen.tsvg</file>
         <file>tsvg/spectrum/Group.tsvg</file>
         <file>tsvg/spectrum/Hand.tsvg</file>
+        <file>tsvg/spectrum/History.tsvg</file>
         <file>tsvg/spectrum/Image.tsvg</file>
+        <file>tsvg/spectrum/ImageAdd.tsvg</file>
+        <file>tsvg/spectrum/InfoCircle.tsvg</file>
+        <file>tsvg/spectrum/Invert.tsvg</file>
+        <file>tsvg/spectrum/Keyboard.tsvg</file>
+        <file>tsvg/spectrum/Leave.tsvg</file>
+        <file>tsvg/spectrum/Line.tsvg</file>
         <file>tsvg/spectrum/Lock.tsvg</file>
         <file>tsvg/spectrum/LockOpen.tsvg</file>
-        <file>tsvg/spectrum/Maximize.tsvg</file>
+        <file>tsvg/spectrum/OrientationLandscape.tsvg</file>
+        <file>tsvg/spectrum/OrientationPortrait.tsvg</file>
         <file>tsvg/spectrum/PenBrush.tsvg</file>
+        <file>tsvg/spectrum/Preview.tsvg</file>
         <file>tsvg/spectrum/Print.tsvg</file>
+        <file>tsvg/spectrum/Properties.tsvg</file>
+        <file>tsvg/spectrum/Redo.tsvg</file>
+        <file>tsvg/spectrum/Refresh.tsvg</file>
         <file>tsvg/spectrum/RemoveCircle.tsvg</file>
+        <file>tsvg/spectrum/RotateCW.tsvg</file>
         <file>tsvg/spectrum/SaveFloppy.tsvg</file>
         <file>tsvg/spectrum/Search.tsvg</file>
         <file>tsvg/spectrum/Select.tsvg</file>
-        <file>tsvg/spectrum/SelectRectangle.tsvg</file>
-        <file>tsvg/spectrum/Target.tsvg</file>
-        <file>tsvg/spectrum/Text.tsvg</file>
+        <file>tsvg/spectrum/Settings.tsvg</file>
+        <file>tsvg/spectrum/Switch.tsvg</file>
+        <file>tsvg/spectrum/Table.tsvg</file>
+        <file>tsvg/spectrum/TextDecrease.tsvg</file>
         <file>tsvg/spectrum/TextIncrease.tsvg</file>
-        <file>tsvg/spectrum/TextSize.tsvg</file>
+        <file>tsvg/spectrum/TransformGeneric.tsvg</file>
+        <file>tsvg/spectrum/Undo.tsvg</file>
         <file>tsvg/spectrum/Visibility.tsvg</file>
         <file>tsvg/spectrum/VisibilityOff.tsvg</file>
         <file>tsvg/spectrum/ZoomIn.tsvg</file>

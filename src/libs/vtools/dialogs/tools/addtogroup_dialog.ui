@@ -89,7 +89,7 @@
        </property>
        <property name="icon">
         <iconset resource="../../../vmisc/share/resources/icon.qrc">
-         <normaloff>:/icon/32x32/add.png</normaloff>:/icon/32x32/add.png</iconset>
+         <normaloff>:/tsvg/spectrum/AddCircle.tsvg</normaloff>:/tsvg/spectrum/AddCircle.tsvg</iconset>
        </property>
       </widget>
      </item>

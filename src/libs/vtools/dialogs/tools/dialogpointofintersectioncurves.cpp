@@ -70,7 +70,7 @@ DialogPointOfIntersectionCurves::DialogPointOfIntersectionCurves(const VContaine
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/intersection_curves.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/intersection_curves.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();

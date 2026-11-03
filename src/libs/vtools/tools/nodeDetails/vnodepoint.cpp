@@ -329,12 +329,12 @@ void VNodePoint::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
         // Create a state-aware icon
         QIcon checkIcon;
         // Icons used when the item is checked or NOT checked
-        checkIcon.addFile("://icon/32x32/visible_off.png", QSize(), QIcon::Normal, QIcon::Off);
-        checkIcon.addFile("://icon/32x32/visible_on.png", QSize(), QIcon::Normal, QIcon::On);
+        checkIcon.addFile(":/tsvg/spectrum/VisibilityOff.tsvg", QSize(), QIcon::Normal, QIcon::Off);
+        checkIcon.addFile(":/tsvg/spectrum/Visibility.tsvg", QSize(), QIcon::Normal, QIcon::On);
 
         // Icons used when the item IS disabled
-        checkIcon.addFile("://icon/32x32/visible_hover.png", QSize(), QIcon::Disabled, QIcon::On);
-        checkIcon.addFile("://icon/32x32/visible_hover.png", QSize(), QIcon::Disabled, QIcon::Off);
+        checkIcon.addFile(":/tsvg/spectrum/Visibility.tsvg", QSize(), QIcon::Disabled, QIcon::On);
+        checkIcon.addFile(":/tsvg/spectrum/Visibility.tsvg", QSize(), QIcon::Disabled, QIcon::Off);
 
         QMenu menu;
 
@@ -449,13 +449,13 @@ void VNodePoint::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
         QAction *actionCastle    = nullptr;
         QAction *actionDiamond   = nullptr;
         QMenu *notchTypeMenu = notchMenu->addMenu(tr("Type"));
-        actionSlit      = notchTypeMenu->addAction(QIcon("://icon/24x24/slit_notch.png"),       tr("Slit") + QStringLiteral("\tShift + S"));
-        actionTNotch    = notchTypeMenu->addAction(QIcon("://icon/24x24/t_notch.png"),          tr("TNotch") + QStringLiteral("\tShift + T"));
-        actionUNotch    = notchTypeMenu->addAction(QIcon("://icon/24x24/u_notch.png"),          tr("UNotch") + QStringLiteral("\tShift + U"));
-        actionVInternal = notchTypeMenu->addAction(QIcon("://icon/24x24/internal_v_notch.png"), tr("VInternal") + QStringLiteral("\tShift + I"));
-        actionVExternal = notchTypeMenu->addAction(QIcon("://icon/24x24/external_v_notch.png"), tr("VExternal") + QStringLiteral("\tShift + E"));
-        actionCastle    = notchTypeMenu->addAction(QIcon("://icon/24x24/castle_notch.png"),     tr("Castle") + QStringLiteral("\tShift + C"));
-        actionDiamond   = notchTypeMenu->addAction(QIcon("://icon/24x24/diamond_notch.png"),    tr("Diamond") + QStringLiteral("\tShift + D"));
+        actionSlit      = notchTypeMenu->addAction(QIcon(":/tsvg/seamly/slit_notch.tsvg"),       tr("Slit") + QStringLiteral("\tShift + S"));
+        actionTNotch    = notchTypeMenu->addAction(QIcon(":/tsvg/seamly/t_notch.tsvg"),          tr("TNotch") + QStringLiteral("\tShift + T"));
+        actionUNotch    = notchTypeMenu->addAction(QIcon(":/tsvg/seamly/u_notch.tsvg"),          tr("UNotch") + QStringLiteral("\tShift + U"));
+        actionVInternal = notchTypeMenu->addAction(QIcon(":/tsvg/seamly/internal_v_notch.tsvg"), tr("VInternal") + QStringLiteral("\tShift + I"));
+        actionVExternal = notchTypeMenu->addAction(QIcon(":/tsvg/seamly/external_v_notch.tsvg"), tr("VExternal") + QStringLiteral("\tShift + E"));
+        actionCastle    = notchTypeMenu->addAction(QIcon(":/tsvg/seamly/castle_notch.tsvg"),     tr("Castle") + QStringLiteral("\tShift + C"));
+        actionDiamond   = notchTypeMenu->addAction(QIcon(":/tsvg/seamly/diamond_notch.tsvg"),    tr("Diamond") + QStringLiteral("\tShift + D"));
 
         //Setup Notch subtype submenu
         QAction *actionStraightforward = nullptr;
@@ -483,7 +483,7 @@ void VNodePoint::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
         QAction *actionExcludeNode = menu.addAction(QIcon(), tr("Excluded"));
 
         //Setup Delete Node menu
-        QAction *actionDeleteNode = menu.addAction(QIcon(QIcon::fromTheme("edit-delete")), tr("Delete"));
+        QAction *actionDeleteNode = menu.addAction(QIcon(QIcon(":/tsvg/spectrum/Delete.tsvg")), tr("Delete"));
 
         if (piece.isLocked())
         {

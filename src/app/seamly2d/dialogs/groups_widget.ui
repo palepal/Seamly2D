@@ -143,7 +143,7 @@
        </property>
        <property name="icon">
         <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-         <normaloff>:/tsvg/spectrum/Add.tsvg</normaloff>:/tsvg/spectrum/Add.tsvg</iconset>
+         <normaloff>:/tsvg/spectrum/AddCircle.tsvg</normaloff>:/tsvg/spectrum/AddCircle.tsvg</iconset>
        </property>
        <property name="checkable">
         <bool>true</bool>

@@ -165,7 +165,7 @@
             </property>
             <property name="icon">
              <iconset resource="../../../vmisc/share/resources/icon.qrc">
-              <normaloff>:/icon/24x24/fx.png</normaloff>:/icon/24x24/fx.png</iconset>
+              <normaloff>:/tsvg/seamly/fx.tsvg</normaloff>:/tsvg/seamly/fx.tsvg</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -323,7 +323,7 @@
             </property>
             <property name="icon">
              <iconset resource="../../../vmisc/share/resources/icon.qrc">
-              <normaloff>:/icon/24x24/fx.png</normaloff>:/icon/24x24/fx.png</iconset>
+              <normaloff>:/tsvg/seamly/fx.tsvg</normaloff>:/tsvg/seamly/fx.tsvg</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -481,7 +481,7 @@
             </property>
             <property name="icon">
              <iconset resource="../../../vmisc/share/resources/icon.qrc">
-              <normaloff>:/icon/24x24/fx.png</normaloff>:/icon/24x24/fx.png</iconset>
+              <normaloff>:/tsvg/seamly/fx.tsvg</normaloff>:/tsvg/seamly/fx.tsvg</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -636,7 +636,7 @@
             </property>
             <property name="icon">
              <iconset resource="../../../vmisc/share/resources/icon.qrc">
-              <normaloff>:/icon/24x24/fx.png</normaloff>:/icon/24x24/fx.png</iconset>
+              <normaloff>:/tsvg/seamly/fx.tsvg</normaloff>:/tsvg/seamly/fx.tsvg</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -791,7 +791,7 @@
             </property>
             <property name="icon">
              <iconset resource="../../../vmisc/share/resources/icon.qrc">
-              <normaloff>:/icon/24x24/fx.png</normaloff>:/icon/24x24/fx.png</iconset>
+              <normaloff>:/tsvg/seamly/fx.tsvg</normaloff>:/tsvg/seamly/fx.tsvg</iconset>
             </property>
             <property name="iconSize">
              <size>

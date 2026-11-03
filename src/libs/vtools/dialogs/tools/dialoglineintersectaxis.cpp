@@ -88,7 +88,7 @@ DialogLineIntersectAxis::DialogLineIntersectAxis(const VContainer *data, const q
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/line_intersect_axis.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/line_intersect_axis.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();

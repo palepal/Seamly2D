@@ -82,7 +82,7 @@ DialogHeight::DialogHeight(const VContainer *data, const quint32 &toolId, QWidge
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/height.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/height.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();

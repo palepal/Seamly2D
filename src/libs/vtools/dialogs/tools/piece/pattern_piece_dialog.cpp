@@ -147,7 +147,7 @@ PatternPieceDialog::PatternPieceDialog(const VContainer *data, const quint32 &to
 
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/new_piece.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/new_piece.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();
@@ -850,12 +850,12 @@ void PatternPieceDialog::showMainPathContextMenu(const QPoint &pos)
     // Create a state-aware icon
     QIcon checkIcon;
     // Icons used when the item is checked or NOT checked
-    checkIcon.addFile("://icon/32x32/visible_off.png", QSize(), QIcon::Normal, QIcon::Off);
-    checkIcon.addFile("://icon/32x32/visible_on.png", QSize(), QIcon::Normal, QIcon::On);
+    checkIcon.addFile(":/tsvg/spectrum/VisibilityOff.tsvg", QSize(), QIcon::Normal, QIcon::Off);
+    checkIcon.addFile(":/tsvg/spectrum/Visibility.tsvg", QSize(), QIcon::Normal, QIcon::On);
 
     // Icons used when the item IS disabled
-    checkIcon.addFile("://icon/32x32/visible_hover.png", QSize(), QIcon::Disabled, QIcon::On);
-    checkIcon.addFile("://icon/32x32/visible_hover.png", QSize(), QIcon::Disabled, QIcon::Off);
+    checkIcon.addFile(":/tsvg/spectrum/Visibility.tsvg", QSize(), QIcon::Disabled, QIcon::On);
+    checkIcon.addFile(":/tsvg/spectrum/Visibility.tsvg", QSize(), QIcon::Disabled, QIcon::Off);
 
 
     // workaround for https://bugreports.qt.io/browse/QTBUG-97559: assign parent to QMenu
@@ -914,13 +914,13 @@ void PatternPieceDialog::showMainPathContextMenu(const QPoint &pos)
         notchMenu->setEnabled(rowNode.isNotch());
 
         QMenu *notchTypeMenu = notchMenu->addMenu(tr("Type"));
-        actionSlit      = notchTypeMenu->addAction(QIcon("://icon/24x24/slit_notch.png"),       tr("Slit") + QStringLiteral("\tShift + S"));
-        actionTNotch    = notchTypeMenu->addAction(QIcon("://icon/24x24/t_notch.png"),          tr("TNotch") + QStringLiteral("\tShift + T"));
-        actionUNotch    = notchTypeMenu->addAction(QIcon("://icon/24x24/u_notch.png"),          tr("UNotch") + QStringLiteral("\tShift + U"));
-        actionVInternal = notchTypeMenu->addAction(QIcon("://icon/24x24/internal_v_notch.png"), tr("VInternal") + QStringLiteral("\tShift + I"));
-        actionVExternal = notchTypeMenu->addAction(QIcon("://icon/24x24/external_v_notch.png"), tr("VExternal") + QStringLiteral("\tShift + E"));
-        actionCastle    = notchTypeMenu->addAction(QIcon("://icon/24x24/castle_notch.png"),     tr("Castle") + QStringLiteral("\tShift + C"));
-        actionDiamond   = notchTypeMenu->addAction(QIcon("://icon/24x24/diamond_notch.png"),    tr("Diamond") + QStringLiteral("\tShift + D"));
+        actionSlit      = notchTypeMenu->addAction(QIcon(":/tsvg/seamly/slit_notch.tsvg"),       tr("Slit") + QStringLiteral("\tShift + S"));
+        actionTNotch    = notchTypeMenu->addAction(QIcon(":/tsvg/seamly/t_notch.tsvg"),          tr("TNotch") + QStringLiteral("\tShift + T"));
+        actionUNotch    = notchTypeMenu->addAction(QIcon(":/tsvg/seamly/u_notch.tsvg"),          tr("UNotch") + QStringLiteral("\tShift + U"));
+        actionVInternal = notchTypeMenu->addAction(QIcon(":/tsvg/seamly/internal_v_notch.tsvg"), tr("VInternal") + QStringLiteral("\tShift + I"));
+        actionVExternal = notchTypeMenu->addAction(QIcon(":/tsvg/seamly/external_v_notch.tsvg"), tr("VExternal") + QStringLiteral("\tShift + E"));
+        actionCastle    = notchTypeMenu->addAction(QIcon(":/tsvg/seamly/castle_notch.tsvg"),     tr("Castle") + QStringLiteral("\tShift + C"));
+        actionDiamond   = notchTypeMenu->addAction(QIcon(":/tsvg/seamly/diamond_notch.tsvg"),    tr("Diamond") + QStringLiteral("\tShift + D"));
 
         QMenu *notchSubtypeMenu = notchMenu->addMenu(tr("Subtype"));
         actionStraightforward = notchSubtypeMenu->addAction(QIcon(), tr("Straightforward") + QStringLiteral("\tShift + F"));
@@ -943,7 +943,7 @@ void PatternPieceDialog::showMainPathContextMenu(const QPoint &pos)
     actionExcluded->setCheckable(true);
     actionExcluded->setChecked(rowNode.isExcluded());
 
-    QAction *actionDelete = menu->addAction(QIcon::fromTheme("edit-delete"), tr("Delete") + QStringLiteral("\tDel"));
+    QAction *actionDelete = menu->addAction(QIcon(":/tsvg/spectrum/Delete.tsvg"), tr("Delete") + QStringLiteral("\tDel"));
 
     QAction *selectedAction = menu->exec(ui->mainPath_ListWidget->viewport()->mapToGlobal(pos));
     if (selectedAction == nullptr)
@@ -1124,7 +1124,7 @@ void PatternPieceDialog::showCustomSAContextMenu(const QPoint &pos)
 
     // workaround for https://bugreports.qt.io/browse/QTBUG-97559: assign parent to QMenu
     QScopedPointer<QMenu> menu(new QMenu(ui->customSeamAllowance_ListWidget));
-    QAction *actionOption = menu->addAction(QIcon::fromTheme("preferences-other"), tr("Options"));
+    QAction *actionOption = menu->addAction(QIcon(":/tsvg/spectrum/Settings.tsvg"), tr("Options"));
 
     QListWidgetItem *rowItem = ui->customSeamAllowance_ListWidget->item(row);
     SCASSERT(rowItem != nullptr);
@@ -1134,7 +1134,7 @@ void PatternPieceDialog::showCustomSAContextMenu(const QPoint &pos)
     actionReverse->setCheckable(true);
     actionReverse->setChecked(record.reverse);
 
-    QAction *actionDelete = menu->addAction(QIcon::fromTheme("edit-delete"), tr("Delete"));
+    QAction *actionDelete = menu->addAction(QIcon(":/tsvg/spectrum/Delete.tsvg"), tr("Delete"));
 
     QAction *selectedAction = menu->exec(ui->customSeamAllowance_ListWidget->viewport()->mapToGlobal(pos));
     if (selectedAction == actionDelete)
@@ -1175,8 +1175,8 @@ void PatternPieceDialog::showInternalPathsContextMenu(const QPoint &pos)
 
     // workaround for https://bugreports.qt.io/browse/QTBUG-97559: assign parent to QMenu
     QScopedPointer<QMenu> menu(new QMenu(ui->internalPaths_ListWidget));
-    QAction *actionOption = menu->addAction(QIcon::fromTheme("preferences-other"), tr("Options"));
-    QAction *actionDelete = menu->addAction(QIcon::fromTheme("edit-delete"), tr("Delete"));
+    QAction *actionOption = menu->addAction(QIcon(":/tsvg/spectrum/Settings.tsvg"), tr("Options"));
+    QAction *actionDelete = menu->addAction(QIcon(":/tsvg/spectrum/Delete.tsvg"), tr("Delete"));
 
     QAction *selectedAction = menu->exec(ui->internalPaths_ListWidget->viewport()->mapToGlobal(pos));
     if (selectedAction == actionDelete)
@@ -1210,7 +1210,7 @@ void PatternPieceDialog::showAnchorsContextMenu(const QPoint &pos)
 
     // workaround for https://bugreports.qt.io/browse/QTBUG-97559: assign parent to QMenu
     QScopedPointer<QMenu> menu(new QMenu(ui->anchorPoints_ListWidget));
-    QAction *actionDelete = menu->addAction(QIcon::fromTheme("edit-delete"), tr("Delete"));
+    QAction *actionDelete = menu->addAction(QIcon(":/tsvg/spectrum/Delete.tsvg"), tr("Delete"));
 
     QAction *selectedAction = menu->exec(ui->anchorPoints_ListWidget->viewport()->mapToGlobal(pos));
     if (selectedAction == actionDelete)
@@ -2009,7 +2009,7 @@ void PatternPieceDialog::updatePieceLabelValues()
     if (!flagPieceLabelAngle || !(flagPieceLabelFormula || flagPieceLabelAnchor))
     {
         setErrorText(TabOrder::Labels, tr("Labels"));
-        QIcon icon(":/icons/win.icon.theme/16x16/status/dialog-warning.png");
+        QIcon icon(":/tsvg/spectrum/AlertTriangle.tsvg");
         ui->labels_TabWidget->setTabIcon(ui->labels_TabWidget->indexOf(ui->pieceLabel_Tab), icon);
     }
     else
@@ -2094,7 +2094,7 @@ void PatternPieceDialog::updatePatternLabelValues()
     if (!flagPatternLabelAngle || !(flagPatternLabelFormula || flagPatternLabelAnchor))
     {
         setErrorText(TabOrder::Labels, tr("Labels"));
-        QIcon icon(":/icons/win.icon.theme/16x16/status/dialog-warning.png");
+        QIcon icon(":/tsvg/spectrum/AlertTriangle.tsvg");
         ui->labels_TabWidget->setTabIcon(ui->labels_TabWidget->indexOf(ui->patternLabel_Tab), icon);
     }
     else
@@ -2356,13 +2356,13 @@ void PatternPieceDialog::resetLabelsWarning()
     if (flagPieceLabelAngle && (flagPieceLabelFormula || flagPieceLabelAnchor))
     {
         clearErrorText(TabOrder::Labels, tr("Labels "));
-        QIcon icon(":/icon/32x32/piece_label.png");
+        QIcon icon(":/tsvg/seamly/piece_label.tsvg");
         ui->labels_TabWidget->setTabIcon(ui->labels_TabWidget->indexOf(ui->pieceLabel_Tab), icon);
     }
     if (flagPatternLabelAngle && (flagPatternLabelFormula || flagPatternLabelAnchor))
     {
         clearErrorText(TabOrder::Labels, tr("Labels "));
-        QIcon icon(":/icon/32x32/pattern_label.png");
+        QIcon icon(":/tsvg/seamly/pattern_label.tsvg");
         ui->labels_TabWidget->setTabIcon(ui->labels_TabWidget->indexOf(ui->patternLabel_Tab), icon);
     }
 }
@@ -2540,7 +2540,7 @@ void PatternPieceDialog::pieceLabelAnchorChanged()
         if (flagPatternLabelAnchor)
         {
             clearErrorText(TabOrder::Labels, tr("Labels "));
-            QIcon icon(":/icon/32x32/piece_label.png");
+            QIcon icon(":/tsvg/seamly/piece_label.tsvg");
             ui->labels_TabWidget->setTabIcon(ui->labels_TabWidget->indexOf(ui->pieceLabel_Tab), icon);
         }
     }
@@ -2550,7 +2550,7 @@ void PatternPieceDialog::pieceLabelAnchorChanged()
         topAnchorId == NULL_ID && bottomAnchorId == NULL_ID ? color = okColor : color = errorColor;
 
         setErrorText(TabOrder::Labels, tr("Labels"));
-        QIcon icon(":/icons/win.icon.theme/16x16/status/dialog-warning.png");
+        QIcon icon(":/tsvg/spectrum/AlertTriangle.tsvg");
         ui->labels_TabWidget->setTabIcon(ui->labels_TabWidget->indexOf(ui->pieceLabel_Tab), icon);
     }
     updatePieceLabelValues();
@@ -2573,7 +2573,7 @@ void PatternPieceDialog::patternLabelAnchorChanged()
         if (flagPieceLabelAnchor)
         {
             clearErrorText(TabOrder::Labels, tr("Labels "));
-            QIcon icon(":/icon/32x32/pattern_label.png");
+            QIcon icon(":/tsvg/seamly/pattern_label.tsvg");
             ui->labels_TabWidget->setTabIcon(ui->labels_TabWidget->indexOf(ui->patternLabel_Tab), icon);
         }
     }
@@ -2583,7 +2583,7 @@ void PatternPieceDialog::patternLabelAnchorChanged()
         topAnchorId == NULL_ID && bottomAnchorId == NULL_ID ? color = okColor : color = errorColor;
 
         setErrorText(TabOrder::Labels, tr("Labels"));
-        QIcon icon(":/icons/win.icon.theme/16x16/status/dialog-warning.png");
+        QIcon icon(":/tsvg/spectrum/AlertTriangle.tsvg");
         ui->labels_TabWidget->setTabIcon(ui->labels_TabWidget->indexOf(ui->patternLabel_Tab), icon);
     }
     updatePatternLabelValues();

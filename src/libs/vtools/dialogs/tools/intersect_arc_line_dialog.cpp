@@ -83,7 +83,7 @@ IntersectArcLineDialog::IntersectArcLineDialog(const VContainer *data, const qui
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/point_intersect_arc_line.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/point_intersect_arc_line.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();

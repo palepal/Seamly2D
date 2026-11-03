@@ -109,7 +109,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="../../../libs/vmisc/share/resources/icon.qrc">:/icon/body_scan.png</pixmap>
+                 <pixmap resource="../../../libs/vmisc/share/resources/icon.qrc">:/tsvg/seamly/body_scan.tsvg</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>false</bool>

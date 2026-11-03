@@ -197,7 +197,7 @@ void SeamlyMePreferencesPathPage::initializeTable()
 
     {
         QTableWidgetItem *item = new QTableWidgetItem(tr("My Individual Measurements"));
-        item->setIcon(QIcon("://icon/32x32/individual_size_file.png"));
+        item->setIcon(QIcon(":/tsvg/seamly/individual_size_file.tsvg"));
         ui->pathTable->setItem(0, 0, item);
         item = new QTableWidgetItem(settings->getIndividualSizePath());
         item->setToolTip(settings->getIndividualSizePath());
@@ -206,7 +206,7 @@ void SeamlyMePreferencesPathPage::initializeTable()
 
     {
         QTableWidgetItem *item = new QTableWidgetItem(tr("My Multisize Measurements"));
-        item->setIcon(QIcon("://icon/32x32/multisize_size_file.png"));
+        item->setIcon(QIcon(":/tsvg/seamly/multisize_size_file.tsvg"));
         ui->pathTable->setItem(1, 0, item);
         item = new QTableWidgetItem(settings->getMultisizePath());
         item->setToolTip(settings->getMultisizePath());
@@ -215,7 +215,7 @@ void SeamlyMePreferencesPathPage::initializeTable()
 
     {
         QTableWidgetItem *item = new QTableWidgetItem(tr("My Templates"));
-        item->setIcon(QIcon("://icon/32x32/template_size_file.png"));
+        item->setIcon(QIcon(":/tsvg/seamly/template_size_file.tsvg"));
         ui->pathTable->setItem(2, 0, item);
         item = new QTableWidgetItem(settings->getTemplatePath());
         item->setToolTip(settings->getTemplatePath());
@@ -224,7 +224,7 @@ void SeamlyMePreferencesPathPage::initializeTable()
 
     {
         QTableWidgetItem *item = new QTableWidgetItem(tr("My Body Scans"));
-        item->setIcon(QIcon("://icon/32x32/body_scan.png"));
+        item->setIcon(QIcon(":/tsvg/seamly/body_scan.tsvg"));
         ui->pathTable->setItem(3, 0, item);
         item = new QTableWidgetItem(settings->getBodyScansPath());
         item->setToolTip(settings->getBodyScansPath());

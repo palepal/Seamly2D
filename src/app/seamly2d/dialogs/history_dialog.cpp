@@ -185,7 +185,7 @@ void HistoryDialog::cellClicked(int row, int column)
         // set new cursor row icon
         m_cursorRow = row;
         item = ui->tableWidget->item(m_cursorRow, CursorColumn);
-        item->setIcon(QIcon("://icon/24x24/left_to_right_arrow.png"));
+        item->setIcon(QIcon(":/tsvg/seamly/left_to_right_arrow.tsvg"));
 
         // set new cursor position in pattern.
         // if cursor is at last row set id to 0, else use tool id in row.
@@ -230,7 +230,7 @@ void HistoryDialog::cursorChanged(quint32 id)
             QTableWidgetItem *oldCursorItem = ui->tableWidget->item(m_cursorRow, CursorColumn);
             oldCursorItem->setIcon(QIcon());
             m_cursorRow = row;
-            item->setIcon(QIcon("://icon/24x24/left_to_right_arrow.png"));
+            item->setIcon(QIcon(":/tsvg/seamly/left_to_right_arrow.tsvg"));
 
             QScrollBar *verScrollBar = ui->tableWidget->verticalScrollBar();
             verScrollBar->setSliderPosition(verScrollBar->maximum());
@@ -334,7 +334,7 @@ void HistoryDialog::fillTable()
         m_cursorRow = cursorRow();
         QTableWidgetItem *item = ui->tableWidget->item(m_cursorRow, CursorColumn);
         SCASSERT(item != nullptr)
-        item->setIcon(QIcon("://icon/24x24/left_to_right_arrow.png"));//place arrow in 1st column of most recent history record
+        item->setIcon(QIcon(":/tsvg/seamly/left_to_right_arrow.tsvg"));//place arrow in 1st column of most recent history record
     }
 
 }
@@ -359,7 +359,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
     if (domElement.isElement() == false)
     {
         qDebug() << "Can't find element by id" << Q_FUNC_INFO;
-        rowData.icon = ":/icons/win.icon.theme/16x16/status/dialog-warning.png";
+        rowData.icon = ":/tsvg/spectrum/AlertTriangle.tsvg";
         rowData.name = QString();
         rowData.tool = tr("Can't create record.");
         return rowData;
@@ -382,13 +382,13 @@ RowData HistoryDialog::record(const VToolRecord &tool)
                 break;
 
             case Tool::BasePoint:
-                rowData.icon = ":/toolicon/32x32/point_basepoint_icon.png";
+                rowData.icon = ":/tsvg/seamly/point_basepoint_icon.tsvg";
                 rowData.name = getName(toolId);
                 rowData.tool = tr("Base Point");
                 break;
 
             case Tool::EndLine:
-                rowData.icon   = ":/toolicon/32x32/segment.png";
+                rowData.icon   = ":/tsvg/seamly/segment.tsvg";
                 rowData.name   = getName(toolId);
                 rowData.length = m_doc->GetParametrString(domElement, AttrLength, QString());
                 rowData.angle  = m_doc->GetParametrString(domElement, AttrAngle, QString());
@@ -397,7 +397,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
                                 break;
 
             case Tool::Line:
-                rowData.icon = ":/toolicon/32x32/line.png";
+                rowData.icon = ":/tsvg/seamly/line.tsvg";
                 rowData.name = tr("Line_%1_%2")
                                   .arg(getName(attrUInt(domElement, AttrFirstPoint)))
                                   .arg(getName(attrUInt(domElement, AttrSecondPoint)));
@@ -407,7 +407,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
                 break;
 
             case Tool::AlongLine:
-                rowData.icon = ":/toolicon/32x32/along_line.png";
+                rowData.icon = ":/tsvg/seamly/along_line.tsvg";
                 rowData.name = getName(toolId);
                 rowData.tool = tr("Point On Line %1_%2")
                                   .arg(getName(attrUInt(domElement, AttrFirstPoint)))
@@ -415,13 +415,13 @@ RowData HistoryDialog::record(const VToolRecord &tool)
                 break;
 
             case Tool::ShoulderPoint:
-                rowData.icon = ":/toolicon/32x32/shoulder.png";
+                rowData.icon = ":/tsvg/seamly/shoulder.tsvg";
                 rowData.name = getName(toolId);
                 rowData.tool = tr("Point Length to Line");
                 break;
 
             case Tool::Normal:
-                rowData.icon   = ":/toolicon/32x32/normal.png";
+                rowData.icon   = ":/tsvg/seamly/normal.tsvg";
                 rowData.name   = getName(toolId);
                 rowData.length = m_doc->GetParametrString(domElement, AttrLength, QString());
                 rowData.angle  = m_doc->GetParametrString(domElement, AttrAngle, QString());
@@ -431,7 +431,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
                 break;
 
             case Tool::Bisector:
-                rowData.icon = ":/toolicon/32x32/bisector.png";
+                rowData.icon = ":/tsvg/seamly/bisector.tsvg";
                 rowData.name = getName(toolId);
                 rowData.tool = tr("Point On Bisector %1_%2_%3")
                                  .arg(getName(attrUInt(domElement, AttrFirstPoint)))
@@ -440,7 +440,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
                 break;
 
             case Tool::LineIntersect:
-                rowData.icon = ":/toolicon/32x32/intersect.png";
+                rowData.icon = ":/tsvg/seamly/intersect.tsvg";
                 rowData.name = getName(toolId);
                 rowData.tool = tr("Point Intersect Lines %1_%2 and %3_%4")
                                  .arg(getName(attrUInt(domElement, AttrP1Line1)))
@@ -451,7 +451,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
 
             case Tool::Spline:
             {
-                rowData.icon   = ":/toolicon/32x32/spline.png";
+                rowData.icon   = ":/tsvg/seamly/spline.tsvg";
                 rowData.name   = getName(toolId);
                 rowData.length = QString("%1\n%2")
                                    .arg(m_doc->GetParametrString(domElement, AttrLength1, QStringLiteral("0")))
@@ -465,7 +465,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
 
             case Tool::CubicBezier:
             {
-                rowData.icon = ":/toolicon/32x32/cubic_bezier.png";
+                rowData.icon = ":/tsvg/seamly/cubic_bezier.tsvg";
                 rowData.name = getName(toolId);
                 rowData.tool = tr("Curve Fixed");
                 break;
@@ -473,7 +473,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
 
             case Tool::Arc:
             {
-                rowData.icon   = ":/toolicon/32x32/arc.png";
+                rowData.icon   = ":/tsvg/seamly/arc.tsvg";
                 rowData.name   = getName(toolId);
                 rowData.length = m_doc->GetParametrString(domElement, AttrRadius, QString());
                 rowData.angle  = QString("%1\n %2")
@@ -485,7 +485,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
 
             case Tool::ArcWithLength:
             {
-                rowData.icon   = ":/toolicon/32x32/arc_with_length.png";
+                rowData.icon   = ":/tsvg/seamly/arc_with_length.tsvg";
                 rowData.name   = getName(toolId);
                 rowData.length = QString("%1\n %2").arg(m_doc->GetParametrString(domElement, AttrRadius, ""))
                                                    .arg(m_doc->GetParametrString(domElement, AttrLength, ""));
@@ -496,7 +496,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
 
             case Tool::SplinePath:
             {
-                rowData.icon = ":/toolicon/32x32/splinePath.png";
+                rowData.icon = ":/tsvg/seamly/splinePath.tsvg";
                 rowData.name = getName(toolId);
                 rowData.tool = tr("Spline Interactive");
                 break;
@@ -504,14 +504,14 @@ RowData HistoryDialog::record(const VToolRecord &tool)
 
             case Tool::CubicBezierPath:
             {
-                rowData.icon = ":/toolicon/32x32/cubic_bezier_path.png";
+                rowData.icon = ":/tsvg/seamly/cubic_bezier_path.tsvg";
                 rowData.name = getName(toolId);
                 rowData.tool = tr("Spline Fixed");
                 break;
             }
 
             case Tool::IntersectArcLine:
-                rowData.icon = ":/toolicon/32x32/point_intersect_arc_line.png";
+                rowData.icon = ":/tsvg/seamly/point_intersect_arc_line.tsvg";
                 rowData.name = getName(toolId);
                 rowData.tool = tr("Point Intersect Arc with center %1 & Line %2_%3")
                                   .arg(getName(attrUInt(domElement, AttrCenter)))
@@ -520,7 +520,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
                 break;
 
             case Tool::Height:
-                rowData.icon = ":/toolicon/32x32/height.png";
+                rowData.icon = ":/tsvg/seamly/height.tsvg";
                 rowData.name = getName(toolId);
                 rowData.tool = tr("Point Intersect Line %1_%2 & Perpendicular %3")
                                   .arg(getName(attrUInt(domElement, AttrP1Line)))
@@ -529,7 +529,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
                 break;
 
             case Tool::Triangle:
-                rowData.icon = ":/toolicon/32x32/triangle.png";
+                rowData.icon = ":/tsvg/seamly/triangle.tsvg";
                 rowData.name = getName(toolId);
                 rowData.tool = tr("Point Intersect Axis %1_%2 & Triangle points %3 and %4")
                                   .arg(getName(attrUInt(domElement, AttrAxisP1)))
@@ -539,7 +539,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
                 break;
 
             case Tool::PointOfIntersection:
-                rowData.icon = ":/toolicon/32x32/point_intersectxy_icon.png";
+                rowData.icon = ":/tsvg/seamly/point_intersectxy_icon.tsvg";
                 rowData.name = getName(toolId);
                 rowData.tool = tr("Point Intersect XY of points %1 and %2")
                                   .arg(getName(attrUInt(domElement, AttrFirstPoint)))
@@ -548,7 +548,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
 
             case Tool::CutArc:
             {
-                rowData.icon   = ":/toolicon/32x32/arc_cut.png";
+                rowData.icon   = ":/tsvg/seamly/arc_cut.tsvg";
                 rowData.name   = getName(toolId);
                 rowData.length = m_doc->GetParametrString(domElement, AttrLength, QString());
                 rowData.tool   = tr("Point On Arc");
@@ -557,7 +557,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
 
             case Tool::CutSpline:
             {
-                rowData.icon   = ":/toolicon/32x32/spline_cut_point.png";
+                rowData.icon   = ":/tsvg/seamly/spline_cut_point.tsvg";
                 rowData.name   = getName(toolId);
                 rowData.length = m_doc->GetParametrString(domElement, AttrLength, QString());
                 rowData.tool   = tr("Point On Curve");
@@ -566,7 +566,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
 
             case Tool::CutSplinePath:
             {
-                rowData.icon   = ":/toolicon/32x32/splinePath_cut_point.png";
+                rowData.icon   = ":/tsvg/seamly/splinePath_cut_point.tsvg";
                 rowData.name   = getName(toolId);
                 rowData.length = m_doc->GetParametrString(domElement, AttrLength, QString());
                 rowData.tool   = tr("Point On Spline");
@@ -574,7 +574,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
             }
 
             case Tool::LineIntersectAxis:
-                rowData.icon = ":/toolicon/32x32/line_intersect_axis.png";
+                rowData.icon = ":/tsvg/seamly/line_intersect_axis.tsvg";
                 rowData.name = getName(toolId);
                 rowData.tool = tr("%Point Intersect Line & %1_%2 and Axis through point %3")
                                  .arg(getName(attrUInt(domElement, AttrP1Line)))
@@ -583,7 +583,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
                 break;
 
             case Tool::CurveIntersectAxis:
-            rowData.icon   = ":/toolicon/32x32/arc_intersect_axis.png";
+            rowData.icon   = ":/tsvg/seamly/arc_intersect_axis.tsvg";
             rowData.name   = getName(toolId);
             rowData.angle  = m_doc->GetParametrString(domElement, AttrAngle, QString());
             rowData.tool   = tr("Point Intersect Curve & Axis through point %1")
@@ -591,37 +591,37 @@ RowData HistoryDialog::record(const VToolRecord &tool)
             break;
 
             case Tool::PointOfIntersectionArcs:
-                rowData.icon = ":/toolicon/32x32/point_of_intersection_arcs.png";
+                rowData.icon = ":/tsvg/seamly/point_of_intersection_arcs.tsvg";
                 rowData.name = getName(toolId);
                 rowData.tool = tr("Point Intersect Arcs");
                 break;
 
             case Tool::PointOfIntersectionCircles:
-                rowData.icon = ":/toolicon/32x32/point_of_intersection_circles.png";
+                rowData.icon = ":/tsvg/seamly/point_of_intersection_circles.tsvg";
                 rowData.name = getName(toolId);
                 rowData.tool = tr("%1 - Point Intersect Circles");
                 break;
 
             case Tool::PointOfIntersectionCurves:
-                rowData.icon = ":/toolicon/32x32/intersection_curves.png";
+                rowData.icon = ":/tsvg/seamly/intersection_curves.tsvg";
                 rowData.name = getName(toolId);
                 rowData.tool = tr("Point Intersect Curves");
                 break;
 
             case Tool::PointFromCircleAndTangent:
-                rowData.icon = ":/toolicon/32x32/point_from_circle_and_tangent.png";
+                rowData.icon = ":/tsvg/seamly/point_from_circle_and_tangent.tsvg";
                 rowData.name = getName(toolId);
                 rowData.tool = tr("Point Intersect Circle & Tangent");
                 break;
 
             case Tool::PointFromArcAndTangent:
-                rowData.icon = ":/toolicon/32x32/point_from_arc_and_tangent.png";
+                rowData.icon = ":/tsvg/seamly/point_from_arc_and_tangent.tsvg";
                 rowData.name = getName(toolId);
                 rowData.tool = tr("Point Intersect Arc & Tangent");
                 break;
 
             case Tool::TrueDarts:
-                rowData.icon = ":/toolicon/32x32/true_darts.png";
+                rowData.icon = ":/tsvg/seamly/true_darts.tsvg";
                 rowData.name = getName(attrUInt(domElement, AttrPoint1)) + QStringLiteral("\n") +
                             getName(attrUInt(domElement, AttrPoint2));
                 rowData.tool = tr("True Dart %1_%2_%3")
@@ -634,7 +634,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
             {
                 const QSharedPointer<VEllipticalArc> elArc = data->GeometricObject<VEllipticalArc>(toolId);
                 SCASSERT(!elArc.isNull())
-                rowData.icon = ":/toolicon/32x32/el_arc.png";
+                rowData.icon = ":/tsvg/seamly/el_arc.tsvg";
                 rowData.name = elArc->NameForHistory(tr("ElArc_"));
                 rowData.tool = tr("Arc Elliptical with length %1").arg(elArc->GetLength());
                 break;
@@ -643,7 +643,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
             case Tool::Rotation:
             {
                 const QString suffix = m_doc->GetParametrString(domElement, AttrSuffix, QString());
-                rowData.icon = ":/toolicon/32x32/rotation.png";
+                rowData.icon = ":/tsvg/seamly/rotation.tsvg";
                 rowData.name = getDestinationNames(domElement, suffix);
                 rowData.tool = tr("Rotation around point %1. Suffix %2")
                                 .arg(getName(attrUInt(domElement, AttrCenter)), suffix);
@@ -653,7 +653,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
             case Tool::MirrorByLine:
             {
                 const QString suffix = m_doc->GetParametrString(domElement, AttrSuffix, QString());
-                rowData.icon = ":/toolicon/32x32/mirror_by_line.png";
+                rowData.icon = ":/tsvg/seamly/mirror_by_line.tsvg";
                 rowData.name = getDestinationNames(domElement, suffix);
                 rowData.tool = tr("Mirror by Line %1_%2. Suffix %3")
                                   .arg(getName(attrUInt(domElement, AttrP1Line)))
@@ -664,7 +664,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
             case Tool::MirrorByAxis:
             {
                 const QString suffix = m_doc->GetParametrString(domElement, AttrSuffix, QString());
-                rowData.icon = ":/toolicon/32x32/mirror_by_axis.png";
+                rowData.icon = ":/tsvg/seamly/mirror_by_axis.tsvg";
                 rowData.name = getDestinationNames(domElement, suffix);
                 rowData.tool = tr("Mirror by Axis through %1 point. Suffix %2")
                                   .arg(getName(attrUInt(domElement, AttrCenter)), suffix);
@@ -674,7 +674,7 @@ RowData HistoryDialog::record(const VToolRecord &tool)
             case Tool::Move:
             {
                 const QString suffix = m_doc->GetParametrString(domElement, AttrSuffix, QString());
-                rowData.icon = ":/toolicon/32x32/move.png";
+                rowData.icon = ":/tsvg/seamly/move.tsvg";
                 rowData.name = getDestinationNames(domElement, suffix);
 
                 quint32 id = attrUInt(domElement, AttrCenter);

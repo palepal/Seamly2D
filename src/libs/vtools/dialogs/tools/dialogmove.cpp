@@ -105,7 +105,7 @@ DialogMove::DialogMove(const VContainer *data, quint32 toolId, QWidget *parent)
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/move.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/move.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();

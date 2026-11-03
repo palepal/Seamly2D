@@ -69,7 +69,7 @@ InsertNodesDialog::InsertNodesDialog(const VContainer *data, quint32 toolId, QWi
 
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/insert_nodes_icon.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/insert_nodes_icon.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();
@@ -328,16 +328,16 @@ void InsertNodesDialog::showContextMenu(const QPoint &pos)
         actionNotch->setChecked(rowNode.isNotch());
 
         actionNone      = notchMenu->addAction( tr("None"));
-        actionSlit      = notchMenu->addAction(QIcon("://icon/24x24/slit_notch.png"), tr("Slit"));
-        actionTNotch    = notchMenu->addAction(QIcon("://icon/24x24/t_notch.png"), tr("TNotch"));
-        actionUNotch    = notchMenu->addAction(QIcon("://icon/24x24/u_notch.png"), tr("UNotch"));
-        actionVInternal = notchMenu->addAction(QIcon("://icon/24x24/internal_v_notch.png"), tr("VInternal"));
-        actionVExternal = notchMenu->addAction(QIcon("://icon/24x24/external_v_notch.png"), tr("VExternal"));
-        actionCastle    = notchMenu->addAction(QIcon("://icon/24x24/castle_notch.png"), tr("Castle"));
-        actionDiamond   = notchMenu->addAction(QIcon("://icon/24x24/diamond_notch.png"), tr("Diamond"));
+        actionSlit      = notchMenu->addAction(QIcon(":/tsvg/seamly/slit_notch.tsvg"), tr("Slit"));
+        actionTNotch    = notchMenu->addAction(QIcon(":/tsvg/seamly/t_notch.tsvg"), tr("TNotch"));
+        actionUNotch    = notchMenu->addAction(QIcon(":/tsvg/seamly/u_notch.tsvg"), tr("UNotch"));
+        actionVInternal = notchMenu->addAction(QIcon(":/tsvg/seamly/internal_v_notch.tsvg"), tr("VInternal"));
+        actionVExternal = notchMenu->addAction(QIcon(":/tsvg/seamly/external_v_notch.tsvg"), tr("VExternal"));
+        actionCastle    = notchMenu->addAction(QIcon(":/tsvg/seamly/castle_notch.tsvg"), tr("Castle"));
+        actionDiamond   = notchMenu->addAction(QIcon(":/tsvg/seamly/diamond_notch.tsvg"), tr("Diamond"));
     }
 
-    QAction *actionDelete   = menu->addAction(QIcon::fromTheme("edit-delete"), tr("Delete") + QStringLiteral("\tDel"));
+    QAction *actionDelete   = menu->addAction(QIcon(":/tsvg/spectrum/Delete.tsvg"), tr("Delete") + QStringLiteral("\tDel"));
     QAction *selectedAction = menu->exec(ui->nodes_ListWidget->viewport()->mapToGlobal(pos));
     if (selectedAction == actionReverse && rowNode.GetTypeTool() != Tool::NodePoint)
     {

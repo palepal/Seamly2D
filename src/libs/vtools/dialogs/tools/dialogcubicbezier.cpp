@@ -85,7 +85,7 @@ DialogCubicBezier::DialogCubicBezier(const VContainer *data, const quint32 &tool
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/cubic_bezier.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/cubic_bezier.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();

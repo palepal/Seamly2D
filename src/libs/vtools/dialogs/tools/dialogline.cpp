@@ -74,7 +74,7 @@ DialogLine::DialogLine(const VContainer *data, const quint32 &toolId, QWidget *p
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/line.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/line.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();

@@ -83,7 +83,7 @@ DialogNormal::DialogNormal(const VContainer *data, const quint32 &toolId, QWidge
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/normal.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/normal.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();

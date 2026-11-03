@@ -83,7 +83,7 @@ DialogCurveIntersectAxis::DialogCurveIntersectAxis(const VContainer *data, const
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/curve_intersect_axis.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/curve_intersect_axis.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();

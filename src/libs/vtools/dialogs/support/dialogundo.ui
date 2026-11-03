@@ -40,7 +40,7 @@
         <string notr="true"/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../../../vmisc/share/resources/icon.qrc">:/icon/svg/warning.svg</pixmap>
+        <pixmap resource="../../../vmisc/share/resources/icon.qrc">:/tsvg/spectrum/AlertTriangle.tsvg</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>

@@ -91,7 +91,7 @@ DialogAlongLine::DialogAlongLine(const VContainer *data, const quint32 &toolId, 
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/along_line.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/along_line.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();

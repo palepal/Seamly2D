@@ -33,7 +33,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../../../libs/vmisc/share/resources/theme.qrc">
-    <normaloff>:/icons/win.icon.theme/16x16/actions/preferences-other.png</normaloff>:/icons/win.icon.theme/16x16/actions/preferences-other.png</iconset>
+    <normaloff>:/tsvg/spectrum/Settings.tsvg</normaloff>:/tsvg/spectrum/Settings.tsvg</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -82,7 +82,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-          <normaloff>:/icon/config.png</normaloff>:/icon/config.png</iconset>
+          <normaloff>:/tsvg/spectrum/Settings.tsvg</normaloff>:/tsvg/spectrum/Settings.tsvg</iconset>
         </property>
         <property name="flags">
          <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -94,7 +94,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-          <normaloff>:/icon/pattern_config.png</normaloff>:/icon/pattern_config.png</iconset>
+          <normaloff>:/tsvg/seamly/pattern_config.tsvg</normaloff>:/tsvg/seamly/pattern_config.tsvg</iconset>
         </property>
         <property name="flags">
          <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -106,7 +106,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-          <normaloff>:/icon/path_config.png</normaloff>:/icon/path_config.png</iconset>
+          <normaloff>:/tsvg/spectrum/Folder.tsvg</normaloff>:/tsvg/spectrum/Folder.tsvg</iconset>
         </property>
         <property name="flags">
          <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -118,7 +118,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-          <normaloff>:/icon/graphics_view_config.png</normaloff>:/icon/graphics_view_config.png</iconset>
+          <normaloff>:/tsvg/spectrum/DeviceDesktop.tsvg</normaloff>:/tsvg/spectrum/DeviceDesktop.tsvg</iconset>
         </property>
         <property name="flags">
          <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>

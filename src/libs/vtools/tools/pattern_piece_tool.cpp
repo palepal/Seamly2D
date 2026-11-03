@@ -1149,7 +1149,7 @@ void PatternPieceTool::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
     bool lock = !piece.isLocked();
 
     QMenu menu;
-    QAction *editProperties = menu.addAction(QIcon::fromTheme("preferences-other"), tr("Properties") + "\tP");
+    QAction *editProperties = menu.addAction(QIcon(":/tsvg/spectrum/Settings.tsvg"), tr("Properties") + "\tP");
     editProperties->setEnabled(lock);
 
     QAction *actionLockPiece = menu.addAction(tr("Lock Pattern Piece") + "\tCtrl + L");
@@ -1186,21 +1186,21 @@ void PatternPieceTool::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
     hideMainPath->setChecked(piece.isHideSeamLine());
     hideMainPath->setEnabled(piece.hasSeamAllowance() && qApp->Settings()->showSeamAllowances());
 
-    QAction *showSeamAllowance = menu.addAction(QIcon("://icon/32x32/seam_allowance.png"),
+    QAction *showSeamAllowance = menu.addAction(QIcon(":/tsvg/seamly/seam_allowance.tsvg"),
                                                 tr("Show Seam Allowance") + "\tS");
     showSeamAllowance->setCheckable(true);
     showSeamAllowance->setChecked(piece.hasSeamAllowance());
 
-    QAction *showGrainline = menu.addAction(QIcon("://icon/32x32/grainline.png"), tr("Show Grainline") + "\tG");
+    QAction *showGrainline = menu.addAction(QIcon(":/tsvg/seamly/grainline.tsvg"), tr("Show Grainline") + "\tG");
     showGrainline->setCheckable(true);
     qDebug() << "Grainline IsVisible() = " << piece.GetGrainlineGeometry().IsVisible();
     showGrainline->setChecked(piece.GetGrainlineGeometry().IsVisible());
 
-    QAction *showPatternLabel = menu.addAction(QIcon("://icon/32x32/pattern_label.png"), tr("Show Pattern Label") + "\t[");
+    QAction *showPatternLabel = menu.addAction(QIcon(":/tsvg/seamly/pattern_label.tsvg"), tr("Show Pattern Label") + "\t[");
     showPatternLabel->setCheckable(true);
     showPatternLabel->setChecked(piece.GetPatternInfo().IsVisible());
 
-    QAction *showPieceLabel = menu.addAction(QIcon("://icon/32x32/piece_label.png"), tr("Show Piece Label") + "\t]");
+    QAction *showPieceLabel = menu.addAction(QIcon(":/tsvg/seamly/piece_label.tsvg"), tr("Show Piece Label") + "\t]");
     showPieceLabel->setCheckable(true);
     showPieceLabel->setChecked(piece.GetPatternPieceData().IsVisible());
 
@@ -1211,7 +1211,7 @@ void PatternPieceTool::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
     QAction *rename = menu.addAction(tr("Rename...") + "\tF2");
     rename->setEnabled(lock);
 
-    QAction *deletePiece = menu.addAction(QIcon::fromTheme("edit-delete"), tr("Delete") + "\tDel");
+    QAction *deletePiece = menu.addAction(QIcon(":/tsvg/spectrum/Delete.tsvg"), tr("Delete") + "\tDel");
     _referens > 0 ? deletePiece->setEnabled(false) : deletePiece->setEnabled(true);
     deletePiece->setEnabled(lock);
 

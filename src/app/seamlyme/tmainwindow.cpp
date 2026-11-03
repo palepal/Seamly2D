@@ -588,7 +588,7 @@ void TMainWindow::handleBodyScanner2()
                   tr("You will receive an email with the converted file, which you can then\nload in SeamlyME as usual.\n\n");
 
     QMessageBox messageBox(this);
-    messageBox.setIconPixmap(QPixmap(":/icon/body_scan.png"));
+    messageBox.setIconPixmap(QPixmap(":/tsvg/seamly/body_scan.tsvg"));
     messageBox.setText(tr("Convert 3DLook file:"));
     messageBox.setInformativeText(msg);
     messageBox.setStandardButtons(QMessageBox::Ok);
@@ -2263,7 +2263,7 @@ void TMainWindow::SetupMenu()
 	ui->measurements_Menu->addAction(actionDockDiagram);
 	ui->mainToolBar->addAction(actionDockDiagram);
 	actionDockDiagram->setEnabled(false);
-	actionDockDiagram->setIcon(QIcon("://seamlymeicon/24x24/mannequin.png"));
+	actionDockDiagram->setIcon(QIcon(":/tsvg/seamly/mannequin.tsvg"));
 
 	// Window
 	connect(ui->window_Menu, &QMenu::aboutToShow, this, &TMainWindow::AboutToShowWindowMenu);
@@ -3082,11 +3082,11 @@ void TMainWindow::UpdatePadlock(bool ro)
 	ui->actionReadOnly->setChecked(ro);
 	if (ro)
 	{
-		ui->actionReadOnly->setIcon(QIcon("://seamlymeicon/24x24/padlock_locked.png"));
+		ui->actionReadOnly->setIcon(QIcon(":/tsvg/spectrum/Lock.tsvg"));
 	}
 	else
 	{
-		ui->actionReadOnly->setIcon(QIcon("://seamlymeicon/24x24/padlock_opened.png"));
+		ui->actionReadOnly->setIcon(QIcon(":/tsvg/spectrum/LockOpen.tsvg"));
 	}
 
 	ui->actionReadOnly->setDisabled(m_isReadOnly);

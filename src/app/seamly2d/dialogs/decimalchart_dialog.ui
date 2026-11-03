@@ -30,7 +30,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-    <normaloff>:/icon/32x32/table.png</normaloff>:/icon/32x32/table.png</iconset>
+    <normaloff>:/tsvg/spectrum/Table.tsvg</normaloff>:/tsvg/spectrum/Table.tsvg</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>

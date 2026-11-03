@@ -83,7 +83,7 @@ DialogBisector::DialogBisector(const VContainer *data, const quint32 &toolId, QW
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/bisector.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/bisector.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();

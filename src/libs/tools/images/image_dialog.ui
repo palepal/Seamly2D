@@ -36,7 +36,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../../vmisc/share/resources/theme.qrc">
-    <normaloff>:/icons/win.icon.theme/16x16/actions/preferences-other.png</normaloff>:/icons/win.icon.theme/16x16/actions/preferences-other.png</iconset>
+    <normaloff>:/tsvg/spectrum/Settings.tsvg</normaloff>:/tsvg/spectrum/Settings.tsvg</iconset>
   </property>
   <property name="sizeGripEnabled">
    <bool>true</bool>
@@ -219,8 +219,8 @@ QToolButton:!checked {
         </property>
         <property name="icon">
          <iconset resource="../../vmisc/share/resources/icon.qrc">
-          <normaloff>:/icon/32x32/lock_off.png</normaloff>
-          <normalon>:/icon/32x32/lock_on.png</normalon>:/icon/32x32/lock_off.png</iconset>
+          <normaloff>:/tsvg/spectrum/LockOpen.tsvg</normaloff>
+          <normalon>:/tsvg/spectrum/Lock.tsvg</normalon>:/tsvg/spectrum/LockOpen.tsvg</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -280,10 +280,10 @@ QToolButton:!checked {
           </property>
           <property name="icon">
            <iconset resource="../../vmisc/share/resources/icon.qrc">
-            <normaloff>:/icon/32x32/units_in_on.png</normaloff>
-            <normalon>:/icon/32x32/units_px_on.png</normalon>
-            <selectedoff>:/icon/32x32/units_in_on.png</selectedoff>
-            <selectedon>:/icon/32x32/units_px_on.png</selectedon>:/icon/32x32/units_in_on.png</iconset>
+            <normaloff>:/tsvg/seamly/units_in_on.tsvg</normaloff>
+            <normalon>:/tsvg/seamly/units_px_on.tsvg</normalon>
+            <selectedoff>:/tsvg/seamly/units_in_on.tsvg</selectedoff>
+            <selectedon>:/tsvg/seamly/units_px_on.tsvg</selectedon>:/tsvg/seamly/units_in_on.tsvg</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -530,8 +530,8 @@ QToolButton:!checked {
           </property>
           <property name="icon">
            <iconset resource="../../vmisc/share/resources/icon.qrc">
-            <normaloff>:/icon/32x32/lock_off.png</normaloff>
-            <normalon>:/icon/32x32/lock_on.png</normalon>:/icon/32x32/lock_off.png</iconset>
+            <normaloff>:/tsvg/spectrum/LockOpen.tsvg</normaloff>
+            <normalon>:/tsvg/spectrum/Lock.tsvg</normalon>:/tsvg/spectrum/LockOpen.tsvg</iconset>
           </property>
           <property name="iconSize">
            <size>

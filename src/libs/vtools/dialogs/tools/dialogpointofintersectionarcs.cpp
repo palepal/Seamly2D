@@ -71,7 +71,7 @@ DialogPointOfIntersectionArcs::DialogPointOfIntersectionArcs(const VContainer *d
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/point_of_intersection_arcs.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/point_of_intersection_arcs.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();
