@@ -175,6 +175,7 @@ public:
     void                  setRubberBandColor(QRubberBand *band, const QColor &color);
 
     void                  initScrollBars();
+    void                  addScrollBarWidget(QWidget *widget, Qt::Alignment alignment);
 
 signals:
     /**

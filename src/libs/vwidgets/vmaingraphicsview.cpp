@@ -875,16 +875,21 @@ void VMainGraphicsView::initScrollBars()
     showScrollBars = qApp->Settings()->getShowScrollBars();
     if (showScrollBars == true)
     {
-        QString horizontal_styleSheet = QString("QScrollBar {height: ");
-        horizontal_styleSheet += QString().number(qApp->Settings()->getScrollBarWidth());
-        horizontal_styleSheet += QString("px;}");
+        // The horizontal bar's height sets its row, which also holds the status widgets. Fit the row to them and
+        // pad the handle, so it stays as thick as the chosen width.
+        const int width = qApp->Settings()->getScrollBarWidth();
+        int height = width;
+        for (QWidget *widget : scrollBarWidgets(Qt::AlignLeft | Qt::AlignRight))
+        {
+            height = qMax(height, widget->sizeHint().height());
+        }
+        const int margin = qMax(2, width / 4);
 
-        QString vertical_styleSheet = QString("QScrollBar {width: ");
-        vertical_styleSheet += QString().number(qApp->Settings()->getScrollBarWidth());
-        vertical_styleSheet += QString("px;}");
-
-        this->horizontalScrollBar()->setStyleSheet(horizontal_styleSheet);
-        this->verticalScrollBar()->setStyleSheet(vertical_styleSheet);
+        this->horizontalScrollBar()->setStyleSheet(
+            QString("QScrollBar {height: %1px;} QScrollBar::handle {margin: %2px %3px;}")
+            .arg(height).arg(margin + (height - width) / 2).arg(margin));
+        this->verticalScrollBar()->setStyleSheet(
+            QString("QScrollBar {width: %1px;} QScrollBar::handle {margin: %2px;}").arg(width).arg(margin));
     }
     else
     {
@@ -898,6 +903,16 @@ void VMainGraphicsView::initScrollBars()
     this->verticalScrollBar()->setSingleStep(1);
     this->verticalScrollBar()->update();
 
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief addScrollBarWidget adds widget to the scroll bar row and grows the row to fit it.
+/// @param widget status widget.
+/// @param alignment side of the row.
+void VMainGraphicsView::addScrollBarWidget(QWidget *widget, Qt::Alignment alignment)
+{
+    QGraphicsView::addScrollBarWidget(widget, alignment);
+    initScrollBars();
 }
 
 void VMainGraphicsView::resetScrollBars()
