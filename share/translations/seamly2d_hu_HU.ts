@@ -6744,6 +6744,10 @@ A programot A JELENLEGI ÁLLAPOTUKBAN biztosítjuk, SEMMILYEN GARANCIA NÉLKÜL,
         <translation>&amp;Újra</translation>
     </message>
     <message>
+        <source>Close Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Draft Block:</source>
         <translation>Vázlatblokk:</translation>
     </message>

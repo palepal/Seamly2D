@@ -7095,6 +7095,10 @@ Voulez-vous sauvegarder les changements ?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Close Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Description</source>
         <translation>Description</translation>
     </message>

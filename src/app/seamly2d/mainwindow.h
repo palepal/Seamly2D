@@ -375,6 +375,7 @@ private:
 
     void                              updateToolBarVisibility();
     void                              setToolBarVisibility(QToolBar *toolbar, bool visible);
+    void                              addToolBarCloseAction(QToolBar* toolbar);
     void                              initializeToolButtons();
 
     void                              handlePointsMenu();

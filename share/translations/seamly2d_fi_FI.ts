@@ -6435,6 +6435,10 @@ Haluatko tallentaa muutokset?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Close Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Draft Block:</source>
         <translation>Luonnospala:</translation>
     </message>

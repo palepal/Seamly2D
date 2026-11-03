@@ -6414,6 +6414,10 @@ Sollen die Änderungen gespeichert werden?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Close Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Draft Block:</source>
         <translation>Entwurfsblock:</translation>
     </message>

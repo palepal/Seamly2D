@@ -6420,6 +6420,10 @@ Deseja salvar suas alterações?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Close Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Draft Block:</source>
         <translation>Bloco de rascunho:</translation>
     </message>

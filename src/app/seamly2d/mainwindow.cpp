@@ -147,9 +147,11 @@
 #include <QStringConverter>
 #include <QTimer>
 #include <QToolBar>
+#include <QToolButton>
 #include <QtDebug>
 #include <QtGlobal>
 #include <QUndoStack>
+#include <QVBoxLayout>
 
 // compiler directives
 #if defined(Q_OS_MAC)
@@ -313,6 +315,15 @@ MainWindow::MainWindow(QWidget *parent)
         if (Application2D::isGUIMode())
         {
             initUpdateCorner();
+        }
+
+        // Last, so the close button stays at the end. initPenToolBar adds the pen toolbar's own.
+        for (QToolBar* toolbar : findChildren<QToolBar*>(QString(), Qt::FindDirectChildrenOnly))
+        {
+            if (toolbar != m_penToolBar)
+            {
+                addToolBarCloseAction(toolbar);
+            }
         }
 
         // Whenever undo / redo changes are made need to update the saved state of the document.
@@ -2087,6 +2098,10 @@ void MainWindow::changeEvent(QEvent *event)
         ui->retranslateUi(this);
         undoAction->setText(tr("&Undo"));
         redoAction->setText(tr("&Redo"));
+        for (QToolButton* button : findChildren<QToolButton*>(QStringLiteral("closeToolBar_Button")))
+        {
+            button->setToolTip(tr("Close Toolbar"));
+        }
         setStatusMessage(QObject::tr("Changes applied."));
         draftBlockLabel->setText(tr("Draft Block:"));
         m_zoom_to_object_combobox->setToolTip(tr("Zoom to Object (Ctrl + Alt + O)"));
@@ -2960,6 +2975,7 @@ void MainWindow::initPenToolBar()
     m_penToolBar->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     m_penToolBar->setObjectName("penToolBar");
     this->addToolBar(Qt::TopToolBarArea, m_penToolBar);
+    addToolBarCloseAction(m_penToolBar);
 
     connect(m_penToolBar, &PenToolBar::penChanged, this, &MainWindow::penChanged);
 }
@@ -3034,6 +3050,50 @@ void MainWindow::setToolBarVisibility(QToolBar *toolbar, bool visible)
     toolbar->blockSignals(true);
     toolbar->setVisible(visible);
     toolbar->blockSignals(false);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief addToolBarCloseAction adds a close button at the end of a toolbar, shown only while the toolbar floats,
+/// and keeps the floating toolbar at the size of its contents.
+/// @param toolbar toolbar that gets the button.
+void MainWindow::addToolBarCloseAction(QToolBar* toolbar)
+{
+    // Inside a plain widget, so the toolbar doesn't size it like its own buttons and it can sit in the top corner
+    QWidget* container = new QWidget(toolbar);
+    QVBoxLayout* layout = new QVBoxLayout(container);
+    layout->setContentsMargins(0, 0, 0, 0);
+
+    QToolButton* close_button = new QToolButton(container);
+    close_button->setObjectName(QStringLiteral("closeToolBar_Button"));
+    close_button->setText(QString(QChar(0x2715)));
+    close_button->setToolButtonStyle(Qt::ToolButtonTextOnly);
+    close_button->setAutoRaise(true);
+    close_button->setToolTip(tr("Close Toolbar"));
+    QFont font = close_button->font();
+    font.setPointSizeF(font.pointSizeF() * 0.75);
+    close_button->setFont(font);
+    const int side = close_button->fontMetrics().height();
+    close_button->setFixedSize(side, side);
+    connect(close_button, &QToolButton::clicked, toolbar, &QToolBar::hide);
+    layout->addWidget(close_button, 0, Qt::AlignTop | Qt::AlignRight);
+
+    for (QAction* action : {toolbar->addSeparator(), toolbar->addWidget(container)})
+    {
+        action->setVisible(toolbar->isFloating());
+        connect(toolbar, &QToolBar::topLevelChanged, action, &QAction::setVisible);
+    }
+
+    // A floating toolbar keeps its docked size, which can be wider than its contents, and on macOS it can be
+    // resized from its edges, which puts a resize cursor over the button. Fit it to its contents instead
+    connect(toolbar, &QToolBar::topLevelChanged, toolbar, [toolbar](bool floating)
+    {
+        toolbar->layout()->setSizeConstraint(floating ? QLayout::SetFixedSize : QLayout::SetDefaultConstraint);
+        if (!floating)
+        {
+            toolbar->setMinimumSize(0, 0);
+            toolbar->setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+        }
+    });
 }
 
 void MainWindow::zoomScaleChanged(qreal scale)
