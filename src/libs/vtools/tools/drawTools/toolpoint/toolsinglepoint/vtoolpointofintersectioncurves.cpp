@@ -153,7 +153,7 @@ VToolPointOfIntersectionCurves *VToolPointOfIntersectionCurves::Create(const qui
         QMessageBox msgBox(qApp->getMainWindow());
         msgBox.setWindowTitle(tr("Point Intersect Curves"));
         msgBox.setWindowFlags(msgBox.windowFlags() & ~Qt::WindowContextHelpButtonHint);
-        msgBox.setWindowIcon(QIcon(":/toolicon/32x32/intersection_curves.png"));
+        msgBox.setWindowIcon(QIcon(":/tsvg/seamly/intersection_curves.tsvg"));
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setText(msg);
         msgBox.setStandardButtons(QMessageBox::Ok);

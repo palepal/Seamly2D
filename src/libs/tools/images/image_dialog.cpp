@@ -758,25 +758,25 @@ void ImageDialog::updateUnits()
     switch (m_image.units)
     {
         case Unit::Cm:
-            ui->units_ToolButton->setIcon(QIcon("://icon/32x32/units_cm_on.png"));
+            ui->units_ToolButton->setIcon(QIcon(":/tsvg/seamly/units_cm_on.tsvg"));
             setSuffix("cm");
             setDecimals(2);
             break;
 
         case Unit::Mm:
-            ui->units_ToolButton->setIcon(QIcon("://icon/32x32/units_mm_on.png"));
+            ui->units_ToolButton->setIcon(QIcon(":/tsvg/seamly/units_mm_on.tsvg"));
             setSuffix("mm");
             setDecimals(2);
             break;
 
         case Unit::Inch:
-            ui->units_ToolButton->setIcon(QIcon("://icon/32x32/units_in_on.png"));
+            ui->units_ToolButton->setIcon(QIcon(":/tsvg/seamly/units_in_on.tsvg"));
             setSuffix("in");
             setDecimals(3);
             break;
 
         case Unit::Px:
-            ui->units_ToolButton->setIcon(QIcon("://icon/32x32/units_px_on.png"));
+            ui->units_ToolButton->setIcon(QIcon(":/tsvg/seamly/units_px_on.tsvg"));
             setSuffix("px");
             setDecimals(0);
         default:

@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../../../libs/vmisc/share/resources/theme.qrc">
-    <normaloff>:/icons/win.icon.theme/16x16/actions/preferences-other.png</normaloff>:/icons/win.icon.theme/16x16/actions/preferences-other.png</iconset>
+    <normaloff>:/tsvg/spectrum/Settings.tsvg</normaloff>:/tsvg/spectrum/Settings.tsvg</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_4">
    <item>

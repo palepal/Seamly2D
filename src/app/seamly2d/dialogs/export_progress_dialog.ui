@@ -35,7 +35,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../share/resources/toolicon.qrc">
-    <normaloff>:/toolicon/32x32/export.png</normaloff>:/toolicon/32x32/export.png</iconset>
+    <normaloff>:/tsvg/spectrum/ExportTo.tsvg</normaloff>:/tsvg/spectrum/ExportTo.tsvg</iconset>
   </property>
   <property name="sizeGripEnabled">
    <bool>true</bool>

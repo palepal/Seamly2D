@@ -33,7 +33,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-    <normaloff>:/icon/32x32/option_draw.png</normaloff>:/icon/32x32/option_draw.png</iconset>
+    <normaloff>:/tsvg/seamly/option_draw.tsvg</normaloff>:/tsvg/seamly/option_draw.tsvg</iconset>
   </property>
   <property name="modal">
    <bool>true</bool>
@@ -142,7 +142,7 @@ QListWidget::item:selected {
         </property>
         <property name="icon">
          <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-          <normaloff>:/icon/160x64/properties.png</normaloff>:/icon/160x64/properties.png</iconset>
+          <normaloff>:/tsvg/spectrum/Properties.tsvg</normaloff>:/tsvg/spectrum/Properties.tsvg</iconset>
         </property>
         <property name="flags">
          <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -171,7 +171,7 @@ QListWidget::item:selected {
         </property>
         <property name="icon">
          <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-          <normaloff>:/icon/160x64/paths.png</normaloff>:/icon/160x64/paths.png</iconset>
+          <normaloff>:/tsvg/seamly/paths.tsvg</normaloff>:/tsvg/seamly/paths.tsvg</iconset>
         </property>
         <property name="flags">
          <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -195,7 +195,7 @@ QListWidget::item:selected {
         </property>
         <property name="icon">
          <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-          <normaloff>:/icon/160x64/seam_allowance.png</normaloff>:/icon/160x64/seam_allowance.png</iconset>
+          <normaloff>:/tsvg/seamly/seam_allowance.tsvg</normaloff>:/tsvg/seamly/seam_allowance.tsvg</iconset>
         </property>
         <property name="flags">
          <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -224,7 +224,7 @@ QListWidget::item:selected {
         </property>
         <property name="icon">
          <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-          <normaloff>:/icon/160x64/labels.png</normaloff>:/icon/160x64/labels.png</iconset>
+          <normaloff>:/tsvg/seamly/labels.tsvg</normaloff>:/tsvg/seamly/labels.tsvg</iconset>
         </property>
         <property name="flags">
          <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -253,7 +253,7 @@ QListWidget::item:selected {
         </property>
         <property name="icon">
          <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-          <normaloff>:/icon/160x64/anchor_point.png</normaloff>:/icon/160x64/anchor_point.png</iconset>
+          <normaloff>:/tsvg/seamly/anchor_point.tsvg</normaloff>:/tsvg/seamly/anchor_point.tsvg</iconset>
         </property>
         <property name="flags">
          <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -282,7 +282,7 @@ QListWidget::item:selected {
         </property>
         <property name="icon">
          <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-          <normaloff>:/icon/160x64/grainlines.png</normaloff>:/icon/160x64/grainlines.png</iconset>
+          <normaloff>:/tsvg/seamly/grainlines.tsvg</normaloff>:/tsvg/seamly/grainlines.tsvg</iconset>
         </property>
         <property name="flags">
          <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -311,7 +311,7 @@ QListWidget::item:selected {
         </property>
         <property name="icon">
          <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-          <normaloff>:/icon/160x64/notches.png</normaloff>:/icon/160x64/notches.png</iconset>
+          <normaloff>:/tsvg/seamly/notches.tsvg</normaloff>:/tsvg/seamly/notches.tsvg</iconset>
         </property>
         <property name="flags">
          <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -930,7 +930,7 @@ QListWidget::item:selected {
                   </property>
                   <property name="icon">
                    <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-                    <normaloff>:/icon/32x32/color_picker.png</normaloff>:/icon/32x32/color_picker.png</iconset>
+                    <normaloff>:/tsvg/spectrum/Eyedropper.tsvg</normaloff>:/tsvg/spectrum/Eyedropper.tsvg</iconset>
                   </property>
                  </widget>
                 </item>
@@ -1044,7 +1044,7 @@ QListWidget::item:selected {
                   <string/>
                  </property>
                  <property name="pixmap">
-                  <pixmap resource="../../../../vmisc/share/resources/icon.qrc">:/icon/32x32/clockwise.png</pixmap>
+                  <pixmap resource="../../../../vmisc/share/resources/icon.qrc">:/tsvg/spectrum/RotateCW.tsvg</pixmap>
                  </property>
                 </widget>
                </item>
@@ -1097,7 +1097,7 @@ QListWidget::item:selected {
                  </property>
                  <property name="icon">
                   <iconset resource="../../../../vmisc/share/resources/theme.qrc">
-                   <normaloff>:/icons/win.icon.theme/16x16/actions/go-top.png</normaloff>:/icons/win.icon.theme/16x16/actions/go-top.png</iconset>
+                   <normaloff>:/tsvg/seamly/go-top.tsvg</normaloff>:/tsvg/seamly/go-top.tsvg</iconset>
                  </property>
                 </widget>
                </item>
@@ -1111,7 +1111,7 @@ QListWidget::item:selected {
                  </property>
                  <property name="icon">
                   <iconset resource="../../../../vmisc/share/resources/theme.qrc">
-                   <normaloff>:/icons/win.icon.theme/16x16/actions/go-up.png</normaloff>:/icons/win.icon.theme/16x16/actions/go-up.png</iconset>
+                   <normaloff>:/tsvg/spectrum/ChevronUp.tsvg</normaloff>:/tsvg/spectrum/ChevronUp.tsvg</iconset>
                  </property>
                 </widget>
                </item>
@@ -1125,7 +1125,7 @@ QListWidget::item:selected {
                  </property>
                  <property name="icon">
                   <iconset resource="../../../../vmisc/share/resources/theme.qrc">
-                   <normaloff>:/icons/win.icon.theme/16x16/actions/go-down.png</normaloff>:/icons/win.icon.theme/16x16/actions/go-down.png</iconset>
+                   <normaloff>:/tsvg/spectrum/ChevronDown.tsvg</normaloff>:/tsvg/spectrum/ChevronDown.tsvg</iconset>
                  </property>
                 </widget>
                </item>
@@ -1139,7 +1139,7 @@ QListWidget::item:selected {
                  </property>
                  <property name="icon">
                   <iconset resource="../../../../vmisc/share/resources/theme.qrc">
-                   <normaloff>:/icons/win.icon.theme/16x16/actions/go-bottom.png</normaloff>:/icons/win.icon.theme/16x16/actions/go-bottom.png</iconset>
+                   <normaloff>:/tsvg/seamly/go-bottom.tsvg</normaloff>:/tsvg/seamly/go-bottom.tsvg</iconset>
                  </property>
                 </widget>
                </item>
@@ -1468,7 +1468,7 @@ QListWidget::item:selected {
                     </property>
                     <property name="icon">
                      <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-                      <normaloff>:/icon/24x24/fx.png</normaloff>:/icon/24x24/fx.png</iconset>
+                      <normaloff>:/tsvg/seamly/fx.tsvg</normaloff>:/tsvg/seamly/fx.tsvg</iconset>
                     </property>
                     <property name="iconSize">
                      <size>
@@ -1800,7 +1800,7 @@ QListWidget::item:selected {
                     </property>
                     <property name="icon">
                      <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-                      <normaloff>:/icon/24x24/fx.png</normaloff>:/icon/24x24/fx.png</iconset>
+                      <normaloff>:/tsvg/seamly/fx.tsvg</normaloff>:/tsvg/seamly/fx.tsvg</iconset>
                     </property>
                     <property name="iconSize">
                      <size>
@@ -2033,7 +2033,7 @@ QListWidget::item:selected {
                     </property>
                     <property name="icon">
                      <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-                      <normaloff>:/icon/24x24/fx.png</normaloff>:/icon/24x24/fx.png</iconset>
+                      <normaloff>:/tsvg/seamly/fx.tsvg</normaloff>:/tsvg/seamly/fx.tsvg</iconset>
                     </property>
                     <property name="iconSize">
                      <size>
@@ -2355,7 +2355,7 @@ QListWidget::item:selected {
            <widget class="QWidget" name="pieceLabel_Tab">
             <attribute name="icon">
              <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-              <normaloff>:/icon/32x32/piece_label.png</normaloff>:/icon/32x32/piece_label.png</iconset>
+              <normaloff>:/tsvg/seamly/piece_label.tsvg</normaloff>:/tsvg/seamly/piece_label.tsvg</iconset>
             </attribute>
             <attribute name="title">
              <string>Piece label</string>
@@ -2559,7 +2559,7 @@ QListWidget::item:selected {
                     </property>
                     <property name="icon">
                      <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-                      <normaloff>:/icon/24x24/fx.png</normaloff>:/icon/24x24/fx.png</iconset>
+                      <normaloff>:/tsvg/seamly/fx.tsvg</normaloff>:/tsvg/seamly/fx.tsvg</iconset>
                     </property>
                     <property name="iconSize">
                      <size>
@@ -2755,7 +2755,7 @@ QListWidget::item:selected {
                     </property>
                     <property name="icon">
                      <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-                      <normaloff>:/icon/24x24/fx.png</normaloff>:/icon/24x24/fx.png</iconset>
+                      <normaloff>:/tsvg/seamly/fx.tsvg</normaloff>:/tsvg/seamly/fx.tsvg</iconset>
                     </property>
                     <property name="iconSize">
                      <size>
@@ -2951,7 +2951,7 @@ QListWidget::item:selected {
                     </property>
                     <property name="icon">
                      <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-                      <normaloff>:/icon/24x24/fx.png</normaloff>:/icon/24x24/fx.png</iconset>
+                      <normaloff>:/tsvg/seamly/fx.tsvg</normaloff>:/tsvg/seamly/fx.tsvg</iconset>
                     </property>
                     <property name="iconSize">
                      <size>
@@ -3208,7 +3208,7 @@ QListWidget::item:selected {
            <widget class="QWidget" name="patternLabel_Tab">
             <attribute name="icon">
              <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-              <normaloff>:/icon/32x32/pattern_label.png</normaloff>:/icon/32x32/pattern_label.png</iconset>
+              <normaloff>:/tsvg/seamly/pattern_label.tsvg</normaloff>:/tsvg/seamly/pattern_label.tsvg</iconset>
             </attribute>
             <attribute name="title">
              <string>Pattern label</string>
@@ -3409,7 +3409,7 @@ QListWidget::item:selected {
                     </property>
                     <property name="icon">
                      <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-                      <normaloff>:/icon/24x24/fx.png</normaloff>:/icon/24x24/fx.png</iconset>
+                      <normaloff>:/tsvg/seamly/fx.tsvg</normaloff>:/tsvg/seamly/fx.tsvg</iconset>
                     </property>
                     <property name="iconSize">
                      <size>
@@ -3599,7 +3599,7 @@ QListWidget::item:selected {
                     </property>
                     <property name="icon">
                      <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-                      <normaloff>:/icon/24x24/fx.png</normaloff>:/icon/24x24/fx.png</iconset>
+                      <normaloff>:/tsvg/seamly/fx.tsvg</normaloff>:/tsvg/seamly/fx.tsvg</iconset>
                     </property>
                     <property name="iconSize">
                      <size>
@@ -3789,7 +3789,7 @@ QListWidget::item:selected {
                     </property>
                     <property name="icon">
                      <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-                      <normaloff>:/icon/24x24/fx.png</normaloff>:/icon/24x24/fx.png</iconset>
+                      <normaloff>:/tsvg/seamly/fx.tsvg</normaloff>:/tsvg/seamly/fx.tsvg</iconset>
                     </property>
                     <property name="iconSize">
                      <size>
@@ -4260,7 +4260,7 @@ QListWidget::item:selected {
                 </property>
                 <property name="icon">
                  <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-                  <normaloff>:/icon/24x24/fx.png</normaloff>:/icon/24x24/fx.png</iconset>
+                  <normaloff>:/tsvg/seamly/fx.tsvg</normaloff>:/tsvg/seamly/fx.tsvg</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -4456,7 +4456,7 @@ QListWidget::item:selected {
                 </property>
                 <property name="icon">
                  <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-                  <normaloff>:/icon/24x24/fx.png</normaloff>:/icon/24x24/fx.png</iconset>
+                  <normaloff>:/tsvg/seamly/fx.tsvg</normaloff>:/tsvg/seamly/fx.tsvg</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -4851,7 +4851,7 @@ QListWidget::item:selected {
                 </property>
                 <property name="icon">
                  <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-                  <normaloff>:/icon/24x24/fx.png</normaloff>:/icon/24x24/fx.png</iconset>
+                  <normaloff>:/tsvg/seamly/fx.tsvg</normaloff>:/tsvg/seamly/fx.tsvg</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -5079,7 +5079,7 @@ QListWidget::item:selected {
                    </property>
                    <property name="icon">
                     <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-                     <normaloff>:/icon/24x24/slit_notch.png</normaloff>:/icon/24x24/slit_notch.png</iconset>
+                     <normaloff>:/tsvg/seamly/slit_notch.tsvg</normaloff>:/tsvg/seamly/slit_notch.tsvg</iconset>
                    </property>
                    <attribute name="buttonGroup">
                     <string notr="true">notchType_ButtonGroup</string>
@@ -5102,7 +5102,7 @@ QListWidget::item:selected {
                    </property>
                    <property name="icon">
                     <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-                     <normaloff>:/icon/24x24/t_notch.png</normaloff>:/icon/24x24/t_notch.png</iconset>
+                     <normaloff>:/tsvg/seamly/t_notch.tsvg</normaloff>:/tsvg/seamly/t_notch.tsvg</iconset>
                    </property>
                    <attribute name="buttonGroup">
                     <string notr="true">notchType_ButtonGroup</string>
@@ -5125,7 +5125,7 @@ QListWidget::item:selected {
                    </property>
                    <property name="icon">
                     <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-                     <normaloff>:/icon/24x24/u_notch.png</normaloff>:/icon/24x24/u_notch.png</iconset>
+                     <normaloff>:/tsvg/seamly/u_notch.tsvg</normaloff>:/tsvg/seamly/u_notch.tsvg</iconset>
                    </property>
                    <attribute name="buttonGroup">
                     <string notr="true">notchType_ButtonGroup</string>
@@ -5148,7 +5148,7 @@ QListWidget::item:selected {
                    </property>
                    <property name="icon">
                     <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-                     <normaloff>:/icon/24x24/internal_v_notch.png</normaloff>:/icon/24x24/internal_v_notch.png</iconset>
+                     <normaloff>:/tsvg/seamly/internal_v_notch.tsvg</normaloff>:/tsvg/seamly/internal_v_notch.tsvg</iconset>
                    </property>
                    <attribute name="buttonGroup">
                     <string notr="true">notchType_ButtonGroup</string>
@@ -5171,7 +5171,7 @@ QListWidget::item:selected {
                    </property>
                    <property name="icon">
                     <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-                     <normaloff>:/icon/24x24/external_v_notch.png</normaloff>:/icon/24x24/external_v_notch.png</iconset>
+                     <normaloff>:/tsvg/seamly/external_v_notch.tsvg</normaloff>:/tsvg/seamly/external_v_notch.tsvg</iconset>
                    </property>
                    <attribute name="buttonGroup">
                     <string notr="true">notchType_ButtonGroup</string>
@@ -5194,7 +5194,7 @@ QListWidget::item:selected {
                    </property>
                    <property name="icon">
                     <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-                     <normaloff>:/icon/24x24/castle_notch.png</normaloff>:/icon/24x24/castle_notch.png</iconset>
+                     <normaloff>:/tsvg/seamly/castle_notch.tsvg</normaloff>:/tsvg/seamly/castle_notch.tsvg</iconset>
                    </property>
                    <attribute name="buttonGroup">
                     <string notr="true">notchType_ButtonGroup</string>
@@ -5217,7 +5217,7 @@ QListWidget::item:selected {
                    </property>
                    <property name="icon">
                     <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-                     <normaloff>:/icon/24x24/diamond_notch.png</normaloff>:/icon/24x24/diamond_notch.png</iconset>
+                     <normaloff>:/tsvg/seamly/diamond_notch.tsvg</normaloff>:/tsvg/seamly/diamond_notch.tsvg</iconset>
                    </property>
                    <attribute name="buttonGroup">
                     <string notr="true">notchType_ButtonGroup</string>
@@ -5587,7 +5587,7 @@ QListWidget::item:selected {
                     </property>
                     <property name="icon">
                      <iconset resource="../../../../vmisc/share/resources/theme.qrc">
-                      <normaloff>:/icons/win.icon.theme/24x24/actions/edit-undo.png</normaloff>:/icons/win.icon.theme/24x24/actions/edit-undo.png</iconset>
+                      <normaloff>:/tsvg/spectrum/Undo.tsvg</normaloff>:/tsvg/spectrum/Undo.tsvg</iconset>
                     </property>
                    </widget>
                   </item>
@@ -5688,7 +5688,7 @@ QListWidget::item:selected {
                     </property>
                     <property name="icon">
                      <iconset resource="../../../../vmisc/share/resources/theme.qrc">
-                      <normaloff>:/icons/win.icon.theme/24x24/actions/edit-undo.png</normaloff>:/icons/win.icon.theme/24x24/actions/edit-undo.png</iconset>
+                      <normaloff>:/tsvg/spectrum/Undo.tsvg</normaloff>:/tsvg/spectrum/Undo.tsvg</iconset>
                     </property>
                    </widget>
                   </item>
@@ -5763,7 +5763,7 @@ QListWidget::item:selected {
                     </property>
                     <property name="icon">
                      <iconset resource="../../../../vmisc/share/resources/theme.qrc">
-                      <normaloff>:/icons/win.icon.theme/24x24/actions/edit-undo.png</normaloff>:/icons/win.icon.theme/24x24/actions/edit-undo.png</iconset>
+                      <normaloff>:/tsvg/spectrum/Undo.tsvg</normaloff>:/tsvg/spectrum/Undo.tsvg</iconset>
                     </property>
                    </widget>
                   </item>

@@ -35,7 +35,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../share/resources/toolicon.qrc">
-    <normaloff>:/toolicon/32x32/export.png</normaloff>:/toolicon/32x32/export.png</iconset>
+    <normaloff>:/tsvg/spectrum/ExportTo.tsvg</normaloff>:/tsvg/spectrum/ExportTo.tsvg</iconset>
   </property>
   <property name="sizeGripEnabled">
    <bool>true</bool>
@@ -844,7 +844,7 @@ border-radius: 4px;
                  </property>
                  <property name="icon">
                   <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-                   <normaloff>:/icon/16x16/portrait.png</normaloff>:/icon/16x16/portrait.png</iconset>
+                   <normaloff>:/tsvg/spectrum/OrientationPortrait.tsvg</normaloff>:/tsvg/spectrum/OrientationPortrait.tsvg</iconset>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -864,7 +864,7 @@ border-radius: 4px;
                  </property>
                  <property name="icon">
                   <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-                   <normaloff>:/icon/16x16/landscape.png</normaloff>:/icon/16x16/landscape.png</iconset>
+                   <normaloff>:/tsvg/spectrum/OrientationLandscape.tsvg</normaloff>:/tsvg/spectrum/OrientationLandscape.tsvg</iconset>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>

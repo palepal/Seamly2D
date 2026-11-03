@@ -76,13 +76,13 @@ PenToolBar::PenToolBar( const QString &title, QWidget *parent )
     connect(lineWeightBox, &LineWeightComboBox::lineWeightChanged, this, &PenToolBar::lineWeightChanged);
 
     QToolButton *resetButton = new QToolButton;
-    resetButton->setIcon(QIcon(":/icons/win.icon.theme/24x24/actions/edit-undo.png"));
+    resetButton->setIcon(QIcon(":/tsvg/spectrum/Undo.tsvg"));
     resetButton->setToolTip(tr("Reset current pen to defaults"));
     addWidget(resetButton);
     connect(resetButton, &QToolButton::clicked, this, &PenToolBar::penReset);
 
     QToolButton *savePresetButton = new QToolButton;
-    savePresetButton->setIcon(QIcon(":/icons/win.icon.theme/24x24/actions/document-save-as.png"));
+    savePresetButton->setIcon(QIcon(":/tsvg/seamly/document-save-as.tsvg"));
     savePresetButton->setToolTip(tr("Save current pen preset"));
     addWidget(savePresetButton);
     connect(savePresetButton, &QToolButton::clicked, this, &PenToolBar::savePreset);

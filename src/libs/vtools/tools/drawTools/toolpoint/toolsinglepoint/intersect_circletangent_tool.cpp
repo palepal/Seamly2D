@@ -157,7 +157,7 @@ IntersectCircleTangentTool *IntersectCircleTangentTool::Create(const quint32 _id
         QMessageBox msgBox(qApp->getMainWindow());
         msgBox.setWindowTitle(tr("Intersect Circle and Tangent"));
         msgBox.setWindowFlags(msgBox.windowFlags() & ~Qt::WindowContextHelpButtonHint);
-        msgBox.setWindowIcon(QIcon(":/toolicon/32x32/point_from_circle_and_tangent.png"));
+        msgBox.setWindowIcon(QIcon(":/tsvg/seamly/point_from_circle_and_tangent.tsvg"));
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setText(msg);
         msgBox.setStandardButtons(QMessageBox::Ok);

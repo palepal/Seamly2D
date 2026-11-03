@@ -51,7 +51,7 @@ AddToGroupDialog::AddToGroupDialog(VContainer *data, const quint32 &toolId, QWid
 
     m_beep->setSource(QUrl(qApp->Settings()->getSelectionSound()));
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/icon/32x32/group.png"));
+    setWindowIcon(QIcon(":/tsvg/spectrum/Group.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();

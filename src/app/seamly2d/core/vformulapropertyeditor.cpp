@@ -89,7 +89,7 @@ VFormulaPropertyEditor::VFormulaPropertyEditor(QWidget *parent)
     toolButton = new QToolButton(this);
     toolButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     toolButton->setText("...");
-    toolButton->setIcon(QIcon("://icon/16x16/fx.png"));
+    toolButton->setIcon(QIcon(":/tsvg/seamly/fx.tsvg"));
     toolButton->setFixedWidth(18);
     toolButton->installEventFilter(this);
     setFocusProxy(toolButton);

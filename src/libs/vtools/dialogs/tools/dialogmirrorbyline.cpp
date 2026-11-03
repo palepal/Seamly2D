@@ -88,7 +88,7 @@ DialogMirrorByLine::DialogMirrorByLine(const VContainer *data, const quint32 &to
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/mirror_by_line.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/mirror_by_line.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();

@@ -253,7 +253,7 @@ void ResizeHandlesItem::HandleItem::paint(QPainter *painter, const QStyleOptionG
     }
     else
     {
-        QPixmap pixmap("://icon/32x32/lock_off.png");
+        QPixmap pixmap(":/tsvg/spectrum/LockOpen.tsvg");
         painter->drawPixmap(boundingRect().toRect(), pixmap);
     }
 }

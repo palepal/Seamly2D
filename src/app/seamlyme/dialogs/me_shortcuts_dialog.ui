@@ -139,7 +139,7 @@
               </property>
               <property name="icon">
                <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-                <normaloff>:/icon/32x32/clipboard_icon.png</normaloff>:/icon/32x32/clipboard_icon.png</iconset>
+                <normaloff>:/tsvg/seamly/clipboard_icon.tsvg</normaloff>:/tsvg/seamly/clipboard_icon.tsvg</iconset>
               </property>
               <property name="iconSize">
                <size>
@@ -165,7 +165,7 @@
               </property>
               <property name="icon">
                <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-                <normaloff>:/icon/32x32/pdf_icon.png</normaloff>:/icon/32x32/pdf_icon.png</iconset>
+                <normaloff>:/tsvg/seamly/pdf_icon.tsvg</normaloff>:/tsvg/seamly/pdf_icon.tsvg</iconset>
               </property>
               <property name="iconSize">
                <size>
@@ -191,7 +191,7 @@
               </property>
               <property name="icon">
                <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-                <normaloff>:/icon/32x32/printer_icon.png</normaloff>:/icon/32x32/printer_icon.png</iconset>
+                <normaloff>:/tsvg/spectrum/Print.tsvg</normaloff>:/tsvg/spectrum/Print.tsvg</iconset>
               </property>
               <property name="iconSize">
                <size>

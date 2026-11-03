@@ -88,7 +88,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../libs/vmisc/share/resources/theme.qrc">
-       <normaloff>:/tsvg/spectrum/Print.tsvg</normaloff>:/tsvg/spectrum/Print.tsvg</iconset>
+       <normaloff>:/tsvg/spectrum/Preview.tsvg</normaloff>:/tsvg/spectrum/Preview.tsvg</iconset>
      </property>
      <addaction name="printPreview_Action"/>
      <addaction name="printPreviewTiled_Action"/>
@@ -198,7 +198,7 @@
      </property>
      <property name="icon">
       <iconset resource="share/resources/toolicon.qrc">
-       <normaloff>:/tsvg/librecad/modify.tsvg</normaloff>:/tsvg/librecad/modify.tsvg</iconset>
+       <normaloff>:/tsvg/spectrum/TransformGeneric.tsvg</normaloff>:/tsvg/spectrum/TransformGeneric.tsvg</iconset>
      </property>
      <addaction name="group_Action"/>
      <addaction name="rotation_Action"/>
@@ -214,7 +214,7 @@
      </property>
      <property name="icon">
       <iconset resource="share/resources/toolicon.qrc">
-       <normaloff>:/tsvg/librecad/points.tsvg</normaloff>:/tsvg/librecad/points.tsvg</iconset>
+       <normaloff>:/tsvg/seamly/points_toolbox.tsvg</normaloff>:/tsvg/seamly/points_toolbox.tsvg</iconset>
      </property>
      <addaction name="pointAtDistanceAngle_Action"/>
      <addaction name="pointAlongLine_Action"/>
@@ -234,7 +234,7 @@
      </property>
      <property name="icon">
       <iconset resource="share/resources/toolicon.qrc">
-       <normaloff>:/tsvg/librecad/create_block.tsvg</normaloff>:/tsvg/librecad/create_block.tsvg</iconset>
+       <normaloff>:/tsvg/seamly/details_toolbox.tsvg</normaloff>:/tsvg/seamly/details_toolbox.tsvg</iconset>
      </property>
      <addaction name="union_Action"/>
      <addaction name="exportPieces_Action"/>
@@ -245,7 +245,7 @@
      </property>
      <property name="icon">
       <iconset resource="share/resources/toolicon.qrc">
-       <normaloff>:/tsvg/librecad/line.tsvg</normaloff>:/tsvg/librecad/line.tsvg</iconset>
+       <normaloff>:/tsvg/spectrum/Line.tsvg</normaloff>:/tsvg/spectrum/Line.tsvg</iconset>
      </property>
      <addaction name="lineTool_Action"/>
      <addaction name="lineIntersect_Action"/>
@@ -256,7 +256,7 @@
      </property>
      <property name="icon">
       <iconset resource="share/resources/toolicon.qrc">
-       <normaloff>:/tsvg/librecad/spline.tsvg</normaloff>:/tsvg/librecad/spline.tsvg</iconset>
+       <normaloff>:/tsvg/seamly/spline_toolboxs.tsvg</normaloff>:/tsvg/seamly/spline_toolboxs.tsvg</iconset>
      </property>
      <addaction name="curve_Action"/>
      <addaction name="spline_Action"/>
@@ -273,7 +273,7 @@
      </property>
      <property name="icon">
       <iconset resource="share/resources/toolicon.qrc">
-       <normaloff>:/tsvg/librecad/arc_3_points.tsvg</normaloff>:/tsvg/librecad/arc_3_points.tsvg</iconset>
+       <normaloff>:/tsvg/seamly/arcs_toolbox.tsvg</normaloff>:/tsvg/seamly/arcs_toolbox.tsvg</iconset>
      </property>
      <addaction name="arcTool_Action"/>
      <addaction name="pointAlongArc_Action"/>
@@ -291,7 +291,7 @@
      </property>
      <property name="icon">
       <iconset resource="share/resources/toolicon.qrc">
-       <normaloff>:/tsvg/librecad/polygonal_area.tsvg</normaloff>:/tsvg/librecad/polygonal_area.tsvg</iconset>
+       <normaloff>:/tsvg/seamly/patternpiece_toolbox.tsvg</normaloff>:/tsvg/seamly/patternpiece_toolbox.tsvg</iconset>
      </property>
      <addaction name="addPiece_Action"/>
      <addaction name="anchorPoint_Action"/>
@@ -307,7 +307,7 @@
      </property>
      <property name="icon">
       <iconset resource="share/resources/toolicon.qrc">
-       <normaloff>:/tsvg/librecad/page_portait.tsvg</normaloff>:/tsvg/librecad/page_portait.tsvg</iconset>
+       <normaloff>:/tsvg/seamly/layout_toolbox.tsvg</normaloff>:/tsvg/seamly/layout_toolbox.tsvg</iconset>
      </property>
      <addaction name="newPrintLayout_Action"/>
      <addaction name="exportLayout_Action"/>
@@ -960,7 +960,7 @@
               </property>
               <attribute name="icon">
                <iconset resource="share/resources/toolicon.qrc">
-                <normaloff>:/tsvg/librecad/points.tsvg</normaloff>:/tsvg/librecad/points.tsvg</iconset>
+                <normaloff>:/tsvg/seamly/points_toolbox.tsvg</normaloff>:/tsvg/seamly/points_toolbox.tsvg</iconset>
               </attribute>
               <attribute name="label">
                <string>Point</string>
@@ -1000,7 +1000,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/line_bisector.tsvg</normaloff>:/tsvg/librecad/line_bisector.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/bisector.tsvg</normaloff>:/tsvg/seamly/bisector.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1026,7 +1026,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/angle_3_points.tsvg</normaloff>:/tsvg/librecad/angle_3_points.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/shoulder.tsvg</normaloff>:/tsvg/seamly/shoulder.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1052,7 +1052,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/snap_entity.tsvg</normaloff>:/tsvg/librecad/snap_entity.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/point_intersect_arc_line.tsvg</normaloff>:/tsvg/seamly/point_intersect_arc_line.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1078,7 +1078,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/angle_line_to_line.tsvg</normaloff>:/tsvg/librecad/angle_line_to_line.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/triangle.tsvg</normaloff>:/tsvg/seamly/triangle.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1104,7 +1104,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/pick_coordinates.tsvg</normaloff>:/tsvg/librecad/pick_coordinates.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/point_intersectxy_icon.tsvg</normaloff>:/tsvg/seamly/point_intersectxy_icon.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1130,7 +1130,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/line_perpendicular.tsvg</normaloff>:/tsvg/librecad/line_perpendicular.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/height.tsvg</normaloff>:/tsvg/seamly/height.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1156,7 +1156,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/line_angle.tsvg</normaloff>:/tsvg/librecad/line_angle.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/line_intersect_axis.tsvg</normaloff>:/tsvg/seamly/line_intersect_axis.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1182,7 +1182,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/line_ortho_rel.tsvg</normaloff>:/tsvg/librecad/line_ortho_rel.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/normal.tsvg</normaloff>:/tsvg/seamly/normal.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1208,7 +1208,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/line_rel.tsvg</normaloff>:/tsvg/librecad/line_rel.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/segment.tsvg</normaloff>:/tsvg/seamly/segment.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1234,7 +1234,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/snap_distance.tsvg</normaloff>:/tsvg/librecad/snap_distance.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/along_line.tsvg</normaloff>:/tsvg/seamly/along_line.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1260,7 +1260,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/line_middle.tsvg</normaloff>:/tsvg/librecad/line_middle.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/midpoint.tsvg</normaloff>:/tsvg/seamly/midpoint.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1295,7 +1295,7 @@
               </property>
               <attribute name="icon">
                <iconset resource="share/resources/toolicon.qrc">
-                <normaloff>:/tsvg/librecad/line.tsvg</normaloff>:/tsvg/librecad/line.tsvg</iconset>
+                <normaloff>:/tsvg/spectrum/Line.tsvg</normaloff>:/tsvg/spectrum/Line.tsvg</iconset>
               </attribute>
               <attribute name="label">
                <string>Line</string>
@@ -1332,7 +1332,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/line_2p.tsvg</normaloff>:/tsvg/librecad/line_2p.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/line.tsvg</normaloff>:/tsvg/seamly/line.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1358,7 +1358,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/snap_intersection.tsvg</normaloff>:/tsvg/librecad/snap_intersection.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/intersect.tsvg</normaloff>:/tsvg/seamly/intersect.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1399,7 +1399,7 @@
               </property>
               <attribute name="icon">
                <iconset resource="share/resources/toolicon.qrc">
-                <normaloff>:/tsvg/librecad/spline.tsvg</normaloff>:/tsvg/librecad/spline.tsvg</iconset>
+                <normaloff>:/tsvg/seamly/spline_toolboxs.tsvg</normaloff>:/tsvg/seamly/spline_toolboxs.tsvg</iconset>
               </attribute>
               <attribute name="label">
                <string>Curve</string>
@@ -1436,7 +1436,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/spline.tsvg</normaloff>:/tsvg/librecad/spline.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/spline.tsvg</normaloff>:/tsvg/seamly/spline.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1462,7 +1462,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/spline_points.tsvg</normaloff>:/tsvg/librecad/spline_points.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/splinePath.tsvg</normaloff>:/tsvg/seamly/splinePath.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1488,7 +1488,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/spline_points_add.tsvg</normaloff>:/tsvg/librecad/spline_points_add.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/cubic_bezier.tsvg</normaloff>:/tsvg/seamly/cubic_bezier.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1514,7 +1514,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/polylines_polyline.tsvg</normaloff>:/tsvg/librecad/polylines_polyline.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/cubic_bezier_path.tsvg</normaloff>:/tsvg/seamly/cubic_bezier_path.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1540,7 +1540,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/spline_points_insert.tsvg</normaloff>:/tsvg/librecad/spline_points_insert.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/splinePath_cut_point.tsvg</normaloff>:/tsvg/seamly/splinePath_cut_point.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1566,7 +1566,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/divide.tsvg</normaloff>:/tsvg/librecad/divide.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/intersection_curves.tsvg</normaloff>:/tsvg/seamly/intersection_curves.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1592,7 +1592,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/line_tangent_pc.tsvg</normaloff>:/tsvg/librecad/line_tangent_pc.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/curve_intersect_axis.tsvg</normaloff>:/tsvg/seamly/curve_intersect_axis.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1618,7 +1618,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/insert_node.tsvg</normaloff>:/tsvg/librecad/insert_node.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/spline_cut_point.tsvg</normaloff>:/tsvg/seamly/spline_cut_point.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1653,7 +1653,7 @@
               </property>
               <attribute name="icon">
                <iconset resource="share/resources/toolicon.qrc">
-                <normaloff>:/tsvg/librecad/arc_3_points.tsvg</normaloff>:/tsvg/librecad/arc_3_points.tsvg</iconset>
+                <normaloff>:/tsvg/seamly/arcs_toolbox.tsvg</normaloff>:/tsvg/seamly/arcs_toolbox.tsvg</iconset>
               </attribute>
               <attribute name="label">
                <string>Arc</string>
@@ -1690,7 +1690,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/arc_center_point_angle.tsvg</normaloff>:/tsvg/librecad/arc_center_point_angle.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/arc.tsvg</normaloff>:/tsvg/seamly/arc.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1716,7 +1716,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/arc_center_point_chord.tsvg</normaloff>:/tsvg/librecad/arc_center_point_chord.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/arc_cut.tsvg</normaloff>:/tsvg/seamly/arc_cut.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1742,7 +1742,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/arc_2p_angle.tsvg</normaloff>:/tsvg/librecad/arc_2p_angle.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/arc_intersect_axis.tsvg</normaloff>:/tsvg/seamly/arc_intersect_axis.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1768,7 +1768,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/circle_tangential_2circles_point.tsvg</normaloff>:/tsvg/librecad/circle_tangential_2circles_point.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/point_of_intersection_arcs.tsvg</normaloff>:/tsvg/seamly/point_of_intersection_arcs.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1794,7 +1794,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/cross_circle.tsvg</normaloff>:/tsvg/librecad/cross_circle.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/point_of_intersection_circles.tsvg</normaloff>:/tsvg/seamly/point_of_intersection_circles.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1820,7 +1820,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/circle_tangential_2points.tsvg</normaloff>:/tsvg/librecad/circle_tangential_2points.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/point_from_circle_and_tangent.tsvg</normaloff>:/tsvg/seamly/point_from_circle_and_tangent.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1846,7 +1846,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/line_tangent_cc.tsvg</normaloff>:/tsvg/librecad/line_tangent_cc.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/point_from_arc_and_tangent.tsvg</normaloff>:/tsvg/seamly/point_from_arc_and_tangent.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1872,7 +1872,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/arc_center_point_anglelen.tsvg</normaloff>:/tsvg/librecad/arc_center_point_anglelen.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/arc_with_length.tsvg</normaloff>:/tsvg/seamly/arc_with_length.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1898,7 +1898,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/ellipse_arc_axis.tsvg</normaloff>:/tsvg/librecad/ellipse_arc_axis.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/el_arc.tsvg</normaloff>:/tsvg/seamly/el_arc.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -1927,7 +1927,7 @@
               </property>
               <attribute name="icon">
                <iconset resource="share/resources/toolicon.qrc">
-                <normaloff>:/tsvg/librecad/modify.tsvg</normaloff>:/tsvg/librecad/modify.tsvg</iconset>
+                <normaloff>:/tsvg/spectrum/TransformGeneric.tsvg</normaloff>:/tsvg/spectrum/TransformGeneric.tsvg</iconset>
               </attribute>
               <attribute name="label">
                <string>Operations</string>
@@ -1990,7 +1990,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/rotate.tsvg</normaloff>:/tsvg/librecad/rotate.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/rotation.tsvg</normaloff>:/tsvg/seamly/rotation.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -2016,7 +2016,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/mirror.tsvg</normaloff>:/tsvg/librecad/mirror.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/mirror_by_line.tsvg</normaloff>:/tsvg/seamly/mirror_by_line.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -2042,7 +2042,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/mirror.tsvg</normaloff>:/tsvg/librecad/mirror.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/mirror_by_axis.tsvg</normaloff>:/tsvg/seamly/mirror_by_axis.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -2068,7 +2068,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/move_copy.tsvg</normaloff>:/tsvg/librecad/move_copy.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/move.tsvg</normaloff>:/tsvg/seamly/move.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -2094,7 +2094,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/bevel.tsvg</normaloff>:/tsvg/librecad/bevel.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/true_darts.tsvg</normaloff>:/tsvg/seamly/true_darts.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -2120,7 +2120,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/spectrum/Export.tsvg</normaloff>:/tsvg/spectrum/Export.tsvg</iconset>
+                   <normaloff>:/tsvg/spectrum/ExportTo.tsvg</normaloff>:/tsvg/spectrum/ExportTo.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -2155,7 +2155,7 @@
               </property>
               <attribute name="icon">
                <iconset resource="share/resources/toolicon.qrc">
-                <normaloff>:/tsvg/librecad/polygonal_area.tsvg</normaloff>:/tsvg/librecad/polygonal_area.tsvg</iconset>
+                <normaloff>:/tsvg/seamly/patternpiece_toolbox.tsvg</normaloff>:/tsvg/seamly/patternpiece_toolbox.tsvg</iconset>
               </attribute>
               <attribute name="label">
                <string>Piece</string>
@@ -2192,7 +2192,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/create_polyline_from_existing_segments.tsvg</normaloff>:/tsvg/librecad/create_polyline_from_existing_segments.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/new_piece.tsvg</normaloff>:/tsvg/seamly/new_piece.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -2218,7 +2218,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-                   <normaloff>:/tsvg/librecad/point_cross_circle.tsvg</normaloff>:/tsvg/librecad/point_cross_circle.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/anchor_point.tsvg</normaloff>:/tsvg/seamly/anchor_point.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -2244,7 +2244,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/append_node.tsvg</normaloff>:/tsvg/librecad/append_node.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/insert_nodes_icon.tsvg</normaloff>:/tsvg/seamly/insert_nodes_icon.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -2270,7 +2270,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="share/resources/toolicon.qrc">
-                   <normaloff>:/tsvg/librecad/polylines.tsvg</normaloff>:/tsvg/librecad/polylines.tsvg</iconset>
+                   <normaloff>:/tsvg/seamly/path.tsvg</normaloff>:/tsvg/seamly/path.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -2327,7 +2327,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-                   <normaloff>:/tsvg/spectrum/Image.tsvg</normaloff>:/tsvg/spectrum/Image.tsvg</iconset>
+                   <normaloff>:/tsvg/spectrum/ImageAdd.tsvg</normaloff>:/tsvg/spectrum/ImageAdd.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -2405,7 +2405,7 @@
             </property>
             <attribute name="icon">
              <iconset resource="share/resources/toolicon.qrc">
-              <normaloff>:/tsvg/librecad/create_block.tsvg</normaloff>:/tsvg/librecad/create_block.tsvg</iconset>
+              <normaloff>:/tsvg/seamly/details_toolbox.tsvg</normaloff>:/tsvg/seamly/details_toolbox.tsvg</iconset>
             </attribute>
             <attribute name="label">
              <string>Details</string>
@@ -2433,7 +2433,7 @@
              </property>
              <property name="icon">
               <iconset resource="share/resources/toolicon.qrc">
-               <normaloff>:/tsvg/librecad/create_block.tsvg</normaloff>:/tsvg/librecad/create_block.tsvg</iconset>
+               <normaloff>:/tsvg/seamly/union.tsvg</normaloff>:/tsvg/seamly/union.tsvg</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -2465,7 +2465,7 @@
              </property>
              <property name="icon">
               <iconset resource="share/resources/toolicon.qrc">
-               <normaloff>:/tsvg/spectrum/Export.tsvg</normaloff>:/tsvg/spectrum/Export.tsvg</iconset>
+               <normaloff>:/tsvg/spectrum/ExportTo.tsvg</normaloff>:/tsvg/spectrum/ExportTo.tsvg</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -2536,7 +2536,7 @@
             </property>
             <attribute name="icon">
              <iconset resource="share/resources/toolicon.qrc">
-              <normaloff>:/tsvg/librecad/page_portait.tsvg</normaloff>:/tsvg/librecad/page_portait.tsvg</iconset>
+              <normaloff>:/tsvg/seamly/layout_toolbox.tsvg</normaloff>:/tsvg/seamly/layout_toolbox.tsvg</iconset>
             </attribute>
             <attribute name="label">
              <string>Layout</string>
@@ -2576,7 +2576,7 @@
                </property>
                <property name="icon">
                 <iconset resource="share/resources/toolicon.qrc">
-                 <normaloff>:/tsvg/librecad/page_landscape.tsvg</normaloff>:/tsvg/librecad/page_landscape.tsvg</iconset>
+                 <normaloff>:/tsvg/seamly/layout_settings.tsvg</normaloff>:/tsvg/seamly/layout_settings.tsvg</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -2602,7 +2602,7 @@
                </property>
                <property name="icon">
                 <iconset resource="share/resources/toolicon.qrc">
-                 <normaloff>:/tsvg/spectrum/Export.tsvg</normaloff>:/tsvg/spectrum/Export.tsvg</iconset>
+                 <normaloff>:/tsvg/spectrum/ExportTo.tsvg</normaloff>:/tsvg/spectrum/ExportTo.tsvg</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -2685,7 +2685,7 @@
   <action name="actionOpen">
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/tsvg/spectrum/FolderOpen.tsvg</normaloff>:/tsvg/spectrum/FolderOpen.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/seamly2d_file.tsvg</normaloff>:/tsvg/seamly/seamly2d_file.tsvg</iconset>
    </property>
    <property name="text">
     <string>Open</string>
@@ -2760,7 +2760,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/tsvg/spectrum/Draw.tsvg</normaloff>:/tsvg/spectrum/Draw.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/draw.tsvg</normaloff>:/tsvg/seamly/draw.tsvg</iconset>
    </property>
    <property name="text">
     <string>Draft</string>
@@ -2787,7 +2787,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/tsvg/librecad/polygonal_area.tsvg</normaloff>:/tsvg/librecad/polygonal_area.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/kontur.tsvg</normaloff>:/tsvg/seamly/kontur.tsvg</iconset>
    </property>
    <property name="text">
     <string>Piece</string>
@@ -2829,7 +2829,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/tsvg/spectrum/Add.tsvg</normaloff>:/tsvg/spectrum/Add.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/new_draw.tsvg</normaloff>:/tsvg/seamly/new_draw.tsvg</iconset>
    </property>
    <property name="text">
     <string>New Draft Block</string>
@@ -2850,7 +2850,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/icon/32x32/option_draw.png</normaloff>:/icon/32x32/option_draw.png</iconset>
+     <normaloff>:/tsvg/seamly/option_draw.tsvg</normaloff>:/tsvg/seamly/option_draw.tsvg</iconset>
    </property>
    <property name="text">
     <string>Rename Draft Block</string>
@@ -2874,7 +2874,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/icon/32x32/table.png</normaloff>:/icon/32x32/table.png</iconset>
+     <normaloff>:/tsvg/spectrum/Table.tsvg</normaloff>:/tsvg/spectrum/Table.tsvg</iconset>
    </property>
    <property name="text">
     <string>Variables table</string>
@@ -2898,7 +2898,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/icon/32x32/table.png</normaloff>:/icon/32x32/table.png</iconset>
+     <normaloff>:/tsvg/spectrum/Table.tsvg</normaloff>:/tsvg/spectrum/Table.tsvg</iconset>
    </property>
    <property name="text">
     <string>Final measurements</string>
@@ -2919,7 +2919,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/icon/32x32/history.png</normaloff>:/icon/32x32/history.png</iconset>
+     <normaloff>:/tsvg/spectrum/History.tsvg</normaloff>:/tsvg/spectrum/History.tsvg</iconset>
    </property>
    <property name="text">
     <string>History</string>
@@ -2940,7 +2940,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/tsvg/librecad/page_landscape.tsvg</normaloff>:/tsvg/librecad/page_landscape.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/layout.tsvg</normaloff>:/tsvg/seamly/layout.tsvg</iconset>
    </property>
    <property name="text">
     <string>Layout</string>
@@ -2979,7 +2979,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/rotate.tsvg</normaloff>:/tsvg/librecad/rotate.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/rotation.tsvg</normaloff>:/tsvg/seamly/rotation.tsvg</iconset>
    </property>
    <property name="text">
     <string>Rotation</string>
@@ -3000,7 +3000,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/mirror.tsvg</normaloff>:/tsvg/librecad/mirror.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/mirror_by_line.tsvg</normaloff>:/tsvg/seamly/mirror_by_line.tsvg</iconset>
    </property>
    <property name="text">
     <string>Mirror by Line</string>
@@ -3018,7 +3018,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/mirror.tsvg</normaloff>:/tsvg/librecad/mirror.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/mirror_by_axis.tsvg</normaloff>:/tsvg/seamly/mirror_by_axis.tsvg</iconset>
    </property>
    <property name="text">
     <string>Mirror by Axis</string>
@@ -3036,7 +3036,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/move_copy.tsvg</normaloff>:/tsvg/librecad/move_copy.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/move.tsvg</normaloff>:/tsvg/seamly/move.tsvg</iconset>
    </property>
    <property name="text">
     <string>Move</string>
@@ -3054,7 +3054,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/bevel.tsvg</normaloff>:/tsvg/librecad/bevel.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/true_darts.tsvg</normaloff>:/tsvg/seamly/true_darts.tsvg</iconset>
    </property>
    <property name="text">
     <string>True Darts</string>
@@ -3072,7 +3072,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/ellipse_arc_axis.tsvg</normaloff>:/tsvg/librecad/ellipse_arc_axis.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/el_arc.tsvg</normaloff>:/tsvg/seamly/el_arc.tsvg</iconset>
    </property>
    <property name="text">
     <string>Elliptical</string>
@@ -3093,7 +3093,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/line_middle.tsvg</normaloff>:/tsvg/librecad/line_middle.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/midpoint.tsvg</normaloff>:/tsvg/seamly/midpoint.tsvg</iconset>
    </property>
    <property name="text">
     <string>Midpoint on Line</string>
@@ -3111,7 +3111,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/snap_distance.tsvg</normaloff>:/tsvg/librecad/snap_distance.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/along_line.tsvg</normaloff>:/tsvg/seamly/along_line.tsvg</iconset>
    </property>
    <property name="text">
     <string>On Line</string>
@@ -3129,7 +3129,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/line_rel.tsvg</normaloff>:/tsvg/librecad/line_rel.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/segment.tsvg</normaloff>:/tsvg/seamly/segment.tsvg</iconset>
    </property>
    <property name="text">
     <string>Length and Angle</string>
@@ -3150,7 +3150,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/line_ortho_rel.tsvg</normaloff>:/tsvg/librecad/line_ortho_rel.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/normal.tsvg</normaloff>:/tsvg/seamly/normal.tsvg</iconset>
    </property>
    <property name="text">
     <string>On Perpendicular</string>
@@ -3168,7 +3168,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/line_bisector.tsvg</normaloff>:/tsvg/librecad/line_bisector.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/bisector.tsvg</normaloff>:/tsvg/seamly/bisector.tsvg</iconset>
    </property>
    <property name="text">
     <string>On Bisector</string>
@@ -3186,7 +3186,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/angle_3_points.tsvg</normaloff>:/tsvg/librecad/angle_3_points.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/shoulder.tsvg</normaloff>:/tsvg/seamly/shoulder.tsvg</iconset>
    </property>
    <property name="text">
     <string>Length to Line</string>
@@ -3204,7 +3204,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/snap_entity.tsvg</normaloff>:/tsvg/librecad/snap_entity.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/point_intersect_arc_line.tsvg</normaloff>:/tsvg/seamly/point_intersect_arc_line.tsvg</iconset>
    </property>
    <property name="text">
     <string>Intersect  Arc and Line</string>
@@ -3222,7 +3222,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/angle_line_to_line.tsvg</normaloff>:/tsvg/librecad/angle_line_to_line.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/triangle.tsvg</normaloff>:/tsvg/seamly/triangle.tsvg</iconset>
    </property>
    <property name="text">
     <string>Intersect Axis and Triangle</string>
@@ -3240,7 +3240,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/pick_coordinates.tsvg</normaloff>:/tsvg/librecad/pick_coordinates.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/point_intersectxy_icon.tsvg</normaloff>:/tsvg/seamly/point_intersectxy_icon.tsvg</iconset>
    </property>
    <property name="text">
     <string>Intersect XY</string>
@@ -3258,7 +3258,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/line_perpendicular.tsvg</normaloff>:/tsvg/librecad/line_perpendicular.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/height.tsvg</normaloff>:/tsvg/seamly/height.tsvg</iconset>
    </property>
    <property name="text">
     <string>Intersect Line and Perpendicular</string>
@@ -3276,7 +3276,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/line_angle.tsvg</normaloff>:/tsvg/librecad/line_angle.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/line_intersect_axis.tsvg</normaloff>:/tsvg/seamly/line_intersect_axis.tsvg</iconset>
    </property>
    <property name="text">
     <string>Intersect Line and Axis</string>
@@ -3294,7 +3294,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/snap_intersection.tsvg</normaloff>:/tsvg/librecad/snap_intersection.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/intersect.tsvg</normaloff>:/tsvg/seamly/intersect.tsvg</iconset>
    </property>
    <property name="text">
     <string>Intersect Lines</string>
@@ -3312,7 +3312,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/spline.tsvg</normaloff>:/tsvg/librecad/spline.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/spline.tsvg</normaloff>:/tsvg/seamly/spline.tsvg</iconset>
    </property>
    <property name="text">
     <string>Curve - Interactive</string>
@@ -3330,7 +3330,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/insert_node.tsvg</normaloff>:/tsvg/librecad/insert_node.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/spline_cut_point.tsvg</normaloff>:/tsvg/seamly/spline_cut_point.tsvg</iconset>
    </property>
    <property name="text">
     <string>Point on Curve</string>
@@ -3348,7 +3348,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/spline_points_add.tsvg</normaloff>:/tsvg/librecad/spline_points_add.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/cubic_bezier.tsvg</normaloff>:/tsvg/seamly/cubic_bezier.tsvg</iconset>
    </property>
    <property name="text">
     <string>Curve - Fixed</string>
@@ -3366,7 +3366,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/spline_points.tsvg</normaloff>:/tsvg/librecad/spline_points.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/splinePath.tsvg</normaloff>:/tsvg/seamly/splinePath.tsvg</iconset>
    </property>
    <property name="text">
     <string>Spline - Interactive</string>
@@ -3384,7 +3384,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/spline_points_insert.tsvg</normaloff>:/tsvg/librecad/spline_points_insert.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/splinePath_cut_point.tsvg</normaloff>:/tsvg/seamly/splinePath_cut_point.tsvg</iconset>
    </property>
    <property name="text">
     <string>Point on Spline</string>
@@ -3402,7 +3402,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/polylines_polyline.tsvg</normaloff>:/tsvg/librecad/polylines_polyline.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/cubic_bezier_path.tsvg</normaloff>:/tsvg/seamly/cubic_bezier_path.tsvg</iconset>
    </property>
    <property name="text">
     <string>Spline - Fixed</string>
@@ -3420,7 +3420,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/divide.tsvg</normaloff>:/tsvg/librecad/divide.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/intersection_curves.tsvg</normaloff>:/tsvg/seamly/intersection_curves.tsvg</iconset>
    </property>
    <property name="text">
     <string>Intersect Curves</string>
@@ -3441,7 +3441,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/line_tangent_pc.tsvg</normaloff>:/tsvg/librecad/line_tangent_pc.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/curve_intersect_axis.tsvg</normaloff>:/tsvg/seamly/curve_intersect_axis.tsvg</iconset>
    </property>
    <property name="text">
     <string>Intersect Curve and Axis</string>
@@ -3462,7 +3462,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/arc_center_point_angle.tsvg</normaloff>:/tsvg/librecad/arc_center_point_angle.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/arc.tsvg</normaloff>:/tsvg/seamly/arc.tsvg</iconset>
    </property>
    <property name="text">
     <string>Radius and Angles</string>
@@ -3483,7 +3483,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/arc_center_point_chord.tsvg</normaloff>:/tsvg/librecad/arc_center_point_chord.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/arc_cut.tsvg</normaloff>:/tsvg/seamly/arc_cut.tsvg</iconset>
    </property>
    <property name="text">
     <string>Point on Arc</string>
@@ -3501,7 +3501,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/arc_2p_angle.tsvg</normaloff>:/tsvg/librecad/arc_2p_angle.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/arc_intersect_axis.tsvg</normaloff>:/tsvg/seamly/arc_intersect_axis.tsvg</iconset>
    </property>
    <property name="text">
     <string>Intersect Arc and Axis</string>
@@ -3519,7 +3519,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/circle_tangential_2circles_point.tsvg</normaloff>:/tsvg/librecad/circle_tangential_2circles_point.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/point_of_intersection_arcs.tsvg</normaloff>:/tsvg/seamly/point_of_intersection_arcs.tsvg</iconset>
    </property>
    <property name="text">
     <string>Intersect Arcs</string>
@@ -3537,7 +3537,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/cross_circle.tsvg</normaloff>:/tsvg/librecad/cross_circle.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/point_of_intersection_circles.tsvg</normaloff>:/tsvg/seamly/point_of_intersection_circles.tsvg</iconset>
    </property>
    <property name="text">
     <string>Intersect Circles</string>
@@ -3555,7 +3555,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/circle_tangential_2points.tsvg</normaloff>:/tsvg/librecad/circle_tangential_2points.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/point_from_circle_and_tangent.tsvg</normaloff>:/tsvg/seamly/point_from_circle_and_tangent.tsvg</iconset>
    </property>
    <property name="text">
     <string>Intersect Circle and Tangent</string>
@@ -3573,7 +3573,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/line_tangent_cc.tsvg</normaloff>:/tsvg/librecad/line_tangent_cc.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/point_from_arc_and_tangent.tsvg</normaloff>:/tsvg/seamly/point_from_arc_and_tangent.tsvg</iconset>
    </property>
    <property name="text">
     <string>Intersect Arc and Tangent</string>
@@ -3591,7 +3591,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/arc_center_point_anglelen.tsvg</normaloff>:/tsvg/librecad/arc_center_point_anglelen.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/arc_with_length.tsvg</normaloff>:/tsvg/seamly/arc_with_length.tsvg</iconset>
    </property>
    <property name="text">
     <string>Radius and Length</string>
@@ -3638,7 +3638,7 @@
   <action name="exit_Action">
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/theme.qrc">
-     <normaloff>:/icons/win.icon.theme/32x32/actions/application-exit.png</normaloff>:/icons/win.icon.theme/32x32/actions/application-exit.png</iconset>
+     <normaloff>:/tsvg/spectrum/Leave.tsvg</normaloff>:/tsvg/spectrum/Leave.tsvg</iconset>
    </property>
    <property name="text">
     <string>E&amp;xit</string>
@@ -3750,7 +3750,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/theme.qrc">
-     <normaloff>:/tsvg/spectrum/Maximize.tsvg</normaloff>:/tsvg/spectrum/Maximize.tsvg</iconset>
+     <normaloff>:/tsvg/spectrum/FullScreen.tsvg</normaloff>:/tsvg/spectrum/FullScreen.tsvg</iconset>
    </property>
    <property name="text">
     <string>Fit All</string>
@@ -3820,7 +3820,7 @@
   <action name="shortcuts_Action">
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/icon/32x32/2d_key_icon.png</normaloff>:/icon/32x32/2d_key_icon.png</iconset>
+     <normaloff>:/tsvg/spectrum/Keyboard.tsvg</normaloff>:/tsvg/spectrum/Keyboard.tsvg</iconset>
    </property>
    <property name="text">
     <string>Shortcuts</string>
@@ -3855,7 +3855,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/tsvg/librecad/spline_points.tsvg</normaloff>:/tsvg/librecad/spline_points.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/curve_control_points.tsvg</normaloff>:/tsvg/seamly/curve_control_points.tsvg</iconset>
    </property>
    <property name="text">
     <string>Curve Control Points</string>
@@ -3948,7 +3948,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/spectrum/Export.tsvg</normaloff>:/tsvg/spectrum/Export.tsvg</iconset>
+     <normaloff>:/tsvg/spectrum/ExportTo.tsvg</normaloff>:/tsvg/spectrum/ExportTo.tsvg</iconset>
    </property>
    <property name="text">
     <string>Export Layout As...</string>
@@ -3966,7 +3966,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/icon/32x32/individual_size_file.png</normaloff>:/icon/32x32/individual_size_file.png</iconset>
+     <normaloff>:/tsvg/seamly/individual_size_file.tsvg</normaloff>:/tsvg/seamly/individual_size_file.tsvg</iconset>
    </property>
    <property name="text">
     <string>Load Individual</string>
@@ -3987,7 +3987,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/icon/32x32/multisize_size_file.png</normaloff>:/icon/32x32/multisize_size_file.png</iconset>
+     <normaloff>:/tsvg/seamly/multisize_size_file.tsvg</normaloff>:/tsvg/seamly/multisize_size_file.tsvg</iconset>
    </property>
    <property name="text">
     <string>Load Multisize</string>
@@ -4046,7 +4046,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/icon/32x32/syncM.png</normaloff>:/icon/32x32/syncM.png</iconset>
+     <normaloff>:/tsvg/spectrum/Refresh.tsvg</normaloff>:/tsvg/spectrum/Refresh.tsvg</iconset>
    </property>
    <property name="text">
     <string>Sync</string>
@@ -4114,7 +4114,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/theme.qrc">
-     <normaloff>:/tsvg/librecad/zoom_window.tsvg</normaloff>:/tsvg/librecad/zoom_window.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/zoom_to_selection.tsvg</normaloff>:/tsvg/seamly/zoom_to_selection.tsvg</iconset>
    </property>
    <property name="text">
     <string>Selected</string>
@@ -4146,7 +4146,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/theme.qrc">
-     <normaloff>:/tsvg/librecad/zoom_previous.tsvg</normaloff>:/tsvg/librecad/zoom_previous.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/zoom_to_previous.tsvg</normaloff>:/tsvg/seamly/zoom_to_previous.tsvg</iconset>
    </property>
    <property name="text">
     <string>Previous</string>
@@ -4167,7 +4167,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/theme.qrc">
-     <normaloff>:/tsvg/spectrum/SelectRectangle.tsvg</normaloff>:/tsvg/spectrum/SelectRectangle.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/zoom_to_area.tsvg</normaloff>:/tsvg/seamly/zoom_to_area.tsvg</iconset>
    </property>
    <property name="text">
     <string>Area</string>
@@ -4206,7 +4206,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/theme.qrc">
-     <normaloff>:/tsvg/librecad/zoom_auto.tsvg</normaloff>:/tsvg/librecad/zoom_auto.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/zoom_100_percent.tsvg</normaloff>:/tsvg/seamly/zoom_100_percent.tsvg</iconset>
    </property>
    <property name="text">
     <string>Zoom 100%</string>
@@ -4227,7 +4227,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/points.tsvg</normaloff>:/tsvg/librecad/points.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/points_toolbox.tsvg</normaloff>:/tsvg/seamly/points_toolbox.tsvg</iconset>
    </property>
    <property name="text">
     <string/>
@@ -4245,7 +4245,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/line.tsvg</normaloff>:/tsvg/librecad/line.tsvg</iconset>
+     <normaloff>:/tsvg/spectrum/Line.tsvg</normaloff>:/tsvg/spectrum/Line.tsvg</iconset>
    </property>
    <property name="text">
     <string/>
@@ -4263,7 +4263,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/line_2p.tsvg</normaloff>:/tsvg/librecad/line_2p.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/line.tsvg</normaloff>:/tsvg/seamly/line.tsvg</iconset>
    </property>
    <property name="text">
     <string>Line</string>
@@ -4281,7 +4281,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/spline.tsvg</normaloff>:/tsvg/librecad/spline.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/spline_toolboxs.tsvg</normaloff>:/tsvg/seamly/spline_toolboxs.tsvg</iconset>
    </property>
    <property name="text">
     <string/>
@@ -4299,7 +4299,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/arc_3_points.tsvg</normaloff>:/tsvg/librecad/arc_3_points.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/arcs_toolbox.tsvg</normaloff>:/tsvg/seamly/arcs_toolbox.tsvg</iconset>
    </property>
    <property name="text">
     <string/>
@@ -4317,7 +4317,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/modify.tsvg</normaloff>:/tsvg/librecad/modify.tsvg</iconset>
+     <normaloff>:/tsvg/spectrum/TransformGeneric.tsvg</normaloff>:/tsvg/spectrum/TransformGeneric.tsvg</iconset>
    </property>
    <property name="text">
     <string/>
@@ -4335,7 +4335,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/page_portait.tsvg</normaloff>:/tsvg/librecad/page_portait.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/layout_toolbox.tsvg</normaloff>:/tsvg/seamly/layout_toolbox.tsvg</iconset>
    </property>
    <property name="text">
     <string/>
@@ -4353,7 +4353,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/polygonal_area.tsvg</normaloff>:/tsvg/librecad/polygonal_area.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/patternpiece_toolbox.tsvg</normaloff>:/tsvg/seamly/patternpiece_toolbox.tsvg</iconset>
    </property>
    <property name="text">
     <string/>
@@ -4371,7 +4371,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/create_polyline_from_existing_segments.tsvg</normaloff>:/tsvg/librecad/create_polyline_from_existing_segments.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/new_piece.tsvg</normaloff>:/tsvg/seamly/new_piece.tsvg</iconset>
    </property>
    <property name="text">
     <string>New Pattern Piece</string>
@@ -4389,7 +4389,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/page_landscape.tsvg</normaloff>:/tsvg/librecad/page_landscape.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/layout_settings.tsvg</normaloff>:/tsvg/seamly/layout_settings.tsvg</iconset>
    </property>
    <property name="text">
     <string>New Print Layout</string>
@@ -4407,7 +4407,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/spectrum/Export.tsvg</normaloff>:/tsvg/spectrum/Export.tsvg</iconset>
+     <normaloff>:/tsvg/spectrum/ExportTo.tsvg</normaloff>:/tsvg/spectrum/ExportTo.tsvg</iconset>
    </property>
    <property name="text">
     <string>Export Layout</string>
@@ -4425,7 +4425,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/tsvg/librecad/point_cross_circle.tsvg</normaloff>:/tsvg/librecad/point_cross_circle.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/anchor_point.tsvg</normaloff>:/tsvg/seamly/anchor_point.tsvg</iconset>
    </property>
    <property name="text">
     <string>Anchor Point</string>
@@ -4443,7 +4443,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/polylines.tsvg</normaloff>:/tsvg/librecad/polylines.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/path.tsvg</normaloff>:/tsvg/seamly/path.tsvg</iconset>
    </property>
    <property name="text">
     <string>Internal Path</string>
@@ -4461,7 +4461,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/append_node.tsvg</normaloff>:/tsvg/librecad/append_node.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/insert_nodes_icon.tsvg</normaloff>:/tsvg/seamly/insert_nodes_icon.tsvg</iconset>
    </property>
    <property name="text">
     <string>Insert Nodes</string>
@@ -4476,7 +4476,7 @@
   <action name="union_Action">
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/create_block.tsvg</normaloff>:/tsvg/librecad/create_block.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/union.tsvg</normaloff>:/tsvg/seamly/union.tsvg</iconset>
    </property>
    <property name="text">
     <string>Unite Pieces</string>
@@ -4494,7 +4494,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/spectrum/Export.tsvg</normaloff>:/tsvg/spectrum/Export.tsvg</iconset>
+     <normaloff>:/tsvg/spectrum/ExportTo.tsvg</normaloff>:/tsvg/spectrum/ExportTo.tsvg</iconset>
    </property>
    <property name="text">
     <string>Export Pieces</string>
@@ -4512,7 +4512,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/librecad/create_block.tsvg</normaloff>:/tsvg/librecad/create_block.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/details_toolbox.tsvg</normaloff>:/tsvg/seamly/details_toolbox.tsvg</iconset>
    </property>
    <property name="text">
     <string/>
@@ -4572,7 +4572,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/tsvg/spectrum/TextSize.tsvg</normaloff>:/tsvg/spectrum/TextSize.tsvg</iconset>
+     <normaloff>:/tsvg/spectrum/TextDecrease.tsvg</normaloff>:/tsvg/spectrum/TextDecrease.tsvg</iconset>
    </property>
    <property name="text">
     <string>Decrease Text Size</string>
@@ -4620,7 +4620,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/tsvg/librecad/set_rel_zero.tsvg</normaloff>:/tsvg/librecad/set_rel_zero.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/origin.tsvg</normaloff>:/tsvg/seamly/origin.tsvg</iconset>
    </property>
    <property name="text">
     <string>Axis Origin </string>
@@ -4641,7 +4641,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/tsvg/librecad/draft.tsvg</normaloff>:/tsvg/librecad/draft.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/wireframe.tsvg</normaloff>:/tsvg/seamly/wireframe.tsvg</iconset>
    </property>
    <property name="text">
     <string>Wireframe Mode</string>
@@ -4662,7 +4662,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/tsvg/librecad/line_vertical.tsvg</normaloff>:/tsvg/librecad/line_vertical.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/grainline.tsvg</normaloff>:/tsvg/seamly/grainline.tsvg</iconset>
    </property>
    <property name="text">
     <string>Grainlines</string>
@@ -4683,7 +4683,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/tsvg/spectrum/Text.tsvg</normaloff>:/tsvg/spectrum/Text.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/labels.tsvg</normaloff>:/tsvg/seamly/labels.tsvg</iconset>
    </property>
    <property name="text">
     <string>Labels</string>
@@ -4698,7 +4698,7 @@
   <action name="calculator_Action">
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/icon/32x32/calculator.png</normaloff>:/icon/32x32/calculator.png</iconset>
+     <normaloff>:/tsvg/seamly/calculator.tsvg</normaloff>:/tsvg/seamly/calculator.tsvg</iconset>
    </property>
    <property name="text">
     <string>Calculator</string>
@@ -4710,7 +4710,7 @@
   <action name="decimalChart_Action">
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/icon/32x32/table.png</normaloff>:/icon/32x32/table.png</iconset>
+     <normaloff>:/tsvg/spectrum/Table.tsvg</normaloff>:/tsvg/spectrum/Table.tsvg</iconset>
    </property>
    <property name="text">
     <string>Decimal Chart</string>
@@ -4725,7 +4725,7 @@
    </property>
    <property name="icon">
     <iconset resource="share/resources/toolicon.qrc">
-     <normaloff>:/tsvg/spectrum/Export.tsvg</normaloff>:/tsvg/spectrum/Export.tsvg</iconset>
+     <normaloff>:/tsvg/spectrum/ExportTo.tsvg</normaloff>:/tsvg/spectrum/ExportTo.tsvg</iconset>
    </property>
    <property name="text">
     <string>Export Draft Blocks</string>
@@ -4760,7 +4760,7 @@
   <action name="deleteImage_Action">
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/icon/32x32/trashcan.png</normaloff>:/icon/32x32/trashcan.png</iconset>
+     <normaloff>:/tsvg/spectrum/Delete.tsvg</normaloff>:/tsvg/spectrum/Delete.tsvg</iconset>
    </property>
    <property name="text">
     <string>Delete</string>
@@ -4769,7 +4769,7 @@
   <action name="alignImage_Action">
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/icon/32x32/alignment.png</normaloff>:/icon/32x32/alignment.png</iconset>
+     <normaloff>:/tsvg/spectrum/AlignCenter.tsvg</normaloff>:/tsvg/spectrum/AlignCenter.tsvg</iconset>
    </property>
    <property name="text">
     <string>Align</string>
@@ -4796,7 +4796,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/tsvg/librecad/create_equidistant_polyline.tsvg</normaloff>:/tsvg/librecad/create_equidistant_polyline.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/seam_allowance.tsvg</normaloff>:/tsvg/seamly/seam_allowance.tsvg</iconset>
    </property>
    <property name="text">
     <string>Seam Allowance</string>
@@ -4808,7 +4808,7 @@
   <action name="documentInfo_Action">
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/icon/16x16/show_info16_icon.png</normaloff>:/icon/16x16/show_info16_icon.png</iconset>
+     <normaloff>:/tsvg/spectrum/InfoCircle.tsvg</normaloff>:/tsvg/spectrum/InfoCircle.tsvg</iconset>
    </property>
    <property name="text">
     <string>Document Info...</string>
@@ -4829,7 +4829,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/theme.qrc">
-     <normaloff>:/tsvg/spectrum/Target.tsvg</normaloff>:/tsvg/spectrum/Target.tsvg</iconset>
+     <normaloff>:/tsvg/seamly/zoom_to_object.tsvg</normaloff>:/tsvg/seamly/zoom_to_object.tsvg</iconset>
    </property>
    <property name="text">
     <string>Object</string>
@@ -4847,7 +4847,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
-     <normaloff>:/tsvg/spectrum/Image.tsvg</normaloff>:/tsvg/spectrum/Image.tsvg</iconset>
+     <normaloff>:/tsvg/spectrum/ImageAdd.tsvg</normaloff>:/tsvg/spectrum/ImageAdd.tsvg</iconset>
    </property>
    <property name="text">
     <string>Import Image</string>

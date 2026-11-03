@@ -78,7 +78,7 @@ DialogCutSplinePath::DialogCutSplinePath(const VContainer *data, const quint32 &
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/splinePath_cut_point.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/splinePath_cut_point.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();

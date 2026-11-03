@@ -77,7 +77,7 @@ EditGroupDialog::EditGroupDialog(const VContainer *data, const quint32 &toolId, 
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/icon/32x32/edit.png"));
+    setWindowIcon(QIcon(":/tsvg/spectrum/Edit.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();

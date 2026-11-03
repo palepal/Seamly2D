@@ -54,8 +54,8 @@ void PageFormatCombobox::init()
 {
     this->blockSignals(true);
 
-    const QIcon icoPaper("://icon/16x16/template.png");
-    const QIcon icoRoll("://icon/16x16/roll.png");
+    const QIcon icoPaper(":/tsvg/spectrum/File.tsvg");
+    const QIcon icoRoll(":/tsvg/seamly/roll.tsvg");
 
     addItem(QIcon(icoPaper), QString("A0"),   QVariant(static_cast<int>(PaperSizeFormat::A0)));
     addItem(QIcon(icoPaper), QString("A1"),   QVariant(static_cast<int>(PaperSizeFormat::A1)));

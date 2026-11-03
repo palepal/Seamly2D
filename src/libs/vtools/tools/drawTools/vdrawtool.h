@@ -220,10 +220,10 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
     qCDebug(vTool, "Creating tool context menu.");
     QMenu menu;
 
-    QAction *properties_action = menu.addAction(QIcon::fromTheme("preferences-other"), VDrawTool::tr("Properties"));
+    QAction *properties_action = menu.addAction(QIcon(":/tsvg/spectrum/Settings.tsvg"), VDrawTool::tr("Properties"));
 
     // Show object name menu item
-    QAction *show_point_name_action = menu.addAction(QIcon("://icon/16x16/open_eye.png"), VDrawTool::tr("Show Point Name"));
+    QAction *show_point_name_action = menu.addAction(QIcon(":/tsvg/spectrum/Visibility.tsvg"), VDrawTool::tr("Show Point Name"));
     show_point_name_action->setCheckable(true);
 
     if (item_type == GOType::Point)
@@ -250,13 +250,13 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
         tool_type != Tool::MirrorByLine &&
         tool_type != Tool::MirrorByAxis)
     {
-        copy_memu = menu.addMenu(QIcon("://icon/32x32/clipboard_icon.png"), tr("Copy"));
+        copy_memu = menu.addMenu(QIcon(":/tsvg/seamly/clipboard_icon.tsvg"), tr("Copy"));
     }
     switch (tool_type)
     {
         case Tool::Line:
         {
-            copy_memu->addAction(QIcon(":/toolicon/32x32/line.png"),
+            copy_memu->addAction(QIcon(":/tsvg/seamly/line.tsvg"),
                                  makeName(AttrFirstPoint, AttrSecondPoint, tr("Line_"),      tool_id));
             copy_memu->addSeparator();
             copy_memu->addAction(makeName(AttrFirstPoint, AttrSecondPoint, tr("AngleLine_"), tool_id));
@@ -265,7 +265,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
         }
         case Tool::LineIntersect:
         {
-            copy_memu->addAction(QIcon(":/toolicon/32x32/intersect.png"),
+            copy_memu->addAction(QIcon(":/tsvg/seamly/intersect.tsvg"),
                                  makeName(AttrP1Line2, AttrName,    tr("Line_"),      tool_id));
             copy_memu->addAction(makeName(AttrName,    AttrP2Line1, tr("Line_"),      tool_id));
             copy_memu->addAction(makeName(AttrName,    AttrP2Line2, tr("Line_"),      tool_id));
@@ -280,7 +280,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
         }
         case Tool::EndLine:
         {
-            copy_memu->addAction(QIcon(":/toolicon/32x32/segment.png"),
+            copy_memu->addAction(QIcon(":/tsvg/seamly/segment.tsvg"),
                                  makeName(AttrBasePoint, AttrName, tr("Line_"), tool_id));
             copy_memu->addSeparator();
             copy_memu->addAction(makeName(AttrBasePoint, AttrName, tr("AngleLine_"), tool_id));
@@ -289,7 +289,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
         }
         case Tool::CurveIntersectAxis:
         {
-            copy_memu->addAction(QIcon(":/toolicon/32x32/arc_intersect_axis.png"),
+            copy_memu->addAction(QIcon(":/tsvg/seamly/arc_intersect_axis.tsvg"),
                                  makeName(AttrBasePoint, AttrName, tr("Line_"), tool_id));
             copy_memu->addSeparator();
             copy_memu->addAction(makeName(AttrBasePoint, AttrName, tr("AngleLine_"), tool_id));
@@ -298,7 +298,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
         }
         case Tool::AlongLine:
         {
-            copy_memu->addAction(QIcon(":/toolicon/32x32/along_line.png"),
+            copy_memu->addAction(QIcon(":/tsvg/seamly/along_line.tsvg"),
                                  makeName(AttrFirstPoint, AttrName, tr("Line_"), tool_id));
             copy_memu->addAction(makeName(AttrName, AttrSecondPoint, tr("Line_"), tool_id));
             copy_memu->addAction(makeName(AttrFirstPoint, AttrSecondPoint, tr("Line_"), tool_id));
@@ -311,7 +311,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
         }
         case Tool::Height:
         {
-            copy_memu->addAction(QIcon(":/toolicon/32x32/height.png"),
+            copy_memu->addAction(QIcon(":/tsvg/seamly/height.tsvg"),
                                  makeName(AttrBasePoint, AttrName, tr("Line_"),      tool_id));
             copy_memu->addAction(makeName(AttrP1Line,    AttrName, tr("Line_"),      tool_id));
             copy_memu->addAction(makeName(AttrP2Line,    AttrName, tr("Line_"),      tool_id));
@@ -324,7 +324,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
         }
         case Tool::Bisector:
         {
-            copy_memu->addAction(QIcon(":/toolicon/32x32/bisector.png"),
+            copy_memu->addAction(QIcon(":/tsvg/seamly/bisector.tsvg"),
                                  makeName(AttrSecondPoint, AttrName, tr("Line_"), tool_id));
             copy_memu->addSeparator();
             copy_memu->addAction(makeName(AttrSecondPoint, AttrName, tr("AngleLine_"), tool_id));
@@ -333,7 +333,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
         }
         case Tool::Normal:
         {
-            copy_memu->addAction(QIcon(":/toolicon/32x32/normal.png"),
+            copy_memu->addAction(QIcon(":/tsvg/seamly/normal.tsvg"),
                                  makeName(AttrFirstPoint, AttrName, tr("Line_"), tool_id));
             copy_memu->addSeparator();
             copy_memu->addAction(makeName(AttrFirstPoint, AttrName, tr("AngleLine_"), tool_id));
@@ -342,7 +342,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
         }
         case Tool::LineIntersectAxis:
         {
-            copy_memu->addAction(QIcon(":/toolicon/32x32/line_intersect_axis.png"),
+            copy_memu->addAction(QIcon(":/tsvg/seamly/line_intersect_axis.tsvg"),
                                  makeName(AttrBasePoint, AttrName,   tr("Line_"),      tool_id));
             copy_memu->addAction(makeName(AttrP1Line,    AttrName,   tr("Line_"),      tool_id));
             copy_memu->addAction(makeName(AttrName,      AttrP2Line, tr("Line_"),      tool_id));
@@ -355,7 +355,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
         }
         case Tool::IntersectArcLine:
         {
-            copy_memu->addAction(QIcon(":/toolicon/32x32/point_intersect_arc_line.png"),
+            copy_memu->addAction(QIcon(":/tsvg/seamly/point_intersect_arc_line.tsvg"),
                                  makeName(AttrCenter,      AttrName, tr("Line_"),      tool_id));
             copy_memu->addAction(makeName(AttrFirstPoint,  AttrName, tr("Line_"),      tool_id));
             copy_memu->addAction(makeName(AttrSecondPoint, AttrName, tr("Line_"),      tool_id));
@@ -368,7 +368,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
         }
         case Tool::ShoulderPoint:
         {
-            copy_memu->addAction(QIcon(":/toolicon/32x32/shoulder.png"),
+            copy_memu->addAction(QIcon(":/tsvg/seamly/shoulder.tsvg"),
                                  makeName(AttrP1Line, AttrName, tr("Line_"),      tool_id));
             copy_memu->addAction(makeName(AttrP2Line, AttrName, tr("Line_"),      tool_id));
             copy_memu->addSeparator();
@@ -379,7 +379,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
         }
         case Tool::PointOfIntersection:
         {
-            copy_memu->addAction(QIcon(":/toolicon/32x32/point_intersectxy_icon.png"),
+            copy_memu->addAction(QIcon(":/tsvg/seamly/point_intersectxy_icon.tsvg"),
                                  makeName(AttrFirstPoint,  AttrName, tr("Line_"),      tool_id));
             copy_memu->addAction(makeName(AttrSecondPoint, AttrName, tr("Line_"),      tool_id));
             copy_memu->addSeparator();
@@ -391,7 +391,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
 
         case Tool::Spline:
         {
-            copy_memu->addAction(QIcon(":/toolicon/32x32/spline.png"),
+            copy_memu->addAction(QIcon(":/tsvg/seamly/spline.tsvg"),
                                  makeName(AttrPoint1, AttrPoint4, tr("Spl_"),         tool_id));
             copy_memu->addSeparator();
             copy_memu->addAction(makeName(AttrPoint1, AttrPoint4, tr("Angle1Spl_"),   tool_id));
@@ -404,7 +404,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
         }
         case Tool::CubicBezier:
         {
-            copy_memu->addAction(QIcon(":/toolicon/32x32/cubic_bezier.png"),
+            copy_memu->addAction(QIcon(":/tsvg/seamly/cubic_bezier.tsvg"),
                                  makeName(AttrPoint1, AttrPoint4, tr("Spl_"),         tool_id));
             copy_memu->addSeparator();
             copy_memu->addAction(makeName(AttrPoint1, AttrPoint4, tr("Angle1Spl_"),   tool_id));
@@ -419,7 +419,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
 
         case Tool::CutSpline:
         {
-            copy_memu->addAction(QIcon(":/toolicon/32x32/spline_cut_point.png"),
+            copy_memu->addAction(QIcon(":/tsvg/seamly/spline_cut_point.tsvg"),
                                  makeName(AttrName, "cutSpl", tr("Spl_"),         tool_id));
             copy_memu->addAction(makeName("cutSpl", AttrName, tr("Spl_"),         tool_id));
             copy_memu->addSeparator();
@@ -470,7 +470,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
                     }
 
                     // Add the main spline name item and its 4 custom angle/length properties
-                    copy_memu->addAction(QIcon(":/toolicon/32x32/splinePath.png"), text);
+                    copy_memu->addAction(QIcon(":/tsvg/seamly/splinePath.tsvg"), text);
                     copy_memu->addAction(QStringLiteral("Angle1") + text);
                     copy_memu->addAction(QStringLiteral("Angle2") + text);
                     copy_memu->addAction(QStringLiteral("C1Length") + text);
@@ -535,7 +535,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
                     }
 
                     // Add the main spline name item and its 4 custom angle/length properties
-                    copy_memu->addAction(QIcon(":/toolicon/32x32/cubic_bezier_path.png"), text);
+                    copy_memu->addAction(QIcon(":/tsvg/seamly/cubic_bezier_path.tsvg"), text);
 
                     // Loop through and add the individual segment names along with their 4 properties
                     int segment_count = path_points.count() - 1;
@@ -593,7 +593,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
                         text2 += QStringLiteral("_") + duplicate_val;
                     }
 
-                    copy_memu->addAction(QIcon(":/toolicon/32x32/splinePath_cut_point.png"), text1);
+                    copy_memu->addAction(QIcon(":/tsvg/seamly/splinePath_cut_point.tsvg"), text1);
                     copy_memu->addAction(text2);
                 }
             }
@@ -602,7 +602,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
 
         case Tool::Arc:
         {
-            copy_memu->addAction(QIcon(":/toolicon/32x32/arc.png"),
+            copy_memu->addAction(QIcon(":/tsvg/seamly/arc.tsvg"),
                                  makeName(AttrCenter, "arcId", tr("Arc_"),       tool_id));
             copy_memu->addSeparator();
             copy_memu->addAction(makeName(AttrCenter, "arcId", tr("RadiusArc_"), tool_id));
@@ -614,7 +614,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
         }
         case Tool::ArcWithLength:
         {
-            copy_memu->addAction(QIcon(":/toolicon/32x32/arc_with_length.png"),
+            copy_memu->addAction(QIcon(":/tsvg/seamly/arc_with_length.tsvg"),
                                  makeName(AttrCenter, "arcId", tr("Arc_"),       tool_id));
             copy_memu->addSeparator();
             copy_memu->addAction(makeName(AttrCenter, "arcId", tr("RadiusArc_"), tool_id));
@@ -627,7 +627,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
 
         case Tool::EllipticalArc:
         {
-            copy_memu->addAction(QIcon(":/toolicon/32x32/el_arc.png"),
+            copy_memu->addAction(QIcon(":/tsvg/seamly/el_arc.tsvg"),
                                  makeName(AttrCenter, "arcId", tr("ElArc_"),       tool_id));
             copy_memu->addSeparator();
             copy_memu->addAction(makeName(AttrCenter, "arcId", tr("Radius1ElArc_"), tool_id));
@@ -677,7 +677,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
 
             // Assemble the two resulting arc names using clean QString::number() math
             QString text1 = tr("Arc_") + QString("%1_%2").arg(center_name, QString::number(tool_id + 1));
-            copy_memu->addAction(QIcon(":/toolicon/32x32/arc_cut.png"), text1);
+            copy_memu->addAction(QIcon(":/tsvg/seamly/arc_cut.tsvg"), text1);
 
             QString text2 = tr("Arc_") + QString("%1_%2").arg(center_name, QString::number(tool_id + 2));
             copy_memu->addAction(text2);
@@ -703,7 +703,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
     }
 
     // Add delete menu item.
-    QAction *delete_action = menu.addAction(QIcon::fromTheme("edit-delete"), VDrawTool::tr("Delete"));
+    QAction *delete_action = menu.addAction(QIcon(":/tsvg/spectrum/Delete.tsvg"), VDrawTool::tr("Delete"));
     if (show_remove == RemoveOption::Enable)
     {
         if (ref == Referens::Follow)
@@ -739,7 +739,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
 
     if (!groups_containing_objecct.empty() && !groups_not_containing_object.empty())
     {
-        QMenu *move_group_menu = menu.addMenu(QIcon("://icon/svg/list-move.svg"), VDrawTool::tr("Move Group Object"));
+        QMenu *move_group_menu = menu.addMenu(QIcon(":/tsvg/seamly/list-move.tsvg"), VDrawTool::tr("Move Group Object"));
         QStringList source_list = QStringList(groups_containing_objecct.values());
         QStringList dest_list   = QStringList(groups_not_containing_object.values());
         source_list.sort(Qt::CaseInsensitive);
@@ -766,7 +766,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
     QActionGroup *add_group_menu_action = new QActionGroup(this);
     if (!groups_not_containing_object.empty())
     {
-        QMenu *add_group_menu = menu.addMenu(QIcon("://icon/32x32/add.png"), VDrawTool::tr("Add Group Object"));
+        QMenu *add_group_menu = menu.addMenu(QIcon(":/tsvg/spectrum/AddCircle.tsvg"), VDrawTool::tr("Add Group Object"));
         QStringList list = QStringList(groups_not_containing_object.values());
         list.sort(Qt::CaseInsensitive);
 
@@ -785,7 +785,7 @@ void VDrawTool::ContextMenu(QGraphicsSceneContextMenuEvent *event, quint32 objec
 
     if (!groups_containing_objecct.empty())
     {
-        QMenu *remove_group_obj_menu = menu.addMenu(QIcon("://icon/32x32/remove.png"),
+        QMenu *remove_group_obj_menu = menu.addMenu(QIcon(":/tsvg/spectrum/RemoveCircle.tsvg"),
                                                     VDrawTool::tr("Remove Group Object"));
 
         QStringList list = QStringList(groups_containing_objecct.values());

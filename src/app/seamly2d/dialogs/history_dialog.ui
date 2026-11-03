@@ -99,7 +99,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-    <normaloff>:/icon/32x32/history.png</normaloff>:/icon/32x32/history.png</iconset>
+    <normaloff>:/tsvg/spectrum/History.tsvg</normaloff>:/tsvg/spectrum/History.tsvg</iconset>
   </property>
   <property name="locale">
    <locale language="English" country="UnitedStates"/>
@@ -117,7 +117,7 @@
        </property>
        <property name="icon">
         <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-         <normaloff>:/icon/32x32/clipboard_icon.png</normaloff>:/icon/32x32/clipboard_icon.png</iconset>
+         <normaloff>:/tsvg/seamly/clipboard_icon.tsvg</normaloff>:/tsvg/seamly/clipboard_icon.tsvg</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -139,7 +139,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../../../libs/vmisc/share/resources/icon.qrc">:/icon/32x32/find.png</pixmap>
+        <pixmap resource="../../../libs/vmisc/share/resources/icon.qrc">:/tsvg/spectrum/Search.tsvg</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -210,7 +210,7 @@
        </property>
        <property name="icon">
         <iconset resource="../../../libs/vmisc/share/resources/theme.qrc">
-         <normaloff>:/icons/win.icon.theme/32x32/actions/go-previous.png</normaloff>:/icons/win.icon.theme/32x32/actions/go-previous.png</iconset>
+         <normaloff>:/tsvg/spectrum/ChevronLeft.tsvg</normaloff>:/tsvg/spectrum/ChevronLeft.tsvg</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -251,7 +251,7 @@
        </property>
        <property name="icon">
         <iconset resource="../../../libs/vmisc/share/resources/theme.qrc">
-         <normaloff>:/icons/win.icon.theme/32x32/actions/go-next.png</normaloff>:/icons/win.icon.theme/32x32/actions/go-next.png</iconset>
+         <normaloff>:/tsvg/spectrum/ChevronRight.tsvg</normaloff>:/tsvg/spectrum/ChevronRight.tsvg</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -292,7 +292,7 @@
        </property>
        <property name="icon">
         <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-         <normaloff>:/icon/svg/regex.svg</normaloff>:/icon/svg/regex.svg</iconset>
+         <normaloff>:/tsvg/seamly/regex.tsvg</normaloff>:/tsvg/seamly/regex.tsvg</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -333,7 +333,7 @@
        </property>
        <property name="icon">
         <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-         <normaloff>:/icon/svg/case.svg</normaloff>:/icon/svg/case.svg</iconset>
+         <normaloff>:/tsvg/seamly/case.tsvg</normaloff>:/tsvg/seamly/case.tsvg</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -374,7 +374,7 @@
        </property>
        <property name="icon">
         <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-         <normaloff>:/icon/svg/word.svg</normaloff>:/icon/svg/word.svg</iconset>
+         <normaloff>:/tsvg/seamly/word.tsvg</normaloff>:/tsvg/seamly/word.tsvg</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -452,7 +452,7 @@
        </property>
        <property name="icon">
         <iconset resource="../../../libs/vmisc/share/resources/theme.qrc">
-         <normaloff>:/icons/win.icon.theme/32x32/actions/go-top.png</normaloff>:/icons/win.icon.theme/32x32/actions/go-top.png</iconset>
+         <normaloff>:/tsvg/seamly/go-top.tsvg</normaloff>:/tsvg/seamly/go-top.tsvg</iconset>
        </property>
       </widget>
      </item>
@@ -463,7 +463,7 @@
        </property>
        <property name="icon">
         <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-         <normaloff>:/icon/24x24/fast_forward_left_to_right_arrow.png</normaloff>:/icon/24x24/fast_forward_left_to_right_arrow.png</iconset>
+         <normaloff>:/tsvg/seamly/fast_forward_left_to_right_arrow.tsvg</normaloff>:/tsvg/seamly/fast_forward_left_to_right_arrow.tsvg</iconset>
        </property>
       </widget>
      </item>
@@ -474,7 +474,7 @@
        </property>
        <property name="icon">
         <iconset resource="../../../libs/vmisc/share/resources/theme.qrc">
-         <normaloff>:/icons/win.icon.theme/32x32/actions/go-bottom.png</normaloff>:/icons/win.icon.theme/32x32/actions/go-bottom.png</iconset>
+         <normaloff>:/tsvg/seamly/go-bottom.tsvg</normaloff>:/tsvg/seamly/go-bottom.tsvg</iconset>
        </property>
       </widget>
      </item>

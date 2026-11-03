@@ -2774,7 +2774,7 @@
               </property>
               <property name="icon">
                <iconset resource="../../../../libs/vmisc/share/resources/theme.qrc">
-                <normaloff>:/icons/win.icon.theme/24x24/actions/document-open.png</normaloff>:/icons/win.icon.theme/24x24/actions/document-open.png</iconset>
+                <normaloff>:/tsvg/spectrum/FolderOpen.tsvg</normaloff>:/tsvg/spectrum/FolderOpen.tsvg</iconset>
               </property>
              </widget>
             </item>
@@ -2813,7 +2813,7 @@
               </property>
               <property name="icon">
                <iconset resource="../../../../libs/vmisc/share/resources/theme.qrc">
-                <normaloff>:/icons/win.icon.theme/24x24/actions/document-open.png</normaloff>:/icons/win.icon.theme/24x24/actions/document-open.png</iconset>
+                <normaloff>:/tsvg/spectrum/FolderOpen.tsvg</normaloff>:/tsvg/spectrum/FolderOpen.tsvg</iconset>
               </property>
              </widget>
             </item>

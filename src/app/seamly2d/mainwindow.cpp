@@ -2511,11 +2511,11 @@ QComboBox *MainWindow::SetGradationList(QLabel *label, const QStringList &list)
 void MainWindow::initializeModesToolBar()
 {
     leftGoToStage = new QLabel(this);
-    leftGoToStage->setPixmap(QPixmap("://icon/24x24/fast_forward_left_to_right_arrow.png"));
+    leftGoToStage->setPixmap(QPixmap(":/tsvg/seamly/fast_forward_left_to_right_arrow.tsvg"));
     ui->mode_ToolBar->insertWidget(ui->pieceMode_Action, leftGoToStage);
 
     rightGoToStage = new QLabel(this);
-    rightGoToStage->setPixmap(QPixmap("://icon/24x24/left_to_right_arrow.png"));
+    rightGoToStage->setPixmap(QPixmap(":/tsvg/seamly/left_to_right_arrow.tsvg"));
     ui->mode_ToolBar->insertWidget(ui->layoutMode_Action, rightGoToStage);
 }
 
@@ -3145,17 +3145,17 @@ void MainWindow::handlePointsMenu()
 
     QMenu menu;
 
-    QAction *action_PointAtDA           = menu.addAction(QIcon(":/toolicon/32x32/segment.png"),                tr("Length and Angle") + "\tL, A");
-    QAction *action_PointAlongLine      = menu.addAction(QIcon(":/toolicon/32x32/along_line.png"),             tr("On Line") + "\tO, L");
-    QAction *action_Midpoint            = menu.addAction(QIcon(":/toolicon/32x32/midpoint.png"),               tr("Midpoint") + "\t" + tr("Shift+O, Shift+L"));
-    QAction *action_AlongPerpendicular  = menu.addAction(QIcon(":/toolicon/32x32/normal.png"),                 tr("On Perpendicular") + "\tO, P");
-    QAction *action_Bisector            = menu.addAction(QIcon(":/toolicon/32x32/bisector.png"),               tr("On Bisector") + "\tO, B");
-    QAction *action_Shoulder            = menu.addAction(QIcon(":/toolicon/32x32/shoulder.png"),               tr("Length to Line") + "\tP, S");
-    QAction *action_IntersectArcLine      = menu.addAction(QIcon(":/toolicon/32x32/point_intersect_arc_line.png"),       tr("Intersect Arc and Line") + "\tA, L");
-    QAction *action_Triangle            = menu.addAction(QIcon(":/toolicon/32x32/triangle.png"),               tr("Intersect Axis and Triangle") + "\tX, T");
-    QAction *action_PointIntersectXY    = menu.addAction(QIcon(":/toolicon/32x32/point_intersectxy_icon.png"), tr("Intersect XY") + "\tX, Y");
-    QAction *action_PerpendicularPoint  = menu.addAction(QIcon(":/toolicon/32x32/height.png"),                 tr("Intersect Line and Perpendicular") + "\tL, P");
-    QAction *action_PointIntersectAxis  = menu.addAction(QIcon(":/toolicon/32x32/line_intersect_axis.png"),    tr("Intersect Line and Axis") + "\tL, X");
+    QAction *action_PointAtDA           = menu.addAction(QIcon(":/tsvg/seamly/segment.tsvg"),                tr("Length and Angle") + "\tL, A");
+    QAction *action_PointAlongLine      = menu.addAction(QIcon(":/tsvg/seamly/along_line.tsvg"),             tr("On Line") + "\tO, L");
+    QAction *action_Midpoint            = menu.addAction(QIcon(":/tsvg/seamly/midpoint.tsvg"),               tr("Midpoint") + "\t" + tr("Shift+O, Shift+L"));
+    QAction *action_AlongPerpendicular  = menu.addAction(QIcon(":/tsvg/seamly/normal.tsvg"),                 tr("On Perpendicular") + "\tO, P");
+    QAction *action_Bisector            = menu.addAction(QIcon(":/tsvg/seamly/bisector.tsvg"),               tr("On Bisector") + "\tO, B");
+    QAction *action_Shoulder            = menu.addAction(QIcon(":/tsvg/seamly/shoulder.tsvg"),               tr("Length to Line") + "\tP, S");
+    QAction *action_IntersectArcLine      = menu.addAction(QIcon(":/tsvg/seamly/point_intersect_arc_line.tsvg"),       tr("Intersect Arc and Line") + "\tA, L");
+    QAction *action_Triangle            = menu.addAction(QIcon(":/tsvg/seamly/triangle.tsvg"),               tr("Intersect Axis and Triangle") + "\tX, T");
+    QAction *action_PointIntersectXY    = menu.addAction(QIcon(":/tsvg/seamly/point_intersectxy_icon.tsvg"), tr("Intersect XY") + "\tX, Y");
+    QAction *action_PerpendicularPoint  = menu.addAction(QIcon(":/tsvg/seamly/height.tsvg"),                 tr("Intersect Line and Perpendicular") + "\tL, P");
+    QAction *action_PointIntersectAxis  = menu.addAction(QIcon(":/tsvg/seamly/line_intersect_axis.tsvg"),    tr("Intersect Line and Axis") + "\tL, X");
 
     QAction *selectedAction = menu.exec(QCursor::pos());
 
@@ -3236,8 +3236,8 @@ void MainWindow::handleLinesMenu()
     qCDebug(vMainWindow, "Lines Menu selected. \n");
     QMenu menu;
 
-    QAction *action_Line          = menu.addAction(QIcon(":/toolicon/32x32/line.png"),      tr("Line") + "\t" + tr("Alt+L"));
-    QAction *action_LineIntersect = menu.addAction(QIcon(":/toolicon/32x32/intersect.png"), tr("Intersect Lines") + "\tI, L");
+    QAction *action_Line          = menu.addAction(QIcon(":/tsvg/seamly/line.tsvg"),      tr("Line") + "\t" + tr("Alt+L"));
+    QAction *action_LineIntersect = menu.addAction(QIcon(":/tsvg/seamly/intersect.tsvg"), tr("Intersect Lines") + "\tI, L");
 
     QAction *selectedAction = menu.exec(QCursor::pos());
 
@@ -3264,15 +3264,15 @@ void MainWindow::handleArcsMenu()
     qCDebug(vMainWindow, "Arcs Menu selected. \n");
     QMenu menu;
 
-    QAction *action_Arc              = menu.addAction(QIcon(":/toolicon/32x32/arc.png"),                           tr("Radius and Angles") + "\t" + tr("Alt+A"));
-    QAction *action_PointAlongArc    = menu.addAction(QIcon(":/toolicon/32x32/arc_cut.png"),                       tr("Point on Arc") + "\tO, A");
-    QAction *action_ArcIntersectAxis = menu.addAction(QIcon(":/toolicon/32x32/arc_intersect_axis.png"),            tr("Intersect Arc and Axis") + "\tA, X");
-    QAction *action_ArcIntersectArc  = menu.addAction(QIcon(":/toolicon/32x32/point_of_intersection_arcs.png"),    tr("Intersect Arcs") + "\tI, A");
-    QAction *action_CircleIntersect  = menu.addAction(QIcon(":/toolicon/32x32/point_of_intersection_circles.png"), tr("Intersect Circles") + "\t" + tr("Shift+I, Shift+C"));
-    QAction *action_CircleTangent    = menu.addAction(QIcon(":/toolicon/32x32/point_from_circle_and_tangent.png"), tr("Intersect Circle and Tangent") + "\tC, T");
-    QAction *action_ArcTangent       = menu.addAction(QIcon(":/toolicon/32x32/point_from_arc_and_tangent.png"),    tr("Intersect Arc and Tangent") + "\tA, T");
-    QAction *action_ArcWithLength    = menu.addAction(QIcon(":/toolicon/32x32/arc_with_length.png"),               tr("Radius and Length") + "\t" + tr("Alt+Shift+A"));
-    QAction *action_EllipticalArc    = menu.addAction(QIcon(":/toolicon/32x32/el_arc.png"),                        tr("Elliptical") + "\t" + tr("Alt+E"));
+    QAction *action_Arc              = menu.addAction(QIcon(":/tsvg/seamly/arc.tsvg"),                           tr("Radius and Angles") + "\t" + tr("Alt+A"));
+    QAction *action_PointAlongArc    = menu.addAction(QIcon(":/tsvg/seamly/arc_cut.tsvg"),                       tr("Point on Arc") + "\tO, A");
+    QAction *action_ArcIntersectAxis = menu.addAction(QIcon(":/tsvg/seamly/arc_intersect_axis.tsvg"),            tr("Intersect Arc and Axis") + "\tA, X");
+    QAction *action_ArcIntersectArc  = menu.addAction(QIcon(":/tsvg/seamly/point_of_intersection_arcs.tsvg"),    tr("Intersect Arcs") + "\tI, A");
+    QAction *action_CircleIntersect  = menu.addAction(QIcon(":/tsvg/seamly/point_of_intersection_circles.tsvg"), tr("Intersect Circles") + "\t" + tr("Shift+I, Shift+C"));
+    QAction *action_CircleTangent    = menu.addAction(QIcon(":/tsvg/seamly/point_from_circle_and_tangent.tsvg"), tr("Intersect Circle and Tangent") + "\tC, T");
+    QAction *action_ArcTangent       = menu.addAction(QIcon(":/tsvg/seamly/point_from_arc_and_tangent.tsvg"),    tr("Intersect Arc and Tangent") + "\tA, T");
+    QAction *action_ArcWithLength    = menu.addAction(QIcon(":/tsvg/seamly/arc_with_length.tsvg"),               tr("Radius and Length") + "\t" + tr("Alt+Shift+A"));
+    QAction *action_EllipticalArc    = menu.addAction(QIcon(":/tsvg/seamly/el_arc.tsvg"),                        tr("Elliptical") + "\t" + tr("Alt+E"));
 
     QAction *selectedAction = menu.exec(QCursor::pos());
 
@@ -3341,14 +3341,14 @@ void MainWindow::handleCurvesMenu()
     qCDebug(vMainWindow, "Curves Menu selected. \n");
     QMenu menu;
 
-    QAction *action_Curve                = menu.addAction(QIcon(":/toolicon/32x32/spline.png"),               tr("Curve - Interactive") + "\t" + tr("Alt+C"));
-    QAction *action_Spline               = menu.addAction(QIcon(":/toolicon/32x32/splinePath.png"),           tr("Spline - Interactive") + "\t" + tr("Alt+S"));
-    QAction *action_CurveWithCPs         = menu.addAction(QIcon(":/toolicon/32x32/cubic_bezier.png"),         tr("Curve - Fixed") + "\t" + tr("Alt+Shift+C"));
-    QAction *action_SplineWithCPs        = menu.addAction(QIcon(":/toolicon/32x32/cubic_bezier_path.png"),    tr("Spline - Fixed") + "\t" + tr("Alt+Shift+S"));
-    QAction *action_PointAlongCurve      = menu.addAction(QIcon(":/toolicon/32x32/spline_cut_point.png"),     tr("Point on Curve") + "\tO, C");
-    QAction *action_PointAlongSpline     = menu.addAction(QIcon(":/toolicon/32x32/splinePath_cut_point.png"), tr("Point on Spline") + "\tO, S");
-    QAction *action_CurveIntersectCurve  = menu.addAction(QIcon(":/toolicon/32x32/intersection_curves.png"),  tr("Intersect Curves") + "\tI, C");
-    QAction *action_CurveIntersectAxis   = menu.addAction(QIcon(":/toolicon/32x32/curve_intersect_axis.png"), tr("Intersect Curve & Axis") + "\tC, X");
+    QAction *action_Curve                = menu.addAction(QIcon(":/tsvg/seamly/spline.tsvg"),               tr("Curve - Interactive") + "\t" + tr("Alt+C"));
+    QAction *action_Spline               = menu.addAction(QIcon(":/tsvg/seamly/splinePath.tsvg"),           tr("Spline - Interactive") + "\t" + tr("Alt+S"));
+    QAction *action_CurveWithCPs         = menu.addAction(QIcon(":/tsvg/seamly/cubic_bezier.tsvg"),         tr("Curve - Fixed") + "\t" + tr("Alt+Shift+C"));
+    QAction *action_SplineWithCPs        = menu.addAction(QIcon(":/tsvg/seamly/cubic_bezier_path.tsvg"),    tr("Spline - Fixed") + "\t" + tr("Alt+Shift+S"));
+    QAction *action_PointAlongCurve      = menu.addAction(QIcon(":/tsvg/seamly/spline_cut_point.tsvg"),     tr("Point on Curve") + "\tO, C");
+    QAction *action_PointAlongSpline     = menu.addAction(QIcon(":/tsvg/seamly/splinePath_cut_point.tsvg"), tr("Point on Spline") + "\tO, S");
+    QAction *action_CurveIntersectCurve  = menu.addAction(QIcon(":/tsvg/seamly/intersection_curves.tsvg"),  tr("Intersect Curves") + "\tI, C");
+    QAction *action_CurveIntersectAxis   = menu.addAction(QIcon(":/tsvg/seamly/curve_intersect_axis.tsvg"), tr("Intersect Curve & Axis") + "\tC, X");
 
     QAction *selectedAction = menu.exec(QCursor::pos());
 
@@ -3417,13 +3417,13 @@ void MainWindow::handleOperationsMenu()
     qCDebug(vMainWindow, "Operations Menu selected. \n");
     QMenu menu;
 
-    QAction *action_Group        = menu.addAction(QIcon(":/toolicon/32x32/group.png"),          tr("Add Objects to Group") + "\tG");
-    QAction *action_Rotate       = menu.addAction(QIcon(":/toolicon/32x32/rotation.png"),       tr("Rotate") + "\tR");
-    QAction *action_MirrorByLine = menu.addAction(QIcon(":/toolicon/32x32/mirror_by_line.png"), tr("Mirror by Line") + "\tM, L");
-    QAction *action_MirrorByAxis = menu.addAction(QIcon(":/toolicon/32x32/mirror_by_axis.png"), tr("Mirror by Axis") + "\tM, A");
-    QAction *action_Move         = menu.addAction(QIcon(":/toolicon/32x32/move.png"),           tr("Move") + "\t" + tr("Alt+M"));
-    QAction *action_TrueDarts    = menu.addAction(QIcon(":/toolicon/32x32/true_darts.png"),     tr("True Darts") + "\tT, D");
-    QAction *action_ExportDraftBlocks = menu.addAction(QIcon(":/toolicon/32x32/export.png"),    tr("Export Draft Blocks") + "\tE, D");
+    QAction *action_Group        = menu.addAction(QIcon(":/tsvg/spectrum/Group.tsvg"),          tr("Add Objects to Group") + "\tG");
+    QAction *action_Rotate       = menu.addAction(QIcon(":/tsvg/seamly/rotation.tsvg"),       tr("Rotate") + "\tR");
+    QAction *action_MirrorByLine = menu.addAction(QIcon(":/tsvg/seamly/mirror_by_line.tsvg"), tr("Mirror by Line") + "\tM, L");
+    QAction *action_MirrorByAxis = menu.addAction(QIcon(":/tsvg/seamly/mirror_by_axis.tsvg"), tr("Mirror by Axis") + "\tM, A");
+    QAction *action_Move         = menu.addAction(QIcon(":/tsvg/seamly/move.tsvg"),           tr("Move") + "\t" + tr("Alt+M"));
+    QAction *action_TrueDarts    = menu.addAction(QIcon(":/tsvg/seamly/true_darts.tsvg"),     tr("True Darts") + "\tT, D");
+    QAction *action_ExportDraftBlocks = menu.addAction(QIcon(":/tsvg/spectrum/ExportTo.tsvg"),    tr("Export Draft Blocks") + "\tE, D");
 
     QAction *selectedAction = menu.exec(QCursor::pos());
 
@@ -3478,10 +3478,10 @@ void MainWindow::handlePieceMenu()
 {
     QMenu menu;
 
-    QAction *action_Piece        = menu.addAction(QIcon(":/toolicon/32x32/new_detail.png"),   tr("New Pattern Piece") + "\tN, P");
-    QAction *action_AnchorPoint  = menu.addAction(QIcon(":/icon/32x32/anchor_point.png"),     tr("Add AnchorPoint") + "\tA, P");
-    QAction *action_InternalPath = menu.addAction(QIcon(":/toolicon/32x32/path.png"),         tr("Create Internal Path") + "\tI, N");
-    QAction *action_InsertNodes  = menu.addAction(QIcon(":/toolicon/32x32/insert_nodes_icon.png"), tr("Insert Nodes in Path") + "\tI, P");
+    QAction *action_Piece        = menu.addAction(QIcon(":/tsvg/seamly/new_detail.tsvg"),   tr("New Pattern Piece") + "\tN, P");
+    QAction *action_AnchorPoint  = menu.addAction(QIcon(":/tsvg/seamly/anchor_point.tsvg"),     tr("Add AnchorPoint") + "\tA, P");
+    QAction *action_InternalPath = menu.addAction(QIcon(":/tsvg/seamly/path.tsvg"),         tr("Create Internal Path") + "\tI, N");
+    QAction *action_InsertNodes  = menu.addAction(QIcon(":/tsvg/seamly/insert_nodes_icon.tsvg"), tr("Insert Nodes in Path") + "\tI, P");
 
     action_AnchorPoint->setEnabled(pattern->DataPieces()->size() > 0);
     action_InternalPath->setEnabled(pattern->DataPieces()->size() > 0);
@@ -3524,8 +3524,8 @@ void MainWindow::handlePatternPiecesMenu()
     qCDebug(vMainWindow, "PatternPieces Menu selected. \n");
     QMenu menu;
 
-    QAction *action_Union        = menu.addAction(QIcon(":/toolicon/32x32/union.png"),  tr("Union Tool") + "\tU");
-    QAction *action_ExportPieces = menu.addAction(QIcon(":/toolicon/32x32/export.png"), tr("Export Pattern Pieces") + "\tE, P");
+    QAction *action_Union        = menu.addAction(QIcon(":/tsvg/seamly/union.tsvg"),  tr("Union Tool") + "\tU");
+    QAction *action_ExportPieces = menu.addAction(QIcon(":/tsvg/spectrum/ExportTo.tsvg"), tr("Export Pattern Pieces") + "\tE, P");
     QAction *selectedAction      = menu.exec(QCursor::pos());
 
     if(selectedAction == nullptr)
@@ -3552,8 +3552,8 @@ void MainWindow::handleLayoutMenu()
 
     QMenu menu;
 
-    QAction *action_NewLayout    = menu.addAction(QIcon(":/toolicon/32x32/layout_settings.png"), tr("New Print Layout") + "\tN, L");
-    QAction *action_ExportLayout = menu.addAction(QIcon(":/toolicon/32x32/export.png"), tr("Export Layout") + "\tE, L");
+    QAction *action_NewLayout    = menu.addAction(QIcon(":/tsvg/seamly/layout_settings.tsvg"), tr("New Print Layout") + "\tN, L");
+    QAction *action_ExportLayout = menu.addAction(QIcon(":/tsvg/spectrum/ExportTo.tsvg"), tr("Export Layout") + "\tE, L");
 
     QAction *selectedAction = menu.exec(QCursor::pos());
 
@@ -3581,7 +3581,7 @@ void MainWindow::handleImagesMenu()
 
     QMenu menu;
 
-    QAction *action_ImportImage    = menu.addAction(QIcon(":/icon/32x32/add_image.png"), tr("Import Image") + "\tAlt+ I");
+    QAction *action_ImportImage    = menu.addAction(QIcon(":/tsvg/spectrum/ImageAdd.tsvg"), tr("Import Image") + "\tAlt+ I");
 
     QAction *selectedAction = menu.exec(QCursor::pos());
 
@@ -4025,8 +4025,8 @@ void MainWindow::showDraftMode(bool checked)
         qCDebug(vMainWindow, "Show draft scene");
         handleArrowTool(true);
 
-        leftGoToStage->setPixmap(QPixmap("://icon/24x24/fast_forward_left_to_right_arrow.png"));
-        rightGoToStage->setPixmap(QPixmap("://icon/24x24/left_to_right_arrow.png"));
+        leftGoToStage->setPixmap(QPixmap(":/tsvg/seamly/fast_forward_left_to_right_arrow.tsvg"));
+        rightGoToStage->setPixmap(QPixmap(":/tsvg/seamly/left_to_right_arrow.tsvg"));
 
         ui->showDraftMode->setChecked(true);
         ui->pieceMode_Action->setChecked(false);
@@ -4095,8 +4095,8 @@ void MainWindow::showPieceMode(bool checked)
         }
         draft_block_combobox->setCurrentIndex(draft_block_combobox->count()-1); // Need to get data about all blocks.
 
-        leftGoToStage->setPixmap(QPixmap("://icon/24x24/right_to_left_arrow.png"));
-        rightGoToStage->setPixmap(QPixmap("://icon/24x24/left_to_right_arrow.png"));
+        leftGoToStage->setPixmap(QPixmap(":/tsvg/seamly/right_to_left_arrow.tsvg"));
+        rightGoToStage->setPixmap(QPixmap(":/tsvg/seamly/left_to_right_arrow.tsvg"));
 
         ui->showDraftMode->setChecked(false);
         ui->pieceMode_Action->setChecked(true);
@@ -4178,8 +4178,8 @@ void MainWindow::showLayoutMode(bool checked)
         }
         draft_block_combobox->setCurrentIndex(draft_block_combobox->count()-1);// Need to get data about all draft blocks
 
-        leftGoToStage->setPixmap(QPixmap("://icon/24x24/right_to_left_arrow.png"));
-        rightGoToStage->setPixmap(QPixmap("://icon/24x24/fast_forward_right_to_left_arrow.png"));
+        leftGoToStage->setPixmap(QPixmap(":/tsvg/seamly/right_to_left_arrow.tsvg"));
+        rightGoToStage->setPixmap(QPixmap(":/tsvg/seamly/fast_forward_right_to_left_arrow.tsvg"));
 
         ui->showDraftMode->setChecked(false);
         ui->pieceMode_Action->setChecked(false);
@@ -5677,7 +5677,7 @@ void MainWindow::createMenus()
 
     undoAction = qApp->getUndoStack()->createUndoAction(this, tr("&Undo"));
     undoAction->setShortcuts(undoShortcuts);
-    undoAction->setIcon(QIcon::fromTheme("edit-undo"));
+    undoAction->setIcon(QIcon(":/tsvg/spectrum/Undo.tsvg"));
     connect(undoAction, &QAction::triggered, toolProperties, &VToolOptionsPropertyBrowser::refreshOptions);
     ui->edit_Menu->insertAction(ui->previousDraftBlock_Action, undoAction);
     ui->edit_Toolbar->insertAction(ui->previousDraftBlock_Action, undoAction);
@@ -5689,7 +5689,7 @@ void MainWindow::createMenus()
 
     redoAction = qApp->getUndoStack()->createRedoAction(this, tr("&Redo"));
     redoAction->setShortcuts(redoShortcuts);
-    redoAction->setIcon(QIcon::fromTheme("edit-redo"));
+    redoAction->setIcon(QIcon(":/tsvg/spectrum/Redo.tsvg"));
     connect(redoAction, &QAction::triggered, toolProperties, &VToolOptionsPropertyBrowser::refreshOptions);
     ui->edit_Menu->insertAction(ui->previousDraftBlock_Action, redoAction);
     ui->edit_Toolbar->insertAction(ui->previousDraftBlock_Action, redoAction);

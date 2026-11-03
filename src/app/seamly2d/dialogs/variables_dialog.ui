@@ -21,7 +21,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-    <normaloff>:/icon/32x32/table.png</normaloff>:/icon/32x32/table.png</iconset>
+    <normaloff>:/tsvg/spectrum/Table.tsvg</normaloff>:/tsvg/spectrum/Table.tsvg</iconset>
   </property>
   <property name="locale">
    <locale language="English" country="UnitedStates"/>
@@ -47,7 +47,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../../../libs/vmisc/share/resources/icon.qrc">:/icon/32x32/filter.png</pixmap>
+        <pixmap resource="../../../libs/vmisc/share/resources/icon.qrc">:/tsvg/spectrum/Filter.tsvg</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -203,7 +203,7 @@
              </property>
              <property name="icon">
               <iconset resource="../../../libs/vmisc/share/resources/theme.qrc">
-               <normaloff>:/icons/win.icon.theme/16x16/actions/go-up.png</normaloff>:/icons/win.icon.theme/16x16/actions/go-up.png</iconset>
+               <normaloff>:/tsvg/spectrum/ChevronUp.tsvg</normaloff>:/tsvg/spectrum/ChevronUp.tsvg</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -226,7 +226,7 @@
              </property>
              <property name="icon">
               <iconset resource="../../../libs/vmisc/share/resources/theme.qrc">
-               <normaloff>:/icons/win.icon.theme/16x16/actions/go-down.png</normaloff>:/icons/win.icon.theme/16x16/actions/go-down.png</iconset>
+               <normaloff>:/tsvg/spectrum/ChevronDown.tsvg</normaloff>:/tsvg/spectrum/ChevronDown.tsvg</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -265,7 +265,7 @@
              </property>
              <property name="icon">
               <iconset resource="../../../libs/vmisc/share/resources/theme.qrc">
-               <normaloff>:/icons/win.icon.theme/24x24/actions/list-add.png</normaloff>:/icons/win.icon.theme/24x24/actions/list-add.png</iconset>
+               <normaloff>:/tsvg/spectrum/AddCircle.tsvg</normaloff>:/tsvg/spectrum/AddCircle.tsvg</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -288,7 +288,7 @@
              </property>
              <property name="icon">
               <iconset resource="../../../libs/vmisc/share/resources/theme.qrc">
-               <normaloff>:/icons/win.icon.theme/24x24/actions/list-remove.png</normaloff>:/icons/win.icon.theme/24x24/actions/list-remove.png</iconset>
+               <normaloff>:/tsvg/spectrum/RemoveCircle.tsvg</normaloff>:/tsvg/spectrum/RemoveCircle.tsvg</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -505,7 +505,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-                   <normaloff>:/icon/24x24/fx.png</normaloff>:/icon/24x24/fx.png</iconset>
+                   <normaloff>:/tsvg/seamly/fx.tsvg</normaloff>:/tsvg/seamly/fx.tsvg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>

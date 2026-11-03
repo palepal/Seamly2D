@@ -203,7 +203,7 @@
               </property>
               <property name="icon">
                <iconset resource="../../../../vmisc/share/resources/theme.qrc">
-                <normaloff>:/icons/win.icon.theme/16x16/actions/go-top.png</normaloff>:/icons/win.icon.theme/16x16/actions/go-top.png</iconset>
+                <normaloff>:/tsvg/seamly/go-top.tsvg</normaloff>:/tsvg/seamly/go-top.tsvg</iconset>
               </property>
              </widget>
             </item>
@@ -217,7 +217,7 @@
               </property>
               <property name="icon">
                <iconset resource="../../../../vmisc/share/resources/theme.qrc">
-                <normaloff>:/icons/win.icon.theme/16x16/actions/go-up.png</normaloff>:/icons/win.icon.theme/16x16/actions/go-up.png</iconset>
+                <normaloff>:/tsvg/spectrum/ChevronUp.tsvg</normaloff>:/tsvg/spectrum/ChevronUp.tsvg</iconset>
               </property>
              </widget>
             </item>
@@ -231,7 +231,7 @@
               </property>
               <property name="icon">
                <iconset resource="../../../../vmisc/share/resources/theme.qrc">
-                <normaloff>:/icons/win.icon.theme/16x16/actions/go-down.png</normaloff>:/icons/win.icon.theme/16x16/actions/go-down.png</iconset>
+                <normaloff>:/tsvg/spectrum/ChevronDown.tsvg</normaloff>:/tsvg/spectrum/ChevronDown.tsvg</iconset>
               </property>
              </widget>
             </item>
@@ -245,7 +245,7 @@
               </property>
               <property name="icon">
                <iconset resource="../../../../vmisc/share/resources/theme.qrc">
-                <normaloff>:/icons/win.icon.theme/16x16/actions/go-bottom.png</normaloff>:/icons/win.icon.theme/16x16/actions/go-bottom.png</iconset>
+                <normaloff>:/tsvg/seamly/go-bottom.tsvg</normaloff>:/tsvg/seamly/go-bottom.tsvg</iconset>
               </property>
              </widget>
             </item>
@@ -635,7 +635,7 @@
            </property>
            <property name="icon">
             <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-             <normaloff>:/icon/24x24/fx.png</normaloff>:/icon/24x24/fx.png</iconset>
+             <normaloff>:/tsvg/seamly/fx.tsvg</normaloff>:/tsvg/seamly/fx.tsvg</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -651,7 +651,7 @@
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../../../../vmisc/share/resources/icon.qrc">:/icon/24x24/equal.png</pixmap>
+            <pixmap resource="../../../../vmisc/share/resources/icon.qrc">:/tsvg/seamly/equal.tsvg</pixmap>
            </property>
           </widget>
          </item>
@@ -871,7 +871,7 @@
               </property>
               <property name="icon">
                <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-                <normaloff>:/icon/24x24/fx.png</normaloff>:/icon/24x24/fx.png</iconset>
+                <normaloff>:/tsvg/seamly/fx.tsvg</normaloff>:/tsvg/seamly/fx.tsvg</iconset>
               </property>
               <property name="iconSize">
                <size>
@@ -887,7 +887,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../../../../vmisc/share/resources/icon.qrc">:/icon/24x24/equal.png</pixmap>
+               <pixmap resource="../../../../vmisc/share/resources/icon.qrc">:/tsvg/seamly/equal.tsvg</pixmap>
               </property>
              </widget>
             </item>
@@ -1070,7 +1070,7 @@
               </property>
               <property name="icon">
                <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-                <normaloff>:/icon/24x24/fx.png</normaloff>:/icon/24x24/fx.png</iconset>
+                <normaloff>:/tsvg/seamly/fx.tsvg</normaloff>:/tsvg/seamly/fx.tsvg</iconset>
               </property>
               <property name="iconSize">
                <size>
@@ -1086,7 +1086,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="../../../../vmisc/share/resources/icon.qrc">:/icon/24x24/equal.png</pixmap>
+               <pixmap resource="../../../../vmisc/share/resources/icon.qrc">:/tsvg/seamly/equal.tsvg</pixmap>
               </property>
              </widget>
             </item>
@@ -1293,7 +1293,7 @@
             </property>
             <property name="icon">
              <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-              <normaloff>:/icon/24x24/slit_notch.png</normaloff>:/icon/24x24/slit_notch.png</iconset>
+              <normaloff>:/tsvg/seamly/slit_notch.tsvg</normaloff>:/tsvg/seamly/slit_notch.tsvg</iconset>
             </property>
             <attribute name="buttonGroup">
              <string notr="true">notchType_ButtonGroup</string>
@@ -1310,7 +1310,7 @@
             </property>
             <property name="icon">
              <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-              <normaloff>:/icon/24x24/t_notch.png</normaloff>:/icon/24x24/t_notch.png</iconset>
+              <normaloff>:/tsvg/seamly/t_notch.tsvg</normaloff>:/tsvg/seamly/t_notch.tsvg</iconset>
             </property>
             <attribute name="buttonGroup">
              <string notr="true">notchType_ButtonGroup</string>
@@ -1327,7 +1327,7 @@
             </property>
             <property name="icon">
              <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-              <normaloff>:/icon/24x24/u_notch.png</normaloff>:/icon/24x24/u_notch.png</iconset>
+              <normaloff>:/tsvg/seamly/u_notch.tsvg</normaloff>:/tsvg/seamly/u_notch.tsvg</iconset>
             </property>
             <attribute name="buttonGroup">
              <string notr="true">notchType_ButtonGroup</string>
@@ -1344,7 +1344,7 @@
             </property>
             <property name="icon">
              <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-              <normaloff>:/icon/24x24/internal_v_notch.png</normaloff>:/icon/24x24/internal_v_notch.png</iconset>
+              <normaloff>:/tsvg/seamly/internal_v_notch.tsvg</normaloff>:/tsvg/seamly/internal_v_notch.tsvg</iconset>
             </property>
             <attribute name="buttonGroup">
              <string notr="true">notchType_ButtonGroup</string>
@@ -1361,7 +1361,7 @@
             </property>
             <property name="icon">
              <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-              <normaloff>:/icon/24x24/external_v_notch.png</normaloff>:/icon/24x24/external_v_notch.png</iconset>
+              <normaloff>:/tsvg/seamly/external_v_notch.tsvg</normaloff>:/tsvg/seamly/external_v_notch.tsvg</iconset>
             </property>
             <attribute name="buttonGroup">
              <string notr="true">notchType_ButtonGroup</string>
@@ -1378,7 +1378,7 @@
             </property>
             <property name="icon">
              <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-              <normaloff>:/icon/24x24/castle_notch.png</normaloff>:/icon/24x24/castle_notch.png</iconset>
+              <normaloff>:/tsvg/seamly/castle_notch.tsvg</normaloff>:/tsvg/seamly/castle_notch.tsvg</iconset>
             </property>
             <attribute name="buttonGroup">
              <string notr="true">notchType_ButtonGroup</string>
@@ -1395,7 +1395,7 @@
             </property>
             <property name="icon">
              <iconset resource="../../../../vmisc/share/resources/icon.qrc">
-              <normaloff>:/icon/24x24/diamond_notch.png</normaloff>:/icon/24x24/diamond_notch.png</iconset>
+              <normaloff>:/tsvg/seamly/diamond_notch.tsvg</normaloff>:/tsvg/seamly/diamond_notch.tsvg</iconset>
             </property>
             <attribute name="buttonGroup">
              <string notr="true">notchType_ButtonGroup</string>
@@ -1536,7 +1536,7 @@
           </property>
           <property name="icon">
            <iconset resource="../../../../vmisc/share/resources/theme.qrc">
-            <normaloff>:/icons/win.icon.theme/24x24/actions/edit-undo.png</normaloff>:/icons/win.icon.theme/24x24/actions/edit-undo.png</iconset>
+            <normaloff>:/tsvg/spectrum/Undo.tsvg</normaloff>:/tsvg/spectrum/Undo.tsvg</iconset>
           </property>
          </widget>
          <widget class="QLabel" name="notchCount_Label">
@@ -1608,7 +1608,7 @@
           </property>
           <property name="icon">
            <iconset resource="../../../../vmisc/share/resources/theme.qrc">
-            <normaloff>:/icons/win.icon.theme/24x24/actions/edit-undo.png</normaloff>:/icons/win.icon.theme/24x24/actions/edit-undo.png</iconset>
+            <normaloff>:/tsvg/spectrum/Undo.tsvg</normaloff>:/tsvg/spectrum/Undo.tsvg</iconset>
           </property>
          </widget>
          <widget class="QDoubleSpinBox" name="notchWidth_DoubleSpinBox">
@@ -1736,7 +1736,7 @@
           </property>
           <property name="icon">
            <iconset resource="../../../../vmisc/share/resources/theme.qrc">
-            <normaloff>:/icons/win.icon.theme/24x24/actions/edit-undo.png</normaloff>:/icons/win.icon.theme/24x24/actions/edit-undo.png</iconset>
+            <normaloff>:/tsvg/spectrum/Undo.tsvg</normaloff>:/tsvg/spectrum/Undo.tsvg</iconset>
           </property>
          </widget>
          <widget class="QLabel" name="notchWidth_Label">

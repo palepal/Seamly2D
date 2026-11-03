@@ -48,7 +48,7 @@
            </property>
            <property name="icon">
             <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-             <normaloff>:/icon/32x32/visible_on.png</normaloff>:/icon/32x32/visible_on.png</iconset>
+             <normaloff>:/tsvg/spectrum/Visibility.tsvg</normaloff>:/tsvg/spectrum/Visibility.tsvg</iconset>
            </property>
            <property name="autoRaise">
             <bool>false</bool>
@@ -71,7 +71,7 @@
            </property>
            <property name="icon">
             <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-             <normaloff>:/icon/32x32/invert_selection.png</normaloff>:/icon/32x32/invert_selection.png</iconset>
+             <normaloff>:/tsvg/spectrum/Invert.tsvg</normaloff>:/tsvg/spectrum/Invert.tsvg</iconset>
            </property>
           </widget>
          </item>
@@ -94,7 +94,7 @@
            </property>
            <property name="icon">
             <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-             <normaloff>:/icon/32x32/visible_off.png</normaloff>:/icon/32x32/visible_off.png</iconset>
+             <normaloff>:/tsvg/spectrum/VisibilityOff.tsvg</normaloff>:/tsvg/spectrum/VisibilityOff.tsvg</iconset>
            </property>
           </widget>
          </item>
@@ -124,7 +124,7 @@
            </property>
            <property name="icon">
             <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-             <normaloff>:/icon/32x32/lock_on.png</normaloff>:/icon/32x32/lock_on.png</iconset>
+             <normaloff>:/tsvg/spectrum/Lock.tsvg</normaloff>:/tsvg/spectrum/Lock.tsvg</iconset>
            </property>
           </widget>
          </item>
@@ -144,7 +144,7 @@
            </property>
            <property name="icon">
             <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-             <normaloff>:/icon/32x32/invert_selection.png</normaloff>:/icon/32x32/invert_selection.png</iconset>
+             <normaloff>:/tsvg/spectrum/Invert.tsvg</normaloff>:/tsvg/spectrum/Invert.tsvg</iconset>
            </property>
           </widget>
          </item>
@@ -167,7 +167,7 @@
            </property>
            <property name="icon">
             <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-             <normaloff>:/icon/32x32/lock_off.png</normaloff>:/icon/32x32/lock_off.png</iconset>
+             <normaloff>:/tsvg/spectrum/LockOpen.tsvg</normaloff>:/tsvg/spectrum/LockOpen.tsvg</iconset>
            </property>
           </widget>
          </item>
@@ -192,7 +192,7 @@
          </property>
          <property name="icon">
           <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-           <normaloff>:/icon/32x32/color_picker.png</normaloff>:/icon/32x32/color_picker.png</iconset>
+           <normaloff>:/tsvg/spectrum/Eyedropper.tsvg</normaloff>:/tsvg/spectrum/Eyedropper.tsvg</iconset>
          </property>
         </widget>
        </item>
@@ -215,7 +215,7 @@
          </property>
          <property name="icon">
           <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
-           <normaloff>:/icon/32x32/edit.png</normaloff>:/icon/32x32/edit.png</iconset>
+           <normaloff>:/tsvg/spectrum/Edit.tsvg</normaloff>:/tsvg/spectrum/Edit.tsvg</iconset>
          </property>
         </widget>
        </item>

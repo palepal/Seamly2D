@@ -148,7 +148,7 @@ VToolPointOfIntersectionArcs *VToolPointOfIntersectionArcs::Create(const quint32
         QMessageBox msgBox(qApp->getMainWindow());
         msgBox.setWindowTitle(tr("Point Intersect Arcs"));
         msgBox.setWindowFlags(msgBox.windowFlags() & ~Qt::WindowContextHelpButtonHint);
-        msgBox.setWindowIcon(QIcon(":/toolicon/32x32/point_of_intersection_arcs.png"));
+        msgBox.setWindowIcon(QIcon(":/tsvg/seamly/point_of_intersection_arcs.tsvg"));
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setText(msg);
         msgBox.setStandardButtons(QMessageBox::Ok);

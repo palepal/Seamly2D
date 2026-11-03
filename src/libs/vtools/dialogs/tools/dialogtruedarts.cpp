@@ -83,7 +83,7 @@ DialogTrueDarts::DialogTrueDarts(const VContainer *data, const quint32 &toolId, 
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/true_darts.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/true_darts.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();

@@ -36,7 +36,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../../../vmisc/share/resources/icon.qrc">
-    <normaloff>:/icon/32x32/edit.png</normaloff>:/icon/32x32/edit.png</iconset>
+    <normaloff>:/tsvg/spectrum/Edit.tsvg</normaloff>:/tsvg/spectrum/Edit.tsvg</iconset>
   </property>
   <property name="sizeGripEnabled">
    <bool>true</bool>
@@ -437,7 +437,7 @@ QListWidget::item:selected {
                 </property>
                 <property name="icon">
                  <iconset resource="../../../vmisc/share/resources/icon.qrc">
-                  <normaloff>:/icon/32x32/clear.png</normaloff>:/icon/32x32/clear.png</iconset>
+                  <normaloff>:/tsvg/spectrum/CloseCircle.tsvg</normaloff>:/tsvg/spectrum/CloseCircle.tsvg</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -490,7 +490,7 @@ QListWidget::item:selected {
                 </property>
                 <property name="icon">
                  <iconset resource="../../../vmisc/share/resources/theme.qrc">
-                  <normaloff>:/icons/win.icon.theme/32x32/actions/edit-undo.png</normaloff>:/icons/win.icon.theme/32x32/actions/edit-undo.png</iconset>
+                  <normaloff>:/tsvg/spectrum/Undo.tsvg</normaloff>:/tsvg/spectrum/Undo.tsvg</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -581,7 +581,7 @@ QListWidget::item:selected {
                 </property>
                 <property name="icon">
                  <iconset resource="../../../vmisc/share/resources/icon.qrc">
-                  <normaloff>:/icon/24x24/insert_fx.png</normaloff>:/icon/24x24/insert_fx.png</iconset>
+                  <normaloff>:/tsvg/seamly/insert_fx.tsvg</normaloff>:/tsvg/seamly/insert_fx.tsvg</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -616,7 +616,7 @@ QListWidget::item:selected {
                 </property>
                 <property name="icon">
                  <iconset resource="../../../vmisc/share/resources/icon.qrc">
-                  <normaloff>:/icon/24x24/insert_fx.png</normaloff>:/icon/24x24/insert_fx.png</iconset>
+                  <normaloff>:/tsvg/seamly/insert_fx.tsvg</normaloff>:/tsvg/seamly/insert_fx.tsvg</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -642,7 +642,7 @@ QListWidget::item:selected {
                 </property>
                 <property name="icon">
                  <iconset resource="../../../vmisc/share/resources/icon.qrc">
-                  <normaloff>:/icon/24x24/insert_fx.png</normaloff>:/icon/24x24/insert_fx.png</iconset>
+                  <normaloff>:/tsvg/seamly/insert_fx.tsvg</normaloff>:/tsvg/seamly/insert_fx.tsvg</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -680,7 +680,7 @@ QListWidget::item:selected {
                 </property>
                 <property name="icon">
                  <iconset resource="../../../vmisc/share/resources/icon.qrc">
-                  <normaloff>:/icon/32x32/insert_fx.png</normaloff>:/icon/32x32/insert_fx.png</iconset>
+                  <normaloff>:/tsvg/seamly/insert_fx.tsvg</normaloff>:/tsvg/seamly/insert_fx.tsvg</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -718,7 +718,7 @@ QListWidget::item:selected {
                 </property>
                 <property name="icon">
                  <iconset resource="../../../vmisc/share/resources/icon.qrc">
-                  <normaloff>:/icon/32x32/insert_fx.png</normaloff>:/icon/32x32/insert_fx.png</iconset>
+                  <normaloff>:/tsvg/seamly/insert_fx.tsvg</normaloff>:/tsvg/seamly/insert_fx.tsvg</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -756,7 +756,7 @@ QListWidget::item:selected {
                 </property>
                 <property name="icon">
                  <iconset resource="../../../vmisc/share/resources/icon.qrc">
-                  <normaloff>:/icon/32x32/insert_fx.png</normaloff>:/icon/32x32/insert_fx.png</iconset>
+                  <normaloff>:/tsvg/seamly/insert_fx.tsvg</normaloff>:/tsvg/seamly/insert_fx.tsvg</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -794,7 +794,7 @@ QListWidget::item:selected {
                 </property>
                 <property name="icon">
                  <iconset resource="../../../vmisc/share/resources/icon.qrc">
-                  <normaloff>:/icon/32x32/insert_fx.png</normaloff>:/icon/32x32/insert_fx.png</iconset>
+                  <normaloff>:/tsvg/seamly/insert_fx.tsvg</normaloff>:/tsvg/seamly/insert_fx.tsvg</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -962,7 +962,7 @@ QListWidget::item:selected {
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="../../../vmisc/share/resources/icon.qrc">:/icon/32x32/filter.png</pixmap>
+                 <pixmap resource="../../../vmisc/share/resources/icon.qrc">:/tsvg/spectrum/Filter.tsvg</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>

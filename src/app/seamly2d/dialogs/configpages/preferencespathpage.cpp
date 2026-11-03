@@ -225,7 +225,7 @@ void PreferencesPathPage::initializeTable()
 
     {
         QTableWidgetItem *item = new QTableWidgetItem(tr("My Patterns"));
-        item->setIcon(QIcon("://icon/32x32/seamly2d_file.png"));
+        item->setIcon(QIcon(":/tsvg/seamly/seamly2d_file.tsvg"));
         ui->pathTable->setItem(0, 0, item);
         item = new QTableWidgetItem(settings->getPatternPath());
         item->setToolTip(settings->getPatternPath());
@@ -234,7 +234,7 @@ void PreferencesPathPage::initializeTable()
 
     {
         QTableWidgetItem *item = new QTableWidgetItem(tr("My Templates"));
-        item->setIcon(QIcon("://icon/32x32/template_size_file.png"));
+        item->setIcon(QIcon(":/tsvg/seamly/template_size_file.tsvg"));
         ui->pathTable->setItem(1, 0, item);
         item = new QTableWidgetItem(settings->getTemplatePath());
         item->setToolTip(settings->getTemplatePath());
@@ -243,7 +243,7 @@ void PreferencesPathPage::initializeTable()
 
     {
         QTableWidgetItem *item = new QTableWidgetItem(tr("My Individual Measurements"));
-        item->setIcon(QIcon("://icon/32x32/individual_size_file.png"));
+        item->setIcon(QIcon(":/tsvg/seamly/individual_size_file.tsvg"));
         ui->pathTable->setItem(2, 0, item);
         item = new QTableWidgetItem(settings->getIndividualSizePath());
         item->setToolTip(settings->getIndividualSizePath());
@@ -252,7 +252,7 @@ void PreferencesPathPage::initializeTable()
 
     {
         QTableWidgetItem *item = new QTableWidgetItem(tr("My Multisize Measurements"));
-        item->setIcon(QIcon("://icon/32x32/multisize_size_file.png"));
+        item->setIcon(QIcon(":/tsvg/seamly/multisize_size_file.tsvg"));
         ui->pathTable->setItem(3, 0, item);
         item = new QTableWidgetItem(settings->getMultisizePath());
         item->setToolTip(settings->getMultisizePath());
@@ -261,7 +261,7 @@ void PreferencesPathPage::initializeTable()
 
     {
         QTableWidgetItem *item = new QTableWidgetItem(tr("My Layouts"));
-        item->setIcon(QIcon("://icon/32x32/layout.png"));
+        item->setIcon(QIcon(":/tsvg/seamly/layout.tsvg"));
         ui->pathTable->setItem(4, 0, item);
         item = new QTableWidgetItem(settings->getLayoutPath());
         item->setToolTip(settings->getLayoutPath());
@@ -270,7 +270,7 @@ void PreferencesPathPage::initializeTable()
 
     {
         QTableWidgetItem *item = new QTableWidgetItem(tr("My Label Templates"));
-        item->setIcon(QIcon("://icon/32x32/labels.png"));
+        item->setIcon(QIcon(":/tsvg/seamly/labels.tsvg"));
         ui->pathTable->setItem(5, 0, item);
         item = new QTableWidgetItem(settings->getLabelTemplatePath());
         item->setToolTip(settings->getLabelTemplatePath());
@@ -279,7 +279,7 @@ void PreferencesPathPage::initializeTable()
 
     {
         QTableWidgetItem *item = new QTableWidgetItem(tr("My Images"));
-        item->setIcon(QIcon("://icon/32x32/add_image.png"));
+        item->setIcon(QIcon(":/tsvg/spectrum/ImageAdd.tsvg"));
         ui->pathTable->setItem(6, 0, item);
         item = new QTableWidgetItem(settings->getImageFilePath());
         item->setToolTip(settings->getImageFilePath());
@@ -288,7 +288,7 @@ void PreferencesPathPage::initializeTable()
 
     {
         QTableWidgetItem *item = new QTableWidgetItem(tr("My Backups"));
-        item->setIcon(QIcon("://icon/32x32/backup_files.png"));
+        item->setIcon(QIcon(":/tsvg/seamly/backup_files.tsvg"));
         ui->pathTable->setItem(7, 0, item);
         item = new QTableWidgetItem(settings->getBackupFilePath());
         item->setToolTip(settings->getBackupFilePath());

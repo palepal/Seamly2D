@@ -63,7 +63,7 @@ AnchorPointDialog::AnchorPointDialog(const VContainer *data, quint32 toolId, QWi
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/icon/32x32/anchor_point.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/anchor_point.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();

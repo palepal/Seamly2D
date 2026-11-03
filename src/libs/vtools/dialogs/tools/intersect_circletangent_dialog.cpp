@@ -82,7 +82,7 @@ IntersectCircleTangentDialog::IntersectCircleTangentDialog(const VContainer *dat
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/point_from_circle_and_tangent.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/point_from_circle_and_tangent.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();

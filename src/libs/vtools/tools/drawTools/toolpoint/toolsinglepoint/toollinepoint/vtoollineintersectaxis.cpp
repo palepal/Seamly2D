@@ -166,7 +166,7 @@ VToolLineIntersectAxis *VToolLineIntersectAxis::Create(const quint32 _id, const 
         QMessageBox msgBox(qApp->getMainWindow());
         msgBox.setWindowTitle(tr("Intersect Line and Axis"));
         msgBox.setWindowFlags(msgBox.windowFlags() & ~Qt::WindowContextHelpButtonHint);
-        msgBox.setWindowIcon(QIcon(":/toolicon/32x32/line_intersect_axis.png"));
+        msgBox.setWindowIcon(QIcon(":/tsvg/seamly/line_intersect_axis.tsvg"));
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setText(msg);
         msgBox.setStandardButtons(QMessageBox::Ok);

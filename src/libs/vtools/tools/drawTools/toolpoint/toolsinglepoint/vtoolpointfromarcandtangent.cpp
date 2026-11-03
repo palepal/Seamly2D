@@ -158,7 +158,7 @@ VToolPointFromArcAndTangent *VToolPointFromArcAndTangent::Create(const quint32 _
         QMessageBox msgBox(qApp->getMainWindow());
         msgBox.setWindowTitle(tr("Intersect Arc and Tangent"));
         msgBox.setWindowFlags(msgBox.windowFlags() & ~Qt::WindowContextHelpButtonHint);
-        msgBox.setWindowIcon(QIcon(":/toolicon/32x32/point_from_arc_and_tangent.png"));
+        msgBox.setWindowIcon(QIcon(":/tsvg/seamly/point_from_arc_and_tangent.tsvg"));
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setText(msg);
         msgBox.setStandardButtons(QMessageBox::Ok);

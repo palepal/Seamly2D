@@ -82,7 +82,7 @@ UnionDialog::UnionDialog(const VContainer *data, const quint32 &toolId, QWidget 
 
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowIcon(QIcon(":/toolicon/32x32/union.png"));
+    setWindowIcon(QIcon(":/tsvg/seamly/union.tsvg"));
 
     // Set the position that the dialog opens based on user preference.
     setDialogPosition();

@@ -543,7 +543,7 @@ void GroupsWidget::groupContextMenu(const QPoint &pos)
 
     QScopedPointer<QMenu> menu(new QMenu());
     QAction *actionEdit = menu->addAction(QIcon(":/tsvg/spectrum/Edit.tsvg"), tr("Edit"));
-    QAction *actionDelete = menu->addAction(QIcon::fromTheme("edit-delete"), tr("Delete"));
+    QAction *actionDelete = menu->addAction(QIcon(":/tsvg/spectrum/Delete.tsvg"), tr("Delete"));
     QAction *selectedAction = menu->exec(ui->groups_table_widget->viewport()->mapToGlobal(pos));
     if(selectedAction == nullptr)
     {
@@ -618,7 +618,7 @@ void GroupsWidget::fillTable(const QMap<quint32, GroupAttributes> &groups)
         // Add contain objects Item
         item = new GroupTableWidgetItem(m_doc);
         item->setTextAlignment(Qt::AlignHCenter);
-        item->setIcon(!m_doc->isGroupEmpty(i.key()) ? QIcon("://icon/32x32/history.png") : QIcon());
+        item->setIcon(!m_doc->isGroupEmpty(i.key()) ? QIcon(":/tsvg/spectrum/History.tsvg") : QIcon());
         item->setData(Qt::UserRole, i.key());
         item->setFlags(item->flags() & ~Qt::ItemIsEditable);  // set the item non-editable (view only), and non-selectable
         item->setToolTip(tr("Show which groups contain objects"));
@@ -786,44 +786,44 @@ void GroupsWidget::addGroupItem(const quint32 &tool_id, const quint32 &obj_id, c
                     break;
 
                 case Tool::BasePoint:
-                    iconFileName = ":/toolicon/32x32/point_basepoint_icon.png";
+                    iconFileName = ":/tsvg/seamly/point_basepoint_icon.tsvg";
                     objName = tr("%1 - Base point").arg(getPointName(tool_id));
                     break;
 
                 case Tool::EndLine:
-                    iconFileName = ":/tsvg/librecad/line_rel.tsvg";
+                    iconFileName = ":/tsvg/seamly/segment.tsvg";
                     objName = tr("%1 - Point Length and Angle").arg(getPointName(tool_id));
                     break;
 
                 case Tool::Line:
-                    iconFileName = ":/tsvg/librecad/line_2p.tsvg";
+                    iconFileName = ":/tsvg/seamly/line.tsvg";
                     objName = tr("Line %1_%2")
                              .arg(getPointName(attrUInt(dom_element, AttrFirstPoint)))
                              .arg(getPointName(attrUInt(dom_element, AttrSecondPoint)));
                     break;
 
                 case Tool::AlongLine:
-                    iconFileName = ":/tsvg/librecad/snap_distance.tsvg";
+                    iconFileName = ":/tsvg/seamly/along_line.tsvg";
                     objName = tr("%1 - Point On Line").arg(getPointName(tool_id));
                     break;
 
                 case Tool::ShoulderPoint:
-                    iconFileName = ":/tsvg/librecad/angle_3_points.tsvg";
+                    iconFileName = ":/tsvg/seamly/shoulder.tsvg";
                     objName = tr("%1 - Point Length to Line").arg(getPointName(tool_id));
                     break;
 
                 case Tool::Normal:
-                    iconFileName = ":/tsvg/librecad/line_ortho_rel.tsvg";
+                    iconFileName = ":/tsvg/seamly/normal.tsvg";
                     objName = tr("%1 - Point On Perpendicular").arg(getPointName(tool_id));
                     break;
 
                 case Tool::Bisector:
-                    iconFileName = ":/tsvg/librecad/line_bisector.tsvg";
+                    iconFileName = ":/tsvg/seamly/bisector.tsvg";
                     objName = tr("%1 - Point On Bisector").arg(getPointName(tool_id));
                     break;
 
                 case Tool::LineIntersect:
-                    iconFileName = ":/tsvg/librecad/snap_intersection.tsvg";
+                    iconFileName = ":/tsvg/seamly/intersect.tsvg";
                     objName = tr("%1 - Point Intersect Lines").arg(getPointName(tool_id));
                     break;
 
@@ -831,7 +831,7 @@ void GroupsWidget::addGroupItem(const quint32 &tool_id, const quint32 &obj_id, c
                 {
                     const QSharedPointer<VSpline> spl = m_data->GeometricObject<VSpline>(tool_id);
                     SCASSERT(!spl.isNull())
-                    iconFileName = ":/tsvg/librecad/spline.tsvg";
+                    iconFileName = ":/tsvg/seamly/spline.tsvg";
                     objName = tr("%1 - Curve Interactive").arg(spl->NameForHistory(tr("Spl_")));
                     break;
                 }
@@ -840,7 +840,7 @@ void GroupsWidget::addGroupItem(const quint32 &tool_id, const quint32 &obj_id, c
                 {
                     const QSharedPointer<VCubicBezier> spl = m_data->GeometricObject<VCubicBezier>(tool_id);
                     SCASSERT(!spl.isNull())
-                    iconFileName = ":/tsvg/librecad/spline_points_add.tsvg";
+                    iconFileName = ":/tsvg/seamly/cubic_bezier.tsvg";
                     objName = tr("%1 - Curve Fixed").arg(spl->NameForHistory(tr("Spl_")));
                     break;
                 }
@@ -849,7 +849,7 @@ void GroupsWidget::addGroupItem(const quint32 &tool_id, const quint32 &obj_id, c
                 {
                     const QSharedPointer<VArc> arc = m_data->GeometricObject<VArc>(tool_id);
                     SCASSERT(!arc.isNull())
-                    iconFileName = ":/tsvg/librecad/arc_center_point_angle.tsvg";
+                    iconFileName = ":/tsvg/seamly/arc.tsvg";
                     objName = tr("%1 - Arc Radius & Angles").arg(arc->NameForHistory(tr("Arc_")));
                     break;
                 }
@@ -858,7 +858,7 @@ void GroupsWidget::addGroupItem(const quint32 &tool_id, const quint32 &obj_id, c
                 {
                     const QSharedPointer<VArc> arc = m_data->GeometricObject<VArc>(tool_id);
                     SCASSERT(!arc.isNull())
-                    iconFileName = ":/tsvg/librecad/arc_center_point_anglelen.tsvg";
+                    iconFileName = ":/tsvg/seamly/arc_with_length.tsvg";
                     objName = tr("%1 - Arc Radius & Length").arg(arc->NameForHistory(tr("Arc_")));
                     break;
                 }
@@ -867,7 +867,7 @@ void GroupsWidget::addGroupItem(const quint32 &tool_id, const quint32 &obj_id, c
                 {
                     const QSharedPointer<VSplinePath> splPath = m_data->GeometricObject<VSplinePath>(tool_id);
                     SCASSERT(!splPath.isNull())
-                    iconFileName = ":/tsvg/librecad/spline_points.tsvg";
+                    iconFileName = ":/tsvg/seamly/splinePath.tsvg";
                     objName = tr("%1 - Spline Interactive").arg(splPath->NameForHistory(tr("SplPath_")));
                     break;
                 }
@@ -876,28 +876,28 @@ void GroupsWidget::addGroupItem(const quint32 &tool_id, const quint32 &obj_id, c
                 {
                    const QSharedPointer<VCubicBezierPath> splPath = m_data->GeometricObject<VCubicBezierPath>(tool_id);
                     SCASSERT(!splPath.isNull())
-                    iconFileName = ":/tsvg/librecad/polylines_polyline.tsvg";
+                    iconFileName = ":/tsvg/seamly/cubic_bezier_path.tsvg";
                     objName = tr("%1 - Spline Fixed").arg(splPath->NameForHistory(tr("SplPath_")));
                     break;
                 }
 
                 case Tool::IntersectArcLine:
-                    iconFileName = ":/tsvg/librecad/snap_entity.tsvg";
+                    iconFileName = ":/tsvg/seamly/point_intersect_arc_line.tsvg";
                     objName = tr("%1 - Point Intersect Arc & Line").arg(getPointName(tool_id));
                     break;
 
                 case Tool::Height:
-                    iconFileName = ":/tsvg/librecad/line_perpendicular.tsvg";
+                    iconFileName = ":/tsvg/seamly/height.tsvg";
                     objName = tr("%1 - Point Intersect Line & Perpendicular").arg(getPointName(tool_id));
                     break;
 
                 case Tool::Triangle:
-                    iconFileName = ":/tsvg/librecad/angle_line_to_line.tsvg";
+                    iconFileName = ":/tsvg/seamly/triangle.tsvg";
                     objName = tr("%1 - Point Intersect Axis & Triangle").arg(getPointName(tool_id));
                     break;
 
                 case Tool::PointOfIntersection:
-                    iconFileName = ":/tsvg/librecad/pick_coordinates.tsvg";
+                    iconFileName = ":/tsvg/seamly/point_intersectxy_icon.tsvg";
                     objName = tr("%1 - Point Intersect XY").arg(getPointName(tool_id));
                     break;
 
@@ -905,7 +905,7 @@ void GroupsWidget::addGroupItem(const quint32 &tool_id, const quint32 &obj_id, c
                 {
                     const QSharedPointer<VArc> arc = m_data->GeometricObject<VArc>(attrUInt(dom_element, AttrArc));
                     SCASSERT(!arc.isNull())
-                    iconFileName = ":/tsvg/librecad/arc_center_point_chord.tsvg";
+                    iconFileName = ":/tsvg/seamly/arc_cut.tsvg";
                     objName = tr("%1 - Point On Arc").arg(getPointName(tool_id));
                     break;
                 }
@@ -916,7 +916,7 @@ void GroupsWidget::addGroupItem(const quint32 &tool_id, const quint32 &obj_id, c
                     const QSharedPointer<VAbstractCubicBezier> spl =
                     m_data->GeometricObject<VAbstractCubicBezier>(splineId);
                     SCASSERT(!spl.isNull())
-                    iconFileName = ":/tsvg/librecad/insert_node.tsvg";
+                    iconFileName = ":/tsvg/seamly/spline_cut_point.tsvg";
                     objName = tr("%1 - Point On Curve").arg(getPointName(tool_id));
                     break;
                 }
@@ -927,48 +927,48 @@ void GroupsWidget::addGroupItem(const quint32 &tool_id, const quint32 &obj_id, c
                     const QSharedPointer<VAbstractCubicBezierPath> splPath =
                     m_data->GeometricObject<VAbstractCubicBezierPath>(splinePathId);
                     SCASSERT(!splPath.isNull())
-                    iconFileName = ":/tsvg/librecad/spline_points_insert.tsvg";
+                    iconFileName = ":/tsvg/seamly/splinePath_cut_point.tsvg";
                     objName = tr("%1 - Point On Spline").arg(getPointName(tool_id));
                     break;
                 }
 
                 case Tool::LineIntersectAxis:
-                    iconFileName = ":/tsvg/librecad/line_angle.tsvg";
+                    iconFileName = ":/tsvg/seamly/line_intersect_axis.tsvg";
                     objName = tr("%1 - Point Intersect Line & Axis").arg(getPointName(tool_id));
                     break;
 
                 case Tool::CurveIntersectAxis:
-                    iconFileName = ":/tsvg/librecad/arc_2p_angle.tsvg";
+                    iconFileName = ":/tsvg/seamly/arc_intersect_axis.tsvg";
                     objName = tr("%1 - Point Intersect Curve & Axis").arg(getPointName(tool_id));
                   break;
 
                 case Tool::PointOfIntersectionArcs:
-                    iconFileName = ":/tsvg/librecad/circle_tangential_2circles_point.tsvg";
+                    iconFileName = ":/tsvg/seamly/point_of_intersection_arcs.tsvg";
                     objName = tr("%1 - Point Intersect Arcs").arg(getPointName(tool_id));
                     break;
 
                 case Tool::PointOfIntersectionCircles:
-                    iconFileName = ":/tsvg/librecad/cross_circle.tsvg";
+                    iconFileName = ":/tsvg/seamly/point_of_intersection_circles.tsvg";
                     objName = tr("%1 - Point Intersect Circles").arg(getPointName(tool_id));
                     break;
 
                 case Tool::PointOfIntersectionCurves:
-                    iconFileName = ":/tsvg/librecad/divide.tsvg";
+                    iconFileName = ":/tsvg/seamly/intersection_curves.tsvg";
                     objName = tr("%1 - Point Intersect Curves").arg(getPointName(tool_id));
                     break;
 
                 case Tool::PointFromCircleAndTangent:
-                    iconFileName = ":/tsvg/librecad/circle_tangential_2points.tsvg";
+                    iconFileName = ":/tsvg/seamly/point_from_circle_and_tangent.tsvg";
                     objName = tr("%1 - Point Intersect Circle & Tangent").arg(getPointName(tool_id));
                     break;
 
                 case Tool::PointFromArcAndTangent:
-                    iconFileName = ":/tsvg/librecad/line_tangent_cc.tsvg";
+                    iconFileName = ":/tsvg/seamly/point_from_arc_and_tangent.tsvg";
                     objName = tr("%1 - Point Intersect Arc & Tangent").arg(getPointName(tool_id));
                     break;
 
                 case Tool::TrueDarts:
-                    iconFileName = ":/tsvg/librecad/bevel.tsvg";
+                    iconFileName = ":/tsvg/seamly/true_darts.tsvg";
                     objName = tr("%1 - True Dart %2_%3_%4")
                                  .arg(getObjName(obj_id))
                                  .arg(getPointName(attrUInt(dom_element, AttrDartP1)))
@@ -980,14 +980,14 @@ void GroupsWidget::addGroupItem(const quint32 &tool_id, const quint32 &obj_id, c
                 {
                     const QSharedPointer<VEllipticalArc> elArc = m_data->GeometricObject<VEllipticalArc>(tool_id);
                     SCASSERT(!elArc.isNull())
-                    iconFileName = ":/tsvg/librecad/ellipse_arc_axis.tsvg";
+                    iconFileName = ":/tsvg/seamly/el_arc.tsvg";
                     objName = tr("%1 - Arc Elliptical").arg(elArc->NameForHistory(tr("ElArc_")));
                     break;
                 }
 
                 case Tool::Rotation:
                 {
-                    iconFileName = ":/tsvg/librecad/rotate.tsvg";
+                    iconFileName = ":/tsvg/seamly/rotation.tsvg";
                     objName = tr("%1 - Rotation")
                                  .arg(getObjName(obj_id == NULL_ID ? tool_id : obj_id));
                     break;
@@ -996,7 +996,7 @@ void GroupsWidget::addGroupItem(const quint32 &tool_id, const quint32 &obj_id, c
                 case Tool::Move:
                 {
                     const QSharedPointer<VGObject> obj = m_data->GetGObject(obj_id);
-                    iconFileName = ":/tsvg/librecad/move_copy.tsvg";
+                    iconFileName = ":/tsvg/seamly/move.tsvg";
                     objName = tr("%1 - Move")
                                  .arg(getObjName(obj_id == NULL_ID ? tool_id : obj_id));
                     break;
@@ -1005,7 +1005,7 @@ void GroupsWidget::addGroupItem(const quint32 &tool_id, const quint32 &obj_id, c
                 case Tool::MirrorByLine:
                 {
                     const QSharedPointer<VGObject> obj = m_data->GetGObject(obj_id);
-                    iconFileName = ":/tsvg/librecad/mirror.tsvg";
+                    iconFileName = ":/tsvg/seamly/mirror_by_line.tsvg";
                     objName = tr("%1 - Mirror by Line")
                                  .arg(getObjName(obj_id == NULL_ID ? tool_id : obj_id));
                     break;
@@ -1014,7 +1014,7 @@ void GroupsWidget::addGroupItem(const quint32 &tool_id, const quint32 &obj_id, c
                 case Tool::MirrorByAxis:
                 {
                     const QSharedPointer<VGObject> obj = m_data->GetGObject(obj_id);
-                    iconFileName = ":/tsvg/librecad/mirror.tsvg";
+                    iconFileName = ":/tsvg/seamly/mirror_by_axis.tsvg";
                     objName = tr("%1 - Mirror by Axis")
                                  .arg(getObjName(obj_id == NULL_ID ? tool_id : obj_id));
                     break;
@@ -1052,7 +1052,7 @@ void GroupsWidget::addGroupItem(const quint32 &tool_id, const quint32 &obj_id, c
 
             qDebug() << error.ErrorMessage() << Q_FUNC_INFO;
             QListWidgetItem *item = new QListWidgetItem(objName);
-            item->setIcon(QIcon(":/icons/win.icon.theme/16x16/status/dialog-warning.png"));
+            item->setIcon(QIcon(":/tsvg/spectrum/AlertTriangle.tsvg"));
             item->setData(Qt::UserRole,  QVariant::fromValue(item_data));
             ui->groupItems_list_widget->addItem(item);
             return;
@@ -1133,7 +1133,7 @@ QString GroupsWidget::getObjName(quint32 tool_id)
 
     if(!groupsNotContainingItem.empty())
     {
-        QMenu *menuMoveGroupItem = menu.addMenu(QIcon("://icon/svg/list-move.svg"), tr("Move Group Object"));
+        QMenu *menuMoveGroupItem = menu.addMenu(QIcon(":/tsvg/seamly/list-move.tsvg"), tr("Move Group Object"));
         QStringList list = QStringList(groupsNotContainingItem.values());
         list.sort(Qt::CaseInsensitive);
 
@@ -1146,7 +1146,7 @@ QString GroupsWidget::getObjName(quint32 tool_id)
         }
     }
     // Add Remove Group Item menu
-    QAction *actionRemove = menu.addAction(QIcon::fromTheme("edit-delete"), tr("Remove Group Object"));
+    QAction *actionRemove = menu.addAction(QIcon(":/tsvg/spectrum/Delete.tsvg"), tr("Remove Group Object"));
 
     QAction *selectedAction = menu.exec(ui->groupItems_list_widget->viewport()->mapToGlobal(pos));
     if(selectedAction == nullptr)

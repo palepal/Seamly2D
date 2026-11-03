@@ -366,23 +366,23 @@ void ImageItem::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
     }
 
     QMenu menu;
-    QAction *action_properties = menu.addAction(QIcon::fromTheme("preferences-other"), tr("Properties"));
+    QAction *action_properties = menu.addAction(QIcon(":/tsvg/spectrum/Settings.tsvg"), tr("Properties"));
     action_properties->setEnabled(!m_select_new_origin);
 
     QAction *actionLock = menu.addAction(tr("Lock"));
     if (m_image.locked)
     {
-        actionLock->setIcon(QIcon("://icon/32x32/lock_on.png"));
+        actionLock->setIcon(QIcon(":/tsvg/spectrum/Lock.tsvg"));
     }
     else
     {
-        actionLock->setIcon(QIcon("://icon/32x32/lock_off.png"));
+        actionLock->setIcon(QIcon(":/tsvg/spectrum/LockOpen.tsvg"));
     }
     actionLock->setCheckable(true);
     actionLock->setChecked(m_image.locked);
     actionLock->setEnabled(!m_select_new_origin);
 
-    // QAction *actionShow = menu.addAction(QIcon("://icon/32x32/visible_on.png"), tr("Show"));
+    // QAction *actionShow = menu.addAction(QIcon(":/tsvg/spectrum/Visibility.tsvg"), tr("Show"));
     // actionShow->setCheckable(true);
     // actionShow->setChecked(m_image.visible);
     // actionShow->setEnabled(!m_image.locked);
@@ -417,7 +417,7 @@ void ImageItem::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
     action_separator->setSeparator(true);
     menu.addAction(action_separator);
 
-    QAction *delete_action = menu.addAction(QIcon("://icon/32x32/trashcan.png"), tr("Delete"));
+    QAction *delete_action = menu.addAction(QIcon(":/tsvg/spectrum/Delete.tsvg"), tr("Delete"));
     delete_action->setEnabled(!m_image.locked && !m_select_new_origin);
 
     QAction *selected_action = menu.exec(event->screenPos());
