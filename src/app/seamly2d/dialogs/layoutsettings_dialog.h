@@ -50,6 +50,7 @@
 #include "abstractlayout_dialog.h"
 
 #include "../vlayout/vbank.h"
+#include "../vlayout/vlayoutdef.h"
 #include "../vmisc/def.h"
 #include "../ifc/ifcdef.h"
 
@@ -116,6 +117,12 @@ public:
     bool              isTextAsPaths() const;
     void              setTextAsPaths(bool value);
 
+    LayoutEngine      engine() const;
+    void              setEngine(LayoutEngine engine);
+
+    int               timeLimit() const;
+    void              setTimeLimit(int seconds);
+
     QString           SelectedPrinter() const;
 
     //support functions for the command line parser which uses invisible dialog to properly build layout generator
@@ -145,6 +152,7 @@ private slots:
 
     void              CorrectMaxFileds();
     void              IgnoreAllFields(int state);
+    void              engineChanged();
 
 private:
     Q_DISABLE_COPY(LayoutSettingsDialog)

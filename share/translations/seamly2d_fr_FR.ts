@@ -1664,6 +1664,18 @@ p, li { white-space: pre-wrap; }
         <translation>Impossible de préparer les données pour la création du plan de coupe</translation>
     </message>
     <message>
+        <source>Finish now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Optimizing: %1 of %2 s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>length %1 %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Create a Layout</source>
         <translation>Créer un plan de coupe</translation>
     </message>
@@ -5200,6 +5212,34 @@ Le programme est fourni &quot;TEL QUEL&quot;sans aucune garantie, y compris la g
         <translation>Stature :</translation>
     </message>
     <message>
+        <source>Engine:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sparrow (optimized)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Classic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time limit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A longer time gives a shorter layout. Finish now in the progress window keeps the best layout so far.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uses the paper width. The sheet gets as long as the layout needs. Pieces turn to follow their grainline.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Rotate workpiece</source>
         <translation>Tourner pièce en cours</translation>
     </message>
@@ -5222,6 +5262,10 @@ Le programme est fourni &quot;TEL QUEL&quot;sans aucune garantie, y compris la g
     <message>
         <source>Descending area</source>
         <translation>Surface décroissante</translation>
+    </message>
+    <message>
+        <source>The Sparrow engine is not installed.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Centimeters</source>
@@ -9018,14 +9062,6 @@ Appuyez sur Entrée pour l&apos;ajouter temporairement à la liste.</translation
         <source>Theme:</source>
         <translation>Thème :</translation>
     </message>
-    <message>
-        <source>Customize colors...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Workspace background and drawing colors (Graphics page)</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>PreferencesGraphicsViewPage</name>
@@ -9120,6 +9156,10 @@ Appuyez sur Entrée pour l&apos;ajouter temporairement à la liste.</translation
     <message>
         <source>Colors</source>
         <translation>Couleurs</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;On a dark background, show dark lines, points and labels lighter so they stay visible (black shows light grey). The pattern keeps its real colors for saving, printing and export.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sur un fond sombre, afficher les lignes sombres, les points et les étiquettes plus clairs pour qu'ils restent visibles (le noir s'affiche en gris clair). Le motif conserve ses couleurs réelles pour l'enregistrement, l'impression et l'exportation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Zoom Rubberband</source>
@@ -9328,11 +9368,7 @@ Appuyez sur Entrée pour l&apos;ajouter temporairement à la liste.</translation
     </message>
     <message>
         <source>Adapt colors to a dark background</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>On a dark background, show dark lines, points and labels lighter so they stay visible (black shows light grey). The pattern keeps its real colors for saving, printing and export.</source>
-        <translation type="unfinished"></translation>
+        <translation>Adapter les couleurs à un fond sombre</translation>
     </message>
 </context>
 <context>
@@ -11233,6 +11269,25 @@ Appuyez sur Entrée pour l&apos;ajouter temporairement à la liste.</translation
     </message>
 </context>
 <context>
+    <name>SparrowLayout</name>
+    <message>
+        <source>The Sparrow layout engine is not installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not write the Sparrow input file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Sparrow layout engine failed: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Sparrow layout engine did not place every piece.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>TMainWindow</name>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Select New for creation measurement file.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -12171,6 +12226,10 @@ charger dans SeamlyME comme d&apos;habitude.
         <translation>Bleu Bleuet</translation>
     </message>
     <message>
+        <source>Black | White</source>
+        <translation>Noir | Blanc</translation>
+    </message>
+    <message>
         <source>Black</source>
         <translation>Noir</translation>
     </message>
@@ -12320,11 +12379,11 @@ charger dans SeamlyME comme d&apos;habitude.
     </message>
     <message>
         <source>Charcoal</source>
-        <translation type="unfinished"></translation>
+        <translation>Anthracite</translation>
     </message>
     <message>
         <source>Graphite</source>
-        <translation type="unfinished"></translation>
+        <translation>Graphite</translation>
     </message>
 </context>
 <context>

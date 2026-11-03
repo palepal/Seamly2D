@@ -4099,7 +4099,7 @@ void MainWindow::setSceneBackgroundColor()
 {
     QColor color = QColor(qApp->Seamly2DSettings()->getBackgroundColor());
     // Lines, points and labels flip their lightness to stay visible on a dark background
-    setDarkBackground(qApp->Settings()->getAdaptColors() && color.lightnessF() < 0.5);
+    setDarkBackground(qApp->Settings()->isAdaptiveColorEnabled() && color.lightnessF() < 0.5);
     draftScene->setBackgroundBrush(color);
     pieceScene->setBackgroundBrush(color);
     layout_scene->setBackgroundBrush(color);
@@ -4142,6 +4142,8 @@ void MainWindow::RestoreCurrentScene()
     /*Set transform for current scene*/
     ui->view->setTransform(scene->transform());
     zoomScaleChanged(ui->view->transform().m11());
+    // Pad the view's panning rect before restoring scroll bars, so they aren't clamped.
+    VMainGraphicsView::NewSceneRect(currentScene, ui->view);
     /*Set value for current scene scroll bar.*/
     QScrollBar *horScrollBar = ui->view->horizontalScrollBar();
     horScrollBar->setValue(scene->getHorScrollBar());
@@ -7486,6 +7488,8 @@ void MainWindow::exportLayoutAs()
                 lGenerator.setStripOptimization(settings->useStripOptimization());
                 lGenerator.SetMultiplier(settings->GetMultiplier());
                 lGenerator.setTextAsPaths(settings->GetTextAsPaths());
+                lGenerator.setEngine(settings->layoutEngine());
+                lGenerator.setTimeLimit(settings->layoutTimeLimit());
 
                 if (settings->GetIgnoreAllFields())
                 {
@@ -7558,6 +7562,8 @@ void MainWindow::exportLayoutAs()
             lGenerator.setStripOptimization(settings->useStripOptimization());
             lGenerator.SetMultiplier(settings->GetMultiplier());
             lGenerator.setTextAsPaths(settings->GetTextAsPaths());
+            lGenerator.setEngine(settings->layoutEngine());
+            lGenerator.setTimeLimit(settings->layoutTimeLimit());
             if (settings->GetIgnoreAllFields())
             {
                 lGenerator.SetPrinterFields(false, QMarginsF());

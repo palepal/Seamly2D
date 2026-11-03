@@ -77,6 +77,7 @@ public slots:
     void Arranged(int count);
     void Error(const LayoutErrors &state);
     void Finished();
+    void optimizing(int seconds, int limit, qreal length, const QString &preview);
 
 protected:
     virtual void showEvent(QShowEvent *event) override;

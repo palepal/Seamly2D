@@ -64,6 +64,12 @@ enum class LayoutErrors : char
     EmptyPaperError
 };
 
+enum class LayoutEngine : char
+{
+    Sparrow,
+    Classic
+};
+
 enum class BestFrom : char
 {
     Rotation = 0,

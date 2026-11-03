@@ -56,7 +56,11 @@
 
 #include <QMessageBox>
 #include <QPushButton>
+#include <QFile>
 #include <QMovie>
+#include <QPainter>
+#include <QRegularExpression>
+#include <QSvgRenderer>
 #include <QtDebug>
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -122,6 +126,72 @@ void DialogLayoutProgress::Error(const LayoutErrors &state)
     }
 
     done(QDialog::Rejected);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief optimizing shows how far the Sparrow engine is and its current layout, Cancel becomes Finish now.
+/// @param seconds elapsed time.
+/// @param limit time limit in seconds.
+/// @param length best layout length so far in pixels, 0 before the first layout.
+/// @param preview SVG of Sparrow's current layout, the strip runs left to right.
+void DialogLayoutProgress::optimizing(int seconds, int limit, qreal length, const QString &preview)
+{
+    ui->progressBar->setMaximum(limit);
+    ui->progressBar->setValue(qMin(seconds, limit));
+    ui->buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Finish now"));
+
+    QString message = tr("Optimizing: %1 of %2 s").arg(seconds).arg(limit);
+    if (length > 0)
+    {
+        const Unit unit = qApp->patternUnit();
+        message += QStringLiteral(", ") + tr("length %1 %2")
+            .arg(UnitConvertor(length, Unit::Px, unit), 0, 'f', 1).arg(UnitsToStr(unit, true));
+    }
+    ui->labelMessage->setText(message);
+
+    if (ui->preview_Label->isHidden())
+    {
+        ui->preview_Label->show();
+        if (isInitialized)
+        {
+            setMinimumSize(0, 0);
+            setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+            adjustSize();
+            setFixedSize(size());
+        }
+    }
+
+    if (preview.isEmpty())
+    {
+        return;
+    }
+
+    // the file is missing at first and sparrow may be writing it: QtSvg would warn, and warnings are popups here
+    QFile file(preview);
+    const QByteArray svg = file.open(QIODevice::ReadOnly) ? file.readAll().trimmed() : QByteArray();
+    if (!svg.endsWith("</svg>"))
+    {
+        return;
+    }
+    // drop sparrow's caption, its font lookup can warn too, the length is in the message already
+    static const QRegularExpression caption(QStringLiteral("<text.*</text>"),
+                                            QRegularExpression::DotMatchesEverythingOption
+                                            | QRegularExpression::InvertedGreedinessOption);
+    QSvgRenderer renderer(QString::fromUtf8(svg).remove(caption).toUtf8());
+    if (!renderer.isValid())
+    {
+        return;
+    }
+    const qreal ratio = devicePixelRatioF();
+    QSizeF frame = renderer.defaultSize();
+    frame.scale(ui->preview_Label->contentsRect().size() * ratio, Qt::KeepAspectRatio);
+    QPixmap pixmap(frame.toSize());
+    pixmap.fill(Qt::transparent);
+    QPainter painter(&pixmap);
+    renderer.render(&painter);
+    painter.end();
+    pixmap.setDevicePixelRatio(ratio);
+    ui->preview_Label->setPixmap(pixmap);
 }
 
 //---------------------------------------------------------------------------------------------------------------------
