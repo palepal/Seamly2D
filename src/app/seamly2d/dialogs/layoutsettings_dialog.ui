@@ -345,7 +345,7 @@
        <property name="title">
         <string>Layout options</string>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
+       <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,0,0,1">
         <item>
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0">

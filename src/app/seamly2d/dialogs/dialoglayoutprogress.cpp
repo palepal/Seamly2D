@@ -161,6 +161,11 @@ void DialogLayoutProgress::optimizing(int seconds, int limit, qreal length, cons
         }
     }
 
+    if (preview.isEmpty())
+    {
+        return;
+    }
+
     // the file is missing at first and sparrow may be writing it: QtSvg would warn, and warnings are popups here
     QFile file(preview);
     const QByteArray svg = file.open(QIODevice::ReadOnly) ? file.readAll().trimmed() : QByteArray();
