@@ -170,6 +170,7 @@ protected:
     virtual void customEvent(QEvent * event) override;
     virtual void CleanLayout() override;
     virtual void PrepareSceneList() override;
+    virtual void showLayoutPreview(QGraphicsScene *scene) override;
     virtual void exportToCSVData(const QString &fileName, const DialogExportToCSV &dialog) final;
     void         handleExportToCSV();
     void         handleExportFinalMeasurementsToCSV();

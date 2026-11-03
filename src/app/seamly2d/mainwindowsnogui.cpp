@@ -71,6 +71,7 @@
 
 #include <QFileDialog>
 #include <QFileInfo>
+#include <QGraphicsPathItem>
 #include <QGraphicsScene>
 #include <QIcon>
 #include <QMessageBox>
@@ -142,7 +143,10 @@ MainWindowsNoGUI::MainWindowsNoGUI(QWidget *parent)
       isTiled(false),
       isAutoCrop(false),
       isUnitePages(false),
-      layoutPrinterName()
+      layoutPrinterName(),
+      m_preview_scene(nullptr),
+      m_preview_sheet(nullptr),
+      m_preview_pieces()
 
 {
     InitTempLayoutScene();
@@ -193,10 +197,12 @@ bool MainWindowsNoGUI::LayoutSettings(VLayoutGenerator& lGenerator)
         connect(&lGenerator, &VLayoutGenerator::Error,     &progress,   &DialogLayoutProgress::Error);
         connect(&lGenerator, &VLayoutGenerator::Finished,  &progress,   &DialogLayoutProgress::Finished);
         connect(&lGenerator, &VLayoutGenerator::optimizing, &progress,  &DialogLayoutProgress::optimizing);
+        connect(&lGenerator, &VLayoutGenerator::previewStarted, this,   &MainWindowsNoGUI::startLayoutPreview);
+        connect(&lGenerator, &VLayoutGenerator::previewChanged, this,   &MainWindowsNoGUI::moveLayoutPreview);
         connect(&progress,   &DialogLayoutProgress::Abort, &lGenerator, &VLayoutGenerator::Abort);
         if (lGenerator.engine() == LayoutEngine::Sparrow)
         {
-            progress.optimizing(0, lGenerator.timeLimit(), 0, QString()); // open with the preview area
+            progress.optimizing(0, lGenerator.timeLimit(), 0); // open as the Sparrow card
         }
     }
     else
@@ -204,6 +210,7 @@ bool MainWindowsNoGUI::LayoutSettings(VLayoutGenerator& lGenerator)
         connect(&lGenerator, &VLayoutGenerator::Error, this, &MainWindowsNoGUI::ErrorConsoleMode);
     }
     lGenerator.Generate();
+    endLayoutPreview();
 
     switch (lGenerator.State())
     {
@@ -240,6 +247,103 @@ bool MainWindowsNoGUI::LayoutSettings(VLayoutGenerator& lGenerator)
     }
     return true;
 }
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief stylePreviewPiece makes a piece easy to follow at low zoom, where its true-to-scale lines are barely visible.
+///
+/// Lines stay one pixel wide at any zoom, and the tinted outline shows overlapping pieces as darker patches.
+/// @param item piece item, with its outline, internal paths and labels as children.
+/// @param tint fill color of the piece.
+static void stylePreviewPiece(QGraphicsItem *item, const QColor &tint)
+{
+    auto *outline = qgraphicsitem_cast<QGraphicsPathItem *>(item);
+    QList<QGraphicsItem *> parts = item->childItems();
+    parts.prepend(item);
+    for (QGraphicsItem *part : parts)
+    {
+        if (auto *path = qgraphicsitem_cast<QGraphicsPathItem *>(part))
+        {
+            path->setPen(QPen(path->pen().color(), 0));
+            // a piece without seam allowance has an empty cut line, its seam line is the outline then
+            if (path->data(0).toString() == QLatin1String("cutline") && !path->path().isEmpty())
+            {
+                outline = path;
+            }
+        }
+    }
+    if (outline != nullptr)
+    {
+        outline->setBrush(tint);
+    }
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief startLayoutPreview puts the pieces on a scene of their own, hidden until Sparrow first places them.
+/// @param pieces layout pieces, turned to follow their grainlines.
+/// @param width sheet width in pixels.
+void MainWindowsNoGUI::startLayoutPreview(const QVector<VLayoutPiece> &pieces, qreal width)
+{
+    m_preview_scene = new VMainGraphicsScene();
+    m_preview_scene->setBackgroundBrush(QColor(qApp->Seamly2DSettings()->getBackgroundColor()));
+    m_preview_sheet = m_preview_scene->addRect(QRectF(0, 0, width, 0), QPen(Qt::black, 0), QBrush(Qt::white));
+
+    QColor tint(0xa4, 0x8b, 0xe0); // Seamly violet, as in the tool icons
+    tint.setAlpha(150);
+
+    for (const VLayoutPiece &piece : pieces)
+    {
+        QGraphicsItem *item = piece.GetItem(false);
+        item->hide();
+        stylePreviewPiece(item, tint);
+        m_preview_scene->addItem(item);
+        m_preview_pieces.append(item);
+    }
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief moveLayoutPreview moves the pieces to where Sparrow has them now and fits the sheet in the view.
+/// @param placements transform for each piece.
+/// @param length sheet length in pixels.
+void MainWindowsNoGUI::moveLayoutPreview(const QVector<QTransform> &placements, qreal length)
+{
+    if (m_preview_scene == nullptr)
+    {
+        return;
+    }
+
+    for (int i = 0; i < m_preview_pieces.size() && i < placements.size(); ++i)
+    {
+        m_preview_pieces.at(i)->setTransform(placements.at(i));
+        m_preview_pieces.at(i)->show();
+    }
+
+    QRectF sheet = m_preview_sheet->rect();
+    if (!qFuzzyCompare(sheet.height(), length))
+    {
+        sheet.setHeight(length);
+        m_preview_sheet->setRect(sheet);
+        // room below the sheet for the progress card
+        const qreal margin = sheet.height() * 0.02;
+        m_preview_scene->setSceneRect(sheet.adjusted(-margin, -margin, margin, sheet.height() * 0.18));
+        showLayoutPreview(m_preview_scene);
+    }
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief endLayoutPreview gives the view back to the layout pages and removes the preview.
+void MainWindowsNoGUI::endLayoutPreview()
+{
+    if (m_preview_scene == nullptr)
+    {
+        return;
+    }
+
+    showLayoutPreview(nullptr);
+    delete m_preview_scene;
+    m_preview_scene = nullptr;
+    m_preview_sheet = nullptr;
+    m_preview_pieces.clear();
+}
+
 //---------------------------------------------------------------------------------------------------------------------
 void MainWindowsNoGUI::ErrorConsoleMode(const LayoutErrors &state)
 {

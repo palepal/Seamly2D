@@ -1661,8 +1661,16 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A munkadarabok legjobb pozíciójának keresése folyamatban van. Kérjük, várjon.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
+        <source>Stop and keep the best layout so far.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Arranged workpieces: %1 from %2</source>
         <translation>Elrendezett munkadarabok: %1 - %2</translation>
+    </message>
+    <message>
+        <source>Finishing...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Couldn&apos;t prepare data for creation layout</source>
@@ -1673,15 +1681,15 @@ p, li { white-space: pre-wrap; }
         <translation>Egy vagy több mintadarab nagyobb, mint a kiválasztott papírformátum. Kérjük, válasszon nagyobb papírformátumot.</translation>
     </message>
     <message>
+        <source>%1 s left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Length %1 %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Finish now</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Optimizing: %1 of %2 s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>length %1 %2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

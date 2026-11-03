@@ -132,6 +132,7 @@ protected:
     void         InitTempLayoutScene();
     virtual void CleanLayout()=0;
     virtual void PrepareSceneList()=0;
+    virtual void showLayoutPreview(QGraphicsScene *scene)=0;
     QIcon        ScenePreview(int i) const;
     bool         LayoutSettings(VLayoutGenerator& lGenerator);
     int          ContinueIfLayoutStale();
@@ -150,6 +151,13 @@ private:
     bool         isUnitePages;
 
     QString      layoutPrinterName;
+    QGraphicsScene *m_preview_scene;
+    QGraphicsRectItem *m_preview_sheet;
+    QList<QGraphicsItem *> m_preview_pieces;
+
+    void startLayoutPreview(const QVector<VLayoutPiece> &pieces, qreal width);
+    void moveLayoutPreview(const QVector<QTransform> &placements, qreal length);
+    void endLayoutPreview();
 
     static QList<QGraphicsItem *> CreateShadows(const QList<QGraphicsItem *> &papers);
     static QList<QGraphicsScene *> CreateScenes(const QList<QGraphicsItem *> &papers,
