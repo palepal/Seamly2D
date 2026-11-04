@@ -9122,6 +9122,10 @@ Press enter to temporarily add it to the list.</source>
         <translation>Продолжительность анимации прокрутки</translation>
     </message>
     <message>
+        <source>Mouse wheel scrolling animation duration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source> ms</source>
         <comment>milliseconds</comment>
         <translatorcomment>миллисекунды</translatorcomment>
@@ -9136,8 +9140,20 @@ Press enter to temporarily add it to the list.</source>
         <translation>Время в миллисекундах между каждым обновлением анимации</translation>
     </message>
     <message>
+        <source>Time in milliseconds between each mouse wheel animation update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Speed:</source>
         <translation>Скорость:</translation>
+    </message>
+    <message>
+        <source>Scroll speed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom speed:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Zoom</source>

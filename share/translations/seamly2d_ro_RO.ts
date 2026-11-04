@@ -9117,6 +9117,10 @@ Apăsați Enter pentru a-l adăuga temporar la listă.</translation>
         <translation>Durata animației de derulare</translation>
     </message>
     <message>
+        <source>Mouse wheel scrolling animation duration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source> ms</source>
         <comment>milliseconds</comment>
         <translation> ms</translation>
@@ -9130,8 +9134,20 @@ Apăsați Enter pentru a-l adăuga temporar la listă.</translation>
         <translation>Timpul în milisecunde dintre fiecare actualizare a animației</translation>
     </message>
     <message>
+        <source>Time in milliseconds between each mouse wheel animation update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Speed:</source>
         <translation>Viteză:</translation>
+    </message>
+    <message>
+        <source>Scroll speed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom speed:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Zoom</source>

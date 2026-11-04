@@ -2350,7 +2350,7 @@
                </font>
               </property>
               <property name="toolTip">
-               <string>Scrolling animation duration</string>
+               <string>Mouse wheel scrolling animation duration</string>
               </property>
               <property name="styleSheet">
                <string notr="true"/>
@@ -2409,7 +2409,7 @@
                </font>
               </property>
               <property name="toolTip">
-               <string>Time in milliseconds between each animation update</string>
+               <string>Time in milliseconds between each mouse wheel animation update</string>
               </property>
               <property name="styleSheet">
                <string notr="true"/>
@@ -2446,7 +2446,7 @@
                </font>
               </property>
               <property name="text">
-               <string>Speed:</string>
+               <string>Scroll speed:</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -2670,7 +2670,7 @@ border-radius: 4px;
                </font>
               </property>
               <property name="text">
-               <string>Speed:</string>
+               <string>Zoom speed:</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
