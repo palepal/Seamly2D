@@ -233,8 +233,15 @@ void GraphicsViewZoom::horizontalScrollingTime(qreal x)
 //---------------------------------------------------------------------------------------------------------------------
 void GraphicsViewZoom::animFinished()
 {
-    m_numScheduledVerticalScrollings = 0;
-    verticalScrollAnim->stop();
+    // Both timelines finish here. Keep the count of one still running, at 0 it would still move 1 pixel a tick.
+    if (verticalScrollAnim->state() != QTimeLine::Running)
+    {
+        m_numScheduledVerticalScrollings = 0;
+    }
+    if (horizontalScrollAnim->state() != QTimeLine::Running)
+    {
+        m_numScheduledHorizontalScrollings = 0;
+    }
 
     /*
      * In moust cases cursor position on view doesn't change, but for scene after scrolling position will be different.
@@ -290,12 +297,19 @@ bool GraphicsViewZoom::eventFilter(QObject *object, QEvent *event)
         }
         else
         {
+            // Trackpads report a scroll phase, mouse wheels don't.
+            if (wheel_event->phase() != Qt::NoScrollPhase && not wheel_event->pixelDelta().isNull())
+            {
+                scrollByPixels(wheel_event);
+                return true;
+            }
             if (QApplication::keyboardModifiers() == Qt::ShiftModifier)
             {
                 return startHorizontalScrollings(wheel_event);
             }
             else
             {
+                startHorizontalScrollings(wheel_event);
                 return startVerticalScrollings(wheel_event);
             }
         }
@@ -387,6 +401,26 @@ void GraphicsViewZoom::fictiveSceneRect(QGraphicsView *view)
 }
 
 //---------------------------------------------------------------------------------------------------------------------
+/// @brief scrollByPixels moves the view by a trackpad's pixel delta. The system already smooths it and adds momentum,
+/// so unlike a mouse wheel it needs no animation.
+/// @param wheel_event wheel event.
+void GraphicsViewZoom::scrollByPixels(QWheelEvent *wheel_event)
+{
+    SCASSERT(wheel_event != nullptr)
+
+    QPoint pixels = wheel_event->pixelDelta() * (qApp->Settings()->getScrollSpeedFactor() / 10.0);
+    if (QApplication::keyboardModifiers() == Qt::ShiftModifier && pixels.x() == 0)
+    {
+        pixels = QPoint(pixels.y(), 0);
+    }
+    m_view->horizontalScrollBar()->setValue(m_view->horizontalScrollBar()->value() - pixels.x());
+    m_view->verticalScrollBar()->setValue(m_view->verticalScrollBar()->value() - pixels.y());
+
+    // The scene moved under the cursor, and zooming goes by the scene position.
+    targetScenePos = m_view->mapToScene(targetViewPos.toPoint());
+}
+
+//---------------------------------------------------------------------------------------------------------------------
 bool GraphicsViewZoom::startVerticalScrollings(QWheelEvent *wheel_event)
 {
     SCASSERT(wheel_event != nullptr)
@@ -406,6 +440,11 @@ bool GraphicsViewZoom::startVerticalScrollings(QWheelEvent *wheel_event)
     else
     {
         return true;//Just ignore
+    }
+
+    if (numSteps == 0)
+    {
+        return true;
     }
 
     m_numScheduledVerticalScrollings += numSteps;
@@ -428,21 +467,29 @@ bool GraphicsViewZoom::startHorizontalScrollings(QWheelEvent *wheel_event)
 {
     SCASSERT(wheel_event != nullptr)
 
+    // macOS turns Shift + wheel into a horizontal delta, other platforms leave it on the vertical axis.
+    const bool shift_on_y = QApplication::keyboardModifiers() == Qt::ShiftModifier
+                            && wheel_event->angleDelta().x() == 0;
     const QPoint numPixels = wheel_event->pixelDelta();
     const QPoint numDegrees = wheel_event->angleDelta() / 8;
     int numSteps;
 
     if (not numPixels.isNull())
     {
-        numSteps = numPixels.y();
+        numSteps = shift_on_y ? numPixels.y() : numPixels.x();
     }
     else if (not numDegrees.isNull())
     {
-        numSteps = numDegrees.y() / 15;
+        numSteps = (shift_on_y ? numDegrees.y() : numDegrees.x()) / 15;
     }
     else
     {
         return true;//Just ignore
+    }
+
+    if (numSteps == 0)
+    {
+        return true;
     }
 
     m_numScheduledHorizontalScrollings += numSteps;

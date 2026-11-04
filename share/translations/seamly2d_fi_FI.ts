@@ -9216,6 +9216,10 @@ Lisää se väliaikaisesti listaan painamalla Enter-näppäintä.</translation>
         <translation>Vieritysanimaation kesto</translation>
     </message>
     <message>
+        <source>Mouse wheel scrolling animation duration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source> ms</source>
         <comment>milliseconds</comment>
         <translation> ms</translation>
@@ -9229,8 +9233,20 @@ Lisää se väliaikaisesti listaan painamalla Enter-näppäintä.</translation>
         <translation>Animaatiopäivitysten välinen aika millisekunteina</translation>
     </message>
     <message>
+        <source>Time in milliseconds between each mouse wheel animation update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Speed:</source>
         <translation>Nopeus:</translation>
+    </message>
+    <message>
+        <source>Scroll speed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom speed:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Zoom</source>

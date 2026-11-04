@@ -138,6 +138,7 @@ private:
 
     void                  fictiveSceneRect(QGraphicsView *view);
 
+    void                  scrollByPixels(QWheelEvent* wheel_event);
     bool                  startVerticalScrollings(QWheelEvent* wheel_event);
     bool                  startHorizontalScrollings(QWheelEvent* wheel_event);
     bool                  gestureEvent(QGestureEvent* event);

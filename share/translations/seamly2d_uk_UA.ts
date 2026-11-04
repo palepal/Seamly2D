@@ -9221,6 +9221,10 @@ Press enter to temporarily add it to the list.</source>
         <translation>Тривалість анімації прокручування</translation>
     </message>
     <message>
+        <source>Mouse wheel scrolling animation duration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source> ms</source>
         <comment>milliseconds</comment>
         <translation> мс</translation>
@@ -9234,8 +9238,20 @@ Press enter to temporarily add it to the list.</source>
         <translation>Час у мілісекундах між кожним оновленням анімації</translation>
     </message>
     <message>
+        <source>Time in milliseconds between each mouse wheel animation update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Speed:</source>
         <translation>Швидкість:</translation>
+    </message>
+    <message>
+        <source>Scroll speed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom speed:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Formula Editor</source>

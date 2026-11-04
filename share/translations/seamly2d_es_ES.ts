@@ -9253,6 +9253,10 @@ Press enter to temporarily add it to the list.</source>
         <translation>Duración de la animación de desplazamiento</translation>
     </message>
     <message>
+        <source>Mouse wheel scrolling animation duration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Update interval:</source>
         <translation>Intervalo de
 actualización:</translation>
@@ -9262,8 +9266,20 @@ actualización:</translation>
         <translation>Tiempo en milisegundos entre cada actualización de la animación</translation>
     </message>
     <message>
+        <source>Time in milliseconds between each mouse wheel animation update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Speed:</source>
         <translation>Velocidad:</translation>
+    </message>
+    <message>
+        <source>Scroll speed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom speed:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Zoom</source>

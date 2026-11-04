@@ -9203,6 +9203,10 @@ Premere Invio per aggiungerlo temporaneamente all&apos;elenco.</translation>
         <translation>Durata dell&apos;animazione di scorrimento</translation>
     </message>
     <message>
+        <source>Mouse wheel scrolling animation duration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source> ms</source>
         <comment>milliseconds</comment>
         <translation> ms</translation>
@@ -9216,8 +9220,20 @@ Premere Invio per aggiungerlo temporaneamente all&apos;elenco.</translation>
         <translation>Tempo in millisecondi tra ogni aggiornamento dell&apos;animazione</translation>
     </message>
     <message>
+        <source>Time in milliseconds between each mouse wheel animation update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Speed:</source>
         <translation>Velocità:</translation>
+    </message>
+    <message>
+        <source>Scroll speed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom speed:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Zoom</source>

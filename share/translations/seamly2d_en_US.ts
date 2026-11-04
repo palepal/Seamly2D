@@ -9199,6 +9199,10 @@ Press enter to temporarily add it to the list.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Mouse wheel scrolling animation duration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source> ms</source>
         <comment>milliseconds</comment>
         <translation type="unfinished"></translation>
@@ -9212,7 +9216,19 @@ Press enter to temporarily add it to the list.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Time in milliseconds between each mouse wheel animation update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Speed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scroll speed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom speed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

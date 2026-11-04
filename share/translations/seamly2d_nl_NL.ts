@@ -9199,6 +9199,10 @@ Druk op enter om deze tijdelijk toe te voegen aan de lijst.</translation>
         <translation>Duur van de animatie</translation>
     </message>
     <message>
+        <source>Mouse wheel scrolling animation duration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source> ms</source>
         <comment>milliseconds</comment>
         <translation> ms</translation>
@@ -9212,8 +9216,20 @@ Druk op enter om deze tijdelijk toe te voegen aan de lijst.</translation>
         <translation>Tijd in milliseconden tussen iedere update van de animatie</translation>
     </message>
     <message>
+        <source>Time in milliseconds between each mouse wheel animation update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Speed:</source>
         <translation>Snelheid:</translation>
+    </message>
+    <message>
+        <source>Scroll speed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom speed:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Zoom</source>

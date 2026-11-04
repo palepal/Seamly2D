@@ -9268,6 +9268,10 @@ Czy chcesz zapisać zmiany?</translation>
         <translation>Czas trwania animacji przewijania</translation>
     </message>
     <message>
+        <source>Mouse wheel scrolling animation duration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source> ms</source>
         <comment>milliseconds</comment>
         <translation> ms</translation>
@@ -9281,8 +9285,20 @@ Czy chcesz zapisać zmiany?</translation>
         <translation>Czas w milisekundach między każdą aktualizacją animacji</translation>
     </message>
     <message>
+        <source>Time in milliseconds between each mouse wheel animation update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Speed:</source>
         <translation>Prędkość:</translation>
+    </message>
+    <message>
+        <source>Scroll speed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom speed:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Zoom</source>
