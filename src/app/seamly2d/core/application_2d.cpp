@@ -77,6 +77,7 @@
 #include <QStyleHints>
 #include <QMessageBox>
 #include <QThread>
+#include <QTimer>
 #include <QDateTime>
 #include <QIcon>
 
@@ -89,6 +90,60 @@ Q_LOGGING_CATEGORY(vApp, "v.application")
 QT_WARNING_POP
 
 constexpr auto DAYS_TO_KEEP_LOGS = 3;
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief showMessagePopup show a warning, critical or fatal message in a modal message box.
+/// @param type message type.
+/// @param msg message text.
+static void showMessagePopup(QtMsgType type, const QString &msg)
+{
+    // A message raised while a popup is open is only logged, so a warning repeated on every repaint can't stack
+    // popups without end
+    static bool showing = false;
+
+    // fixme: trying to make sure that no save/load dialogs are opened, because an error message
+    // during them will lead to a crash
+    const bool topWinAllowsPop = (QApplication::activeModalWidget() == nullptr) ||
+            !QApplication::activeModalWidget()->inherits("QFileDialog");
+    if (showing || !topWinAllowsPop || !Application2D::isGUIMode())
+    {
+        return;
+    }
+
+    QMessageBox messageBox;
+    switch (type)
+    {
+        case QtWarningMsg:
+            messageBox.setWindowTitle(QApplication::translate("vNoisyHandler", "Warning"));
+            messageBox.setIcon(QMessageBox::Warning);
+            break;
+        case QtCriticalMsg:
+            messageBox.setWindowTitle(QApplication::translate("vNoisyHandler", "Critical Error"));
+            messageBox.setIcon(QMessageBox::Critical);
+            break;
+        case QtFatalMsg:
+            messageBox.setWindowTitle(QApplication::translate("vNoisyHandler", "Fatal Error"));
+            messageBox.setIcon(QMessageBox::Critical);
+            break;
+        default:
+            return;
+    }
+
+    messageBox.setText(msg);
+    messageBox.setStandardButtons(QMessageBox::Ok);
+    messageBox.setWindowModality(Qt::ApplicationModal);
+    messageBox.setModal(true);
+    messageBox.setWindowFlags(messageBox.windowFlags() & ~Qt::WindowContextHelpButtonHint);
+#ifndef QT_NO_CURSOR
+    QGuiApplication::setOverrideCursor(Qt::ArrowCursor);
+#endif
+    showing = true;
+    messageBox.exec();
+    showing = false;
+#ifndef QT_NO_CURSOR
+    QGuiApplication::restoreOverrideCursor();
+#endif
+}
 
 //---------------------------------------------------------------------------------------------------------------------
 inline void noisyFailureMsgHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
@@ -171,6 +226,17 @@ inline void noisyFailureMsgHandler(QtMsgType type, const QMessageLogContext &con
         type = QtDebugMsg;
     }
 
+#if defined(Q_OS_LINUX)
+    // This QtWayland warning occurs during screen or focus transitions on Linux Wayland.
+    // It is an internal library bookkeeping mismatch, so downgrade it to avoid an infinite popup loop.
+    if ((type == QtWarningMsg) &&
+        (QLatin1String(context.category) == QLatin1String("qt.qpa.wayland.textinput") ||
+         msg.contains(QStringLiteral("QWaylandTextInputv3::disableSurface"))))
+    {
+        type = QtDebugMsg;
+    }
+#endif
+
     // Only the GUI thread should display message boxes.  If you are
     // writing a multithreaded application and the error happens on
     // a non-GUI thread, you'll have to queue the message to the GUI
@@ -218,62 +284,15 @@ inline void noisyFailureMsgHandler(QtMsgType type, const QMessageLogContext &con
 
     if (isGuiThread)
     {
-        // fixme: trying to make sure that no save/load dialogs are opened, because an error message
-        // during them will lead to a crash
-        const bool topWinAllowsPop = (QApplication::activeModalWidget() == nullptr) ||
-                !QApplication::activeModalWidget()->inherits("QFileDialog");
-
-        QMessageBox messageBox;
-
-        switch (type)
+        if (type == QtWarningMsg || type == QtCriticalMsg)
         {
-            case QtWarningMsg:
-                messageBox.setWindowTitle(QApplication::translate("vNoisyHandler", "Warning"));
-                messageBox.setIcon(QMessageBox::Warning);
-                break;
-            case QtCriticalMsg:
-                messageBox.setWindowTitle(QApplication::translate("vNoisyHandler", "Critical Error"));
-                messageBox.setIcon(QMessageBox::Critical);
-                break;
-            case QtFatalMsg:
-                messageBox.setWindowTitle(QApplication::translate("vNoisyHandler", "Fatal Error"));
-                messageBox.setIcon(QMessageBox::Critical);
-                break;
-            #if QT_VERSION > QT_VERSION_CHECK(5, 4, 2)
-            case QtInfoMsg:
-                messageBox.setWindowTitle(QApplication::translate("vNoisyHandler", "Information"));
-                messageBox.setIcon(QMessageBox::Information);
-                break;
-            #endif
-            case QtDebugMsg:
-            default:
-                break;
+            // A popup runs its own event loop. Opened here it would run inside whatever raised the message, such
+            // as a repaint, and Qt crashes when that repaint is reentered. Show it once the event loop is back
+            QTimer::singleShot(0, instance, [type, msg]() { showMessagePopup(type, msg); });
         }
-
-        if (type == QtWarningMsg || type == QtCriticalMsg || type == QtFatalMsg)
+        else if (type == QtFatalMsg)
         {
-            if (Application2D::isGUIMode())
-            {
-                if (topWinAllowsPop)
-                {
-                    messageBox.setText(msg);
-                    messageBox.setStandardButtons(QMessageBox::Ok);
-                    messageBox.setWindowModality(Qt::ApplicationModal);
-                    messageBox.setModal(true);
-                #ifndef QT_NO_CURSOR
-                    QGuiApplication::setOverrideCursor(Qt::ArrowCursor);
-                #endif
-                    messageBox.setWindowFlags(messageBox.windowFlags() & ~Qt::WindowContextHelpButtonHint);
-                    messageBox.exec();
-                #ifndef QT_NO_CURSOR
-                    QGuiApplication::restoreOverrideCursor();
-                #endif
-                }
-            }
-        }
-
-        if (QtFatalMsg == type)
-        {
+            showMessagePopup(type, msg);
             abort();
         }
     }
@@ -301,7 +320,7 @@ inline void noisyFailureMsgHandler(QtMsgType type, const QMessageLogContext &con
     , m_lockLog()
     , m_out(nullptr)
 {
-    
+
 #if defined(Q_OS_MACOS) || defined(Q_OS_MAC)
     // Overriding the default Qt 6.7.3+ behavior where macOS hides menu icons
     QCoreApplication::setAttribute(Qt::AA_DontShowIconsInMenus, false);
