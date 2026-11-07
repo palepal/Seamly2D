@@ -237,11 +237,19 @@ void VAbstractConverter::saveBackupFile() const
         {
             path = info.absoluteDir().absolutePath();
         }
-        QString backupFileName;
-        QString timestamp = QDateTime::currentDateTime().toString("ddMMyyyy-hhmmss");
-        backupFileName = QString("%1/%2_%3%4.%5").arg(path, baseFileName, timestamp, "(backup)", info.completeSuffix());
+        // Opens of the same name within one second (also from parallel processes) would clash, so a taken name is
+        // retried with a counter.
+        const QString timestamp = QDateTime::currentDateTime().toString("ddMMyyyy-hhmmss");
+        bool copied = false;
+        for (int copy = 1; copy <= 100 && !copied; ++copy)
+        {
+            const QString counter = copy == 1 ? QString() : QLatin1Char('-') + QString::number(copy);
+            const QString backupFileName = QString("%1/%2_%3%4%5.%6").arg(path, baseFileName, timestamp, counter,
+                                                                         "(backup)", info.completeSuffix());
+            copied = !QFileInfo::exists(backupFileName) && SafeCopy(m_original_file_name, backupFileName, error);
+        }
 
-        if (!SafeCopy(m_original_file_name, backupFileName, error))
+        if (!copied)
         {
 #ifdef Q_OS_WIN32
         qt_ntfs_permission_lookup++; // turn checking on
