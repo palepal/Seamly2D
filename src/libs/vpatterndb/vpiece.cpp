@@ -691,13 +691,15 @@ QVector<CustomSARecord> VPiece::FilterRecords(QVector<CustomSARecord> records) c
     // cppcheck-suppress variableScope
     bool foundFilter = false;// Need in case "filter" will stay empty.
     CustomSARecord filter;
-    int startIndex = d->m_path.nodeCount()-1;
+    int firstNode = d->m_path.nodeCount(); // path position of the earliest record so far
+    int startIndex = -1;                   // that record's position in records
 
     for (int i = 0; i < records.size(); ++i)
     {
         const int indexStartPoint = d->m_path.indexOfNode(records.at(i).startPoint);
-        if (indexStartPoint < startIndex)
+        if (indexStartPoint < firstNode)
         {
+            firstNode = indexStartPoint;
             startIndex = i;
             filter = records.at(i);
             // cppcheck-suppress unreadVariable
