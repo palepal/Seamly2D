@@ -3209,7 +3209,7 @@ void PatternPieceDialog::initAnchorPoint(QComboBox *box)
         box->addItem(anchorPoint->name(), anchorPoints.at(i));
     }
 
-    const int index = ui->nodes_ComboBox->findData(currentId);
+    const int index = box->findData(currentId);
     if (index != -1)
     {
         box->setCurrentIndex(index);
