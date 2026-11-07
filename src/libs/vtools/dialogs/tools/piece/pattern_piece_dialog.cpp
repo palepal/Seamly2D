@@ -1365,14 +1365,14 @@ void PatternPieceDialog::notchChanged(int index)
             ui->castleNotch_RadioButton->setEnabled(true);
             ui->diamondNotch_RadioButton->setEnabled(true);
 
-            ui->notchAngle_DoubleSpinBox->setEnabled(false);
+            // Every notch type is drawn at its angle, not only slits.
+            ui->notchAngle_DoubleSpinBox->setEnabled(true);
+            ui->notchAngle_DoubleSpinBox->setValue(node.getNotchAngle());
 
             switch(node.getNotchType())
             {
                 case NotchType::Slit:
                     ui->slitNotch_RadioButton->setChecked(true);
-                    ui->notchAngle_DoubleSpinBox->setEnabled(true);
-                    ui->notchAngle_DoubleSpinBox->setValue(node.getNotchAngle());
                     break;
                 case NotchType::TNotch:
                     ui->tNotch_RadioButton->setChecked(true);
@@ -1634,9 +1634,6 @@ void PatternPieceDialog::notchTypeChanged(int id)
         QListWidgetItem *rowItem = getItemById(ui->notches_ComboBox->currentData().toUInt());
         if (rowItem)
         {
-            ui->notchAngle_DoubleSpinBox->setEnabled(false);
-            ui->notchAngle_DoubleSpinBox->setValue(0.0);
-
             VPieceNode rowNode = qvariant_cast<VPieceNode>(rowItem->data(Qt::UserRole));
 
             NotchType notchType = stringToNotchType(qApp->Settings()->getDefaultNotchType());
@@ -1644,7 +1641,6 @@ void PatternPieceDialog::notchTypeChanged(int id)
             if (id == ui->notchType_ButtonGroup->id(ui->slitNotch_RadioButton))
             {
                 notchType = NotchType::Slit;
-                ui->notchAngle_DoubleSpinBox->setEnabled(true);
             }
             else if (id == ui->notchType_ButtonGroup->id(ui->tNotch_RadioButton))
             {
