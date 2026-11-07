@@ -6992,7 +6992,7 @@ void MainWindow::saveBackupFile(const QString &filename) const
     const QFileInfo info(filename);
 
     QString path = qApp->Settings()->getBackupFilePath();
-    if (!info.exists(path))
+    if (!QDir().mkpath(path))
     {
         path = info.absoluteDir().absolutePath();
     }
@@ -7009,14 +7009,17 @@ void MainWindow::saveBackupFile(const QString &filename) const
     // errors when opening file in Linux through the command line.
     baseFileName.replace(" ", "_");
 
-    // Filter files by baseFileName
+    // Only this file's own backups, named as below: the folder may be the pattern's own folder, where a looser
+    // match would delete the pattern itself or other files that share part of its name.
+    const QRegularExpression ownBackup(QStringLiteral("^%1_\\d{8}-\\d{6}(-\\d+)?\\(backup\\)\\.%2$")
+                                       .arg(QRegularExpression::escape(baseFileName),
+                                            QRegularExpression::escape(info.completeSuffix())));
     QFileInfoList allFiles = dir.entryInfoList(QDir::Files | QDir::NoDotAndDotDot);
     QFileInfoList filteredList;
 
-    // Get list, sorting by creation time (Time) descending (Reversed)
     for (const QFileInfo &fileInfo : allFiles)
     {
-        if (fileInfo.baseName().contains(baseFileName, Qt::CaseInsensitive))
+        if (ownBackup.match(fileInfo.fileName()).hasMatch())
         {
             filteredList.append(fileInfo);
         }
@@ -7031,7 +7034,7 @@ void MainWindow::saveBackupFile(const QString &filename) const
 
     // Delete oldest if over limit
     int maxFiles = qApp->Seamly2DSettings()->getMaxBackups();
-    int filesToDelete = filteredList.size() - maxFiles + 1;
+    const int filesToDelete = qMin(filteredList.size(), filteredList.size() - maxFiles + 1);
 
     for (int i = 0; i < filesToDelete; ++i)
     {
@@ -7039,12 +7042,19 @@ void MainWindow::saveBackupFile(const QString &filename) const
         QFile::remove(toDelete.absoluteFilePath());
     }
 
-    QString backupFileName;
-    QString timestamp = QDateTime::currentDateTime().toString("ddMMyyyy-hhmmss");
+    // Opens of the same name within one second (also from parallel processes) would clash, so a taken name is
+    // retried with a counter.
+    const QString timestamp = QDateTime::currentDateTime().toString("ddMMyyyy-hhmmss");
+    bool copied = false;
+    for (int copy = 1; copy <= 100 && !copied; ++copy)
+    {
+        const QString counter = copy == 1 ? QString() : QLatin1Char('-') + QString::number(copy);
+        const QString backupFileName = QString("%1/%2_%3%4%5.%6").arg(path, baseFileName, timestamp, counter,
+                                                                     "(backup)", info.completeSuffix());
+        copied = !QFileInfo::exists(backupFileName) && VDomDocument::SafeCopy(filename, backupFileName, error);
+    }
 
-    backupFileName = QString("%1/%2_%3%4.%5").arg(path, baseFileName, timestamp, "(backup)", info.completeSuffix());
-
-    if (!VDomDocument::SafeCopy(filename, backupFileName, error))
+    if (!copied)
     {
         if (info.isWritable())
         {
