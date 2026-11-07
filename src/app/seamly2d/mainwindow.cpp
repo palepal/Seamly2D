@@ -7701,7 +7701,8 @@ void MainWindow::exportPiecesAs()
 
             for (const QString &size : selectedSizes)
             {
-                const int sizeValue = qRound(UnitConvertor(size.toDouble(), qApp->patternUnit(), Unit::Cm));
+                // Listed in pattern units, which is what updateMeasurements takes (as in Export Layout)
+                const int sizeValue = qRound(size.toDouble());
 
                 // Switch to this size
                 updateMeasurements(measurementPath, sizeValue, static_cast<int>(VContainer::height()));
