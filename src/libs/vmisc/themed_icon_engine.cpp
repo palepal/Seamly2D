@@ -79,6 +79,13 @@ QPixmap ThemedIconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::Sta
 QPixmap ThemedIconEngine::scaledPixmap(const QSize &size, QIcon::Mode mode, QIcon::State state, qreal scale)
 {
     Q_UNUSED(state)
+    // A collapsed widget asks for an empty icon. Painting on a null image warns, and the warning popup opened mid
+    // repaint crashes Qt's macOS backing store
+    if ((size * scale).isEmpty())
+    {
+        return QPixmap();
+    }
+
     const QString line = themeIconColor(static_cast<int>(mode)).name();
     const QString accent = themeAccentColor().name();
     const QString background = themeBackgroundColor().name();
