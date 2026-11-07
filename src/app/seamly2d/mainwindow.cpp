@@ -8250,7 +8250,16 @@ void MainWindow::DoExport(const VCommandLinePtr &expParams)
             return;
         }
     }
-    pieceList = preparePiecesForLayout(*pieces);
+    // Same pieces as the GUI exports: only those set to go in the layout.
+    QHash<quint32, VPiece> inLayout;
+    for (auto it = pieces->constBegin(); it != pieces->constEnd(); ++it)
+    {
+        if (it.value().isInLayout())
+        {
+            inLayout.insert(it.key(), it.value());
+        }
+    }
+    pieceList = preparePiecesForLayout(inLayout);
 
     const bool exportOnlyPieces = expParams->exportOnlyPieces();
     if (exportOnlyPieces)
