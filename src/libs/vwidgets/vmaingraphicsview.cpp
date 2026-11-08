@@ -86,6 +86,7 @@
 #include "vabstractmainwindow.h"
 #include "vmaingraphicsscene.h"
 #include "vsimplecurve.h"
+#include "scalesceneitems.h"
 
 Q_LOGGING_CATEGORY(vGraphicsViewZoom, "vgraphicsviewzoom")
 
@@ -681,11 +682,17 @@ void VMainGraphicsView::mousePressEvent(QMouseEvent *event)
                     }
                     for (int i = 0; i < list.size(); ++i)
                     {
-                        if (this->scene()->items().contains(list.at(i)))
+                        QGraphicsItem* item = list.at(i);
+                        // A line drawn by a point tool belongs to that tool
+                        if (item->type() == VScaledLine::Type && item->parentItem() != nullptr)
                         {
-                            if (list.at(i)->type() > QGraphicsItem::UserType && list.at(i)->type() <= VSimpleCurve::Type)
+                            item = item->parentItem();
+                        }
+                        if (this->scene()->items().contains(item))
+                        {
+                            if (item->type() > QGraphicsItem::UserType && item->type() <= VSimpleCurve::Type)
                             {
-                                emit itemClicked(list.at(i));
+                                emit itemClicked(item);
                                 break;
                             }
                             else
