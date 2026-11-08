@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Seamly2D Shortcuts</string>
+   <string>Cutalyst Shortcuts</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">

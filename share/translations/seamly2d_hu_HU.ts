@@ -139,6 +139,14 @@
         <source>Automatic</source>
         <translation>Automatikus</translation>
     </message>
+    <message>
+        <source>About Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AddDraftBlock</name>
@@ -364,6 +372,10 @@
         <source>Please, provide one input file.</source>
         <translation>Kérlek, adj meg egy bemeneti fájlt.</translation>
     </message>
+    <message>
+        <source>Cutalyst&apos;s measurements editor.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BasePointDialog</name>
@@ -551,6 +563,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Web site : %1</source>
         <translation>Weboldal: %1</translation>
+    </message>
+    <message>
+        <source>About CutalystMe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CutalystMe version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This program is part of Cutalyst, based on the Seamly2D project.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3079,6 +3103,11 @@ Kérjük, próbálja meg visszavonni a legutóbbi műveletet, vagy javítsa ki a
         <source>&amp;Fix formula</source>
         <translation>&amp;Képletjavítás</translation>
     </message>
+    <message>
+        <source>Cutalyst encountered an error while computing a formula.
+Please try to undo the latest operation or fix the broken formula.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DoubleLinePointTool</name>
@@ -4880,6 +4909,20 @@ A programot A JELENLEGI ÁLLAPOTUKBAN biztosítjuk, SEMMILYEN GARANCIA NÉLKÜL,
     <message>
         <source>The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.</source>
         <translation>A programot A JELENLEGI ÁLLAPOTBAN biztosítjuk, SEMMILYEN GARANCIA NÉLKÜL, BELEÉRTVE A TERVEZÉSRE, AZ ELADHATÓSÁGRA ÉS EGY ADOTT CÉLRA VALÓ ALKALMASSÁGRA VONATKOZÓ GARANCIÁT.</translation>
+    </message>
+    <message>
+        <source>Cutalyst is an application for computer-aided design of garment patterns.
+
+Cutalyst is a free (open source) software, based on Seamly2D and Valentina.
+
+All brand or product names are trademarks or registered trademarks of their respective holders.
+
+© 2017-2026 Seamly2D Project.
+
+Portions of this software © 2008-2026 The Qt Company Ltd.
+
+The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7147,6 +7190,26 @@ Menti a módosításokat?</translation>
         <source>Are you sure you want to delete basepoint and current draft block?</source>
         <translation>Biztosan törölni szeretné a bázispontot és a jelenlegi vázlattömböt?</translation>
     </message>
+    <message>
+        <source>Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open CutalystMe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open CutalystMe measurements app (Ctrl+M)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cutalyst didn&apos;t shut down correctly. Do you want reopen files (%1) you had open?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindowsNoGUI</name>
@@ -7324,6 +7387,10 @@ Menti a módosításokat?</translation>
     <message>
         <source>Export PDF</source>
         <translation>PDF exportálása</translation>
+    </message>
+    <message>
+        <source>CutalystMe Shortcuts</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9310,6 +9377,10 @@ Menti a módosításokat?</translation>
         <source>My Backups</source>
         <translation>Biztonsági mentéseim</translation>
     </message>
+    <message>
+        <source>Paths that Cutalyst uses</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreferencesPatternPage</name>
@@ -10073,6 +10144,10 @@ Menti a módosításokat?</translation>
         <source>My Body Scans</source>
         <translation>A testem szkennelése</translation>
     </message>
+    <message>
+        <source>Paths that CutalystMe uses</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SeamlyMeWelcomeDialog</name>
@@ -10184,6 +10259,18 @@ Menti a módosításokat?</translation>
         <source>Theme:</source>
         <translation>Téma:</translation>
     </message>
+    <message>
+        <source>Welcome to CutalystMe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sets the language used for CutalystMe.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed. You can change this setting in the CutalystMe preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SeamlyWelcomeDialog</name>
@@ -10286,6 +10373,18 @@ Menti a módosításokat?</translation>
     <message>
         <source>Theme:</source>
         <translation>Téma:</translation>
+    </message>
+    <message>
+        <source>Welcome to Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sets the language used for Cutalyst.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed.  You can change this setting in the Cutalyst preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -11085,6 +11184,14 @@ Menti a módosításokat?</translation>
         <source>Page Up / Page Down</source>
         <translation>Page Up / Page Down</translation>
     </message>
+    <message>
+        <source>Cutalyst Shortcuts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open CutalystMe</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShowDoublePointName</name>
@@ -11787,6 +11894,10 @@ Menti a módosításokat?</translation>
     <message>
         <source>Custom measurement</source>
         <translation>Egyedi méretvétel</translation>
+    </message>
+    <message>
+        <source>About CutalystMe</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -12505,6 +12616,14 @@ Menti a módosításokat?</translation>
     <message>
         <source>Invalid gradation height value.</source>
         <translation>Érvénytelen gradációs magasságérték.</translation>
+    </message>
+    <message>
+        <source>Cutalyst open source patternmaking program.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cutalyst pattern file (.sm2d)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

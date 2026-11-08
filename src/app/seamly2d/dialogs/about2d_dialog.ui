@@ -38,7 +38,7 @@
    <enum>Qt::NoContextMenu</enum>
   </property>
   <property name="windowTitle">
-   <string>About Seamly2D</string>
+   <string>About Cutalyst</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../../../libs/vmisc/share/resources/icon.qrc">
@@ -158,7 +158,7 @@
                 </font>
                </property>
                <property name="text">
-                <string>Seamly 2D</string>
+                <string>Cutalyst</string>
                </property>
               </widget>
              </item>

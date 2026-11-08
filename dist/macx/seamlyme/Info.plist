@@ -14,10 +14,14 @@
 	<string>© 2013-2023, Seamly2D project</string>
 	<key>CFBundleSignature</key>
 	<string>@TYPEINFO@</string>
+	<key>CFBundleName</key>
+	<string>CutalystMe</string>
+	<key>CFBundleDisplayName</key>
+	<string>CutalystMe</string>
 	<key>CFBundleExecutable</key>
 	<string>@EXECUTABLE@</string>
 	<key>CFBundleIdentifier</key>
-        <string>org.seamly2dproject.@EXECUTABLE@</string>
+        <string>io.github.palepal.cutalystme</string>
 	<!-- Start: Do not edit here, use scripts/version.sh to update -->
 	<key>CFBundleShortVersionString</key><string>0.6.0</string>
 	<key>CFBundleVersion</key><string>0.6.0</string>
@@ -36,7 +40,7 @@
                 <string>org.seamly2dproject.individual_size_file</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>SeamlyMe individual measurements</string>
+			<string>CutalystMe individual measurements</string>
 			<key>LSHandlerRank</key>
 			<string>Owner</string>
 		</dict>
@@ -50,7 +54,7 @@
                 <string>org.seamly2dproject.smms</string>
 			</array>
 			<key>CFBundleTypeName</key>
-                <string>SeamlyMe multisize measurements</string>
+                <string>CutalystMe multisize measurements</string>
 			<key>LSHandlerRank</key>
 			<string>Owner</string>
 		</dict>
@@ -64,7 +68,7 @@
 				<string>public.xml</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>SeamlyMe individual measurements</string>
+			<string>CutalystMe individual measurements</string>
 			<key>UTTypeIconFile</key>
 			<string>individual_size_file.icns</string>
 			<key>UTTypeIdentifier</key>
@@ -86,7 +90,7 @@
 				<string>public.xml</string>
 			</array>
 			<key>UTTypeDescription</key>
-                <string>SeamlyMe multisize measurements</string>
+                <string>CutalystMe multisize measurements</string>
 			<key>UTTypeIconFile</key>
 			<string>multi_size_file.icns</string>
 			<key>UTTypeIdentifier</key>

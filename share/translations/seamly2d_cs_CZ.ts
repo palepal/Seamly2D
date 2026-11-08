@@ -139,6 +139,14 @@
         <source>Website:</source>
         <translation>Webová stránka:</translation>
     </message>
+    <message>
+        <source>About Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AddDraftBlock</name>
@@ -364,6 +372,10 @@
         <source>Disable high dpi scaling. Call this option if has problem with scaling (by default scaling enabled). Alternatively you can use the %1 environment variable.</source>
         <translation>Zakázat škálování s vysokým rozlišením. Tuto možnost zavolejte, pokud máte problém se škálováním (ve výchozím nastavení je škálování povoleno). Případně můžete použít proměnnou prostředí %1.</translation>
     </message>
+    <message>
+        <source>Cutalyst&apos;s measurements editor.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BasePointDialog</name>
@@ -551,6 +563,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>unknown</source>
         <translation>neznámý</translation>
+    </message>
+    <message>
+        <source>About CutalystMe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CutalystMe version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This program is part of Cutalyst, based on the Seamly2D project.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3079,6 +3103,11 @@ Please try to undo the latest operation or fix the broken formula.</source>
         <translation>Seamly2D došlo k chybě při výpočtu vzorce.
 Zkuste prosím vrátit zpět poslední operaci nebo opravit poškozený vzorec.</translation>
     </message>
+    <message>
+        <source>Cutalyst encountered an error while computing a formula.
+Please try to undo the latest operation or fix the broken formula.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DoubleLinePointTool</name>
@@ -4879,6 +4908,20 @@ Všechny názvy značek nebo produktů jsou ochrannými známkami nebo registrov
 Části tohoto softwaru © 2008–2026 The Qt Company Ltd.
 
 Program je poskytován TAK, JAK JE, BEZ JAKÉKOLI ZÁRUKY, VČETNĚ ZÁRUKY DESIGNU, OBCHODOVATELNOSTI A VHODNOSTI PRO URČITÝ ÚČEL.</translation>
+    </message>
+    <message>
+        <source>Cutalyst is an application for computer-aided design of garment patterns.
+
+Cutalyst is a free (open source) software, based on Seamly2D and Valentina.
+
+All brand or product names are trademarks or registered trademarks of their respective holders.
+
+© 2017-2026 Seamly2D Project.
+
+Portions of this software © 2008-2026 The Qt Company Ltd.
+
+The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7146,6 +7189,26 @@ Stisknutím klávesy Enter jej dočasně přidáte do seznamu.</translation>
         <source>Are you sure you want to delete basepoint and current draft block?</source>
         <translation>Opravdu chcete smazat základní bod a aktuální blok konceptu?</translation>
     </message>
+    <message>
+        <source>Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cutalyst didn&apos;t shut down correctly. Do you want reopen files (%1) you had open?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open CutalystMe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open CutalystMe measurements app (Ctrl+M)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindowsNoGUI</name>
@@ -7323,6 +7386,10 @@ Stisknutím klávesy Enter jej dočasně přidáte do seznamu.</translation>
     <message>
         <source>Ctrl+G</source>
         <translation>Ctrl+G</translation>
+    </message>
+    <message>
+        <source>CutalystMe Shortcuts</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9309,6 +9376,10 @@ Stisknutím klávesy Enter jej dočasně přidáte do seznamu.</translation>
         <source>My Label Templates</source>
         <translation>Moje šablony štítků</translation>
     </message>
+    <message>
+        <source>Paths that Cutalyst uses</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreferencesPatternPage</name>
@@ -10072,6 +10143,10 @@ Stisknutím klávesy Enter jej dočasně přidáte do seznamu.</translation>
         <source>My Body Scans</source>
         <translation>Skenování mého těla</translation>
     </message>
+    <message>
+        <source>Paths that CutalystMe uses</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SeamlyMeWelcomeDialog</name>
@@ -10183,6 +10258,18 @@ Stisknutím klávesy Enter jej dočasně přidáte do seznamu.</translation>
         <source>Theme:</source>
         <translation>Téma:</translation>
     </message>
+    <message>
+        <source>Welcome to CutalystMe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sets the language used for CutalystMe.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed. You can change this setting in the CutalystMe preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SeamlyWelcomeDialog</name>
@@ -10285,6 +10372,18 @@ Stisknutím klávesy Enter jej dočasně přidáte do seznamu.</translation>
     <message>
         <source>Theme:</source>
         <translation>Téma:</translation>
+    </message>
+    <message>
+        <source>Welcome to Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sets the language used for Cutalyst.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed.  You can change this setting in the Cutalyst preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -11084,6 +11183,14 @@ Stisknutím klávesy Enter jej dočasně přidáte do seznamu.</translation>
         <source>Page Up / Page Down</source>
         <translation>Stránka nahoru / Stránka dolů</translation>
     </message>
+    <message>
+        <source>Cutalyst Shortcuts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open CutalystMe</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShowDoublePointName</name>
@@ -11787,6 +11894,10 @@ SeamlyME jako obvykle.
     <message>
         <source>Custom measurement</source>
         <translation>Míry na zakázku</translation>
+    </message>
+    <message>
+        <source>About CutalystMe</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -12505,6 +12616,14 @@ SeamlyME jako obvykle.
     <message>
         <source>The bottom margin</source>
         <translation>Spodní okraj</translation>
+    </message>
+    <message>
+        <source>Cutalyst open source patternmaking program.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cutalyst pattern file (.sm2d)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

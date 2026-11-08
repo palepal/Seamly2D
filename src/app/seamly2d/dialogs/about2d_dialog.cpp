@@ -86,7 +86,7 @@ About2DAppDialog::About2DAppDialog(QWidget *parent)
     //About Tab
     connect(ui->copyToClipbaord_toolButton, &QToolButton::clicked, this, &About2DAppDialog::copyToClipboard);
 
-	ui->version_value->setText(QString("Seamly2D %1").arg(APP_VERSION_STR));
+	ui->version_value->setText(QString(VER_PRODUCTNAME_STR " %1").arg(APP_VERSION_STR));
 
     ui->websiteUrl_Label->setText(QString("<a href=\"%1\">%1</a>").arg(VER_COMPANYDOMAIN_STR));
     ui->websiteUrl_Label->setTextFormat(Qt::RichText);                         // Ensure rich text is interpreted
@@ -107,8 +107,8 @@ About2DAppDialog::About2DAppDialog(QWidget *parent)
     ui->compiler_value->setText(QString("%1 %2 bit").arg(compilerString(), QString::number(QSysInfo::WordSize)));
 
 	ui->legalStuff_label->setText(QApplication::translate("InternalStrings",
-									  "Seamly2D is an application for computer-aided design of garment patterns.\n\n"
-                                      "Seamly2D is a free (open source) software.\n\n"
+									  "Cutalyst is an application for computer-aided design of garment patterns.\n\n"
+                                      "Cutalyst is a free (open source) software, based on Seamly2D and Valentina.\n\n"
                                       "All brand or product names are trademarks or registered trademarks of their respective holders.\n\n"
                                       "© 2017-2026 Seamly2D Project.\n\n"
                                       "Portions of this software © 2008-2026 The Qt Company Ltd.\n\n"
@@ -135,7 +135,7 @@ About2DAppDialog::About2DAppDialog(QWidget *parent)
     }
 
     //System Tab
-    ui->sysVersion_value->setText(QString("Seamly2D %1").arg(APP_VERSION_STR));
+    ui->sysVersion_value->setText(QString(VER_PRODUCTNAME_STR " %1").arg(APP_VERSION_STR));
     ui->sysRevision_value->setText(revision);
     ui->sysBuildDate_value->setText(tr("Built on %1 at %2").arg(date.toString()).arg(__TIME__));
     ui->sysCPU_value->setText(QSysInfo::buildCpuArchitecture());
@@ -233,7 +233,7 @@ void About2DAppDialog::copyToClipboard()
     QClipboard *clipboard = QApplication::clipboard();
 
     QString text ="";
-    text += QString("Seamly2D version: %1").arg(ui->version_value->text());
+    text += QString(VER_PRODUCTNAME_STR " version: %1").arg(ui->version_value->text());
     text += QString("\nBuild revision: %1").arg(ui->revision_value->text());
     text += QString("\nBuild date: %1").arg(ui->buildDate_value->text());
     text += QString("\nQt Version: %1").arg(ui->qtVersion_value->text());

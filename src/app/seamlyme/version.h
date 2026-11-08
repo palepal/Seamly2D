@@ -56,7 +56,7 @@
 
 #define VER_INTERNALNAME_ME_STR     "SeamlyMe"
 #define VER_ORIGINALFILENAME_STR    "seamlyme.exe"
-#define VER_PRODUCTNAME_STR         "SeamlyMe"
-#define VER_FILEDESCRIPTION_STR     "Seamly2D's measurements editor."
+#define VER_PRODUCTNAME_STR         "CutalystMe"
+#define VER_FILEDESCRIPTION_STR     "Cutalyst's measurements editor."
 
 #endif // VERSION_H

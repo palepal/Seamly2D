@@ -290,7 +290,7 @@ ApplicationME::ApplicationME(int &argc, char **argv)
     QCoreApplication::setAttribute(Qt::AA_DontShowIconsInMenus, false);
 #endif
 
-    //setApplicationDisplayName(VER_PRODUCTNAME_STR);
+    setApplicationDisplayName(VER_PRODUCTNAME_STR);
     setApplicationName(VER_INTERNALNAME_ME_STR);
     setOrganizationName(VER_COMPANYNAME_STR);
     setOrganizationDomain(VER_COMPANYDOMAIN);
@@ -664,7 +664,7 @@ void ApplicationME::retranslateTables()
 void ApplicationME::parseCommandLine(const SocketConnection &connection, const QStringList &arguments)
 {
     QCommandLineParser parser;
-    parser.setApplicationDescription(tr("Seamly2D's measurements editor."));
+    parser.setApplicationDescription(tr("Cutalyst's measurements editor."));
     parser.addHelpOption();
     parser.addVersionOption();
     parser.addPositionalArgument("filename", tr("The measurement file."));
