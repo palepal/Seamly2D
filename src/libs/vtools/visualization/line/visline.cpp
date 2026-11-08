@@ -162,3 +162,22 @@ void VisLine::DrawRay(VScaledLine *lineItem, const QPointF &p, const QPointF &pT
     const QLineF tangent = VGObject::BuildLine(p, QLineF(p, endRay).length(), angle);
     DrawLine(lineItem, tangent, color, 0.35, style);
 }
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief sceneEvent passes hover and clicks on the preview to the tool it shows.
+/// @param event the event.
+/// @return true if the event was handled.
+bool VisLine::sceneEvent(QEvent* event)
+{
+    return forwardToOwner(this, event) || VScaledLine::sceneEvent(event);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief sceneEventFilter passes hover and clicks on a line of the preview to the tool it shows.
+/// @param watched child item that received the event.
+/// @param event the event.
+/// @return true if the event was handled.
+bool VisLine::sceneEventFilter(QGraphicsItem* watched, QEvent* event)
+{
+    return forwardToOwner(watched, event) || VScaledLine::sceneEventFilter(watched, event);
+}

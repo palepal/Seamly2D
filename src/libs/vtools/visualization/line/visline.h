@@ -85,6 +85,8 @@ protected:
     QLineF       Axis(const QPointF &p1, const QPointF &p2) const;
     virtual void initPen() override;
     virtual void AddOnScene() override;
+    virtual bool sceneEvent(QEvent* event) override;
+    virtual bool sceneEventFilter(QGraphicsItem* watched, QEvent* event) override;
 
     void         DrawRay(VScaledLine *lineItem, const QPointF &p, const QPointF &pTangent,
                          const QColor &color, Qt::PenStyle style);

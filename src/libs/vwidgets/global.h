@@ -56,6 +56,7 @@
 extern const qreal defPointRadiusPixel;
 extern const qreal widthMainLine;
 extern const qreal widthHairLine;
+extern const int   itemOwnerKey;
 
 class QGraphicsScene;
 class QGraphicsItem;

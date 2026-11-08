@@ -68,6 +68,7 @@ public:
     virtual void           RefreshGeometry()=0;
 
     void                   setObject1Id(const quint32 &value);
+    void                   setOwner(QGraphicsItem* owner);
     void                   setLineStyle(const Qt::PenStyle &value);
     void                   setLineWeight(const QString &value);
     void                   setScenePos(const QPointF &value);
@@ -103,6 +104,9 @@ protected:
     quint32                object1Id;
     QString                toolTip;
     Mode                   mode;
+    QGraphicsItem         *m_owner;
+
+    bool                   forwardToOwner(QGraphicsItem* item, QEvent* event);
 
     virtual void           initPen()=0;
     virtual void           AddOnScene()=0;
@@ -162,6 +166,7 @@ inline Item *Visualization::InitItem(const QColor &color, QGraphicsItem *parent)
     item->setPen(pen);
     item->setZValue(1);
     item->setFlags(QGraphicsItem::ItemStacksBehindParent);
+    item->setAcceptHoverEvents(parent != nullptr && parent->acceptHoverEvents());
     item->setVisible(false);
     return item;
 }
