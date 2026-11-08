@@ -115,7 +115,6 @@ protected:
     virtual void      SaveOptions(QDomElement &tag, QSharedPointer<VGObject> &obj) override;
     virtual void      hoverEnterEvent(QGraphicsSceneHoverEvent *event) override;
     virtual void      hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;
-    virtual bool      sceneEventFilter(QGraphicsItem* watched, QEvent* event) override;
     virtual QString   makeToolTip() const override;
 
 private:

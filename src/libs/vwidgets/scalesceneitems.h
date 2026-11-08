@@ -71,6 +71,9 @@ public:
     virtual void    paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                           QWidget *widget = nullptr) override;
 
+    virtual QRectF       boundingRect() const override;
+    virtual QPainterPath shape() const override;
+
     qreal           getDefaultWidth() const;
     void            setDefaultWidth(const qreal &value);
 
@@ -78,6 +81,7 @@ private:
     Q_DISABLE_COPY(VScaledLine)
 
     qreal           m_defaultWidth;
+    qreal           m_hitWidth;
 };
 
 class ArrowedLineItem : public QGraphicsLineItem

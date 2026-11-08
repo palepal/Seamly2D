@@ -85,6 +85,7 @@ public:
     virtual             ~VAbstractSpline() Q_DECL_EQ_DEFAULT;
 
     virtual QPainterPath shape() const override;
+    virtual QRectF       boundingRect() const override;
     virtual void         paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     virtual int          type() const  override {return Type;}
 
@@ -124,6 +125,7 @@ protected:
     SceneObject          m_sceneType;
     bool                 m_isHovered;
     bool                 m_piecesMode;
+    qreal                m_hitWidth;
 
     virtual void         refreshGeometry();
     virtual void         ShowTool(quint32 id, bool enable) override;

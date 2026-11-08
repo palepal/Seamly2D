@@ -94,6 +94,8 @@ DoubleLinePointTool::DoubleLinePointTool(VAbstractPattern *doc, VContainer *data
     secondLine = new VScaledLine(QLineF(point2 - point3, QPointF()), this);
     secondLine->setDefaultWidth(ToPixel(m_lineWeight.toDouble(), Unit::Mm));
     secondLine->setFlag(QGraphicsItem::ItemStacksBehindParent, true);
+
+    allowLineHover(true);
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -173,6 +175,15 @@ void DoubleLinePointTool::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
     firstLine->setDefaultWidth(ToPixel(m_lineWeight.toDouble(), Unit::Mm));
     secondLine->setDefaultWidth(ToPixel(m_lineWeight.toDouble(), Unit::Mm));
     VToolSinglePoint::hoverLeaveEvent(event);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief allowLineHover turns hovering and clicking the lines on or off, the same way as for lines of the line tool.
+/// @param enabled true if the lines react to the mouse.
+void DoubleLinePointTool::allowLineHover(bool enabled)
+{
+    firstLine->setAcceptHoverEvents(enabled);
+    secondLine->setAcceptHoverEvents(enabled);
 }
 
 //---------------------------------------------------------------------------------------------------------------------

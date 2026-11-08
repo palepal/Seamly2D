@@ -54,6 +54,8 @@
 #include <QGraphicsItem>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QLineF>
+#include <QPainterPathStroker>
 #include <QtDebug>
 
 const qreal defPointRadiusPixel = (2.0/*mm*/ / 25.4) * PrintDPI;
@@ -212,6 +214,32 @@ qreal scaleWidth(qreal width, qreal scale)
         width = qMax(0.01, width/scale);
     }
     return width;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief hitSize keeps a click target at least 8 screen pixels wide, however far the view is zoomed out.
+/// @param size width of the drawn item in scene units.
+/// @param scale the current zoom scale factor of the view.
+/// @return width of the click target in scene units.
+qreal hitSize(qreal size, qreal scale)
+{
+    return qMax(size, 8 / scale);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief lineHitShape click target of a line.
+/// @param line the line.
+/// @param width width of the click target in scene units.
+/// @return outline of the click target.
+QPainterPath lineHitShape(const QLineF &line, qreal width)
+{
+    QPainterPath path;
+    path.moveTo(line.p1());
+    path.lineTo(line.p2());
+
+    QPainterPathStroker stroke;
+    stroke.setWidth(width);
+    return stroke.createStroke(path);
 }
 
 //---------------------------------------------------------------------------------------------------------------------

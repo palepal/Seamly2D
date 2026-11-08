@@ -71,6 +71,8 @@ public:
 
     virtual void             paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                                    QWidget *widget = nullptr) override;
+    virtual QRectF           boundingRect() const override;
+    virtual QPainterPath     shape() const override;
     virtual void             refreshPointGeometry(const VPointF &point);
 
     void                     refreshLeader();
@@ -83,6 +85,7 @@ protected:
     bool                     m_onlyPoint;
     bool                     m_isHovered;
     bool                     m_showPointName;
+    qreal                    m_hitRadius;
 
     virtual void             hoverEnterEvent(QGraphicsSceneHoverEvent *event) override;
     virtual void             hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;

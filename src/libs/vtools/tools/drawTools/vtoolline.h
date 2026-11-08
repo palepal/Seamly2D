@@ -91,6 +91,8 @@ public:
 
     virtual void      paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                             QWidget *widget = nullptr) override;
+    virtual QRectF       boundingRect() const override;
+    virtual QPainterPath shape() const override;
 
     QString           FirstPointName() const;
     QString           SecondPointName() const;
@@ -151,6 +153,7 @@ private:
     QString           lineColor;
 
     bool              m_isHovered;
+    qreal             m_hitWidth;
 
                       VToolLine(VAbstractPattern *doc, VContainer *data, quint32 id, quint32 firstPoint,
                                 quint32 secondPoint, const QString &typeLine, const QString &lineWeight,

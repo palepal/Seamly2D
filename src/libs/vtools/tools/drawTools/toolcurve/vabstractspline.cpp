@@ -82,6 +82,7 @@ VAbstractSpline::VAbstractSpline(VAbstractPattern *doc, VContainer *data, quint3
     , m_sceneType(SceneObject::Unknown)
     , m_isHovered(false)
     , m_piecesMode(qApp->Settings()->getShowControlPoints())
+    , m_hitWidth(0)
 {
     initDefShape();
     setAcceptHoverEvents(true);
@@ -107,7 +108,9 @@ QPainterPath VAbstractSpline::shape() const
                                                               sceneScale(scene()))));
     }
     path.setFillRule(Qt::WindingFill);
-    return itemShapeFromPath(path, pen());
+    QPen hitPen = pen();
+    hitPen.setWidthF(qMax(m_hitWidth, hitPen.widthF()));
+    return itemShapeFromPath(path, hitPen);
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -119,6 +122,13 @@ void VAbstractSpline::paint(QPainter *painter, const QStyleOptionGraphicsItem *o
 
     setPen(QPen(adjustColorForState(this, doc->useGroupColor(m_id, curve->getLineColor())), width,
            lineTypeToPenStyle(doc->useGroupLineType(m_id, curve->GetPenStyle())), Qt::RoundCap));
+
+    const qreal hitWidth = hitSize(width, sceneScale(scene()));
+    if (!qFuzzyCompare(hitWidth, m_hitWidth))
+    {
+        prepareGeometryChange();
+        m_hitWidth = hitWidth;
+    }
 
     auto paintSpline = [this, curve](QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
     {
@@ -140,6 +150,15 @@ void VAbstractSpline::paint(QPainter *painter, const QStyleOptionGraphicsItem *o
     };
 
     paintSpline(painter, option, widget);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief boundingRect area of the curve including its click target.
+/// @return bounding rectangle.
+QRectF VAbstractSpline::boundingRect() const
+{
+    const qreal margin = m_hitWidth / 2;
+    return QGraphicsPathItem::boundingRect().adjusted(-margin, -margin, margin, margin);
 }
 
 //---------------------------------------------------------------------------------------------------------------------

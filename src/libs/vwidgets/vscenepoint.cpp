@@ -71,6 +71,7 @@ VScenePoint::VScenePoint(const QColor &lineColor, QGraphicsItem *parent)
     , m_onlyPoint(false)
     , m_isHovered(false)
     , m_showPointName(true)
+    , m_hitRadius(0)
 {
     m_pointLeader->setDefaultWidth(widthHairLine);
     m_pointLeader->setLine(QLineF(0, 0, 1, 0));
@@ -88,6 +89,13 @@ void VScenePoint::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
 
     setPointPen(scale);
     scaleCircleSize(this, scale * .75);
+
+    const qreal hitRadius = hitSize(rect().width(), scale) / 2;
+    if (!qFuzzyCompare(hitRadius, m_hitRadius))
+    {
+        prepareGeometryChange();
+        m_hitRadius = hitRadius;
+    }
 
     if (!qApp->Settings()->getHidePointNames())
     {
@@ -117,6 +125,25 @@ void VScenePoint::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
     }
 
     QGraphicsEllipseItem::paint(painter, option, widget);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief boundingRect area of the point including its click target.
+/// @return bounding rectangle.
+QRectF VScenePoint::boundingRect() const
+{
+    return QGraphicsEllipseItem::boundingRect().united(pointRect(m_hitRadius));
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief shape click target of the point, at least a few screen pixels wide at any zoom.
+/// @return outline of the click target.
+QPainterPath VScenePoint::shape() const
+{
+    QPainterPath path = QGraphicsEllipseItem::shape();
+    path.setFillRule(Qt::WindingFill);
+    path.addEllipse(pointRect(m_hitRadius));
+    return path;
 }
 
 //---------------------------------------------------------------------------------------------------------------------

@@ -99,6 +99,7 @@ VToolLine::VToolLine(VAbstractPattern *doc, VContainer *data, quint32 id, quint3
     , secondPoint(secondPoint)
     , lineColor(lineColor)
     , m_isHovered(false)
+    , m_hitWidth(0)
 {
     this->m_lineType = lineType;
     this->m_lineWeight = lineWeight;
@@ -232,7 +233,30 @@ void VToolLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     setPen(QPen(adjustColorForState(this, doc->useGroupColor(m_id, lineColor)),
            width, lineTypeToPenStyle(doc->useGroupLineType(m_id, m_lineType))));
 
+    const qreal hitWidth = hitSize(width, sceneScale(scene()));
+    if (!qFuzzyCompare(hitWidth, m_hitWidth))
+    {
+        prepareGeometryChange();
+        m_hitWidth = hitWidth;
+    }
+
     QGraphicsLineItem::paint(painter, option, widget);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief boundingRect area of the line including its click target.
+/// @return bounding rectangle.
+QRectF VToolLine::boundingRect() const
+{
+    return shape().controlPointRect().united(QGraphicsLineItem::boundingRect());
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief shape click target of the line, at least a few screen pixels wide at any zoom.
+/// @return outline of the click target.
+QPainterPath VToolLine::shape() const
+{
+    return lineHitShape(line(), qMax(m_hitWidth, pen().widthF()));
 }
 
 //---------------------------------------------------------------------------------------------------------------------
