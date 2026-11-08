@@ -216,6 +216,7 @@ VToolCurveIntersectAxis *VToolCurveIntersectAxis::Create(const quint32 _id, cons
                                                                      formulaAngle, basePointId, curveId, typeCreation);
         scene->addItem(point);
         InitToolConnections(scene, point);
+        connect(scene, &VMainGraphicsScene::EnableLineItemHover, point, &VToolLinePoint::allowLineHover);
         VAbstractPattern::AddTool(id, point);
         doc->IncrementReferens(basePoint->getIdTool());
         doc->IncrementReferens(curve->getIdTool());
