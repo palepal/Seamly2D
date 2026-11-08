@@ -58,7 +58,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Seamly2D encountered an error while computing a formula.
+        <string>Cutalyst encountered an error while computing a formula.
 Please try to undo the latest operation or fix the broken formula.</string>
        </property>
        <property name="wordWrap">

@@ -2969,7 +2969,7 @@ void TMainWindow::UpdateWindowTitle()
 		fileName += QLatin1String(" (") + tr("read only") + QLatin1String(")");
 	}
 
-	setWindowTitle( VER_INTERNALNAME_ME_STR + QString(" - ") + fileName);
+	setWindowTitle( VER_PRODUCTNAME_STR + QString(" - ") + fileName);
 	setWindowFilePath(curFile);
 
 #if defined(Q_OS_MAC)

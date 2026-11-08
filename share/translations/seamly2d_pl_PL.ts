@@ -139,6 +139,14 @@
         <source>Automatic</source>
         <translation>Automatyczny</translation>
     </message>
+    <message>
+        <source>About Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AddDraftBlock</name>
@@ -364,6 +372,10 @@
         <source>Please, provide one input file.</source>
         <translation>Proszę podać jeden plik wejściowy.</translation>
     </message>
+    <message>
+        <source>Cutalyst&apos;s measurements editor.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BasePointDialog</name>
@@ -551,6 +563,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Web site : %1</source>
         <translation>Witryna internetowa: %1</translation>
+    </message>
+    <message>
+        <source>About CutalystMe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CutalystMe version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This program is part of Cutalyst, based on the Seamly2D project.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3099,6 +3123,11 @@ Spróbuj cofnąć ostatnią operację lub naprawić uszkodzoną formułę.</tran
         <source>&amp;Fix formula</source>
         <translation>&amp;Napraw formułę</translation>
     </message>
+    <message>
+        <source>Cutalyst encountered an error while computing a formula.
+Please try to undo the latest operation or fix the broken formula.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DoubleLinePointTool</name>
@@ -4929,6 +4958,20 @@ Program jest dostarczany w stanie&quot;TAK JAK JEST&quot;bez ŻADNEJ GWARANCJI, 
     <message>
         <source>The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.</source>
         <translation>Program jest udostępniany w stanie, w jakim się znajduje, bez żadnej gwarancji, w tym gwarancji projektu, przydatności handlowej i przydatności do określonego celu.</translation>
+    </message>
+    <message>
+        <source>Cutalyst is an application for computer-aided design of garment patterns.
+
+Cutalyst is a free (open source) software, based on Seamly2D and Valentina.
+
+All brand or product names are trademarks or registered trademarks of their respective holders.
+
+© 2017-2026 Seamly2D Project.
+
+Portions of this software © 2008-2026 The Qt Company Ltd.
+
+The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7248,6 +7291,26 @@ Czy chcesz zapisać zmiany?</translation>
         <source>Are you sure you want to delete basepoint and current draft block?</source>
         <translation>Czy na pewno chcesz usunąć punkt bazowy i bieżący blok szkicu?</translation>
     </message>
+    <message>
+        <source>Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open CutalystMe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open CutalystMe measurements app (Ctrl+M)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cutalyst didn&apos;t shut down correctly. Do you want reopen files (%1) you had open?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindowsNoGUI</name>
@@ -7425,6 +7488,10 @@ Czy chcesz zapisać zmiany?</translation>
     <message>
         <source>Export PDF</source>
         <translation>Eksportuj PDF</translation>
+    </message>
+    <message>
+        <source>CutalystMe Shortcuts</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9427,6 +9494,10 @@ Czy chcesz zapisać zmiany?</translation>
         <source>My Backups</source>
         <translation>Moje kopie zapasowe</translation>
     </message>
+    <message>
+        <source>Paths that Cutalyst uses</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreferencesPatternPage</name>
@@ -10190,6 +10261,10 @@ Czy chcesz zapisać zmiany?</translation>
         <source>My Body Scans</source>
         <translation>Moje skany ciała</translation>
     </message>
+    <message>
+        <source>Paths that CutalystMe uses</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SeamlyMeWelcomeDialog</name>
@@ -10301,6 +10376,18 @@ Czy chcesz zapisać zmiany?</translation>
         <source>Theme:</source>
         <translation>Motyw:</translation>
     </message>
+    <message>
+        <source>Welcome to CutalystMe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sets the language used for CutalystMe.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed. You can change this setting in the CutalystMe preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SeamlyWelcomeDialog</name>
@@ -10403,6 +10490,18 @@ Czy chcesz zapisać zmiany?</translation>
     <message>
         <source>Theme:</source>
         <translation>Motyw:</translation>
+    </message>
+    <message>
+        <source>Welcome to Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sets the language used for Cutalyst.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed.  You can change this setting in the Cutalyst preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -11202,6 +11301,14 @@ Czy chcesz zapisać zmiany?</translation>
         <source>Page Up / Page Down</source>
         <translation>Page Up / Page Down</translation>
     </message>
+    <message>
+        <source>Cutalyst Shortcuts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open CutalystMe</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShowDoublePointName</name>
@@ -11923,6 +12030,10 @@ Czy chcesz zapisać zmiany?</translation>
     <message>
         <source>Custom measurement</source>
         <translation>Pomiar indywidualny</translation>
+    </message>
+    <message>
+        <source>About CutalystMe</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -12668,6 +12779,11 @@ Czy chcesz zapisać zmiany?</translation>
     </message>
     <message>
         <source>The curve length must be a positive number.</source>
+        <source>Cutalyst open source patternmaking program.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cutalyst pattern file (.sm2d)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

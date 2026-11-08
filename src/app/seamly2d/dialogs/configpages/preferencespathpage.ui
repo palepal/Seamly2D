@@ -34,7 +34,7 @@
       </font>
      </property>
      <property name="title">
-      <string>Paths that Seamly2D uses</string>
+      <string>Paths that Cutalyst uses</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>

@@ -7955,7 +7955,7 @@ void MainWindow::reopenFilesAfterCrash(QStringList &args)
         if (restoreFiles.size() > 0)
         {
             QMessageBox::StandardButton reply;
-            const QString mes = tr("Seamly2D didn't shut down correctly. Do you want reopen files (%1) you had open?")
+            const QString mes = tr("Cutalyst didn't shut down correctly. Do you want reopen files (%1) you had open?")
                     .arg(restoreFiles.size());
             reply = QMessageBox::question(this, tr("Reopen files."), mes, QMessageBox::Yes|QMessageBox::No,
                                           QMessageBox::Yes);
@@ -8518,11 +8518,11 @@ void MainWindow::updateWindowTitle()
 
     if (!patternReadOnly && isFileWritable)
     {
-        setWindowTitle(VER_INTERNALNAME_STR + QString(" - ") + GetPatternFileName() + GetMeasurementFileName());
+        setWindowTitle(VER_PRODUCTNAME_STR + QString(" - ") + GetPatternFileName() + GetMeasurementFileName());
     }
     else
     {
-        setWindowTitle(VER_INTERNALNAME_STR + QString(" - ") + GetPatternFileName() +
+        setWindowTitle(VER_PRODUCTNAME_STR + QString(" - ") + GetPatternFileName() +
                        GetMeasurementFileName() + QString(" - ") + tr("read only"));
     }
     setWindowFilePath(qApp->getFilePath());

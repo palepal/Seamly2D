@@ -173,7 +173,7 @@ void DialogAboutSeamlyMe::RetranslateUi()
     {
         revision = tr("unknown");
     }
-    ui->label_SeamlyMe_Version->setText(QString("SeamlyMe %1").arg(APP_VERSION_STR));
+    ui->label_SeamlyMe_Version->setText(QString(VER_PRODUCTNAME_STR " %1").arg(APP_VERSION_STR));
     ui->labelBuildRevision->setText(tr("Build revision: %1").arg(revision));
     ui->label_QT_Version->setText(buildCompatibilityString());
 
