@@ -209,6 +209,10 @@ inline void VAbstractTool::AddVisualization()
     VMainGraphicsScene *scene = qobject_cast<VMainGraphicsScene *>(qApp->getCurrentScene());
     SCASSERT(scene != nullptr)
     scene->addItem(visual);
+    if (QGraphicsItem *owner = dynamic_cast<QGraphicsItem *>(this))
+    {
+        visual->setOwner(owner);
+    }
 
     connect(visual, &Visualization::ToolTip, this, &VAbstractTool::ToolTip);
     vis = visual;

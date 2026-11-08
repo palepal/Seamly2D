@@ -58,6 +58,9 @@
 #include <QPainterPathStroker>
 #include <QtDebug>
 
+/// Item data key that holds the tool a preview belongs to (QGraphicsItem*, stored as void*).
+const int itemOwnerKey = 0;
+
 const qreal defPointRadiusPixel = (2.0/*mm*/ / 25.4) * PrintDPI;
 const qreal widthMainLine = (1.2/*mm*/ / 25.4) * PrintDPI;
 const qreal widthHairLine = widthMainLine/3.0;

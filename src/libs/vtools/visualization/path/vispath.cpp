@@ -84,3 +84,22 @@ VSimplePoint *VisPath::GetPoint(QVector<VSimplePoint *> &points, quint32 i, cons
     }
     return nullptr;
 }
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief sceneEvent passes hover and clicks on the preview to the tool it shows.
+/// @param event the event.
+/// @return true if the event was handled.
+bool VisPath::sceneEvent(QEvent* event)
+{
+    return forwardToOwner(this, event) || VCurvePathItem::sceneEvent(event);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief sceneEventFilter passes hover and clicks on a line of the preview to the tool it shows.
+/// @param watched child item that received the event.
+/// @param event the event.
+/// @return true if the event was handled.
+bool VisPath::sceneEventFilter(QGraphicsItem* watched, QEvent* event)
+{
+    return forwardToOwner(watched, event) || VCurvePathItem::sceneEventFilter(watched, event);
+}

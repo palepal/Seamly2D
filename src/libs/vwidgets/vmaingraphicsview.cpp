@@ -730,9 +730,14 @@ void VMainGraphicsView::mousePressEvent(QMouseEvent *event)
                     for (int i = 0; i < list.size(); ++i)
                     {
                         QGraphicsItem* item = list.at(i);
-                        // A line drawn by a point tool belongs to that tool
-                        if (item->type() == VScaledLine::Type && item->parentItem() != nullptr
-                            && item->acceptHoverEvents())
+                        // A line drawn by a point tool, or the preview of a tool, belongs to that tool
+                        const QVariant owner = item->topLevelItem()->data(itemOwnerKey);
+                        if (owner.isValid() && item->acceptHoverEvents())
+                        {
+                            item = static_cast<QGraphicsItem*>(owner.value<void*>());
+                        }
+                        else if (item->type() == VScaledLine::Type && item->parentItem() != nullptr
+                                 && item->acceptHoverEvents())
                         {
                             item = item->parentItem();
                         }

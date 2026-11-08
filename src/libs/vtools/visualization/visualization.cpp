@@ -67,6 +67,9 @@
 #include <QGraphicsEllipseItem>
 #include <QGraphicsItem>
 #include <QGraphicsLineItem>
+#include <QGraphicsScene>
+#include <QEvent>
+#include <QVariant>
 #include <QLineF>
 #include <QMessageLogger>
 #include <QPen>
@@ -93,7 +96,71 @@ Visualization::Visualization(const VContainer *data)
     , object1Id(NULL_ID)
     , toolTip(QString())
     , mode(Mode::Creation)
+    , m_owner(nullptr)
 {}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief setOwner makes the lines of this preview react to hover and clicks like the tool it shows.
+/// @param owner the tool shown by this preview.
+void Visualization::setOwner(QGraphicsItem* owner)
+{
+    QGraphicsItem* item = dynamic_cast<QGraphicsItem*>(this);
+    SCASSERT(item != nullptr)
+
+    m_owner = owner;
+    item->setData(itemOwnerKey, QVariant::fromValue(static_cast<void*>(owner)));
+    item->setAcceptHoverEvents(true);
+    item->setFiltersChildEvents(true);
+
+    const QList<QGraphicsItem*> children = item->childItems();
+    for (QGraphicsItem* child : children)
+    {
+        if (child->type() == VScaledLine::Type || child->type() == VCurvePathItem::Type)
+        {
+            child->setAcceptHoverEvents(true);
+        }
+    }
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief forwardToOwner sends hover and click events on a line of the preview to the tool it shows. Previews that
+/// can be edited with the mouse (Mode::Show) keep their clicks, so their handles and the curve under them still work.
+/// @param item preview item that received the event.
+/// @param event the event.
+/// @return true if the event was sent to the tool.
+bool Visualization::forwardToOwner(QGraphicsItem* item, QEvent* event)
+{
+    if (m_owner == nullptr || m_owner->scene() == nullptr
+        || (item->type() != VScaledLine::Type && item->type() != VCurvePathItem::Type
+            && item != dynamic_cast<QGraphicsItem*>(this)))
+    {
+        return false;
+    }
+
+    switch (event->type())
+    {
+        case QEvent::GraphicsSceneHoverEnter:
+            m_owner->scene()->sendEvent(m_owner, event);
+            item->setToolTip(m_owner->toolTip());
+            return true;
+        case QEvent::GraphicsSceneHoverLeave:
+            m_owner->scene()->sendEvent(m_owner, event);
+            return true;
+        case QEvent::GraphicsSceneMousePress:
+        case QEvent::GraphicsSceneMouseRelease:
+        case QEvent::GraphicsSceneMouseDoubleClick:
+        case QEvent::GraphicsSceneContextMenu:
+            if (mode == Mode::Show)
+            {
+                return false;
+            }
+            // The tool may delete this preview while it handles the event, so nothing is touched afterwards.
+            m_owner->scene()->sendEvent(m_owner, event);
+            return true;
+        default:
+            return false;
+    }
+}
 
 //---------------------------------------------------------------------------------------------------------------------
 void Visualization::setObject1Id(const quint32 &value)

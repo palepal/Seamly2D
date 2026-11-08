@@ -77,6 +77,8 @@ public:
 protected:
     virtual void initPen() override;
     virtual void AddOnScene() override;
+    virtual bool sceneEvent(QEvent* event) override;
+    virtual bool sceneEventFilter(QGraphicsItem* watched, QEvent* event) override;
 
     VSimplePoint *GetPoint(QVector<VSimplePoint *> &points, quint32 i, const QColor &color);
 private:
