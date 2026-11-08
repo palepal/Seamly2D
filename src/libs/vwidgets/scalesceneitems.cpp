@@ -96,10 +96,14 @@ QRectF VScaledLine::boundingRect() const
 }
 
 //---------------------------------------------------------------------------------------------------------------------
-/// @brief shape click target of the line, at least a few screen pixels wide at any zoom.
+/// @brief shape click target of the line, at least a few screen pixels wide at any zoom. Hidden lines have none.
 /// @return outline of the click target.
 QPainterPath VScaledLine::shape() const
 {
+    if (pen().style() == Qt::NoPen)
+    {
+        return QPainterPath();
+    }
     return lineHitShape(line(), qMax(m_hitWidth, pen().widthF()));
 }
 
