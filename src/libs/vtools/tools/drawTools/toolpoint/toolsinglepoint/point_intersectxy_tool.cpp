@@ -207,6 +207,7 @@ PointIntersectXYTool *PointIntersectXYTool::Create(const quint32 _id, const QStr
                                                                firstPointId, secondPointId, typeCreation);
         scene->addItem(point);
         InitToolConnections(scene, point);
+        connect(scene, &VMainGraphicsScene::EnableLineItemHover, point, &DoubleLinePointTool::allowLineHover);
         VAbstractPattern::AddTool(id, point);
         doc->IncrementReferens(firstPoint->getIdTool());
         doc->IncrementReferens(secondPoint->getIdTool());

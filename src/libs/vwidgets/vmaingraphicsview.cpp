@@ -731,7 +731,8 @@ void VMainGraphicsView::mousePressEvent(QMouseEvent *event)
                     {
                         QGraphicsItem* item = list.at(i);
                         // A line drawn by a point tool belongs to that tool
-                        if (item->type() == VScaledLine::Type && item->parentItem() != nullptr)
+                        if (item->type() == VScaledLine::Type && item->parentItem() != nullptr
+                            && item->acceptHoverEvents())
                         {
                             item = item->parentItem();
                         }

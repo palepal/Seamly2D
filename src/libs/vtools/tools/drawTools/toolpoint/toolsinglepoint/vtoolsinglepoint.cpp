@@ -56,6 +56,7 @@
 #include <QFont>
 #include <QGraphicsLineItem>
 #include <QGraphicsScene>
+#include <QGraphicsSceneContextMenuEvent>
 #include <QGraphicsSceneMouseEvent>
 #include <QKeyEvent>
 #include <QPen>
@@ -110,6 +111,7 @@ VToolSinglePoint::VToolSinglePoint(VAbstractPattern *doc, VContainer *data, quin
     connect(m_pointName, &VGraphicsSimpleTextItem::pointChosen,         this, &VToolSinglePoint::pointChosen);
     connect(m_pointName, &VGraphicsSimpleTextItem::pointSelected,       this, &VToolSinglePoint::pointSelected);
     connect(m_pointName, &VGraphicsSimpleTextItem::nameChangedPosition, this, &VToolSinglePoint::pointnameChangedPosition);
+    setFiltersChildEvents(true);
     refreshPointGeometry(*VAbstractTool::data.GeometricObject<VPointF>(id));
 }
 
@@ -297,8 +299,49 @@ void VToolSinglePoint::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 //---------------------------------------------------------------------------------------------------------------------
 void VToolSinglePoint::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
-    setToolTip(makeToolTip());
+    const QString tip = makeToolTip();
+    setToolTip(tip);
+    const QList<QGraphicsItem*> children = childItems();
+    for (QGraphicsItem* child : children)
+    {
+        if (child->type() == VScaledLine::Type && child->acceptHoverEvents())
+        {
+            child->setToolTip(tip);
+        }
+    }
     VScenePoint::hoverEnterEvent(event);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief sceneEventFilter handles clicks on a line drawn by the tool as clicks on the point, so the line can be
+/// selected, edited and deleted like a line made with the line tool. Lines that don't accept hover are left alone.
+/// @param watched child item that received the event.
+/// @param event event sent to the child item.
+/// @return true if the event was handled here.
+bool VToolSinglePoint::sceneEventFilter(QGraphicsItem* watched, QEvent* event)
+{
+    if (watched->type() != VScaledLine::Type || !watched->acceptHoverEvents())
+    {
+        return VScenePoint::sceneEventFilter(watched, event);
+    }
+
+    switch (event->type())
+    {
+        case QEvent::GraphicsSceneMousePress:
+            mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+            return true;
+        case QEvent::GraphicsSceneMouseRelease:
+            mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+            return true;
+        case QEvent::GraphicsSceneMouseDoubleClick:
+            mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+            return true;
+        case QEvent::GraphicsSceneContextMenu:
+            contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+            return true;
+        default:
+            return VScenePoint::sceneEventFilter(watched, event);
+    }
 }
 
 //---------------------------------------------------------------------------------------------------------------------

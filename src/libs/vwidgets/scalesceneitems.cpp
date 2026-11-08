@@ -59,22 +59,48 @@
 VScaledLine::VScaledLine(QGraphicsItem *parent)
     : QGraphicsLineItem(parent)
     , m_defaultWidth(widthMainLine)
+    , m_hitWidth(0)
 {}
 
 //---------------------------------------------------------------------------------------------------------------------
 VScaledLine::VScaledLine(const QLineF &line, QGraphicsItem *parent)
     : QGraphicsLineItem(line, parent)
     , m_defaultWidth(widthMainLine)
+    , m_hitWidth(0)
 {}
 
 //---------------------------------------------------------------------------------------------------------------------
 void VScaledLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    const qreal scale = sceneScale(scene());
     QPen linePen = pen();
-    linePen.setWidthF(scaleWidth(m_defaultWidth, sceneScale(scene())));
+    linePen.setWidthF(scaleWidth(m_defaultWidth, scale));
     setPen(linePen);
 
+    const qreal hitWidth = hitSize(linePen.widthF(), scale);
+    if (!qFuzzyCompare(hitWidth, m_hitWidth))
+    {
+        prepareGeometryChange();
+        m_hitWidth = hitWidth;
+    }
+
     QGraphicsLineItem::paint(painter, option, widget);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief boundingRect area of the line including its click target.
+/// @return bounding rectangle.
+QRectF VScaledLine::boundingRect() const
+{
+    return shape().controlPointRect().united(QGraphicsLineItem::boundingRect());
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief shape click target of the line, at least a few screen pixels wide at any zoom.
+/// @return outline of the click target.
+QPainterPath VScaledLine::shape() const
+{
+    return lineHitShape(line(), qMax(m_hitWidth, pen().widthF()));
 }
 
 //---------------------------------------------------------------------------------------------------------------------

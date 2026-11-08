@@ -110,6 +110,7 @@ protected:
     virtual void     mousePressEvent(QGraphicsSceneMouseEvent *event) override;
     virtual void     mouseReleaseEvent ( QGraphicsSceneMouseEvent * event ) override;
     virtual void     hoverEnterEvent(QGraphicsSceneHoverEvent *event) override;
+    virtual bool     sceneEventFilter(QGraphicsItem* watched, QEvent* event) override;
     virtual QVariant itemChange ( GraphicsItemChange change, const QVariant &value ) override;
     virtual void     keyReleaseEvent(QKeyEvent * event) override;
     virtual void     contextMenuEvent (QGraphicsSceneContextMenuEvent * event ) override;

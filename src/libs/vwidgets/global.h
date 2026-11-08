@@ -64,6 +64,7 @@ class QGraphicsRectItem;
 class QGraphicsLineItem;
 class QColor;
 class QRectF;
+class QLineF;
 class QPainterPath;
 class QPen;
 
@@ -77,6 +78,8 @@ qreal        scaledRadius(qreal scale);
 void         scaleCircleSize(QGraphicsEllipseItem *item, qreal scale);
 void         scaleRectSize(QGraphicsRectItem *item, qreal scale);
 qreal        scaleWidth(qreal width, qreal scale);
+qreal        hitSize(qreal size, qreal scale);
+QPainterPath lineHitShape(const QLineF &line, qreal width);
 QPainterPath itemShapeFromPath(const QPainterPath &path, const QPen &pen);
 
 #endif // GLOBAL_H

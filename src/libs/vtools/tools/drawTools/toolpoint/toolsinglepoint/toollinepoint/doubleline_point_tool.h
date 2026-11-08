@@ -77,6 +77,7 @@ public:
 public slots:
     virtual void      Disable(bool disable, const QString &draftBlockName) override;
     virtual void      FullUpdateFromFile() override;
+    void              allowLineHover(bool enabled);
 
 protected:
     quint32           firstPointId;     /** @brief firstPointId id first line point. */
