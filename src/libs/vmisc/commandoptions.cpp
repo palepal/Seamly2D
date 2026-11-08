@@ -75,6 +75,7 @@ const QString LONG_OPTION_TEXT2PATHS        = QStringLiteral("text2paths");
 const QString LONG_OPTION_CURVES            = QStringLiteral("curves");
 const QString LONG_OPTION_CURVEMM           = QStringLiteral("curvemm");
 const QString LONG_OPTION_EXPORTONLYDETAILS = QStringLiteral("exportOnlyDetails");
+const QString LONG_OPTION_INLAYOUTONLY      = QStringLiteral("inLayoutOnly");
 
 const QString LONG_OPTION_ROTATE            = QStringLiteral("rotate");
 const QString SINGLE_OPTION_ROTATE          = QStringLiteral("r");

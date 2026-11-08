@@ -12435,6 +12435,10 @@ Czy chcesz zapisać zmiany?</translation>
         <translation>Eksportuj tylko szczegóły. Eksportuj szczegóły w takiej kolejności, w jakiej są one umieszczone w trybie szczegółów. Wszelkie opcje związane z układem zostaną zignorowane.</translation>
     </message>
     <message>
+        <source>Export only pieces set to be in the layout, as the GUI does. By default all pieces are exported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Set size value a pattern file, that was opened with multisize measurements (export mode). Valid values: %1cm.</source>
         <translation>Ustaw wartość rozmiaru dla pliku wzorca otwartego z pomiarami wielokrotnymi (tryb eksportu). Prawidłowe wartości: %1cm.</translation>
     </message>

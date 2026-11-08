@@ -12594,6 +12594,10 @@ wie gewohnt in SeamlyME laden können.
         <translation>Nur Details exportieren. Details so wie thie im Detailsmodus posiotioniert sind exportieren. Jeglliche Layoutspezifischen Optionen werden ignoriert.</translation>
     </message>
     <message>
+        <source>Export only pieces set to be in the layout, as the GUI does. By default all pieces are exported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Set size value a pattern file, that was opened with multisize measurements (export mode). Valid values: %1cm.</source>
         <translation>Größenwert einer Schnittteildatei setzen, die mit Standardmaßen (Exportmodus) geöffnet wurde. Gültige Werte: %1cm.</translation>
     </message>

@@ -12610,6 +12610,10 @@ load in SeamlyME as usual.
         <translation>Εξαγωγή μόνο λεπτομερειών. Εξαγωγή λεπτομερειών όπως αυτές τοποθετήθηκαν στη λειτουργία λεπτομερειών. Οποιεσδήποτε επιλογές που σχετίζονται με τη διάταξη θα αγνοηθούν.</translation>
     </message>
     <message>
+        <source>Export only pieces set to be in the layout, as the GUI does. By default all pieces are exported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Set size value a pattern file, that was opened with multisize measurements (export mode). Valid values: %1cm.</source>
         <translation>Ορίστε την τιμή μεγέθους ενός αρχείου μοτίβου, το οποίο ανοίχτηκε με μετρήσεις πολλαπλών μεγεθών (λειτουργία εξαγωγής). Έγκυρες τιμές: %1cm.</translation>
     </message>

@@ -61,6 +61,7 @@ public:
     DxfCurveMode           optCurveMode() const;
     qreal                  optCurveMm() const;
     int                    exportOnlyPieces() const;
+    bool                   inLayoutOnly() const;
     VLayoutGeneratorPtr    DefaultGenerator() const;
     QStringList            OptInputFileNames() const;
     bool                   IsGuiEnabled()const;

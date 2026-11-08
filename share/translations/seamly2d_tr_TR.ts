@@ -12608,6 +12608,10 @@ load in SeamlyME as usual.
         <translation>Yalnızca ayrıntıları dışa aktar. Ayrıntıları ayrıntı modunda konumlandırıldıkları gibi dışa aktar. Düzen ile ilgili tüm seçenekler yok sayılacaktır.</translation>
     </message>
     <message>
+        <source>Export only pieces set to be in the layout, as the GUI does. By default all pieces are exported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Set size value a pattern file, that was opened with multisize measurements (export mode). Valid values: %1cm.</source>
         <translation>Çok boyutlu ölçümlerle açılan bir desen dosyasının boyut değerini ayarlayın (dışa aktarma modu). Geçerli değerler: %1cm.</translation>
     </message>

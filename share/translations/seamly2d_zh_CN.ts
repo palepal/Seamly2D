@@ -12609,6 +12609,10 @@ load in SeamlyME as usual.
         <translation>仅导出详细信息。按其在详细信息模式中的位置导出详细信息。任何与排版相关的选项都将被忽略.</translation>
     </message>
     <message>
+        <source>Export only pieces set to be in the layout, as the GUI does. By default all pieces are exported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Set size value a pattern file, that was opened with multisize measurements (export mode). Valid values: %1cm.</source>
         <translation>设置使用多尺寸测量（导出模式）打开的图案文件的尺寸值。有效值:%1cm.</translation>
     </message>

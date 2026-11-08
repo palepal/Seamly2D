@@ -8250,11 +8250,11 @@ void MainWindow::DoExport(const VCommandLinePtr &expParams)
             return;
         }
     }
-    // Same pieces as the GUI exports: only those set to go in the layout.
+    // All pieces by default (a pattern service delivers every piece); --inLayoutOnly exports what the GUI would.
     QHash<quint32, VPiece> inLayout;
     for (auto it = pieces->constBegin(); it != pieces->constEnd(); ++it)
     {
-        if (it.value().isInLayout())
+        if (!expParams->inLayoutOnly() || it.value().isInLayout())
         {
             inLayout.insert(it.key(), it.value());
         }
