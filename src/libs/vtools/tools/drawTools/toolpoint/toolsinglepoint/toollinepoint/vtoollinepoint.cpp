@@ -52,6 +52,8 @@
 #include "vtoollinepoint.h"
 
 #include <QColor>
+#include <QGraphicsSceneContextMenuEvent>
+#include <QGraphicsSceneMouseEvent>
 #include <QGraphicsLineItem>
 #include <QLineF>
 #include <QPen>
@@ -110,6 +112,8 @@ VToolLinePoint::VToolLinePoint(VAbstractPattern *doc, VContainer *data, const qu
     mainLine = new VScaledLine(QLineF(point1 - point2, QPointF()), this);
     mainLine->setDefaultWidth(ToPixel(m_lineWeight.toDouble(), Unit::Mm));
     mainLine->setFlag(QGraphicsItem::ItemStacksBehindParent, true);
+    mainLine->setAcceptHoverEvents(true);
+    setFiltersChildEvents(true);
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -171,6 +175,7 @@ void VToolLinePoint::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
     mainLine->setDefaultWidth(ToPixel(m_lineWeight.toDouble() + 1, Unit::Mm));
     VToolSinglePoint::hoverEnterEvent(event);
+    mainLine->setToolTip(toolTip());
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -178,6 +183,46 @@ void VToolLinePoint::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 {
     mainLine->setDefaultWidth(ToPixel(m_lineWeight.toDouble(), Unit::Mm));
     VToolSinglePoint::hoverLeaveEvent(event);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief sceneEventFilter handles clicks on the line as clicks on the point, so the line can be selected, edited and
+/// deleted like a line made with the line tool.
+/// @param watched child item that received the event.
+/// @param event event sent to the child item.
+/// @return true if the event was handled here.
+bool VToolLinePoint::sceneEventFilter(QGraphicsItem* watched, QEvent* event)
+{
+    if (watched != mainLine || !mainLine->acceptHoverEvents())
+    {
+        return VToolSinglePoint::sceneEventFilter(watched, event);
+    }
+
+    switch (event->type())
+    {
+        case QEvent::GraphicsSceneMousePress:
+            mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+            return true;
+        case QEvent::GraphicsSceneMouseRelease:
+            mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+            return true;
+        case QEvent::GraphicsSceneMouseDoubleClick:
+            mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+            return true;
+        case QEvent::GraphicsSceneContextMenu:
+            contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+            return true;
+        default:
+            return VToolSinglePoint::sceneEventFilter(watched, event);
+    }
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief allowLineHover turns hovering and clicking the line on or off, the same way as for lines of the line tool.
+/// @param enabled true if the line reacts to the mouse.
+void VToolLinePoint::allowLineHover(bool enabled)
+{
+    mainLine->setAcceptHoverEvents(enabled);
 }
 
 //---------------------------------------------------------------------------------------------------------------------

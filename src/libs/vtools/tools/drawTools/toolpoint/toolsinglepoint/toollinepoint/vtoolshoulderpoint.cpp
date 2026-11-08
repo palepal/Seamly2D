@@ -269,6 +269,7 @@ VToolShoulderPoint* VToolShoulderPoint::Create(const quint32 _id, QString &formu
                                                            typeCreation);
         scene->addItem(point);
         InitToolConnections(scene, point);
+        connect(scene, &VMainGraphicsScene::EnableLineItemHover, point, &VToolLinePoint::allowLineHover);
         VAbstractPattern::AddTool(id, point);
         doc->IncrementReferens(firstPoint->getIdTool());
         doc->IncrementReferens(secondPoint->getIdTool());
