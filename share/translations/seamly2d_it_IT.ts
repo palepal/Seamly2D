@@ -12460,6 +12460,10 @@ caricare in SeamlyME come di consueto.
         <translation>Esporta solo i dettagli. Esporta i dettagli così come sono posizionati nella modalità dettagli. Tutte le opzioni relative al layout saranno ignorate.</translation>
     </message>
     <message>
+        <source>Export only pieces set to be in the layout, as the GUI does. By default all pieces are exported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Set size value a pattern file, that was opened with multisize measurements (export mode). Valid values: %1cm.</source>
         <translation>Imposta il valore di dimensione di un file di pattern, che è stato aperto con misure multi-dimensione (modalità di esportazione). Valori validi: %1cm.</translation>
     </message>

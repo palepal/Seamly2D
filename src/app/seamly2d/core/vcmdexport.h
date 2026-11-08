@@ -59,6 +59,7 @@ public:
     int                    IsBinaryDXF() const;
     int                    isTextAsPaths() const;
     int                    exportOnlyPieces() const;
+    bool                   inLayoutOnly() const;
     VLayoutGeneratorPtr    DefaultGenerator() const;
     QStringList            OptInputFileNames() const;
     bool                   IsGuiEnabled()const;

@@ -12480,6 +12480,10 @@ load in SeamlyME as usual.
         <translation>Экспортируйте только детали. Экспортируйте детали в том виде, в котором они расположены в режиме деталей. Любые параметры, связанные с макетом, будут игнорироваться.</translation>
     </message>
     <message>
+        <source>Export only pieces set to be in the layout, as the GUI does. By default all pieces are exported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Set size value a pattern file, that was opened with multisize measurements (export mode). Valid values: %1cm.</source>
         <translation>Установите значение размера файла выкройки, который был открыт с мультиразмерными измерениями (режим экспорта). Допустимые значения: %1см.</translation>
     </message>

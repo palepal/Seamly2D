@@ -12299,6 +12299,10 @@ Menti a módosításokat?</translation>
         <translation>Csak a részletek exportálása. A részletek exportálása a részletek módban elfoglalt pozíciójuk szerint történik. Az elrendezéssel kapcsolatos beállításokat a rendszer figyelmen kívül hagyja.</translation>
     </message>
     <message>
+        <source>Export only pieces set to be in the layout, as the GUI does. By default all pieces are exported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Set size value a pattern file, that was opened with multisize measurements (export mode). Valid values: %1cm.</source>
         <translation>Méretértéket állítson be egy olyan mintafájlhoz, amelyet többméretű mérésekkel nyitott meg (exportálás mód). Érvényes értékek: %1cm.</translation>
     </message>

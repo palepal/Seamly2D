@@ -12455,6 +12455,10 @@ load in SeamlyME as usual.
         <translation>Exporteer alleen details. Exporteer details zoals wanneer ze gepositioneerd in de details modus. Elke opmaak gerelateerde opties zullen worden genegeerd.</translation>
     </message>
     <message>
+        <source>Export only pieces set to be in the layout, as the GUI does. By default all pieces are exported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Set size value a pattern file, that was opened with multisize measurements (export mode). Valid values: %1cm.</source>
         <translation>Stel maat waarde van een patroon bestand vast, welke geopend zijn met meerdere maten metingen( exporteer modus). Geldige waardes: %1cm.</translation>
     </message>

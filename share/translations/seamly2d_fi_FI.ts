@@ -12301,6 +12301,10 @@ Haluatko tallentaa muutokset?</translation>
         <translation>Vie vain tiedot. Vie tiedot sellaisina kuin ne sijoitettiin tietotilaan. Asetteluun liittyvät asetukset ohitetaan.</translation>
     </message>
     <message>
+        <source>Export only pieces set to be in the layout, as the GUI does. By default all pieces are exported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Set size value a pattern file, that was opened with multisize measurements (export mode). Valid values: %1cm.</source>
         <translation>Aseta kokoarvo kaavatiedostolle, joka avattiin monikokoisilla mitoilla (vientitilassa). Kelvolliset arvot: %1cm.</translation>
     </message>

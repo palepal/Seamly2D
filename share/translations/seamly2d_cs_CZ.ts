@@ -12471,6 +12471,10 @@ SeamlyME jako obvykle.
         <translation>Exportovat pouze podrobnosti. Exportovat podrobnosti tak, jak byly umístěny v režimu podrobností. Veškeré možnosti související s rozvržením budou ignorovány.</translation>
     </message>
     <message>
+        <source>Export only pieces set to be in the layout, as the GUI does. By default all pieces are exported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Set size value a pattern file, that was opened with multisize measurements (export mode). Valid values: %1cm.</source>
         <translation>Nastavit hodnotu velikosti souboru vzoru, který byl otevřen s vícerozměrnými měřeními (režim exportu). Platné hodnoty: %1cm.</translation>
     </message>

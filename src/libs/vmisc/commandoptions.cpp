@@ -73,6 +73,7 @@ const QString SINGLE_OPTION_EXP2FORMAT      = QStringLiteral("f");
 const QString LONG_OPTION_BINARYDXF         = QStringLiteral("bdxf");
 const QString LONG_OPTION_TEXT2PATHS        = QStringLiteral("text2paths");
 const QString LONG_OPTION_EXPORTONLYDETAILS = QStringLiteral("exportOnlyDetails");
+const QString LONG_OPTION_INLAYOUTONLY      = QStringLiteral("inLayoutOnly");
 
 const QString LONG_OPTION_ROTATE            = QStringLiteral("rotate");
 const QString SINGLE_OPTION_ROTATE          = QStringLiteral("r");

@@ -173,6 +173,12 @@ void VCommandLine::initOptions(VCommandLineOptions &options, QMap<QString, int> 
         translate("VCommandLine", "Export only details. Export details as they positioned in "
                                   "the details mode. Any layout related options will be ignored.")));
 
+    // --inLayoutOnly: leave out pieces whose In layout box is unticked
+    optionsIndex.insert(LONG_OPTION_INLAYOUTONLY, index++);
+    options.append(new QCommandLineOption({LONG_OPTION_INLAYOUTONLY},
+        translate("VCommandLine", "Export only pieces set to be in the layout, as the GUI does. By default all "
+                                  "pieces are exported.")));
+
     // --gradationsize: Size value for multi-size patterns
     optionsIndex.insert(LONG_OPTION_GRADATIONSIZE, index++);
     options.append(new QCommandLineOption({SINGLE_OPTION_GRADATIONSIZE, LONG_OPTION_GRADATIONSIZE},
@@ -823,6 +829,14 @@ int VCommandLine::isTextAsPaths() const
 int VCommandLine::exportOnlyPieces() const
 {
     return parser.isSet(*optionsUsed.value(optionsIndex.value(LONG_OPTION_EXPORTONLYDETAILS)));
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief inLayoutOnly whether pieces with In layout unticked are left out of the export.
+/// @return true when --inLayoutOnly is given.
+bool VCommandLine::inLayoutOnly() const
+{
+    return parser.isSet(*optionsUsed.value(optionsIndex.value(LONG_OPTION_INLAYOUTONLY)));
 }
 
 //  --------------------
