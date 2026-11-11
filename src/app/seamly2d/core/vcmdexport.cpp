@@ -354,6 +354,12 @@ void VCommandLine::initOptions(VCommandLineOptions &options, QMap<QString, int> 
                                   "showing the main window. The key have priority before key '%1'.")
                                   .arg(LONG_OPTION_BASENAME)));
 
+    // --drape: Write the pattern's pieces to a pieces file for Cutalyst without showing the main window
+    optionsIndex.insert(LONG_OPTION_DRAPE, index++);
+    options.append(new QCommandLineOption({LONG_OPTION_DRAPE},
+        translate("VCommandLine", "Write the pieces of a single pattern file to a pieces file (.pieces.json) "
+                                  "and quit without showing the main window."),
+        translate("VCommandLine", "The pieces file")));
 
     // --no-hdpi-scaling: Disable high DPI auto-scaling (useful on some systems)
     optionsIndex.insert(LONG_OPTION_NO_HDPI_SCALING, index++);
@@ -585,7 +591,8 @@ VCommandLinePtr VCommandLine::Get(const QCoreApplication &app)
     commandLine->parser.process(app);          // Process CLI arguments with the parser
 
     // FIXME: Add more conditions here if new CLI modes are introduced that should disable the GUI
-    commandLine->isGuiEnabled = !(commandLine->IsExportEnabled() || commandLine->IsTestModeEnabled());
+    commandLine->isGuiEnabled = !(commandLine->IsExportEnabled() || commandLine->IsTestModeEnabled() ||
+                                  commandLine->IsDrapeEnabled());
 
     return commandLine;
 }
@@ -650,6 +657,29 @@ bool VCommandLine::IsTestModeEnabled() const
 bool VCommandLine::IsNoScalingEnabled() const
 {
     return parser.isSet(*optionsUsed.value(optionsIndex.value(LONG_OPTION_NO_HDPI_SCALING)));
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief IsDrapeEnabled whether the --drape option is set. Exits with the usage if it isn't given exactly one
+/// input file.
+/// @return true if the pieces file is to be written.
+bool VCommandLine::IsDrapeEnabled() const
+{
+    const bool r = parser.isSet(*optionsUsed.value(optionsIndex.value(LONG_OPTION_DRAPE)));
+    if (r && parser.positionalArguments().size() != 1)
+    {
+        qCritical() << translate("VCommandLine", "The drape option can be used with a single input file only.");
+        const_cast<VCommandLine*>(this)->parser.showHelp(V_EX_USAGE);
+    }
+    return r;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief OptDrapePath the file the drape option writes to.
+/// @return the path.
+QString VCommandLine::OptDrapePath() const
+{
+    return parser.value(*optionsUsed.value(optionsIndex.value(LONG_OPTION_DRAPE)));
 }
 
 //  --------------------

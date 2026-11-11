@@ -5734,6 +5734,14 @@ Do you want to save your changes?</source>
         <translation>Файл мерок «%1» не может быть найден.</translation>
     </message>
     <message>
+        <source>Please, create at least one pattern piece.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cutalyst isn&apos;t installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Loading measurements file</source>
         <translation>Загрузка файла мерок</translation>
     </message>
@@ -6276,6 +6284,14 @@ Do you want to save your changes?</source>
     <message>
         <source>Toggle Control Points and Curve Direction (V, C)</source>
         <translation>Переключить контрольные точки и направление кривой (V, C)</translation>
+    </message>
+    <message>
+        <source>Open in Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save the pattern and show it in Cutalyst</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Load multisize</source>
@@ -12550,6 +12566,14 @@ load in SeamlyME as usual.
         <translation>Тип группировки</translation>
     </message>
     <message>
+        <source>Write the pieces of a single pattern file to a pieces file (.pieces.json) and quit without showing the main window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The pieces file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Cannot use pageformat and page explicit size/units together.</source>
         <translation>Невозможно одновременно использовать формат страницы и явно указанный размер страницы.</translation>
     </message>
@@ -12572,6 +12596,10 @@ load in SeamlyME as usual.
     <message>
         <source>Unsupported layout units.</source>
         <translation>Неподдерживаемые единицы измерения для макета раскладки.</translation>
+    </message>
+    <message>
+        <source>The drape option can be used with a single input file only.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Export options can be used with single input file only.</source>

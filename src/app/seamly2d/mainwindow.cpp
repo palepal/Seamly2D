@@ -57,6 +57,7 @@
 #include "options.h"
 #include "version.h"
 #include "core/application_2d.h"
+#include "core/pieces_export.h"
 #include "core/vtooloptionspropertybrowser.h"
 #include "dialogs/dialogs.h"
 #include "dialogs/calculator_dialog.h"
@@ -6263,6 +6264,7 @@ void MainWindow::createActions()
     });
 
     connect(ui->exportAs_Action, &QAction::triggered, this, &MainWindow::exportLayoutAs);
+    connect(ui->openInCutalyst_Action, &QAction::triggered, this, &MainWindow::openInCutalyst);
     connect(ui->printPreview_Action, &QAction::triggered, this, &MainWindow::PrintPreviewOrigin);
     connect(ui->printPreviewTiled_Action, &QAction::triggered, this, &MainWindow::PrintPreviewTiled);
     connect(ui->print_Action, &QAction::triggered, this, &MainWindow::PrintOrigin);
@@ -7418,6 +7420,32 @@ void MainWindow::CreateMeasurements()
 #endif
 
 //---------------------------------------------------------------------------------------------------------------------
+/// @brief openInCutalyst save the pattern and show it in Cutalyst, a separate app that reads the saved file and
+/// follows later saves.
+void MainWindow::openInCutalyst()
+{
+    if (pattern->DataPieces()->isEmpty())
+    {
+        QMessageBox::information(this, tr("Open in Cutalyst"), tr("Please, create at least one pattern piece."));
+        return;
+    }
+    if ((qApp->getFilePath().isEmpty() || isWindowModified()) && !Save())
+    {
+        return;
+    }
+#if defined(Q_OS_MACOS)
+    const bool opened = QProcess::execute(QStringLiteral("open"), {QStringLiteral("-b"),
+                                          QStringLiteral("com.palepal.cutalyst"), qApp->getFilePath()}) == 0;
+#else
+    const bool opened = QProcess::startDetached(QStringLiteral("cutalyst"), {qApp->getFilePath()});
+#endif
+    if (!opened)
+    {
+        QMessageBox::information(this, tr("Open in Cutalyst"), tr("Cutalyst isn't installed."));
+    }
+}
+
+//---------------------------------------------------------------------------------------------------------------------
 void MainWindow::exportLayoutAs()
 {
     ui->exportLayout_ToolButton->setChecked(true);
@@ -8437,7 +8465,7 @@ void MainWindow::processCommandLine()
 
         bool hSetted = true;
         bool sSetted = true;
-        if (loaded && (cmd->IsTestModeEnabled() || cmd->IsExportEnabled()))
+        if (loaded && (cmd->IsTestModeEnabled() || cmd->IsExportEnabled() || cmd->IsDrapeEnabled()))
         {
             if (cmd->IsSetGradationSize())
             {
@@ -8448,6 +8476,14 @@ void MainWindow::processCommandLine()
             {
                 hSetted = setHeight(cmd->OptGradationHeight());
             }
+        }
+
+        if (cmd->IsDrapeEnabled())
+        {
+            const bool written = loaded && hSetted && sSetted
+                                 && writeGarmentPieces(cmd->OptDrapePath(), readGarmentPieces(pattern));
+            qApp->exit(written ? V_EX_OK : V_EX_CANTCREAT);
+            return;
         }
 
         if (!cmd->IsTestModeEnabled())
@@ -8593,6 +8629,12 @@ void MainWindow::resetPanShortcuts()
 //---------------------------------------------------------------------------------------------------------------------
 bool MainWindow::IgnoreLocking(int error, const QString &path)
 {
+    // Writing the pieces file only reads the pattern, so it may run while another window has it open.
+    if (!Application2D::isGUIMode() && qApp->commandLine()->IsDrapeEnabled())
+    {
+        return true;
+    }
+
     QMessageBox::StandardButton answer = QMessageBox::Abort;
     if (Application2D::isGUIMode())
     {

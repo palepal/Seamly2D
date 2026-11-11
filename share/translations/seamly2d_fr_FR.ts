@@ -5758,6 +5758,14 @@ Voulez-vous sauvegarder les changements ?</translation>
         <translation>Le tableau de mesure &apos;%1&apos; est introuvable.</translation>
     </message>
     <message>
+        <source>Please, create at least one pattern piece.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cutalyst isn&apos;t installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Loading measurements file</source>
         <translation>Chargement du tableau de mesure</translation>
     </message>
@@ -6300,6 +6308,14 @@ Voulez-vous sauvegarder les changements ?</translation>
     <message>
         <source>Toggle Control Points and Curve Direction (V, C)</source>
         <translation>Inverser la direction des points de contrôle de la courbe (V, C)</translation>
+    </message>
+    <message>
+        <source>Open in Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save the pattern and show it in Cutalyst</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Load multisize</source>
@@ -12572,6 +12588,14 @@ charger dans SeamlyME comme d&apos;habitude.
         <translation>Type de groupes</translation>
     </message>
     <message>
+        <source>Write the pieces of a single pattern file to a pieces file (.pieces.json) and quit without showing the main window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The pieces file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Cannot use pageformat and page explicit size/units together.</source>
         <translation>On ne peut utiliser un format de page et une longueur/largeur explicite.</translation>
     </message>
@@ -12594,6 +12618,10 @@ charger dans SeamlyME comme d&apos;habitude.
     <message>
         <source>Unsupported layout units.</source>
         <translation>Dimensions du plan de coupe non supportées.</translation>
+    </message>
+    <message>
+        <source>The drape option can be used with a single input file only.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Export options can be used with single input file only.</source>

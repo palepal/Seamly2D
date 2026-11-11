@@ -5734,6 +5734,14 @@ Apakah anda ingin menyimpan perubahan anda?</translation>
         <translation>File pengukuran &apos;%1&apos; tidak dapat ditemukan.</translation>
     </message>
     <message>
+        <source>Please, create at least one pattern piece.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cutalyst isn&apos;t installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Loading measurements file</source>
         <translation>Memuat file pengukuran</translation>
     </message>
@@ -6276,6 +6284,14 @@ Apakah anda ingin menyimpan perubahan anda?</translation>
     <message>
         <source>Toggle Control Points and Curve Direction (V, C)</source>
         <translation>Toggle Control Points dan Arah Kurva (V, C)</translation>
+    </message>
+    <message>
+        <source>Open in Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save the pattern and show it in Cutalyst</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Load multisize</source>
@@ -12543,6 +12559,14 @@ unggah ke SeamlyME seperti biasa.
         <translation>Jenis pengelompokan</translation>
     </message>
     <message>
+        <source>Write the pieces of a single pattern file to a pieces file (.pieces.json) and quit without showing the main window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The pieces file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Cannot use pageformat and page explicit size/units together.</source>
         <translation>Tidak dapat menggunakan pageformat dan ukuran/unit eksplisit halaman secara bersamaan.</translation>
     </message>
@@ -12565,6 +12589,10 @@ unggah ke SeamlyME seperti biasa.
     <message>
         <source>Unsupported layout units.</source>
         <translation>Unit tata letak tidak didukung.</translation>
+    </message>
+    <message>
+        <source>The drape option can be used with a single input file only.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Export options can be used with single input file only.</source>

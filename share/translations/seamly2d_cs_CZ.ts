@@ -5732,6 +5732,14 @@ Chcete uložit své změny?</translation>
         <translation>Soubor s měřeními &apos;%1&apos; nebyl nalezen.</translation>
     </message>
     <message>
+        <source>Please, create at least one pattern piece.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cutalyst isn&apos;t installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Loading measurements file</source>
         <translation>Načítání souboru s měřeními</translation>
     </message>
@@ -6274,6 +6282,14 @@ Chcete uložit své změny?</translation>
     <message>
         <source>Toggle Control Points and Curve Direction (V, C)</source>
         <translation>Přepnout řídicí body a směr křivky (V, C)</translation>
+    </message>
+    <message>
+        <source>Open in Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save the pattern and show it in Cutalyst</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Load multisize</source>
@@ -12541,6 +12557,14 @@ SeamlyME jako obvykle.
         <translation>Typ seskupení</translation>
     </message>
     <message>
+        <source>Write the pieces of a single pattern file to a pieces file (.pieces.json) and quit without showing the main window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The pieces file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Cannot use pageformat and page explicit size/units together.</source>
         <translation>Nelze použít formát stránky a explicitní velikost/jednotky stránky společně.</translation>
     </message>
@@ -12563,6 +12587,10 @@ SeamlyME jako obvykle.
     <message>
         <source>Unsupported layout units.</source>
         <translation>Nepodporované jednotky rozvržení.</translation>
+    </message>
+    <message>
+        <source>The drape option can be used with a single input file only.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Export options can be used with single input file only.</source>
