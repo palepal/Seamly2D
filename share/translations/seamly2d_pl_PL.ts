@@ -6153,6 +6153,14 @@ Program jest dostarczany w stanie&quot;TAK JAK JEST&quot;bez ŻADNEJ GWARANCJI, 
         <translation>Eksportuj układ jako...</translation>
     </message>
     <message>
+        <source>Open in Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save the pattern and show it in Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Load Individual</source>
         <translation>Załaduj indywidualnie</translation>
     </message>
@@ -7023,6 +7031,14 @@ Czy chcesz zapisać zmiany?</translation>
     <message>
         <source>Error creating a backup copy: %1.</source>
         <translation>Błąd podczas tworzenia kopii zapasowej: %1.</translation>
+    </message>
+    <message>
+        <source>Please, create at least one pattern piece.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cutalyst isn&apos;t installed.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Exporting...</source>
@@ -12440,6 +12456,14 @@ Czy chcesz zapisać zmiany?</translation>
         <translation>Uruchom program w trybie testowym. Program w tym trybie ładuje pojedynczy plik wzorcowy i zamyka się automatycznie, bez wyświetlania okna głównego. Klucz ma priorytet przed kluczem &apos;%1&apos;.</translation>
     </message>
     <message>
+        <source>Write the pieces of a single pattern file to a pieces file (.pieces.json) and quit without showing the main window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The pieces file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Disable high dpi scaling. Call this option if has problem with scaling (by default scaling enabled). Alternatively you can use the %1 environment variable.</source>
         <translation>Wyłącz skalowanie w wysokiej rozdzielczości. Wybierz tę opcję, jeśli występują problemy ze skalowaniem (domyślnie skalowanie jest włączone). Alternatywnie możesz użyć zmiennej środowiskowej %1.</translation>
     </message>
@@ -12494,6 +12518,10 @@ Czy chcesz zapisać zmiany?</translation>
     <message>
         <source>Test option can be used with single input file only.</source>
         <translation>Opcja testowa może być używana tylko z pojedynczym plikiem wejściowym.</translation>
+    </message>
+    <message>
+        <source>The drape option can be used with a single input file only.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Export options can be used with single input file only.</source>

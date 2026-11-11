@@ -5620,6 +5620,14 @@ Do you want to save your changes?</source>
         <translation>Помилка створення резервної копії: %1.</translation>
     </message>
     <message>
+        <source>Please, create at least one pattern piece.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cutalyst isn&apos;t installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Exporting...</source>
         <translation>Експорт...</translation>
     </message>
@@ -6194,6 +6202,14 @@ Do you want to save your changes?</source>
     <message>
         <source>Export Layout As...</source>
         <translation>Експортувати макет як...</translation>
+    </message>
+    <message>
+        <source>Open in Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save the pattern and show it in Cutalyst</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Load multisize</source>
@@ -12313,6 +12329,14 @@ load in SeamlyME as usual.
         <translation>Тип групування</translation>
     </message>
     <message>
+        <source>Write the pieces of a single pattern file to a pieces file (.pieces.json) and quit without showing the main window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The pieces file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Cannot use pageformat and page explicit size/units together.</source>
         <translation>Неможливо одночасно використовувати формат сторінки і явно вказаний розмір сторінки.</translation>
     </message>
@@ -12335,6 +12359,10 @@ load in SeamlyME as usual.
     <message>
         <source>Unsupported layout units.</source>
         <translation>Не підтримувані одиниці вимірювання для розкладки.</translation>
+    </message>
+    <message>
+        <source>The drape option can be used with a single input file only.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Export options can be used with single input file only.</source>

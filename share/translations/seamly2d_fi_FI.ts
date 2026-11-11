@@ -5611,6 +5611,14 @@ Haluatko tallentaa muutokset?</translation>
         <translation>Mittaustiedostoa &apos;%1&apos; ei löytynyt.</translation>
     </message>
     <message>
+        <source>Please, create at least one pattern piece.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cutalyst isn&apos;t installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Loading measurements file</source>
         <translation>Mittaustiedostoa ladataan</translation>
     </message>
@@ -6153,6 +6161,14 @@ Haluatko tallentaa muutokset?</translation>
     <message>
         <source>Toggle Control Points and Curve Direction (V, C)</source>
         <translation>Ohjauspisteiden ja käyrän suunnan vaihto (V, C)</translation>
+    </message>
+    <message>
+        <source>Open in Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save the pattern and show it in Cutalyst</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Load multisize</source>
@@ -12441,6 +12457,14 @@ Haluatko tallentaa muutokset?</translation>
         <translation>Suorita ohjelma testitilassa. Tässä tilassa ohjelma lataa yhden kaavatiedoston ja sulkeutuu hiljaa näyttämättä pääikkunaa. Avaimella on prioriteetti ennen avainta &apos;%1&apos;.</translation>
     </message>
     <message>
+        <source>Write the pieces of a single pattern file to a pieces file (.pieces.json) and quit without showing the main window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The pieces file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Disable high dpi scaling. Call this option if has problem with scaling (by default scaling enabled). Alternatively you can use the %1 environment variable.</source>
         <translation>Poista korkea dpi -skaalaus. Kutsu tätä asetusta, jos skaalauksessa on ongelmia (skaalauksen oletusarvo on käytössä). Vaihtoehtoisesti voit käyttää ympäristömuuttujaa %1.</translation>
     </message>
@@ -12495,6 +12519,10 @@ Haluatko tallentaa muutokset?</translation>
     <message>
         <source>Test option can be used with single input file only.</source>
         <translation>Testi-vaihtoehtoa voi käyttää vain yhden syötetiedoston kanssa.</translation>
+    </message>
+    <message>
+        <source>The drape option can be used with a single input file only.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Export options can be used with single input file only.</source>

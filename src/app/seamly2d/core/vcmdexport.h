@@ -52,6 +52,8 @@ public:
     bool                   IsTestModeEnabled() const;
     bool                   IsNoScalingEnabled() const;
     bool                   IsExportEnabled() const;
+    bool                   IsDrapeEnabled() const;
+    QString                OptDrapePath() const;
     QString                OptMeasurePath() const;
     QString                OptBaseName() const;
     QString                OptDestinationPath() const;

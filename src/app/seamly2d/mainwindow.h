@@ -190,6 +190,7 @@ private slots:
     void CreateMeasurements();
 #endif
     void exportLayoutAs();
+    void openInCutalyst();
     void exportPiecesAs();
     void exportDraftBlocksAs();
 

@@ -5612,6 +5612,14 @@ Doriți să salvați modificările?</translation>
         <translation>Fișierul de măsurători &apos;%1&apos; nu a putut fi găsit.</translation>
     </message>
     <message>
+        <source>Please, create at least one pattern piece.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cutalyst isn&apos;t installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Loading measurements file</source>
         <translation>Se încarcă fișierul de măsurători</translation>
     </message>
@@ -6154,6 +6162,14 @@ Doriți să salvați modificările?</translation>
     <message>
         <source>Toggle Control Points and Curve Direction (V, C)</source>
         <translation>Comutare puncte de control și direcție curbă (V, C)</translation>
+    </message>
+    <message>
+        <source>Open in Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save the pattern and show it in Cutalyst</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Load multisize</source>
@@ -12297,6 +12313,14 @@ load in SeamlyME as usual.
         <translation>Tip de grupare</translation>
     </message>
     <message>
+        <source>Write the pieces of a single pattern file to a pieces file (.pieces.json) and quit without showing the main window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The pieces file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Cannot use pageformat and page explicit size/units together.</source>
         <translation>Nu se pot folosi împreună formatul paginii și dimensiunea/unitățile explicite ale paginii.</translation>
     </message>
@@ -12319,6 +12343,10 @@ load in SeamlyME as usual.
     <message>
         <source>Unsupported layout units.</source>
         <translation>Unități de aspect neacceptate.</translation>
+    </message>
+    <message>
+        <source>The drape option can be used with a single input file only.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Export options can be used with single input file only.</source>

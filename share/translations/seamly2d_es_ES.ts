@@ -5631,6 +5631,14 @@ Do you want to save your changes?</source>
         <translation>No se ha podido encontrar el archivo de medidas &apos;%1&apos;.</translation>
     </message>
     <message>
+        <source>Please, create at least one pattern piece.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cutalyst isn&apos;t installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Loading measurements file</source>
         <translation>Cargando archivo de medidas</translation>
     </message>
@@ -6169,6 +6177,14 @@ Do you want to save your changes?</source>
     <message>
         <source>Toggle Control Points and Curve Direction (V, C)</source>
         <translation>Alternar puntos de control y dirección de curva (V, C)</translation>
+    </message>
+    <message>
+        <source>Open in Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save the pattern and show it in Cutalyst</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Load multisize</source>
@@ -12337,6 +12353,14 @@ load in SeamlyME as usual.
         <translation>Tipo de agrupamiento</translation>
     </message>
     <message>
+        <source>Write the pieces of a single pattern file to a pieces file (.pieces.json) and quit without showing the main window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The pieces file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Cannot use pageformat and page explicit size/units together.</source>
         <translation>No se pueden utilizar el formato y explícitos unidades/tamaño de página juntos.</translation>
     </message>
@@ -12359,6 +12383,10 @@ load in SeamlyME as usual.
     <message>
         <source>Unsupported layout units.</source>
         <translation>Unidades del maquetación no soportadas.</translation>
+    </message>
+    <message>
+        <source>The drape option can be used with a single input file only.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Export options can be used with single input file only.</source>

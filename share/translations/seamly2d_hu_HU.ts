@@ -6152,6 +6152,14 @@ A programot A JELENLEGI ÁLLAPOTUKBAN biztosítjuk, SEMMILYEN GARANCIA NÉLKÜL,
         <translation>Elrendezés exportálása másként...</translation>
     </message>
     <message>
+        <source>Open in Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save the pattern and show it in Cutalyst</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Load Individual</source>
         <translation>Egyéni betöltés</translation>
     </message>
@@ -7022,6 +7030,14 @@ Menti a módosításokat?</translation>
     <message>
         <source>Error creating a backup copy: %1.</source>
         <translation>Hiba történt a biztonsági másolat létrehozásakor: %1.</translation>
+    </message>
+    <message>
+        <source>Please, create at least one pattern piece.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cutalyst isn&apos;t installed.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Exporting...</source>
@@ -12439,6 +12455,14 @@ Menti a módosításokat?</translation>
         <translation>Futtassa a programot teszt módban. A program ebben a módban egyetlen mintafájlt tölt be, majd csendben kilép a főablak megjelenítése nélkül. A kulcs prioritást élvez a(z) &apos;%1&apos; kulcs előtt.</translation>
     </message>
     <message>
+        <source>Write the pieces of a single pattern file to a pieces file (.pieces.json) and quit without showing the main window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The pieces file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Disable high dpi scaling. Call this option if has problem with scaling (by default scaling enabled). Alternatively you can use the %1 environment variable.</source>
         <translation>Tiltsa le a nagy dpi-s méretezést. Hívja meg ezt az opciót, ha probléma van a méretezéssel (alapértelmezés szerint a méretezés engedélyezve van). Alternatív megoldásként használhatja a %1 környezeti változót.</translation>
     </message>
@@ -12493,6 +12517,10 @@ Menti a módosításokat?</translation>
     <message>
         <source>Test option can be used with single input file only.</source>
         <translation>A teszt opció csak egyetlen bemeneti fájllal használható.</translation>
+    </message>
+    <message>
+        <source>The drape option can be used with a single input file only.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Export options can be used with single input file only.</source>

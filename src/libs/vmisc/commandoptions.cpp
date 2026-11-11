@@ -110,6 +110,8 @@ const QString SINGLE_OPTION_GROUPPING       = QStringLiteral("g");
 const QString LONG_OPTION_TEST              = QStringLiteral("test");
 const QString SINGLE_OPTION_TEST            = QStringLiteral("t");
 
+const QString LONG_OPTION_DRAPE             = QStringLiteral("drape");
+
 const QString LONG_OPTION_GRADATIONSIZE     = QStringLiteral("gsize");
 const QString SINGLE_OPTION_GRADATIONSIZE   = QStringLiteral("x");
 
@@ -153,6 +155,7 @@ QStringList AllKeys()
          << LONG_OPTION_GAPWIDTH << SINGLE_OPTION_GAPWIDTH
          << LONG_OPTION_GROUPPING << SINGLE_OPTION_GROUPPING
          << LONG_OPTION_TEST << SINGLE_OPTION_TEST
+         << LONG_OPTION_DRAPE
          << LONG_OPTION_GRADATIONSIZE << SINGLE_OPTION_GRADATIONSIZE
          << LONG_OPTION_GRADATIONHEIGHT << SINGLE_OPTION_GRADATIONHEIGHT
          << LONG_OPTION_IGNORE_MARGINS << SINGLE_OPTION_IGNORE_MARGINS

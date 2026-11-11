@@ -103,6 +103,7 @@
     <addaction name="preview_Menu"/>
     <addaction name="separator"/>
     <addaction name="exportAs_Action"/>
+    <addaction name="openInCutalyst_Action"/>
     <addaction name="separator"/>
     <addaction name="appPreferences_Action"/>
     <addaction name="patternPreferences_Action"/>
@@ -3946,6 +3947,14 @@
    </property>
    <property name="shortcut">
     <string notr="true"/>
+   </property>
+  </action>
+  <action name="openInCutalyst_Action">
+   <property name="text">
+    <string>Open in Cutalyst</string>
+   </property>
+   <property name="toolTip">
+    <string>Save the pattern and show it in Cutalyst</string>
    </property>
   </action>
   <action name="loadIndividual_Action">
