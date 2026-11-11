@@ -25,9 +25,6 @@
 #ifndef MACOS_DOCK_H
 #define MACOS_DOCK_H
 
-class QWidget;
-
 void showDockIcon();
-void hideTitleText(QWidget *window);
 
 #endif // MACOS_DOCK_H

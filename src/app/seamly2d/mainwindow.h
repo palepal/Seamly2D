@@ -85,8 +85,6 @@ class ShowInfoDialog;
 class ShortcutsDialog;
 class GroupsWidget;
 class PiecesWidget;
-class SearchBar;
-struct SearchItem;
 class DraftToolBox;
 class PieceToolBox;
 class LayoutToolBox;
@@ -351,7 +349,6 @@ private:
     PenToolBar                       *m_penToolBar;        /// @brief pointer to the current pen.
     PenToolBar                       *m_penReset;
     QComboBox                        *m_zoom_to_object_combobox;
-    SearchBar                        *m_search_bar;
 
     QSharedPointer<MeasurementDoc>    m_measurements;
     QWidget                          *m_update_corner{nullptr};
@@ -485,7 +482,6 @@ private:
 
 
     void               updateZoomToObjectComboBox();
-    QVector<SearchItem> searchItems();
 
     bool               IgnoreLocking(int error, const QString &path);
 

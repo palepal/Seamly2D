@@ -24,8 +24,6 @@
 
 #include "macos_dock.h"
 
-#include <QWidget>
-
 #import <AppKit/AppKit.h>
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -36,13 +34,4 @@
 void showDockIcon()
 {
     [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
-}
-
-//---------------------------------------------------------------------------------------------------------------------
-/// @brief hideTitleText hides the title text of window, keeping the title for the Window menu and Mission Control.
-/// @param window top level widget.
-void hideTitleText(QWidget *window)
-{
-    NSView *view = reinterpret_cast<NSView *>(window->winId());
-    view.window.titleVisibility = NSWindowTitleHidden;
 }

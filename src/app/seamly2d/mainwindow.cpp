@@ -63,7 +63,6 @@
 #include "dialogs/calculator_dialog.h"
 #include "dialogs/decimalchart_dialog.h"
 #include "dialogs/export_progress_dialog.h"
-#include "dialogs/search_bar.h"
 #include "../ifc/exception/vexceptionobjecterror.h"
 #include "../ifc/exception/vexceptionconversionerror.h"
 #include "../ifc/exception/vexceptionemptyparameter.h"
@@ -116,7 +115,6 @@
 #include <QUndoStack>
 #include <QAction>
 #include <QProcess>
-#include <QRegularExpression>
 #include <QSettings>
 #include <QtGlobal>
 #include <QDesktopServices>
@@ -125,7 +123,6 @@
 #include <QAction>
 #include <QComboBox>
 #include <QDateTime>
-#include <QDockWidget>
 #include <QDoubleSpinBox>
 #include <QFileDialog>
 #include <QFileSystemWatcher>
@@ -229,7 +226,6 @@ MainWindow::MainWindow(QWidget *parent)
     , m_penToolBar(nullptr)
     , m_penReset(nullptr)
     , m_zoom_to_object_combobox(nullptr)
-    , m_search_bar(nullptr)
     , m_measurements(nullptr)
 
     // define Seamly2D main window
@@ -283,10 +279,6 @@ MainWindow::MainWindow(QWidget *parent)
         // initialize docks to contain the toolbars and create menuts.
         initializeDocksContain();
         createMenus();
-
-        // Must exist before the window is shown, it sets the title bar flags on macOS.
-        m_search_bar = new SearchBar(this);
-        m_search_bar->setItemSource([this]() { return searchItems(); });
 
         // Initialize toolbars for draft, point name, and modes.
         initializeDraftToolBar();
@@ -8563,8 +8555,6 @@ void MainWindow::updateWindowTitle()
                        GetMeasurementFileName() + QString(" - ") + tr("read only"));
     }
     setWindowFilePath(qApp->getFilePath());
-    m_search_bar->setFileName(qApp->getFilePath().isEmpty() ? tr("untitled.sm2d")
-                                                            : strippedName(qApp->getFilePath()));
 
 #if defined(Q_OS_MAC)
     static QIcon fileIcon = QIcon(QCoreApplication::applicationDirPath() +
@@ -8773,89 +8763,6 @@ void MainWindow::updateZoomToObjectComboBox()
     m_zoom_to_object_combobox->addItems(object_names);
     m_zoom_to_object_combobox->view()->setMinimumWidth(120);
     m_zoom_to_object_combobox->blockSignals(false);
-}
-
-//---------------------------------------------------------------------------------------------------------------------
-/// @brief searchItems lists what the search bar finds: enabled commands, points, curves and variables, each with its
-/// kind, the menu it is in, "Point tool", "Toolbar" and so on.
-/// @return searchable items, the suggested ones first in suggestion order.
-QVector<SearchItem> MainWindow::searchItems()
-{
-    QVector<SearchItem> items;
-    QSet<QString> names;
-
-    const QList<QAction *> suggested{ui->actionNew, ui->actionOpen, ui->newDraft_Action, ui->lineTool_Action,
-                                     ui->pointAtDistanceAngle_Action, ui->pointAlongLine_Action, ui->curve_Action,
-                                     ui->arcTool_Action, ui->addPiece_Action, ui->table_Action};
-    static const QRegularExpression toolbar_suffix(QStringLiteral("\\s*tool\\s*bar\\s*$"),
-                                                   QRegularExpression::CaseInsensitiveOption);
-    const QList<QAction *> actions = suggested + findChildren<QAction *>();
-    for (QAction *action : actions)
-    {
-        QString name = action->text().remove(QLatin1Char('&'));
-        QString kind = tr("Command");
-        const QToolBar *toolbar = qobject_cast<QToolBar *>(action->parent());
-        const QDockWidget *dock = qobject_cast<QDockWidget *>(action->parent());
-        if (toolbar != nullptr && toolbar->toggleViewAction() == action)
-        {
-            name.remove(toolbar_suffix);
-            kind = tr("Toolbar");
-        }
-        else if (dock != nullptr && dock->toggleViewAction() == action)
-        {
-            kind = tr("Panel");
-        }
-        else
-        {
-            const QList<QObject *> owners = action->associatedObjects();
-            const auto owner = std::find_if(owners.cbegin(), owners.cend(),
-                                            [](QObject *object) { return qobject_cast<QMenu *>(object) != nullptr; });
-            if (owner != owners.cend())
-            {
-                const QMenu *menu = static_cast<QMenu *>(*owner);
-                const QString title = menu->title().remove(QLatin1Char('&'));
-                kind = ui->tools_Menu->actions().contains(menu->menuAction()) ? tr("%1 tool").arg(title) : title;
-            }
-        }
-
-        const QMenu *submenu = action->menu();
-        if (action->isSeparator() || !action->isEnabled() || submenu != nullptr || name.isEmpty() ||
-            names.contains(name + kind))
-        {
-            continue;
-        }
-        names.insert(name + kind);
-        items.append({name, kind, action->shortcut().toString(QKeySequence::NativeText), QString(), action->icon(),
-                      [action]() { action->trigger(); }, suggested.contains(action)});
-    }
-
-    const QStringList points = getObjectNames(GOType::Point);
-    for (const QString &name : points)
-    {
-        items.append({name, tr("Point"), QString(), QString(), QIcon(), [this, name]() { zoomToObject(name); }});
-    }
-    const QStringList curves = getObjectNames(GOType::AllCurves);
-    for (const QString &name : curves)
-    {
-        items.append({name, tr("Curve"), QString(), QString(), QIcon(), [this, name]() { zoomToObject(name); }});
-    }
-
-    const QString unit = QLatin1Char(' ') + UnitsToStr(qApp->patternUnit(), true);
-    const QHash<QString, QSharedPointer<VInternalVariable>> *variables = pattern->DataVariables();
-    for (auto i = variables->cbegin(); i != variables->cend(); ++i)
-    {
-        const bool angle = i.value()->GetType() == VarType::LineAngle || i.value()->GetType() == VarType::CurveAngle;
-        items.append({i.key(), tr("Variable"), QString(),
-                      QString::number(*i.value()->GetValue(), 'f', 2) + (angle ? QStringLiteral("°") : unit), QIcon(),
-                      [this]()
-        {
-            if (!ui->table_Action->isChecked())
-            {
-                ui->table_Action->trigger();
-            }
-        }});
-    }
-    return items;
 }
 
 //---------------------------------------------------------------------------------------------------------------------

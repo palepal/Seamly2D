@@ -18,7 +18,6 @@ HEADERS += \
     $$PWD/groups_widget.h \
     $$PWD/history_dialog.h \
     $$PWD/pieces_widget.h \
-    $$PWD/search_bar.h \
     $$PWD/shortcuts_dialog.h \
     $$PWD/show_info_dialog.h \
     $$PWD/dialogpreferences.h \
@@ -45,7 +44,6 @@ SOURCES += \
     $$PWD/groups_widget.cpp \
     $$PWD/history_dialog.cpp \
     $$PWD/pieces_widget.cpp \
-    $$PWD/search_bar.cpp \
     $$PWD/shortcuts_dialog.cpp \
     $$PWD/show_info_dialog.cpp \
     $$PWD/dialogpreferences.cpp \
@@ -70,7 +68,6 @@ FORMS += \
     $$PWD/history_dialog.ui \
     $$PWD/layoutsettings_dialog.ui \
     $$PWD/pieces_widget.ui \
-    $$PWD/search_bar.ui \
     $$PWD/shortcuts_dialog.ui \
     $$PWD/show_info_dialog.ui \
     $$PWD/dialogpreferences.ui \
