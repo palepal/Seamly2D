@@ -596,7 +596,7 @@ void ApplicationME::retranslateTables()
 void ApplicationME::parseCommandLine(const SocketConnection &connection, const QStringList &arguments)
 {
     QCommandLineParser parser;
-    parser.setApplicationDescription(tr("Cutalyst's measurements editor."));
+    parser.setApplicationDescription(tr("Cutalyst Me, the measurements editor of Cutalyst Pattern."));
     parser.addHelpOption();
     parser.addVersionOption();
     parser.addPositionalArgument("filename", tr("The measurement file."));

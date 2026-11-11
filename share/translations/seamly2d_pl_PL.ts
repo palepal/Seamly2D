@@ -140,11 +140,11 @@
         <translation>Automatyczny</translation>
     </message>
     <message>
-        <source>About Cutalyst</source>
+        <source>About Cutalyst Pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cutalyst</source>
+        <source>Cutalyst Pattern</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -373,7 +373,7 @@
         <translation>Proszę podać jeden plik wejściowy.</translation>
     </message>
     <message>
-        <source>Cutalyst&apos;s measurements editor.</source>
+        <source>Cutalyst Me, the measurements editor of Cutalyst Pattern.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -565,15 +565,15 @@ p, li { white-space: pre-wrap; }
         <translation>Witryna internetowa: %1</translation>
     </message>
     <message>
-        <source>About CutalystMe</source>
+        <source>About Cutalyst Me</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>CutalystMe version</source>
+        <source>Cutalyst Me version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This program is part of Cutalyst, based on the Seamly2D project.</source>
+        <source>This program is part of Cutalyst Pattern, based on the Seamly2D project.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3124,7 +3124,7 @@ Spróbuj cofnąć ostatnią operację lub naprawić uszkodzoną formułę.</tran
         <translation>&amp;Napraw formułę</translation>
     </message>
     <message>
-        <source>Cutalyst encountered an error while computing a formula.
+        <source>Cutalyst Pattern encountered an error while computing a formula.
 Please try to undo the latest operation or fix the broken formula.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4960,9 +4960,9 @@ Program jest dostarczany w stanie&quot;TAK JAK JEST&quot;bez ŻADNEJ GWARANCJI, 
         <translation>Program jest udostępniany w stanie, w jakim się znajduje, bez żadnej gwarancji, w tym gwarancji projektu, przydatności handlowej i przydatności do określonego celu.</translation>
     </message>
     <message>
-        <source>Cutalyst is an application for computer-aided design of garment patterns.
+        <source>Cutalyst Pattern is an application for computer-aided design of garment patterns.
 
-Cutalyst is a free (open source) software, based on Seamly2D and Valentina.
+Cutalyst Pattern is a free (open source) software, based on Seamly2D and Valentina.
 
 All brand or product names are trademarks or registered trademarks of their respective holders.
 
@@ -7292,23 +7292,23 @@ Czy chcesz zapisać zmiany?</translation>
         <translation>Czy na pewno chcesz usunąć punkt bazowy i bieżący blok szkicu?</translation>
     </message>
     <message>
-        <source>Cutalyst</source>
+        <source>Cutalyst Pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>About Cutalyst</source>
+        <source>About Cutalyst Pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Open CutalystMe</source>
+        <source>Open Cutalyst Me</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Open CutalystMe measurements app (Ctrl+M)</source>
+        <source>Open Cutalyst Me measurements app (Ctrl+M)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cutalyst didn&apos;t shut down correctly. Do you want reopen files (%1) you had open?</source>
+        <source>Cutalyst Pattern didn&apos;t shut down correctly. Do you want reopen files (%1) you had open?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7490,7 +7490,7 @@ Czy chcesz zapisać zmiany?</translation>
         <translation>Eksportuj PDF</translation>
     </message>
     <message>
-        <source>CutalystMe Shortcuts</source>
+        <source>Cutalyst Me Shortcuts</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9495,7 +9495,7 @@ Czy chcesz zapisać zmiany?</translation>
         <translation>Moje kopie zapasowe</translation>
     </message>
     <message>
-        <source>Paths that Cutalyst uses</source>
+        <source>Paths that Cutalyst Pattern uses</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10262,7 +10262,7 @@ Czy chcesz zapisać zmiany?</translation>
         <translation>Moje skany ciała</translation>
     </message>
     <message>
-        <source>Paths that CutalystMe uses</source>
+        <source>Paths that Cutalyst Me uses</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10377,15 +10377,15 @@ Czy chcesz zapisać zmiany?</translation>
         <translation>Motyw:</translation>
     </message>
     <message>
-        <source>Welcome to CutalystMe</source>
+        <source>Welcome to Cutalyst Me</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sets the language used for CutalystMe.</source>
+        <source>Sets the language used for Cutalyst Me.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed. You can change this setting in the CutalystMe preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed. You can change this setting in the Cutalyst Me preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10492,15 +10492,15 @@ Czy chcesz zapisać zmiany?</translation>
         <translation>Motyw:</translation>
     </message>
     <message>
-        <source>Welcome to Cutalyst</source>
+        <source>Welcome to Cutalyst Pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sets the language used for Cutalyst.</source>
+        <source>Sets the language used for Cutalyst Pattern.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed.  You can change this setting in the Cutalyst preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed.  You can change this setting in the Cutalyst Pattern preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11302,11 +11302,11 @@ Czy chcesz zapisać zmiany?</translation>
         <translation>Page Up / Page Down</translation>
     </message>
     <message>
-        <source>Cutalyst Shortcuts</source>
+        <source>Cutalyst Pattern Shortcuts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Open CutalystMe</source>
+        <source>Open Cutalyst Me</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -12032,7 +12032,7 @@ Czy chcesz zapisać zmiany?</translation>
         <translation>Pomiar indywidualny</translation>
     </message>
     <message>
-        <source>About CutalystMe</source>
+        <source>About Cutalyst Me</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -12779,11 +12779,11 @@ Czy chcesz zapisać zmiany?</translation>
     </message>
     <message>
         <source>The curve length must be a positive number.</source>
-        <source>Cutalyst open source patternmaking program.</source>
+        <source>Cutalyst Pattern open source patternmaking program.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cutalyst pattern file (.sm2d)</source>
+        <source>Cutalyst Pattern file (.sm2d)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

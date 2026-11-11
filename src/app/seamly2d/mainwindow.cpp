@@ -7955,7 +7955,8 @@ void MainWindow::reopenFilesAfterCrash(QStringList &args)
         if (restoreFiles.size() > 0)
         {
             QMessageBox::StandardButton reply;
-            const QString mes = tr("Cutalyst didn't shut down correctly. Do you want reopen files (%1) you had open?")
+            const QString mes = tr("Cutalyst Pattern didn't shut down correctly. Do you want reopen files (%1) you "
+                                   "had open?")
                     .arg(restoreFiles.size());
             reply = QMessageBox::question(this, tr("Reopen files."), mes, QMessageBox::Yes|QMessageBox::No,
                                           QMessageBox::Yes);

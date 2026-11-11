@@ -77,7 +77,7 @@
           </font>
          </property>
          <property name="title">
-          <string>Welcome to Cutalyst</string>
+          <string>Welcome to Cutalyst Pattern</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
@@ -262,7 +262,7 @@
                </font>
               </property>
               <property name="toolTip">
-               <string>Sets the language used for Cutalyst.</string>
+               <string>Sets the language used for Cutalyst Pattern.</string>
               </property>
              </widget>
             </item>
@@ -460,7 +460,7 @@
             </font>
            </property>
            <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed.  You can change this setting in the Cutalyst preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed.  You can change this setting in the Cutalyst Pattern preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="text">
             <string>Do not show again</string>

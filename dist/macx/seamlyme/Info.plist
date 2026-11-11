@@ -15,9 +15,9 @@
 	<key>CFBundleSignature</key>
 	<string>@TYPEINFO@</string>
 	<key>CFBundleName</key>
-	<string>CutalystMe</string>
+	<string>Cutalyst Me</string>
 	<key>CFBundleDisplayName</key>
-	<string>CutalystMe</string>
+	<string>Cutalyst Me</string>
 	<key>CFBundleExecutable</key>
 	<string>@EXECUTABLE@</string>
 	<key>CFBundleIdentifier</key>
@@ -40,7 +40,7 @@
                 <string>org.seamly2dproject.individual_size_file</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>CutalystMe individual measurements</string>
+			<string>Cutalyst Me individual measurements</string>
 			<key>LSHandlerRank</key>
 			<string>Owner</string>
 		</dict>
@@ -54,7 +54,7 @@
                 <string>org.seamly2dproject.smms</string>
 			</array>
 			<key>CFBundleTypeName</key>
-                <string>CutalystMe multisize measurements</string>
+                <string>Cutalyst Me multisize measurements</string>
 			<key>LSHandlerRank</key>
 			<string>Owner</string>
 		</dict>
@@ -68,7 +68,7 @@
 				<string>public.xml</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>CutalystMe individual measurements</string>
+			<string>Cutalyst Me individual measurements</string>
 			<key>UTTypeIconFile</key>
 			<string>individual_size_file.icns</string>
 			<key>UTTypeIdentifier</key>
@@ -90,7 +90,7 @@
 				<string>public.xml</string>
 			</array>
 			<key>UTTypeDescription</key>
-                <string>CutalystMe multisize measurements</string>
+                <string>Cutalyst Me multisize measurements</string>
 			<key>UTTypeIconFile</key>
 			<string>multi_size_file.icns</string>
 			<key>UTTypeIdentifier</key>

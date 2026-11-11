@@ -18,13 +18,13 @@
 	<key>CFBundleSignature</key>
 	<string>@TYPEINFO@</string>
 	<key>CFBundleName</key>
-	<string>Cutalyst</string>
+	<string>Cutalyst Pattern</string>
 	<key>CFBundleDisplayName</key>
-	<string>Cutalyst</string>
+	<string>Cutalyst Pattern</string>
 	<key>CFBundleExecutable</key>
 	<string>@EXECUTABLE@</string>
 	<key>CFBundleIdentifier</key>
-	<string>io.github.palepal.cutalyst</string>
+	<string>io.github.palepal.cutalystpattern</string>
 	<!-- Start: Do not edit here, use scripts/version.sh to update -->
 	<key>CFBundleShortVersionString</key><string>0.6.0</string>
 	<key>CFBundleVersion</key><string>0.6.0</string>
@@ -43,7 +43,7 @@
 				<string>org.seamly2dproject.sm2d</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>Cutalyst pattern file</string>
+			<string>Cutalyst Pattern file</string>
 			<key>LSHandlerRank</key>
 			<string>Owner</string>
 		</dict>
@@ -57,7 +57,7 @@
 				<string>org.seamly2dproject.smis</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>CutalystMe individual measurements</string>
+			<string>Cutalyst Me individual measurements</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
 		</dict>
@@ -71,7 +71,7 @@
 				<string>org.seamly2dproject.smms</string>
 			</array>
 			<key>CFBundleTypeName</key>
-                        <string>CutalystMe multisize measurements</string>
+                        <string>Cutalyst Me multisize measurements</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
 		</dict>
@@ -85,7 +85,7 @@
 				<string>public.xml</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Cutalyst pattern file</string>
+			<string>Cutalyst Pattern file</string>
 			<key>UTTypeIconFile</key>
 			<string>pattern</string>
 			<key>UTTypeIdentifier</key>
@@ -107,7 +107,7 @@
 				<string>public.xml</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>CutalystMe individual measurements</string>
+			<string>Cutalyst Me individual measurements</string>
 			<key>UTTypeIconFile</key>
 			<string>individual_size_file.icns</string>
 			<key>UTTypeIdentifier</key>
@@ -129,7 +129,7 @@
 				<string>public.xml</string>
 			</array>
 			<key>UTTypeDescription</key>
-                        <string>CutalystMe multisize measurements</string>
+                        <string>Cutalyst Me multisize measurements</string>
 			<key>UTTypeIconFile</key>
 			<string>multi_size_file.icns</string>
 			<key>UTTypeIdentifier</key>

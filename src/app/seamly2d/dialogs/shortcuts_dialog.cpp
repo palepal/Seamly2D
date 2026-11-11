@@ -165,7 +165,7 @@ ShortcutsDialog::ShortcutsDialog(QWidget *parent)
                                     "<tr><td width = 50%>%6        </td><td>%7<br></td></tr>"
                                  "</table>")
                                  .arg(tr("Measurements"))                                    //1
-                                 .arg(tr("Open CutalystMe")).arg(tr("Ctrl+M"))                 //2 & 3
+                                 .arg(tr("Open Cutalyst Me")).arg(tr("Ctrl+M"))                 //2 & 3
                                  .arg(tr("Variables Table")).arg(tr("Ctrl+T"))               //4 & 5
                                  .arg(tr("Export Variables Table  to CSV")).arg(tr("Ctrl+E"));//6 & 7
 

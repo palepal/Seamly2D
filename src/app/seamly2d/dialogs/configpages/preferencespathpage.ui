@@ -34,7 +34,7 @@
       </font>
      </property>
      <property name="title">
-      <string>Paths that Cutalyst uses</string>
+      <string>Paths that Cutalyst Pattern uses</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>

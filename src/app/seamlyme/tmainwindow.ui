@@ -1570,7 +1570,7 @@
      <normaloff>:/icon/logos/seamlyme_logo_32.png</normaloff>:/icon/logos/seamlyme_logo_32.png</iconset>
    </property>
    <property name="text">
-    <string>About CutalystMe</string>
+    <string>About Cutalyst Me</string>
    </property>
    <property name="menuRole">
     <enum>QAction::AboutRole</enum>
