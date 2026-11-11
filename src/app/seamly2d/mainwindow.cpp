@@ -57,6 +57,7 @@
 #include "options.h"
 #include "version.h"
 #include "core/application_2d.h"
+#include "core/geometry_dump.h"
 #include "core/pieces_export.h"
 #include "core/vtooloptionspropertybrowser.h"
 #include "dialogs/dialogs.h"
@@ -8457,7 +8458,8 @@ void MainWindow::processCommandLine()
 
         bool hSetted = true;
         bool sSetted = true;
-        if (loaded && (cmd->IsTestModeEnabled() || cmd->IsExportEnabled() || cmd->IsDrapeEnabled()))
+        if (loaded && (cmd->IsTestModeEnabled() || cmd->IsExportEnabled() || cmd->IsDrapeEnabled()
+                       || cmd->IsDumpGeometryEnabled()))
         {
             if (cmd->IsSetGradationSize())
             {
@@ -8474,6 +8476,14 @@ void MainWindow::processCommandLine()
         {
             const bool written = loaded && hSetted && sSetted
                                  && writeGarmentPieces(cmd->OptDrapePath(), readGarmentPieces(pattern));
+            qApp->exit(written ? V_EX_OK : V_EX_CANTCREAT);
+            return;
+        }
+
+        if (cmd->IsDumpGeometryEnabled())
+        {
+            const bool written = loaded && hSetted && sSetted
+                                 && writeGeometryDump(cmd->OptDumpGeometryPath(), pattern, doc);
             qApp->exit(written ? V_EX_OK : V_EX_CANTCREAT);
             return;
         }
@@ -8619,8 +8629,9 @@ void MainWindow::resetPanShortcuts()
 //---------------------------------------------------------------------------------------------------------------------
 bool MainWindow::IgnoreLocking(int error, const QString &path)
 {
-    // Writing the pieces file only reads the pattern, so it may run while another window has it open.
-    if (!Application2D::isGUIMode() && qApp->commandLine()->IsDrapeEnabled())
+    // Writing the pieces file or the geometry only reads the pattern, so it may run while another window has it open.
+    if (!Application2D::isGUIMode()
+        && (qApp->commandLine()->IsDrapeEnabled() || qApp->commandLine()->IsDumpGeometryEnabled()))
     {
         return true;
     }

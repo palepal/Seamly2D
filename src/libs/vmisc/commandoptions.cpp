@@ -110,6 +110,8 @@ const QString SINGLE_OPTION_GAPWIDTH        = QStringLiteral("G");
 const QString LONG_OPTION_GROUPPING         = QStringLiteral("groups");
 const QString SINGLE_OPTION_GROUPPING       = QStringLiteral("g");
 
+const QString LONG_OPTION_DUMP_GEOMETRY     = QStringLiteral("dump-geometry");
+
 const QString LONG_OPTION_TEST              = QStringLiteral("test");
 const QString SINGLE_OPTION_TEST            = QStringLiteral("t");
 
@@ -168,7 +170,8 @@ QStringList AllKeys()
          << LONG_OPTION_RIGHT_MARGIN << SINGLE_OPTION_RIGHT_MARGIN
          << LONG_OPTION_TOP_MARGIN << SINGLE_OPTION_TOP_MARGIN
          << LONG_OPTION_BOTTOM_MARGIN << SINGLE_OPTION_BOTTOM_MARGIN
-         << LONG_OPTION_NO_HDPI_SCALING;
+         << LONG_OPTION_NO_HDPI_SCALING
+         << LONG_OPTION_DUMP_GEOMETRY;
 
     return list;
 }

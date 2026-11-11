@@ -51,6 +51,8 @@ public:
 
     bool                   IsTestModeEnabled() const;
     bool                   IsNoScalingEnabled() const;
+    bool                   IsDumpGeometryEnabled() const;
+    QString                OptDumpGeometryPath() const;
     bool                   IsExportEnabled() const;
     bool                   IsDrapeEnabled() const;
     QString                OptDrapePath() const;
