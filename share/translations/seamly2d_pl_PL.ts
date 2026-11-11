@@ -12440,6 +12440,14 @@ Czy chcesz zapisać zmiany?</translation>
         <translation>Uruchom program w trybie testowym. Program w tym trybie ładuje pojedynczy plik wzorcowy i zamyka się automatycznie, bez wyświetlania okna głównego. Klucz ma priorytet przed kluczem &apos;%1&apos;.</translation>
     </message>
     <message>
+        <source>Write every evaluated point, curve, variable and piece of a single pattern file to a JSON file and quit without showing the main window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The JSON file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Disable high dpi scaling. Call this option if has problem with scaling (by default scaling enabled). Alternatively you can use the %1 environment variable.</source>
         <translation>Wyłącz skalowanie w wysokiej rozdzielczości. Wybierz tę opcję, jeśli występują problemy ze skalowaniem (domyślnie skalowanie jest włączone). Alternatywnie możesz użyć zmiennej środowiskowej %1.</translation>
     </message>
@@ -12498,6 +12506,10 @@ Czy chcesz zapisać zmiany?</translation>
     <message>
         <source>Export options can be used with single input file only.</source>
         <translation>Opcje eksportu można stosować tylko w przypadku pojedynczego pliku wejściowego.</translation>
+    </message>
+    <message>
+        <source>The dump geometry option can be used with a single input file only.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid gradation size value.</source>

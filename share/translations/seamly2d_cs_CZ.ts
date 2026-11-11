@@ -12323,6 +12323,10 @@ SeamlyME jako obvykle.
         <translation>Možnosti exportu lze použít pouze s jedním vstupním souborem.</translation>
     </message>
     <message>
+        <source>The dump geometry option can be used with a single input file only.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Test option can be used with single input file only.</source>
         <translation>Možnost testu lze použít pouze s jedním vstupním souborem.</translation>
     </message>
@@ -12433,6 +12437,14 @@ SeamlyME jako obvykle.
     <message>
         <source>Run the program in a test mode. The program in this mode loads a single pattern file and silently quit without showing the main window. The key have priority before key &apos;%1&apos;.</source>
         <translation>Spusťte program v testovacím režimu. Program v tomto režimu načte jeden soubor se vzorem a tiše se ukončí bez zobrazení hlavního okna. Klávesa má prioritu před klávesou &apos;%1&apos;.</translation>
+    </message>
+    <message>
+        <source>Write every evaluated point, curve, variable and piece of a single pattern file to a JSON file and quit without showing the main window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The JSON file</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Shift/Offset layout length measured in layout units (export mode). The option show how many points along edge will be used in creating a layout.</source>

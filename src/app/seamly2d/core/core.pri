@@ -6,6 +6,7 @@ HEADERS += \
     $$PWD/vformulaproperty.h \
     $$PWD/vformulapropertyeditor.h \
     $$PWD/vtooloptionspropertybrowser.h \
+    $$PWD/geometry_dump.h \
     $$PWD/vcmdexport.h
 
 SOURCES += \
@@ -13,6 +14,7 @@ SOURCES += \
     $$PWD/vformulaproperty.cpp \
     $$PWD/vformulapropertyeditor.cpp \
     $$PWD/vtooloptionspropertybrowser.cpp \
+    $$PWD/geometry_dump.cpp \
     $$PWD/vcmdexport.cpp
 
 macx{

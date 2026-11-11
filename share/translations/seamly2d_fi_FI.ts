@@ -12441,6 +12441,14 @@ Haluatko tallentaa muutokset?</translation>
         <translation>Suorita ohjelma testitilassa. Tässä tilassa ohjelma lataa yhden kaavatiedoston ja sulkeutuu hiljaa näyttämättä pääikkunaa. Avaimella on prioriteetti ennen avainta &apos;%1&apos;.</translation>
     </message>
     <message>
+        <source>Write every evaluated point, curve, variable and piece of a single pattern file to a JSON file and quit without showing the main window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The JSON file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Disable high dpi scaling. Call this option if has problem with scaling (by default scaling enabled). Alternatively you can use the %1 environment variable.</source>
         <translation>Poista korkea dpi -skaalaus. Kutsu tätä asetusta, jos skaalauksessa on ongelmia (skaalauksen oletusarvo on käytössä). Vaihtoehtoisesti voit käyttää ympäristömuuttujaa %1.</translation>
     </message>
@@ -12499,6 +12507,10 @@ Haluatko tallentaa muutokset?</translation>
     <message>
         <source>Export options can be used with single input file only.</source>
         <translation>Vientiasetuksia voi käyttää vain yhden syöttötiedoston kanssa.</translation>
+    </message>
+    <message>
+        <source>The dump geometry option can be used with a single input file only.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid gradation size value.</source>

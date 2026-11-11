@@ -57,6 +57,7 @@
 #include "options.h"
 #include "version.h"
 #include "core/application_2d.h"
+#include "core/geometry_dump.h"
 #include "core/vtooloptionspropertybrowser.h"
 #include "dialogs/dialogs.h"
 #include "dialogs/calculator_dialog.h"
@@ -8202,7 +8203,7 @@ void MainWindow::processCommandLine()
 
         bool hSetted = true;
         bool sSetted = true;
-        if (loaded && (cmd->IsTestModeEnabled() || cmd->IsExportEnabled()))
+        if (loaded && (cmd->IsTestModeEnabled() || cmd->IsExportEnabled() || cmd->IsDumpGeometryEnabled()))
         {
             if (cmd->IsSetGradationSize())
             {
@@ -8213,6 +8214,14 @@ void MainWindow::processCommandLine()
             {
                 hSetted = setHeight(cmd->OptGradationHeight());
             }
+        }
+
+        if (cmd->IsDumpGeometryEnabled())
+        {
+            const bool written = loaded && hSetted && sSetted
+                                 && writeGeometryDump(cmd->OptDumpGeometryPath(), pattern, doc);
+            qApp->exit(written ? V_EX_OK : V_EX_CANTCREAT);
+            return;
         }
 
         if (!cmd->IsTestModeEnabled())
@@ -8356,6 +8365,12 @@ void MainWindow::resetPanShortcuts()
 //---------------------------------------------------------------------------------------------------------------------
 bool MainWindow::IgnoreLocking(int error, const QString &path)
 {
+    // Dumping the geometry only reads the pattern, so it may run while another window has it open.
+    if (!Application2D::isGUIMode() && qApp->commandLine()->IsDumpGeometryEnabled())
+    {
+        return true;
+    }
+
     QMessageBox::StandardButton answer = QMessageBox::Abort;
     if (Application2D::isGUIMode())
     {

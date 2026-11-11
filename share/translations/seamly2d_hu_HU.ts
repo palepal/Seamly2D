@@ -12439,6 +12439,14 @@ Menti a módosításokat?</translation>
         <translation>Futtassa a programot teszt módban. A program ebben a módban egyetlen mintafájlt tölt be, majd csendben kilép a főablak megjelenítése nélkül. A kulcs prioritást élvez a(z) &apos;%1&apos; kulcs előtt.</translation>
     </message>
     <message>
+        <source>Write every evaluated point, curve, variable and piece of a single pattern file to a JSON file and quit without showing the main window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The JSON file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Disable high dpi scaling. Call this option if has problem with scaling (by default scaling enabled). Alternatively you can use the %1 environment variable.</source>
         <translation>Tiltsa le a nagy dpi-s méretezést. Hívja meg ezt az opciót, ha probléma van a méretezéssel (alapértelmezés szerint a méretezés engedélyezve van). Alternatív megoldásként használhatja a %1 környezeti változót.</translation>
     </message>
@@ -12497,6 +12505,10 @@ Menti a módosításokat?</translation>
     <message>
         <source>Export options can be used with single input file only.</source>
         <translation>Az exportálási beállítások csak egyetlen bemeneti fájllal használhatók.</translation>
+    </message>
+    <message>
+        <source>The dump geometry option can be used with a single input file only.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid gradation size value.</source>

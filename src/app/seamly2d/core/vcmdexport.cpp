@@ -334,6 +334,13 @@ void VCommandLine::initOptions(VCommandLineOptions &options, QMap<QString, int> 
                                   "showing the main window. The key have priority before key '%1'.")
                                   .arg(LONG_OPTION_BASENAME)));
 
+    // --dump-geometry: Write every evaluated object to JSON without showing the main window
+    optionsIndex.insert(LONG_OPTION_DUMP_GEOMETRY, index++);
+    options.append(new QCommandLineOption({LONG_OPTION_DUMP_GEOMETRY},
+        translate("VCommandLine", "Write every evaluated point, curve, variable and piece of a single pattern file "
+                                  "to a JSON file and quit without showing the main window."),
+        translate("VCommandLine", "The JSON file")));
+
 
     // --no-hdpi-scaling: Disable high DPI auto-scaling (useful on some systems)
     optionsIndex.insert(LONG_OPTION_NO_HDPI_SCALING, index++);
@@ -564,7 +571,8 @@ VCommandLinePtr VCommandLine::Get(const QCoreApplication &app)
     commandLine->parser.process(app);          // Process CLI arguments with the parser
 
     // FIXME: Add more conditions here if new CLI modes are introduced that should disable the GUI
-    commandLine->isGuiEnabled = !(commandLine->IsExportEnabled() || commandLine->IsTestModeEnabled());
+    commandLine->isGuiEnabled = !(commandLine->IsExportEnabled() || commandLine->IsTestModeEnabled() ||
+                                  commandLine->IsDumpGeometryEnabled());
 
     return commandLine;
 }
@@ -629,6 +637,29 @@ bool VCommandLine::IsTestModeEnabled() const
 bool VCommandLine::IsNoScalingEnabled() const
 {
     return parser.isSet(*optionsUsed.value(optionsIndex.value(LONG_OPTION_NO_HDPI_SCALING)));
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief IsDumpGeometryEnabled whether the --dump-geometry option is set. Exits with the usage if it isn't given
+/// exactly one input file.
+/// @return true if the geometry is to be written.
+bool VCommandLine::IsDumpGeometryEnabled() const
+{
+    const bool r = parser.isSet(*optionsUsed.value(optionsIndex.value(LONG_OPTION_DUMP_GEOMETRY)));
+    if (r && parser.positionalArguments().size() != 1)
+    {
+        qCritical() << translate("VCommandLine", "The dump geometry option can be used with a single input file only.");
+        const_cast<VCommandLine*>(this)->parser.showHelp(V_EX_USAGE);
+    }
+    return r;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/// @brief OptDumpGeometryPath the file the dump geometry option writes to.
+/// @return the path.
+QString VCommandLine::OptDumpGeometryPath() const
+{
+    return parser.value(*optionsUsed.value(optionsIndex.value(LONG_OPTION_DUMP_GEOMETRY)));
 }
 
 //  --------------------

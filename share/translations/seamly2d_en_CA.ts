@@ -12287,6 +12287,10 @@ load in SeamlyME as usual.
         <translation>Export options can be used with single input file only.</translation>
     </message>
     <message>
+        <source>The dump geometry option can be used with a single input file only.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Test option can be used with single input file only.</source>
         <translation>Test option can be used with single input file only.</translation>
     </message>
@@ -12397,6 +12401,14 @@ load in SeamlyME as usual.
     <message>
         <source>Run the program in a test mode. The program in this mode loads a single pattern file and silently quit without showing the main window. The key have priority before key &apos;%1&apos;.</source>
         <translation>Run the program in a test mode. The program in this mode loads a single pattern file and silently quit without showing the main window. The key have priority before key &apos;%1&apos;.</translation>
+    </message>
+    <message>
+        <source>Write every evaluated point, curve, variable and piece of a single pattern file to a JSON file and quit without showing the main window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The JSON file</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Shift/Offset layout length measured in layout units (export mode). The option show how many points along edge will be used in creating a layout.</source>

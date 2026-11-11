@@ -106,6 +106,8 @@ extern const QString SINGLE_OPTION_GAPWIDTH;
 extern const QString LONG_OPTION_GROUPPING;
 extern const QString SINGLE_OPTION_GROUPPING;
 
+extern const QString LONG_OPTION_DUMP_GEOMETRY;
+
 extern const QString LONG_OPTION_TEST;
 extern const QString SINGLE_OPTION_TEST;
 
