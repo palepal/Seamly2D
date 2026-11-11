@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Cutalyst</string>
+   <string>Cutalyst Pattern</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../../libs/vmisc/share/resources/icon.qrc">
@@ -3611,10 +3611,10 @@
      <normaloff>:/icon/logos/seamly_logo_32.png</normaloff>:/icon/logos/seamly_logo_32.png</iconset>
    </property>
    <property name="text">
-    <string>About Cutalyst</string>
+    <string>About Cutalyst Pattern</string>
    </property>
    <property name="toolTip">
-    <string>About Cutalyst</string>
+    <string>About Cutalyst Pattern</string>
    </property>
    <property name="shortcut">
     <string notr="true"/>
@@ -3999,10 +3999,10 @@
      <normaloff>:/icon/logos/seamlyme_logo_32.png</normaloff>:/icon/logos/seamlyme_logo_32.png</iconset>
    </property>
    <property name="text">
-    <string>Open CutalystMe</string>
+    <string>Open Cutalyst Me</string>
    </property>
    <property name="toolTip">
-    <string>Open CutalystMe measurements app (Ctrl+M)</string>
+    <string>Open Cutalyst Me measurements app (Ctrl+M)</string>
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+M</string>

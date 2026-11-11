@@ -54,7 +54,7 @@ VCommandLinePtr VCommandLine::commandLine = nullptr;
 VCommandLine::VCommandLine() : parser(), optionsUsed(), optionsIndex(), isGuiEnabled(false)
 {
     // Sets a brief description of the application shown in the help output.
-    parser.setApplicationDescription(translate("VCommandLine", "Cutalyst open source patternmaking program."));
+    parser.setApplicationDescription(translate("VCommandLine", "Cutalyst Pattern open source patternmaking program."));
 
     // Adds the standard help option (-h, --help) to the parser.
     parser.addHelpOption();
@@ -63,7 +63,7 @@ VCommandLine::VCommandLine() : parser(), optionsUsed(), optionsIndex(), isGuiEna
     parser.addVersionOption();
 
     // Add a positional argument (not prefixed with a flag), typically the filename
-    parser.addPositionalArgument("filename", translate("VCommandLine", "Cutalyst pattern file (.sm2d)"));
+    parser.addPositionalArgument("filename", translate("VCommandLine", "Cutalyst Pattern file (.sm2d)"));
 
     // Initialize the list of custom command-line options and their index
     initOptions(optionsUsed, optionsIndex);

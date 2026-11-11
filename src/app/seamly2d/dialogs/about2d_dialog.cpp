@@ -107,8 +107,9 @@ About2DAppDialog::About2DAppDialog(QWidget *parent)
     ui->compiler_value->setText(QString("%1 %2 bit").arg(compilerString(), QString::number(QSysInfo::WordSize)));
 
 	ui->legalStuff_label->setText(QApplication::translate("InternalStrings",
-									  "Cutalyst is an application for computer-aided design of garment patterns.\n\n"
-                                      "Cutalyst is a free (open source) software, based on Seamly2D and Valentina.\n\n"
+									  "Cutalyst Pattern is an application for computer-aided design of garment patterns.\n\n"
+                                      "Cutalyst Pattern is a free (open source) software, based on Seamly2D and "
+                                      "Valentina.\n\n"
                                       "All brand or product names are trademarks or registered trademarks of their respective holders.\n\n"
                                       "© 2017-2026 Seamly2D Project.\n\n"
                                       "Portions of this software © 2008-2026 The Qt Company Ltd.\n\n"

@@ -140,11 +140,11 @@
         <translation>网站:</translation>
     </message>
     <message>
-        <source>About Cutalyst</source>
+        <source>About Cutalyst Pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cutalyst</source>
+        <source>Cutalyst Pattern</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -373,7 +373,7 @@
         <translation>禁用高 dpi 缩放。如果缩放有问题，请调用此选项（默认启用缩放）。或者，您可以使用 %1 环境变量.</translation>
     </message>
     <message>
-        <source>Cutalyst&apos;s measurements editor.</source>
+        <source>Cutalyst Me, the measurements editor of Cutalyst Pattern.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -565,15 +565,15 @@ p, li { 空白:预换行； }
         <translation>未知</translation>
     </message>
     <message>
-        <source>About CutalystMe</source>
+        <source>About Cutalyst Me</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>CutalystMe version</source>
+        <source>Cutalyst Me version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This program is part of Cutalyst, based on the Seamly2D project.</source>
+        <source>This program is part of Cutalyst Pattern, based on the Seamly2D project.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3104,7 +3104,7 @@ Please try to undo the latest operation or fix the broken formula.</source>
 请尝试撤消最近的操作或修复损坏的公式.</translation>
     </message>
     <message>
-        <source>Cutalyst encountered an error while computing a formula.
+        <source>Cutalyst Pattern encountered an error while computing a formula.
 Please try to undo the latest operation or fix the broken formula.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4912,9 +4912,9 @@ Seamly2D 是一款免费（开源）软件。
 该程序按原样提供，不提供任何形式的保证，包括设计、适销性和特定用途适用性的保证.</translation>
     </message>
     <message>
-        <source>Cutalyst is an application for computer-aided design of garment patterns.
+        <source>Cutalyst Pattern is an application for computer-aided design of garment patterns.
 
-Cutalyst is a free (open source) software, based on Seamly2D and Valentina.
+Cutalyst Pattern is a free (open source) software, based on Seamly2D and Valentina.
 
 All brand or product names are trademarks or registered trademarks of their respective holders.
 
@@ -7192,23 +7192,23 @@ Press enter to temporarily add it to the list.</source>
         <translation>您确定要删除基准点和当前的草稿块吗?</translation>
     </message>
     <message>
-        <source>Cutalyst</source>
+        <source>Cutalyst Pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cutalyst didn&apos;t shut down correctly. Do you want reopen files (%1) you had open?</source>
+        <source>Cutalyst Pattern didn&apos;t shut down correctly. Do you want reopen files (%1) you had open?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>About Cutalyst</source>
+        <source>About Cutalyst Pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Open CutalystMe</source>
+        <source>Open Cutalyst Me</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Open CutalystMe measurements app (Ctrl+M)</source>
+        <source>Open Cutalyst Me measurements app (Ctrl+M)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7390,7 +7390,7 @@ Press enter to temporarily add it to the list.</source>
         <translation>Ctrl+G</translation>
     </message>
     <message>
-        <source>CutalystMe Shortcuts</source>
+        <source>Cutalyst Me Shortcuts</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9379,7 +9379,7 @@ Press enter to temporarily add it to the list.</source>
         <translation>我的标签模板</translation>
     </message>
     <message>
-        <source>Paths that Cutalyst uses</source>
+        <source>Paths that Cutalyst Pattern uses</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10146,7 +10146,7 @@ Press enter to temporarily add it to the list.</source>
         <translation>我的身体扫描</translation>
     </message>
     <message>
-        <source>Paths that CutalystMe uses</source>
+        <source>Paths that Cutalyst Me uses</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10261,15 +10261,15 @@ Press enter to temporarily add it to the list.</source>
         <translation>主题:</translation>
     </message>
     <message>
-        <source>Welcome to CutalystMe</source>
+        <source>Welcome to Cutalyst Me</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sets the language used for CutalystMe.</source>
+        <source>Sets the language used for Cutalyst Me.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed. You can change this setting in the CutalystMe preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed. You can change this setting in the Cutalyst Me preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10376,15 +10376,15 @@ Press enter to temporarily add it to the list.</source>
         <translation>主题:</translation>
     </message>
     <message>
-        <source>Welcome to Cutalyst</source>
+        <source>Welcome to Cutalyst Pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sets the language used for Cutalyst.</source>
+        <source>Sets the language used for Cutalyst Pattern.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed.  You can change this setting in the Cutalyst preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed.  You can change this setting in the Cutalyst Pattern preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11187,11 +11187,11 @@ Press enter to temporarily add it to the list.</source>
         <translation>Page Up / Page Down 键</translation>
     </message>
     <message>
-        <source>Cutalyst Shortcuts</source>
+        <source>Cutalyst Pattern Shortcuts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Open CutalystMe</source>
+        <source>Open Cutalyst Me</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11899,7 +11899,7 @@ load in SeamlyME as usual.
         <translation>定制尺寸</translation>
     </message>
     <message>
-        <source>About CutalystMe</source>
+        <source>About Cutalyst Me</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -12621,11 +12621,11 @@ load in SeamlyME as usual.
         <translation>下边距</translation>
     </message>
     <message>
-        <source>Cutalyst open source patternmaking program.</source>
+        <source>Cutalyst Pattern open source patternmaking program.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cutalyst pattern file (.sm2d)</source>
+        <source>Cutalyst Pattern file (.sm2d)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

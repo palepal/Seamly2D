@@ -140,11 +140,11 @@
         <translation>Ιστότοπος:</translation>
     </message>
     <message>
-        <source>About Cutalyst</source>
+        <source>About Cutalyst Pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cutalyst</source>
+        <source>Cutalyst Pattern</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -373,7 +373,7 @@
         <translation>Απενεργοποίηση κλιμάκωσης υψηλής dpi. Καλέστε αυτήν την επιλογή εάν υπάρχει πρόβλημα με την κλιμάκωση (από προεπιλογή η κλιμάκωση είναι ενεργοποιημένη). Εναλλακτικά, μπορείτε να χρησιμοποιήσετε τη μεταβλητή περιβάλλοντος %1.</translation>
     </message>
     <message>
-        <source>Cutalyst&apos;s measurements editor.</source>
+        <source>Cutalyst Me, the measurements editor of Cutalyst Pattern.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -565,15 +565,15 @@ p, li { white-space: pre-wrap; }
         <translation>άγνωστο</translation>
     </message>
     <message>
-        <source>About CutalystMe</source>
+        <source>About Cutalyst Me</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>CutalystMe version</source>
+        <source>Cutalyst Me version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This program is part of Cutalyst, based on the Seamly2D project.</source>
+        <source>This program is part of Cutalyst Pattern, based on the Seamly2D project.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3104,7 +3104,7 @@ Please try to undo the latest operation or fix the broken formula.</source>
 Δοκιμάστε να αναιρέσετε την τελευταία λειτουργία ή να διορθώσετε τον προβληματικό τύπο.</translation>
     </message>
     <message>
-        <source>Cutalyst encountered an error while computing a formula.
+        <source>Cutalyst Pattern encountered an error while computing a formula.
 Please try to undo the latest operation or fix the broken formula.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4914,9 +4914,9 @@ The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRAN
 Το πρόγραμμα παρέχεται ΩΣ ΕΧΕΙ χωρίς ΚΑΜΙΑ ΕΓΓΥΗΣΗ ΚΑΝΕΝΟΣ ΕΙΔΟΥΣ, ΣΥΜΠΕΡΙΛΑΜΒΑΝΟΜΕΝΗΣ ΤΗΣ ΕΓΓΥΗΣΗΣ ΣΧΕΔΙΑΣΜΟΥ, ΕΜΠΟΡΕΥΣΙΜΟΤΗΤΑΣ ΚΑΙ ΚΑΤΑΛΛΗΛΟΤΗΤΑΣ ΓΙΑ ΣΥΓΚΕΚΡΙΜΕΝΟ ΣΚΟΠΟ.</translation>
     </message>
     <message>
-        <source>Cutalyst is an application for computer-aided design of garment patterns.
+        <source>Cutalyst Pattern is an application for computer-aided design of garment patterns.
 
-Cutalyst is a free (open source) software, based on Seamly2D and Valentina.
+Cutalyst Pattern is a free (open source) software, based on Seamly2D and Valentina.
 
 All brand or product names are trademarks or registered trademarks of their respective holders.
 
@@ -7194,23 +7194,23 @@ Press enter to temporarily add it to the list.</source>
         <translation>Είστε σίγουροι ότι θέλετε να διαγράψετε το σημείο βάσης και το τρέχον προσχέδιο μπλοκ?</translation>
     </message>
     <message>
-        <source>Cutalyst</source>
+        <source>Cutalyst Pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cutalyst didn&apos;t shut down correctly. Do you want reopen files (%1) you had open?</source>
+        <source>Cutalyst Pattern didn&apos;t shut down correctly. Do you want reopen files (%1) you had open?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>About Cutalyst</source>
+        <source>About Cutalyst Pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Open CutalystMe</source>
+        <source>Open Cutalyst Me</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Open CutalystMe measurements app (Ctrl+M)</source>
+        <source>Open Cutalyst Me measurements app (Ctrl+M)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7392,7 +7392,7 @@ Press enter to temporarily add it to the list.</source>
         <translation>Ctrl+G</translation>
     </message>
     <message>
-        <source>CutalystMe Shortcuts</source>
+        <source>Cutalyst Me Shortcuts</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9381,7 +9381,7 @@ Press enter to temporarily add it to the list.</source>
         <translation>Τα πρότυπα ετικετών μου</translation>
     </message>
     <message>
-        <source>Paths that Cutalyst uses</source>
+        <source>Paths that Cutalyst Pattern uses</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10148,7 +10148,7 @@ Press enter to temporarily add it to the list.</source>
         <translation>Οι σαρώσεις του σώματός μου</translation>
     </message>
     <message>
-        <source>Paths that CutalystMe uses</source>
+        <source>Paths that Cutalyst Me uses</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10263,15 +10263,15 @@ Press enter to temporarily add it to the list.</source>
         <translation>Θέμα:</translation>
     </message>
     <message>
-        <source>Welcome to CutalystMe</source>
+        <source>Welcome to Cutalyst Me</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sets the language used for CutalystMe.</source>
+        <source>Sets the language used for Cutalyst Me.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed. You can change this setting in the CutalystMe preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed. You can change this setting in the Cutalyst Me preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10378,15 +10378,15 @@ Press enter to temporarily add it to the list.</source>
         <translation>Θέμα:</translation>
     </message>
     <message>
-        <source>Welcome to Cutalyst</source>
+        <source>Welcome to Cutalyst Pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sets the language used for Cutalyst.</source>
+        <source>Sets the language used for Cutalyst Pattern.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed.  You can change this setting in the Cutalyst preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed.  You can change this setting in the Cutalyst Pattern preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11188,11 +11188,11 @@ Press enter to temporarily add it to the list.</source>
         <translation>Page Up / Page Down</translation>
     </message>
     <message>
-        <source>Cutalyst Shortcuts</source>
+        <source>Cutalyst Pattern Shortcuts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Open CutalystMe</source>
+        <source>Open Cutalyst Me</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11900,7 +11900,7 @@ load in SeamlyME as usual.
         <translation>Εξατομικευμένη μέτρηση</translation>
     </message>
     <message>
-        <source>About CutalystMe</source>
+        <source>About Cutalyst Me</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -12622,11 +12622,11 @@ load in SeamlyME as usual.
         <translation>Το κάτω περιθώριο</translation>
     </message>
     <message>
-        <source>Cutalyst open source patternmaking program.</source>
+        <source>Cutalyst Pattern open source patternmaking program.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cutalyst pattern file (.sm2d)</source>
+        <source>Cutalyst Pattern file (.sm2d)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -140,11 +140,11 @@
         <translation>Automatikus</translation>
     </message>
     <message>
-        <source>About Cutalyst</source>
+        <source>About Cutalyst Pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cutalyst</source>
+        <source>Cutalyst Pattern</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -373,7 +373,7 @@
         <translation>Kérlek, adj meg egy bemeneti fájlt.</translation>
     </message>
     <message>
-        <source>Cutalyst&apos;s measurements editor.</source>
+        <source>Cutalyst Me, the measurements editor of Cutalyst Pattern.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -565,15 +565,15 @@ p, li { white-space: pre-wrap; }
         <translation>Weboldal: %1</translation>
     </message>
     <message>
-        <source>About CutalystMe</source>
+        <source>About Cutalyst Me</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>CutalystMe version</source>
+        <source>Cutalyst Me version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This program is part of Cutalyst, based on the Seamly2D project.</source>
+        <source>This program is part of Cutalyst Pattern, based on the Seamly2D project.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3104,7 +3104,7 @@ Kérjük, próbálja meg visszavonni a legutóbbi műveletet, vagy javítsa ki a
         <translation>&amp;Képletjavítás</translation>
     </message>
     <message>
-        <source>Cutalyst encountered an error while computing a formula.
+        <source>Cutalyst Pattern encountered an error while computing a formula.
 Please try to undo the latest operation or fix the broken formula.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4911,9 +4911,9 @@ A programot A JELENLEGI ÁLLAPOTUKBAN biztosítjuk, SEMMILYEN GARANCIA NÉLKÜL,
         <translation>A programot A JELENLEGI ÁLLAPOTBAN biztosítjuk, SEMMILYEN GARANCIA NÉLKÜL, BELEÉRTVE A TERVEZÉSRE, AZ ELADHATÓSÁGRA ÉS EGY ADOTT CÉLRA VALÓ ALKALMASSÁGRA VONATKOZÓ GARANCIÁT.</translation>
     </message>
     <message>
-        <source>Cutalyst is an application for computer-aided design of garment patterns.
+        <source>Cutalyst Pattern is an application for computer-aided design of garment patterns.
 
-Cutalyst is a free (open source) software, based on Seamly2D and Valentina.
+Cutalyst Pattern is a free (open source) software, based on Seamly2D and Valentina.
 
 All brand or product names are trademarks or registered trademarks of their respective holders.
 
@@ -7191,23 +7191,23 @@ Menti a módosításokat?</translation>
         <translation>Biztosan törölni szeretné a bázispontot és a jelenlegi vázlattömböt?</translation>
     </message>
     <message>
-        <source>Cutalyst</source>
+        <source>Cutalyst Pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>About Cutalyst</source>
+        <source>About Cutalyst Pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Open CutalystMe</source>
+        <source>Open Cutalyst Me</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Open CutalystMe measurements app (Ctrl+M)</source>
+        <source>Open Cutalyst Me measurements app (Ctrl+M)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cutalyst didn&apos;t shut down correctly. Do you want reopen files (%1) you had open?</source>
+        <source>Cutalyst Pattern didn&apos;t shut down correctly. Do you want reopen files (%1) you had open?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7389,7 +7389,7 @@ Menti a módosításokat?</translation>
         <translation>PDF exportálása</translation>
     </message>
     <message>
-        <source>CutalystMe Shortcuts</source>
+        <source>Cutalyst Me Shortcuts</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9378,7 +9378,7 @@ Menti a módosításokat?</translation>
         <translation>Biztonsági mentéseim</translation>
     </message>
     <message>
-        <source>Paths that Cutalyst uses</source>
+        <source>Paths that Cutalyst Pattern uses</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10145,7 +10145,7 @@ Menti a módosításokat?</translation>
         <translation>A testem szkennelése</translation>
     </message>
     <message>
-        <source>Paths that CutalystMe uses</source>
+        <source>Paths that Cutalyst Me uses</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10260,15 +10260,15 @@ Menti a módosításokat?</translation>
         <translation>Téma:</translation>
     </message>
     <message>
-        <source>Welcome to CutalystMe</source>
+        <source>Welcome to Cutalyst Me</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sets the language used for CutalystMe.</source>
+        <source>Sets the language used for Cutalyst Me.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed. You can change this setting in the CutalystMe preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed. You can change this setting in the Cutalyst Me preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10375,15 +10375,15 @@ Menti a módosításokat?</translation>
         <translation>Téma:</translation>
     </message>
     <message>
-        <source>Welcome to Cutalyst</source>
+        <source>Welcome to Cutalyst Pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sets the language used for Cutalyst.</source>
+        <source>Sets the language used for Cutalyst Pattern.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed.  You can change this setting in the Cutalyst preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked the Welcome window will not be displayed.  You can change this setting in the Cutalyst Pattern preferences.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11185,11 +11185,11 @@ Menti a módosításokat?</translation>
         <translation>Page Up / Page Down</translation>
     </message>
     <message>
-        <source>Cutalyst Shortcuts</source>
+        <source>Cutalyst Pattern Shortcuts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Open CutalystMe</source>
+        <source>Open Cutalyst Me</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11896,7 +11896,7 @@ Menti a módosításokat?</translation>
         <translation>Egyedi méretvétel</translation>
     </message>
     <message>
-        <source>About CutalystMe</source>
+        <source>About Cutalyst Me</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -12618,11 +12618,11 @@ Menti a módosításokat?</translation>
         <translation>Érvénytelen gradációs magasságérték.</translation>
     </message>
     <message>
-        <source>Cutalyst open source patternmaking program.</source>
+        <source>Cutalyst Pattern open source patternmaking program.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cutalyst pattern file (.sm2d)</source>
+        <source>Cutalyst Pattern file (.sm2d)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
