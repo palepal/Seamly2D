@@ -4,22 +4,22 @@
 //  @date   31 Oct, 2026
 //
 //  @copyright
-//  Copyright (C) 2026 Seamly, LLC
-//  https://github.com/fashionfreedom/seamly2d
+//  Copyright (C) 2026 palepal
+//  https://github.com/palepal/Cutalyst
 //
 //  @brief
-//  Seamly2D is free software: you can redistribute it and/or modify
+//  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
 //
-//  Seamly2D is distributed in the hope that it will be useful,
+//  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
 //
 //  You should have received a copy of the GNU General Public License
-//  along with Seamly2D. If not, see <http://www.gnu.org/licenses/>.
+//  along with this program. If not, see <http://www.gnu.org/licenses/>.
 //-----------------------------------------------------------------------------
 
 #include "macos_window.h"
