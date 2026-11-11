@@ -5,7 +5,7 @@
 //
 //  @copyright
 //  Copyright (C) 2026 palepal
-//  https://github.com/palepal/Cutalyst
+//  https://github.com/palepal/Seamly2D
 //
 //  @brief
 //  This program is free software: you can redistribute it and/or modify
